@@ -1,13 +1,21 @@
-import { ChangeDetectorRef, Component, ElementRef, ViewChild } from "@angular/core";
-import { GetService } from "../../app/services/get.servie";
-import { ModalController, NavController, NavParams, Platform, ViewController, Slides } from "ionic-angular";
-import { Geolocation } from "@ionic-native/geolocation";
-import { GoogleMap, GoogleMaps, GoogleMapsEvent, ILatLng, LatLng, LatLngBounds } from "@ionic-native/google-maps";
-import { APP_TYPE, APP_USER_TYPE, FRAMEWORK, MOBILE_TYPE, Utils, INTERNET_ERR_MSG } from "../../app/services/Utils";
-import { ProductsPage } from "../ProductsPage/ProductsPage";
-import { Diagnostic } from "@ionic-native/diagnostic";
-import { SignUp } from "../SignUp/SignUp";
-import { ConfirmOrder } from "../ConfirmOrderPage/ConfirmOrderPage";
+import {ChangeDetectorRef, Component, ElementRef, ViewChild} from "@angular/core";
+import {GetService} from "../../app/services/get.servie";
+import {ModalController, NavController, NavParams, Platform, Slides, ViewController} from "ionic-angular";
+import {Geolocation} from "@ionic-native/geolocation";
+import {GoogleMap, GoogleMaps, GoogleMapsEvent, ILatLng, LatLng, LatLngBounds} from "@ionic-native/google-maps";
+import {
+  APP_TYPE,
+  APP_USER_TYPE,
+  FRAMEWORK,
+  INTERNET_ERR_MSG,
+  IS_WEBSITE,
+  MOBILE_TYPE,
+  Utils
+} from "../../app/services/Utils";
+import {ProductsPage} from "../ProductsPage/ProductsPage";
+import {Diagnostic} from "@ionic-native/diagnostic";
+import {SignUp} from "../SignUp/SignUp";
+import {ConfirmOrder} from "../ConfirmOrderPage/ConfirmOrderPage";
 
 
 @Component({
@@ -15,8 +23,8 @@ import { ConfirmOrder } from "../ConfirmOrderPage/ConfirmOrderPage";
   selector: 'map-page'
 })
 export class MapView {
-  @ViewChild(Slides) public slides: Slides;
   private static bounds: LatLngBounds;
+  @ViewChild(Slides) public slides: Slides;
   referCode: string = "";
   @ViewChild('map') mapElement: ElementRef;
   map: GoogleMap;
@@ -31,15 +39,15 @@ export class MapView {
   autocomplete: any;
   address;
   tabBarElement: any;
+  categoryData: any;
+  rides = [];
+  currentIndex = 0;
   private isExisting: any;
   private exMobileno: any;
   private exUserInfo: any;
   private items: any;
   private calledFrom: string = "";
   private showMap: boolean = true;
-  categoryData: any;
-  rides = [];
-  currentIndex = 0;
 
   constructor(private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams) {
     platform.ready().then(() => {
@@ -48,7 +56,6 @@ export class MapView {
 
         this.calledFrom = this.param.get("from");
         console.log("Page came from :" + this.calledFrom);
-
 
 
         this.isExisting = this.param.get("isExisting");
@@ -94,7 +101,11 @@ export class MapView {
         this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
       }
 
-     
+      if (IS_WEBSITE) {
+        this.getCategoryTask();
+        this.fetchRides();
+      }
+
       this.alertUtils.getUserInfo().then(user => {
         if (user) {
           Utils.USER_INFO_DATA = user;
@@ -112,7 +123,7 @@ export class MapView {
   }
 
   addNewRide() {
-    let model = this.modalCtrl.create('AddupdateridesPage', { "from": "create" });
+    let model = this.modalCtrl.create('AddupdateridesPage', {"from": "create"});
     model.present();
     model.onDidDismiss(data => {
       if (data) {
@@ -143,9 +154,18 @@ export class MapView {
   next() {
     this.confirmLocation();
   }
+
   showServices(item) {
     console.log(item);
-    let input = { "root": { "userid": Utils.USER_INFO_DATA.userid, "usertype": "dealer", "category": item.category, "categoryid": item.categoryid, "apptype": APP_TYPE } }
+    let input = {
+      "root": {
+        "userid": Utils.USER_INFO_DATA.userid,
+        "usertype": "dealer",
+        "category": item.category,
+        "categoryid": item.categoryid,
+        "apptype": APP_TYPE
+      }
+    }
 
     this.apiService.postReq(GetService.getProductsByCategory(), input).then(res => {
       console.log(res);
@@ -173,7 +193,7 @@ export class MapView {
         // }
         // console.log( Utils.categoryList.keys());
         // console.log( Utils.categoryList);
-        let model = this.modalCtrl.create('ProductsPage', { "category": item })
+        let model = this.modalCtrl.create('ProductsPage', {"category": item})
         model.onDidDismiss(data => {
           console.log("MapView");
           console.log(Utils.productsList);
@@ -191,7 +211,6 @@ export class MapView {
   }
 
 
-
   getCategoryTask() {
     this.apiService.getReq(GetService.getCategory(Utils.USER_INFO_DATA.superdealerid)).subscribe(res => {
       console.log(res);
@@ -202,7 +221,13 @@ export class MapView {
   }
 
   fetchRides() {
-    let input = { "User": { "userid": Utils.USER_INFO_DATA.userid, "apptype": APP_TYPE, "TransType": "getextrainformation" } };
+    let input = {
+      "User": {
+        "userid": Utils.USER_INFO_DATA.userid,
+        "apptype": APP_TYPE,
+        "TransType": "getextrainformation"
+      }
+    };
     this.apiService.postReq(GetService.ride(), input).then(res => {
       console.log(res)
       if (res && res.data) {
@@ -235,7 +260,7 @@ export class MapView {
   geoCode(address: any) {
     try {
       let geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ 'address': address }, (results, status) => {
+      geocoder.geocode({'address': address}, (results, status) => {
         this.latitude = results[0].geometry.location.lat();
         this.longitude = results[0].geometry.location.lng();
         if (this.latitude != 0 && this.longitude != 0) {

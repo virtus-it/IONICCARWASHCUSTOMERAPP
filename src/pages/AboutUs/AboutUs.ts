@@ -37,17 +37,4 @@ export class AboutUs {
     }
   }
 
-  ionViewWillEnter() {
-    try {
-      this.tabBarElement.style.display = 'none';
-    } catch (e) {
-    }
-  }
-
-  ionViewWillLeave() {
-    try {
-      this.tabBarElement.style.display = 'flex';
-    } catch (e) {
-    }
-  }
 }

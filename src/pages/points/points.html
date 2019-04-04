@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left *ngIf="calledFrom == 'myorders'">
+      <button ion-button icon-only (click)="viewCtrl.dismiss()" class="my-style-for-modal">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      <img src="assets/imgs/header_icon.png" class="header_icon">
+      <span class="title-style"> Points</span>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="primary" (click)="fetchPoints()">
+        <ion-icon name="refresh-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-spinner block name="crescent" color="primary" class="spinner_center" *ngIf="showProgress" item-center></ion-spinner>
+  <ion-card *ngIf="pointSum && pointTab">
+    <h1 class="center fs-50 "  [ngClass]="pointSum.color" *ngIf="pointSum">{{pointSum.totalpoints}}
+      <ion-icon name="information-circle" class="position-right logo-color" (click)="showInfoList()"></ion-icon>
+    </h1>
+    <h6 class="center" style="font-style: bold">Your reward points</h6>
+    <div class="center mgtop-10">
+      <button class="button button-md button-block-md" ion-button block color="primary" *ngIf="pointSum.redeem && !infoList" (click)="showRedeemTab()"
+        [disabled]="!(pointSum && pointSum.redeem && pointSum.redeem.toLowerCase() =='yes')">
+        Redeem Points
+      </button>
+      <h6 *ngIf="pointSum && pointSum.redeempoints" class="warning mgtop-10">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        You can redeem when you reach {{pointSum.redeempoints}} points
+        <br>
+        <small>Note: The Company reserves the right, at its discretion, to change, modify, add, or remove portions of these Terms at any time. Please check these Terms periodically.</small>
+      </h6>
+    </div>
+  </ion-card>
+
+  <ion-card class="mgbottom-10 mgtop-10" *ngIf="pointsHistory && !infoList && this.pointsHistoryTab">
+    <ion-list *ngIf="pointsHistory && !infoList">
+      <h1 class="center danger mgtop-5">Reward Points History</h1>
+      <br>
+      <ion-item *ngFor="let item of pointsHistory ; let i = index" [ngClass]="i < pointsHistory.length-1 ? 'line-style' : ''">
+        <ion-row class="pd-3x5 no_padding">
+          <ion-col class="left">
+            <span class="left gray6" *ngIf="item.orderid">#{{item.orderid}}</span>
+            <h3 class=" capitalize pdtopbottom-2">
+              <span *ngIf="item.status" [ngClass]="item.color">{{item.status}}
+                <ion-icon *ngIf="item.status.toLowerCase() == 'complete'" name="trophy"></ion-icon>
+              </span>
+              <span *ngIf="item.isredeemed == 'yes'" class="primary">{{item.redeemstatus}} - {{item.type}}</span>
+              <span *ngIf="item.acknowledgementnumber" class="primary">{{item.acknowledgementnumber}}</span>
+            </h3>
+            <span class="left gray9">
+              <ion-icon name="calendar"></ion-icon>
+              {{item.date | utcDate}}
+            </span>
+          </ion-col>
+          <ion-col col-4 class="right" align-self-center>
+            <h3 class="danger mg-0">
+              <span class="point-style">{{item.points}} {{item.points > 1 ? 'Points' : 'Point' }}</span>
+            </h3>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card class="pd-15x25" *ngIf="redeemPoint">
+    <h1 class="center danger">Redeem Points</h1>
+    <br>
+    <ion-item>
+      <ion-label floating>Redeem Type</ion-label>
+      <ion-input type="text" [(ngModel)]="redeemType" value="paytm"></ion-input>
+      <!-- <ion-select [(ngModel)]="redeemType">
+          <ion-option value="paytm">PayTM</ion-option>
+        </ion-select> -->
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label floating>PayTM Mobile Number</ion-label>
+      <ion-input type="tel" minlength="10" maxlength="10" [(ngModel)]="redeemMobileNo"></ion-input>
+    </ion-item>
+    <br>
+    <div class="float-right">
+      <button class="button button-md button-block-md" ion-button color="primary" (click)="btnRedeem()">
+        Submit
+      </button>
+      <button class="button button-md button-block-md bg-danger" ion-button color="default" (click)="btnCancel()">
+        Cancel
+      </button>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="infoList" class="mgtop-10 ">
+    <h3 class="infotitle-style">EARN REWARDS WHILE USING</h3>
+    <img src="assets/imgs/moya_logo.png" class="logo-style">
+    <h4 class="center success">Order, Refer, be rewarded. It's that simple!</h4>
+    <br>
+    <div *ngFor="let item of pointSum.masterpoints;let i=index" class="">
+      <div ngClass="{{i != pointSum.masterpoints.length - 1 ? 'info-style':''}}" class="d-flex pd">
+        <div class="mr-auto align-self-center info">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          <span class="lineheight"> {{item.description}}</span>
+        </div>
+        <div class="right" align-self-center>
+          <p class="pointInfo">{{item.points}}</p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>

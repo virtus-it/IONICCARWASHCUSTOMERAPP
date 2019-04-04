@@ -1,0 +1,394 @@
+
+page-chat {
+
+  $userBackgroundColor: #ffffff;
+  $toUserBackgroundColor: #387ef5;
+  .img-rupee{
+    width: 3% !important;
+  }
+  .pdtopbottom-2 .col{
+    padding: 2px 0px !important;
+  }
+  .table-header
+  {    border: 1px solid #bbb;
+  background: #ddd;
+  margin-top: 5px
+  }
+  .corner-ribbon {
+    // width: 185px;
+    // height: 32px;
+    background: #eea236;
+    text-align: center;
+    letter-spacing: 1px;
+    color: black;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 5px;
+    // position: absolute;
+    // top: 23px;
+    // left: -44px;
+    text-align: center;
+    // line-height: 35px;
+    letter-spacing: 1px;
+    color: black;
+    // transform: rotate(-45deg);
+    // -webkit-transform: rotate(-40deg);
+    font-size: 12px;
+  }
+  // .corner-ribbon {
+  //   width: 185px;
+  //   height: 32px;
+  //   background: #7cd6d1;
+  //   position: absolute;
+  //   top: 23px;
+  //   left: -44px;
+  //   text-align: center;
+  //   line-height: 35px;
+  //   letter-spacing: 1px;
+  //   color: black;
+  //   transform: rotate(-45deg);
+  //   -webkit-transform: rotate(-40deg);
+  //   font-size: 12px;
+  // }
+
+  .Delstatus-style {
+    background: #4cae4c;
+    border-radius: 50%;
+    padding: 4px 9px;
+    color: #fff;
+    margin-right: 3px;
+  }
+
+  .Ordstatus-style {
+    background: #eea236;
+    border-radius: 50%;
+    padding: 4px 9px;
+    color: #fff;
+    margin-right: 3px;
+  }
+
+  .Retstatus-style {
+    background: #408f98;
+    border-radius: 50%;
+    padding: 4px 9px;
+    color: #fff;
+    margin-right: 3px;
+  }
+  ion-input, ion-textarea{
+    font-size: 14px;
+  }
+  .timeline {
+    border-left: 2px solid #dddddd;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 10px auto;
+    letter-spacing: 0.5px;
+    position: relative;
+    line-height: 1.4em;
+    font-size: 1.03em;
+    padding: 0px 50px 0px 25px;
+    list-style: none;
+    text-align: left;
+    font-weight: 100;
+    width: 92%;
+  }
+
+  .timeline .event {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    //padding-bottom: 30px;
+    margin-bottom: 15px;
+    position: relative;
+  }
+
+  .timeline .event:before {
+    left: -217.5px;
+    color: #c6c6c6;
+    content: attr(data-date);
+    text-align: right;
+    font-weight: 100;
+    font-size: 0.9em;
+    min-width: 169px;
+  }
+
+  .timeline .event:before, .timeline .event:after {
+    position: absolute;
+    display: block;
+    top: 0;
+  }
+
+  .timeline h5 {
+    margin: 0;
+    color: #c6c6c6;
+    float: left;
+  }
+
+  .timeline li p {
+    color: #808080;
+    width: 100%;
+    float: left;
+  }
+
+  .timeline .event:after {
+    box-shadow: 0 0 0 2px #eee;
+    left: -31.85px;
+    background: #28a6f2;
+    border-radius: 50%;
+    height: 11px;
+    width: 11px;
+    content: "";
+    top: 5px;
+  }
+
+  ion-content .scroll-content {
+    background-color: #f5f5f5;
+  }
+
+  .line-breaker {
+    white-space: pre-line;
+  }
+
+  .input-wrap {
+    padding: 0 5px;
+    ion-textarea {
+      position: static;
+
+    }
+    ion-col.col {
+      padding: 0;
+    }
+    button {
+      width: 100%;
+      height: 55px;
+      font-size: 1.3em;
+      margin: 0;
+    }
+    textarea {
+      color: black;
+      border-bottom: 1px $toUserBackgroundColor;
+      border-style: solid;
+    }
+  }
+
+  .message-wrap {
+    padding: 0 10px;
+    .message {
+      position: relative;
+      padding: 7px 0;
+      .user-img {
+        position: absolute;
+        border-radius: 45px;
+        width: 45px;
+        height: 45px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
+      }
+
+      .msg-detail {
+        width: 100%;
+        display: inline-block;
+        p {
+          margin: 0;
+        }
+        .msg-info {
+          p {
+            font-size: .8em;
+            color: #888;
+          }
+        }
+
+        .msg-content {
+          position: relative;
+          margin-top: 5px;
+          border-radius: 5px;
+          padding: 8px;
+          border: 1px solid #ddd;
+          color: #fff;
+          width: auto;
+          max-width: 100%;
+          span.triangle {
+            background-color: #387ef5;
+            border-radius: 2px;
+            height: 8px;
+            width: 8px;
+            top: 12px;
+            display: block;
+            border-style: solid;
+            border-color: #ddd;
+            border-width: 1px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+          }
+        }
+
+      }
+    }
+
+    .message.left {
+      .msg-content {
+        background-color: $toUserBackgroundColor;
+        float: left;
+      }
+      .msg-detail {
+        padding-left: 60px;
+      }
+      .user-img {
+        left: 0;
+      }
+      .msg-content {
+        color: #343434;
+        span.triangle {
+          border-top-width: 0;
+          border-right-width: 0;
+          left: -5px;
+        }
+      }
+
+    }
+
+    .message.right {
+      .msg-detail {
+        // padding-right: 60px;
+        .msg-info {
+          text-align: right;
+        }
+      }
+      .user-img {
+        right: 0;
+      }
+      // ion-spinner {
+      //   position: absolute;
+      //   right: 10px;
+      //   top: 50px;
+      // }
+      .msg-content {
+        background-color: $userBackgroundColor;
+        float: right;
+        span.triangle {
+          background-color: $userBackgroundColor;
+          border-bottom-width: 0;
+          border-left-width: 0;
+          right: -5px;
+        }
+      }
+
+    }
+
+  }
+
+}
+
+.item-md ion-icon[item-left], .item-md ion-icon[item-right], .item-md ion-icon[item-start], .item-md ion-icon[item-end] {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.item-block {
+  min-height: 2.5rem !important;
+}
+
+.label-md {
+  margin: 5px 8px 5px 0px !important;
+}
+
+.no_padding {
+  padding: $no_padding;
+}
+
+.no_margin {
+  margin: 0 !important;
+}
+
+.summary_heading {
+  margin: 7px 0 0 0 !important;
+}
+
+.sumry_lbl_dtls .cart_label {
+  margin: 5px 0 5px 0;
+  font-weight: bold !important;
+}
+
+.cancel_btn_summary {
+  background: #6c6c6c;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 4px;
+  margin-top: 10px !important;
+  display: block;
+}
+
+.dealer_contnr ion-icon:before {
+  font-size: 20px !important;
+}
+
+.dealer_contnr .item-inner {
+  margin: 0 !important;
+}
+
+.send_ord_message_grd {
+  padding: 0;
+  width: 107%;
+  margin-left: -10px;
+  background: #ccc;
+  margin-bottom: -12px;
+}
+
+.send_ord_txtarea {
+  background: #fff;
+  display: block;
+  border-radius: 3px;
+  width: 100%;
+  -moz-box-shadow: inset 0 0 10px #aaa;
+  -webkit-box-shadow: inset 0 0 10px #aaa;
+  box-shadow: inset 0 0 10px #aaa;
+}
+
+.shoot_msg {
+  background: #00a4cc;
+  padding: 11px;
+  border-radius: 50px;
+  float: right;
+  margin: 6px;
+  height: 40px;
+  width: 40px;
+  display: block;
+}
+
+.shoot_msg .icon {
+  color: #fff;
+}
+
+.shoot_msg .icon::before {
+  margin: 0;
+  font-size: 22px;
+}
+
+.order_details_pg .icon::before {
+  font-size: 30px;
+  margin: 2px 10px;
+}
+
+.pdleft12-nopadding {
+  padding: 0px 0px 0px 12px !important;
+}
+
+.pdleft20-nopadding {
+  padding: 0px 0px 0px 20px !important;
+}
+
+.feed_customer_reply {
+  padding: 3px 0px 5px 10px !important;
+  margin-bottom: 0px !important;
+  width: 100% !important;
+}
+
+.feed_admin_reply {
+  padding: 3px 0px 5px 10px !important;
+  margin-bottom: 0px !important;
+}
+
+.fs-14 {
+  font-size: 14px !important;
+}

@@ -1,0 +1,93 @@
+<!--
+  Generated template for the AddupdateridesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="this.viewCtrl.dismiss()" class="my-style-for-modal">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="page1">
+    <ion-searchbar [(ngModel)]="searchTerm" placeholder="Search manufacturer"></ion-searchbar>
+
+    <ion-list>
+      <ion-item *ngFor="let item of items | search : searchTerm : 'manufacturer': 'model'" (click)="pickedItem(item)">
+        {{ item.manufacturer }} {{ " - "+item.model }}
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="page2">
+    <ion-item>
+      <ion-label>Year</ion-label>
+      <ion-input pattern="[0-9]*" type="tel" maxlength="4" minlength="4" [(ngModel)]="year"></ion-input>
+    </ion-item>
+
+    <h4>Pick <b [ngClass]="pColor" style="border: 2px solid #000000;border-radius: 7px;padding: 3px;">COLOR</b></h4>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:red' (click)="pickColor('red')">red</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:gray' (click)="pickColor('gray')">gray</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:white' (click)="pickColor('white')">white</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:black;color: snow' (click)="pickColor('black')">black</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:brown' (click)="pickColor('brown')">brown</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:bisque' (click)="pickColor('bisque')">bisque</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:chocolate' (click)="pickColor('chocolate')">chocolate</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:yellow' (click)="pickColor('yellow')">yellow</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:orange' (click)="pickColor('orange')">orange</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:green' (click)="pickColor('green')">green</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:palevioletred' (click)="pickColor('palevioletred')">palevioletred</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:steelblue' (click)="pickColor('steelblue')">steelblue</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:teal' (click)="pickColor('teal')">teal</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:slategray' (click)="pickColor('slategray')">slategray</ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:blue' (click)="pickColor('blue')">blue</ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <ion-card>
+      <img src="https://img.appx4fun.com/a7/8d/9d/a06cbe6a-05a4-4e71-970e-98325530e591-logo.jpg" />
+      <ion-card-content>
+        <ion-card-title>
+          {{ itemSelected.manufacturer }} {{ " - " + itemSelected.model }}
+        </ion-card-title>
+      </ion-card-content>
+    </ion-card>
+    <h4>Plate Information:</h4>
+    <ion-list inset>
+
+      <ion-item>
+        <ion-label>City:</ion-label>
+        <ion-input type="text" [(ngModel)]="city"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Plate Number:</ion-label>
+        <ion-input type="text" [(ngModel)]="plateNumber"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Plate Code:</ion-label>
+        <ion-input type="text" [(ngModel)]="plateCode"></ion-input>
+      </ion-item>
+
+      <button type="button" ion-button full (click)="continue()" class="btn ">Done
+
+      </button>
+    </ion-list>
+
+  </div>
+
+</ion-content>

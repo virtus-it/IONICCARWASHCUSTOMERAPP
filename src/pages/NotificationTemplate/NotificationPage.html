@@ -1,0 +1,65 @@
+<ion-content>
+  <ion-fab right edge (click)="close()">
+    <button ion-fab mini>
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-fab>
+  <div *ngIf="items.additionalData.obj.type !='slide'">
+
+    <ion-card>
+      <img *ngIf="items.additionalData.obj.url"
+           src="{{items.additionalData.obj.url ? items.additionalData.obj.url : assets/imgs/ic_launcher.png}}"/>
+      <ion-card-title text-center *ngIf="items.additionalData.obj.title">
+        {{items.additionalData.obj.title}}
+      </ion-card-title>
+      <ion-card-content>
+
+        <span *ngIf="items.additionalData.obj.body" class="text_label" text-left>
+          {{items.additionalData.obj.body}}
+        </span>
+      </ion-card-content>
+    </ion-card>
+
+    <div *ngIf="items.additionalData.obj.type =='checkbox'" class="pdleftright-10">
+      <ion-row *ngFor="let item of items?.additionalData?.obj?.checkoptionlist" (click)="onChange(item,true)">
+        <ion-col>
+          <span class="fs-15">{{item.title}}</span>
+        </ion-col>
+        <ion-col col-1>
+          <img src="{{item.value ? 'assets/imgs/img_checkbox_green.png'  : 'assets/imgs/img_checkboxgray.png' }}">
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="items.additionalData.obj.type =='radio'" class="pdleftright-10">
+      <ion-row *ngFor="let item of items?.additionalData?.obj?.radiooptionlist" (click)="onChange(item,false)">
+        <ion-col>
+          <span class="fs-15">{{item.title}}</span>
+        </ion-col>
+        <ion-col col-1>
+          <img src="{{item.value ? 'assets/imgs/img_checkbox_green.png'  : 'assets/imgs/img_checkboxgray.png' }}">
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-item *ngIf="items.additionalData.obj.showcomment">
+      <ion-textarea placeholder="Leave a comment" type="text" class="add_textarea text_output" [(ngModel)]="userComment"
+                    clearInput style="height: auto;"></ion-textarea>
+    </ion-item>
+
+  </div>
+  <ion-slides pager *ngIf="items.additionalData.obj.type =='slide'">
+    <ion-slide *ngFor="let slide of items.additionalData.obj.sliderurl">
+      <img [src]="slide.image" class="slide-image" *ngIf="slide.image"/>
+      <h2 class="slide-title" [innerHTML]="slide.title" *ngIf="slide.title"></h2>
+      <p [innerHTML]="slide.description" *ngIf="slide.description"></p>
+    </ion-slide>
+  </ion-slides>
+
+
+</ion-content>
+<ion-footer *ngIf="items.additionalData.obj.buttonactions.length > 0">
+  <ion-toolbar>
+    <div (click)="updateResponse(btnItem)" *ngFor="let btnItem of items.additionalData.obj.buttonactions">
+      <button ion-button block class="text_white"> {{btnItem.text}}</button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,64 @@
+Payment-style{
+.fs-15b {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.header {
+  background: #ddd;
+}
+
+.payment_seprater small {
+  color: #B0B0B0;
+}
+.scroll-content{
+  background: #eee !important;
+}
+.pending_amount {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #f53d3d;
+  margin: -10px 0 0 0 !important;
+}
+ion-infinite-scroll-content{
+  min-height: 5px !important;
+}
+.paid_amount {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4cae4c;
+  margin: -10px 0 0 0 !important;
+}
+
+.output_lbl span {
+  font-size: 1.5rem;
+  margin: -10px 0 0 0 !important;
+}
+
+.pd_3 {
+  padding: 3px 0 !important;
+}
+
+.mypayment .item-inner {
+  padding-right: 0 !important;
+}
+
+  .payment_seprater {
+    padding: 5px 0px 10px;
+    border-bottom: 1px solid #B0B0B0;
+    font-size: 1.5rem !important;
+    color: #777777;
+  }
+  .card-md {
+    padding: 0px 10px 10px 10px;
+  }
+  .label-md {
+    margin: 5px 0px 5px 0px !important;
+  }
+  .item-md {
+    padding-left: 0px;
+  }
+  .item-md.item-block .item-inner {
+    padding-right: 0px;
+  }
+}

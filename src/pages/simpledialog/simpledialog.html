@@ -1,0 +1,59 @@
+<ion-header class="appcolor">
+  <ion-navbar>
+    <ion-title start>
+      <img src="assets/imgs/header_icon.png" class="header_icon">
+      <span class="title-style"> Wild Card Entry Moya Contest
+      </span>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="nextPage()" color="primary">Skip</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngIf="page1">
+    <p>
+      <img src="assets/imgs/img_littlegenius.png" class="">
+    </p>
+
+    <h1>
+      You can win Scholarship of RS. 1,00,000
+    </h1>
+    <p>Wild Card Entry</p>
+    <p> Get a Chance to Directly Appear the Finals of Little Genius Scholarship</p>
+    <br>
+    <h3>Your Code:
+      <span class="code-style">{{userReferCode}}</span>
+    </h3>
+    <ion-item class="mgtop-10" style="border-radius: 15px">
+      <ion-label stacked>Name: </ion-label>
+      <ion-input type="text" [(ngModel)]="name"></ion-input>
+    </ion-item>
+
+  </ion-card>
+
+  <ion-card *ngIf="page2">
+    <p>
+      <img src="assets/imgs/img_checkbox_green.png" class="wd-20pc">
+    </p>
+    <h1>
+      Congratulations
+    </h1>
+    <h4>Thank you for Listing to wild card entry the field of Little Genius</h4>
+    <br>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <button style="width: 98.5% !important" *ngIf="page1 && !showSendSMS" type="button" ion-button small (click)="sendSMS()"
+    class="btn btn-lg wd-100pc">SEND SMS TO LITTLE GENIUS &nbsp;
+    <ion-icon name="arrow-forward"></ion-icon>
+  </button>
+  <button *ngIf="page1 && showSendSMS" type="button" ion-button small class="btn btn-lg wd-100pc">
+    <ion-spinner name="dots" color="light" class="spinner_center"></ion-spinner>
+  </button>
+  <button *ngIf="page2" style="width: 98.5% !important" type="button" ion-button small 
+  (click)="nextPage()" class="btn btn-lg wd-100pc">CONTINUE  &nbsp; <ion-icon name="arrow-forward"></ion-icon></button>
+</ion-footer>

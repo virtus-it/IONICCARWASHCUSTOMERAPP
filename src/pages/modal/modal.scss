@@ -1,0 +1,60 @@
+page-modal {
+  .ion-page{
+    left: 0;
+    top: 0;
+    position: absolute;
+    display: block;
+    width: 70% !important;
+    border: 1px solid #408f98 !important;
+    margin-left: auto;
+    height: 70% !important;
+    contain: strict;
+    margin-right: auto;
+  }
+  .modalView{
+    //width: 70%;
+    border: 1px solid #408f98;
+    margin-left: 10%;
+    margin-right: 10%;
+    //max-height: 60vh;
+    margin-top: 15%;
+    width: 80%;
+    align-items: center;
+  }
+.modalHeader{
+  height: 45px;
+  //position: fixed;
+  background: #408f98;
+  color: #fff;
+  padding: 10px;
+  //width: 79.5%;
+}
+
+  .modalFooter{
+    height: 50px;
+    border: 1px solid #ddd;
+    //background: #408f98;
+    color: #fff;
+    //position: fixed;
+    //padding: 10px;
+    //bottom: 0px;
+    //width: 100%;
+
+  }
+  .pd-15 {
+    padding: 15px 20px;
+    //margin-top: 50px;
+    //height: 470px !important;
+  }
+  .card.modalView{
+    padding: 0px !important;
+
+  }
+.footer-md .toolbar-background-md{
+  background: #fff !important;
+}
+    //.scroll-content{
+  //  border: 1px solid #999;
+  //}
+
+}

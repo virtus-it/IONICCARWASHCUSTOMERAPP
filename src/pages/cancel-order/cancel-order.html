@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()" class="my-style-for-modal">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      <img src="assets/imgs/header_icon.png" class="header_icon">
+      <span class="title-style"> Cancel Order</span>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list radio-group [(ngModel)]="cancelList">
+    <ion-item>
+      <ion-label>I have got this order done by others</ion-label>
+      <ion-radio value="I have got this order done by others" checked></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>I have ordered this by mistake</ion-label>
+      <ion-radio value="I have ordered this by mistake"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>I have changed my plans for the order</ion-label>
+      <ion-radio value="I have changed my plans for the order"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Other</ion-label>
+      <ion-radio value="other"></ion-radio>
+    </ion-item>
+    <ion-item *ngIf="cancelList =='other'" class="mgtop-10">
+      <ion-textarea placeholder="Enter a description" class="min-h100 add_textarea text_output" [(ngModel)]="msg" type="text"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-buttons>
+    <button ion-button full (click)="update()">UPDATE</button>
+  </ion-buttons>
+
+</ion-footer>

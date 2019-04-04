@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-row>
+      <ion-col col-1 class="mgtop-10">
+        <ion-icon name="arrow-round-back" item-start (click)="dismiss()" start></ion-icon>
+      </ion-col>
+      <ion-col class="mgTop5">
+        <ion-title >
+          <img src="assets/imgs/header_icon.png" class="header_icon_addrs"> <span class="title-style"> &nbsp; Contacts</span>
+        </ion-title>
+      </ion-col>
+      <ion-col col-2 >
+        <ion-buttons>
+          <button ion-button clear (click)="chooseItem()">Done</button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+  <ion-searchbar [(ngModel)]="searchContacts" placeholder="Search"></ion-searchbar>
+</ion-header>
+
+
+<ion-content padding>
+ <div>
+  <ion-row *ngFor="let c of contacts | search : searchContacts : 'name' : 'phonenumber'" (click)="onChange(c)" align-items-center	>
+    <ion-col>
+      <b item-start>{{c.name}}</b><br>
+      <small item-end>{{c.phonenumber}}</small>
+    </ion-col>
+    <ion-col col-2 class="right">
+      <img src="{{c.checked ? 'assets/imgs/img_checkbox_green.png'  : 'assets/imgs/img_checkboxgray.png' }}" class="wh-25">
+    </ion-col>
+  </ion-row>
+</div>
+</ion-content>

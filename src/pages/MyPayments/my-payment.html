@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><img src="assets/imgs/header_icon.png" class="header_icon"><span class="title-style"> {{ 'MY_PAYMENTS_PAGE.PAGE_TITLE' | translate }}</span>
+    </ion-title>
+    <ion-buttons end *ngIf="callFrom == 'pushnotification'">
+      <button ion-button clear color="primary" (click)="close()">{{ 'MY_PAYMENTS_PAGE.BUTTONS.btn_done' | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="refresherFetchPaymentInfo($event)" class="center">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="no_margin prdct_main_container " *ngIf="items">
+    <ion-card>
+      <ion-item>
+            <p class="payment_seprater">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_pending_inr' | translate }}<br>
+              <small>{{ 'MY_PAYMENTS_PAGE.LABELS.lb_amount' | translate }}</small>
+              <span item-end float-right class="no_margin pending_amount">{{items.amount_pending}}</span></p>
+        <p class=" payment_seprater">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_paid_inr' | translate }}<br>
+          <small>{{ 'MY_PAYMENTS_PAGE.LABELS.lb_amount' | translate }}</small>
+          <span item-end float-right class=" paid_amount">{{items?.amount_payed}}</span></p>
+        <p *ngIf="items?.customer?.lastname" class="payment_seprater output_lbl" text-capitalize>{{
+          'MY_PAYMENTS_PAGE.LABELS.lb_cycle_bill' | translate }}<br>
+          <small>{{ 'MY_PAYMENTS_PAGE.LABELS.lb_bill' | translate }}</small>
+          <span item-end float-right class="">{{items?.customer?.firstname +" "+ items?.customer?.lastname}}</span></p>
+        <p *ngIf="!items?.customer?.lastname" class="payment_seprater" text-capitalize>
+          {{items?.customer?.firstname}}<span
+          item-end float-right class="no_margin">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_cycle_bill_2' | translate }}</span></p>
+        <p class="payment_seprater output_lbl">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_due_date' | translate }}<br>
+          <small>{{ 'MY_PAYMENTS_PAGE.LABELS.lb_date' | translate }}</small>
+          <span item-end float-right class=""> {{items?.duedate | normalDate}}</span></p>
+
+        <ion-item padding *ngIf="historyItems" class="no_padding mypayment">
+          <div class="row h eader">
+            <div class="col" align="left">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_head_date' | translate }}</div>
+            <div class="col" align="center">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_head_status' | translate }}</div>
+            <div class="col" align="right">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_head_amt' | translate }}</div>
+          </div>
+          <div class="row pd_3" *ngFor="let item of historyItems">
+            <div class="col pd_3" align="left">{{item.amount_receiveddate | normalDate}}</div>
+            <div class="col pd_3" align="center" [ngClass]="item.statuscolor" text-capitalize>{{item.status}}</div>
+            <div class="col pd_3" align="right">INR.{{item.amount_received}}</div>
+          </div>
+        </ion-item>
+        <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite($event))">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+      </ion-item>
+    </ion-card>
+  </div>
+</ion-content>

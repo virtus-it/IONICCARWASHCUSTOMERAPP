@@ -1,0 +1,60 @@
+loginView {
+  .login_fields {
+    margin: -22px 30px 10px;
+    background: #fff;
+    padding: 30px 30px 10px 30px;
+    height: auto;
+    border-radius: 6px;
+  }
+  .poweredBy {
+    margin: 40px 0px;
+    text-align: center;
+  }
+  .pdleft12-nopadding {
+    padding-left: 0px !important;
+  }
+  .label-md {
+    margin: 5px 0px 5px 0px !important;
+  }
+  .login-img {
+    margin: 35px auto 30px;
+  }
+
+  .btn_signin {
+    background: #408f98;
+    color: #fff;
+    height: 60px;
+    padding: 20px 45px;
+    width: 210px;
+    display: block;
+    margin: auto;
+    border-radius: 45px;
+    margin-bottom: -20px;
+
+    letter-spacing: 3px;
+  }
+  
+}
+
+.scroll-content {
+  //background-image: url(/assets/imgs/bg_sign.png) !important;
+  background-size: cover !important;
+}
+
+.btn_forgot {
+  margin-bottom: 0px;
+  padding: 0 !important;
+  margin-top: 10px;
+}
+
+.btn_forgotpswd {
+  font-size: 13px;
+  color: map-get($colors, primary);
+}
+
+.sign_toplabel {
+  text-align: center;
+  font-size: 15px;
+  font-family: myfont;
+}
+

@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img src="assets/imgs/header_icon.png" class="header_icon"><span class="title-style"> {{ 'MY_FEEDBACK_PAGE.PAGE_TITLE' | translate }}</span>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="primary" class="btn-header" (click)="createFeedback()">{{ 'MY_FEEDBACK_PAGE.BUTTONS.btn_new' | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-spinner block name="crescent" color="primary" class="spinner_center" *ngIf="showProgress" item-center></ion-spinner>
+
+  <h5 *ngIf="noRecords" text-center="true" class="empty_middle_text_center" >{{ 'MY_FEEDBACK_PAGE.LABELS.lb_no_record' | translate }}</h5>
+  <!--<button ion-button (click)="openModal()">Open Modal</button>-->
+
+  <ion-row class="prdct_main_container " *ngIf="!noRecords">
+    <ion-card *ngFor="let item of items" class="no_padding">
+      <ion-card-content class="padding-5">
+        <ion-row justify-content-center class="feed_subject">
+          <ion-col col class="left capitalize">
+            <p class=" primary" *ngIf="item.createdby">{{ item.createdby.firstname +" "+
+              item.createdby.lastname}} </p>
+            <!--<p class="mgleft-10" *ngIf="item.createdby">{{ item.createdby.firstname }} </p>-->
+          </ion-col>
+          <ion-col col class="right gray9">
+            {{item.createddate | slice:0:10 }}
+          </ion-col>
+          <ion-col col-12 class=" mgleft-5">{{item.subject}}</ion-col>
+        </ion-row>
+
+        <p class="mgleft-10"></p>
+        <p class="mgleft-10">{{item.details}}</p>
+
+        <ion-list *ngIf="item.reply">
+          <ion-item *ngFor="let reply of item.reply ; let i = index">
+            <ion-item *ngIf="reply.userid && reply.createdby.userid != userID" class="feed_admin_reply">
+              <!--<span><img src="assets/imgs/img_noproduct.png"></span>-->
+              <div>
+                <p class=" primary" *ngIf="reply.createdby.lastname"> {{ reply.createdby.firstname +" "+
+                  reply.createdby.lastname}} <span class="gray9 " float-right>{{reply.createddate | slice:0:10 }} </span></p>
+                <!-- <p class="mgleft-10 primary" *ngIf="!reply.createdby.lastname">{{ reply.createdby.firstname
+                  }}{{reply.createddate
+                  | slice:0:10 }} </p> -->
+              </div>
+              <div *ngIf="reply.userid && reply.createdby.userid == userID">
+                <p class=" primary "> You Replied <span class="gray9 " float-right>{{reply.createddate | slice:0:10 }}</span></p>
+              </div>
+              <span class="reply-style" >{{reply.message}}</span>
+            </ion-item>
+            <!--this is customer-->
+            <ion-item *ngIf="reply.userid && reply.createdby.userid == userID" class="feed_customer_reply" >
+
+              <div>
+                <p class="mgleft-10" *ngIf="!reply.createdby.lastname">{{ reply.createdby.firstname
+                  }}{{reply.createddate | slice:0:10 }} </p>
+              </div>
+              <div *ngIf="reply.userid && reply.createdby.userid == userID">
+                <p class="primary "> You Replied <span class="gray9 " float-right> {{reply.createddate | slice:0:10 }}</span></p>
+              </div>
+              <span class=" mgtop-10 reply-style" >{{reply.message}}</span>
+            </ion-item>
+            <!--this is customer-->
+
+          </ion-item>
+        </ion-list>
+        <ion-col text-right *ngIf="item.status != 'close'">
+          <button ion-button clear small color="primary" icon-start (click)="replyToFeedBack(item.issueid)">
+            <ion-icon name='share-alt'></ion-icon>
+            {{ 'MY_FEEDBACK_PAGE.BUTTONS.btn_Reply' | translate }}
+          </button>
+        </ion-col>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+</ion-content>

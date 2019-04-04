@@ -1,0 +1,84 @@
+signup-page {
+  .card-md {
+    padding: 2px 20px 15px;
+    font-size: 1.1rem;
+  }
+  .fs-14{
+line-height: 1.5;
+  }
+  .btn_forgotpswd{
+    font-size: 14px;
+  }
+  .btn_forgot{
+    margin-top: 0px !important;
+  }
+  .back-button-md {
+    margin: 0px !important;
+  }
+  [col-3] {
+    flex: 0 6 15% !important;
+  }
+  .signup-col {
+    margin-top: 0px !important;
+  }
+  ion-icon {
+    font-size: 2.2em !important;
+  }
+  .item-label-stacked .text-input-md, .item-label-floating .text-input-md{
+    font-size: 18px !important;
+  }
+  .segment-md .segment-button.activated, .segment-md .segment-button.segment-activated {
+    border-color: #f4f4f4 !important;
+  }
+  // .poweredBy{
+  //   position: absolute;
+  //   bottom: 0px;
+  // }
+  .signup-style {
+    margin: -22px 30px 0;
+    background: #fff;
+    padding: 30px 30px 40px 30px;
+    height: auto;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px 0px 24px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 24px -1px rgba(0, 0, 0, 0.75);
+  }
+
+  .segment-md .segment-button {
+    color: #FFFFFF !important;
+  }
+  .segment-md-primary .segment-button.activated, .segment-md-primary .segment-button.segment-activated {
+    border-color: #FFFFFF !important;
+  }
+  .signup_fields {
+    padding: 30px 30px 50px 30px !important;
+  }
+  .login-img {
+    margin: 30px auto 40px;
+  }
+  .item-md.item-block .item-inner {
+    padding-right: 0px !important
+  }
+  .item-md {
+    padding-left: 0px !important;
+  }
+
+  .poweredBy {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .powerBy-style {
+    margin-top: 20%;
+    text-align: center;
+  }
+  .powerBy-style img {
+    width: 80%;
+    margin-left: 10%;
+  }
+  .item-md .radio-md, .item-md .radio-md {
+    margin: 0px 10px 0px 4px !important;
+  }
+  .label-md {
+    font-size: 14px
+  }
+}

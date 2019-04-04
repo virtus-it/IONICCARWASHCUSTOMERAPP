@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title><img src="assets/imgs/header_icon.png" class="header_icon"><span class="title-style"> SIGN UP</span></ion-title>
+
+    <ion-toolbar hidden>
+      <ion-segment [(ngModel)]="titleText" hidden>
+        <ion-segment-button value="SIGN UP" (ionSelect)="viewSignUp()">
+          <ion-label>SIGN UP</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="LOG IN" (ionSelect)="viewLogin()" hidden>
+          <ion-label>LOG IN</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-row>
+    <ion-card>
+      <ion-row align-items-center>
+        <ion-col *ngIf="!showButtonLogInForSignIn">
+          <ion-item>
+            <ion-label floating>{{ 'SIGNUP_PAGE.LABELS.lb_name_hint' | translate }}</ion-label>
+            <ion-input type="text" class="usr_namefeild" [(ngModel)]="userName" [disabled]="!disableUserName"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row align-items-center>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>{{ 'SIGNUP_PAGE.LABELS.lb_mobile_no_hint' | translate }}</ion-label>
+            <ion-input type="tel" class="usr_namefeild" maxlength="10" minlength="10" [(ngModel)]="mobileNumber" (ionChange)="inputMobilecall()"
+              [disabled]="!disableMobileNo"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-1 *ngIf="!showButtonLogInForSignIn && showPasswordBoxMsg" (click)="editMobileNo()">
+          <ion-icon name="create"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <p *ngIf="showPasswordBoxMsg">{{ 'SIGNUP_PAGE.LABELS.lb_pwd_sent_2' | translate }}</p>
+      <ion-row align-items-center>
+        <ion-col *ngIf="showPasswordBox">
+          <ion-item>
+            <ion-label floating *ngIf="showButtonLogInForSignIn">{{ 'LOGIN_PAGE.LABELS.lb_pwd_hint' | translate }}
+            </ion-label>
+            <ion-label floating *ngIf="showPasswordBoxMsg">{{ 'SIGNUP_PAGE.LABELS.lb_pwd_hint' | translate }}
+            </ion-label>
+            <ion-input (ionChange)="inputMobilecall()" [type]="type" class="usr_namefeild" [(ngModel)]="password" clearOnEdit="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row align-items-center>
+        <ion-col>
+          <ion-item *ngIf="showButtonLogInForSignIn || showPasswordBoxMsg">
+            <ion-toggle [(ngModel)]="tgPwd" (ionChange)="showPassword()"></ion-toggle>
+            <ion-label *ngIf="showPasswordBoxMsg">{{ 'SIGNUP_PAGE.LABELS.lb_show_otp' | translate }}</ion-label>
+            <ion-label *ngIf="showButtonLogInForSignIn">{{ 'LOGIN_PAGE.LABELS.lb_show_password' | translate }}
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <p *ngIf="showPasswordBoxMsg" [ngStyle]="{'color': maxTime !==0 ? '#aaa' : '#222'}" (click)="resendOtp()">{{ 'SIGNUP_PAGE.LABELS.lb_resend_pwd' | translate }}
+        <span [ngStyle]="{'color': maxTime !==0 ? '#aaa' : '#408f98'}">
+        Resend OTP
+          <span class="danger" *ngIf="maxTime !==0">in {{maxTime}}</span>
+        </span>
+      </p>
+      <div *ngIf="showPasswordBoxMsg && maxTime !==0">
+        <p hidden>You will get OTP by sms in 15 seconds</p>
+      </div>
+      <ion-item *ngIf="errorText">
+        <p item-left class="danger">
+          <ion-icon name="alert"></ion-icon>
+          &nbsp;
+          <span>{{errorText}}</span>
+        </p>
+      </ion-item>
+
+      <div class="item item-text-wrap mgleft-5" *ngIf="showButtonRegistered">
+        <ion-checkbox [(ngModel)]="cbTerms" (ionChange)="refreshUI()"></ion-checkbox>
+        <span class="fs-14"> &nbsp;I have read and agreed to the MOYA
+          <a href="http://www.virtus-it.com/legal/">terms & conditions</a> and
+          <a href="http://www.virtus-it.com/privacy-statement/">privacy policy</a>
+        </span>
+      </div>
+      <ion-item item-right class="no_bg no_shadow btn_forgot mgleft-5" *ngIf="showButtonLogInForSignIn">
+        <span color="" class="btn_forgotpswd" (click)="forgotPwd()">{{ 'LOGIN_PAGE.LABELS.lb_forgot_pwd_title' | translate }}</span>
+      </ion-item>
+    </ion-card>
+  </ion-row>
+  <ion-row *ngIf="showButtonRegistered" (click)="signUp()" class="mgleftright-20">
+    <ion-col class="signup-col">
+      <button class="btn-lg  button button-md button-block-md" ion-button block padding="40">{{ 'SIGNUP_PAGE.BUTTONS.btn_sign_up' | translate }}
+      </button>
+      <br>
+
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="showButtonLogInForSignUp" (click)="SignInAfterSignUp(password)">
+    <ion-col class="signup-col">
+      <button class="btn-lg mgtop-20 button button-md button-block-md" ion-button block padding="40">{{ 'SIGNUP_PAGE.BUTTONS.btn_sign_in' | translate }}
+      </button>
+      <br>
+
+    </ion-col>
+  </ion-row>
+  <ion-row (click)="SignIn(password)" *ngIf="showButtonLogInForSignIn" class="mgleftright-20 mgtop-10">
+    <ion-col class="signup-col">
+      <button class="btn-lg  button button-md button-block-md" ion-button block padding="40">
+        {{ 'SIGNUP_PAGE.BUTTONS.btn_login_in' | translate}}
+      </button>
+      <br>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-8 align-self-center offset-2 class="poweredBy">
+      <img src="assets/imgs/powerby.png" class="" width="70%">
+    </ion-col>
+  </ion-row>
+</ion-content>

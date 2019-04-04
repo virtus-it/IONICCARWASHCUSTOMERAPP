@@ -1,0 +1,310 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left *ngIf="calledFrom == 'myorders'">
+      <button ion-button icon-only (click)="viewCtrl.dismiss()" class="my-style-for-modal">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      <img src="assets/imgs/header_icon.png" class="header_icon">
+      <span class="title-style"> {{ 'PREVIEW_PAGE.PAGE_TITLE' | translate }}</span>
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="prdct_main_container display_list pdleftright-0 pdtop-1">
+    <div class="preview_ord_container">
+      <h6 class="sumry_dtls_label">
+        <ion-icon name="basket"></ion-icon>
+        ORDER SUMMARY
+      </h6>
+      <ion-card class="no_padding">
+        <ion-card-content>
+          <div *ngIf="validPromoCodeData && validPromoCodeData?.promocode">
+            <ion-icon name="pricetags"></ion-icon>
+            <span item-right class="gray8">offer code available USE CODE:
+              <b class="success">{{validPromoCodeData.promocode}}</b>
+            </span>
+          </div>
+          <ion-row style=" border-bottom: 1px solid #ccc">
+            <ion-col class=" col-7">
+              <span item-right>
+                <b>Product Name</b>
+              </span>
+            </ion-col>
+
+            <ion-col col-2 class="right">
+              <span item-right>
+                <b>Price</b>
+              </span>
+            </ion-col>
+          </ion-row>
+          <div *ngFor="let item of selectProducts">
+            <ion-row class="pdtopbottom-2 ">
+              <ion-col>
+                <span item-right> {{item.brandname }}</span>
+                <span>{{item.count }} x
+                  <img class="img-rupee" src="assets/imgs/img_rupee_black.png">{{item.pcost}}</span>
+              </ion-col>
+              <ion-col col-3 class="right">
+                <span item-right>{{(item.pcost * item.count)}}
+                </span>
+              </ion-col>
+            </ion-row>
+            <ion-row justify-content-between *ngIf="serviceCharge && serviceCharge > 0" class="pdtopbottom-2">
+              <ion-col align-self-end class="">
+                <span item-right class="smry_brand_typ">
+                  Service charge
+                  <span>{{item.count}} x
+                    <img class="img-rupee" src="assets/imgs/img_rupee_black.png">{{item.servicecharge}}</span>
+                </span>
+              </ion-col>
+              <ion-col col-2 align-self-end class="right">
+                <span item-right class="smry_brand_typ ">
+                  {{serviceCharge}}
+                </span>
+              </ion-col>
+              <ion-col col align-self-start *ngIf="item.expressdeliverycharges && item.expressdeliverycharges > 0" hidden>
+                <span class="smry_item_typ">
+                  Express delivery charge: {{item.expressdeliverycharges}}
+                </span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row justify-content-between *ngIf="item.mdemptycount" class="pdtopbottom-2">
+              <ion-col>
+                <span item-right> Advance Amt (refundable)
+                  <span>{{item.mdemptycount}} x
+                    <img class="img-rupee" src="assets/imgs/img_rupee_black.png">150</span>
+                </span>
+              </ion-col>
+              <ion-col col-2 class="right">
+                <span item-right>{{(item.mdemptycount) * 150}}
+                </span>
+              </ion-col>
+            </ion-row>
+          </div>
+          <ion-row justify-content-between class="pdtopbottom-2">
+            <ion-col col-sm-3 col-xs-3 col-md-3 col-lg-3 col-xl-3>
+              <span item-right> Service Tax</span>
+            </ion-col>
+            <ion-col col-sm-2 col-md-2 col-lg-2 col-xl-2 class="right">
+              <span item-right>Inclusive
+              </span>
+            </ion-col>
+          </ion-row>
+          <div class="corner-ribbon" *ngIf="!showDiscount">Promocode Applied</div>
+
+          <ion-row justify-content-between *ngIf="!showDiscount" class="nopdtop-col">
+            <ion-col>
+              <span item-right class="success">Points will be added to account when the order is delivered successfully</span>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="expDelCharge && expDelCharge > 0" class="nopdtop-col ">
+            <ion-col>
+              <ion-item>
+                <ion-checkbox [(ngModel)]="cbExpDel" (ionChange)="checkClick()">
+                </ion-checkbox>
+                <ion-label class="fs-12">EXPRESS DELIVERY (INR.{{expDelCharge}})</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-3 class="right" *ngIf="cbExpDel && expDelCharge > 0">
+              <span item-right>{{expDelCharge}}
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-between class="total_amt_red_color">
+            <ion-col col-sm-7 col-xs-7 col-md-7 col-lg-7 col-xl-7>
+              <span item-right>Total Amount </span>
+            </ion-col>
+            <ion-col col-sm-3 col-md-3 col-lg-3 col-xl-3 class="right">
+              <span item-right> INR. {{totalAmount | number : '1.2-2'}}
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-between *ngIf="proddata && proddata.savingProduct && proddata.savingProduct.defSerCharge != proddata.savingProduct.servicecharge">
+            <ion-col col-8>
+              <span item-right class="success">
+                <ion-icon name="thumbs-up"></ion-icon> Your saving on this order</span>
+            </ion-col>
+            <ion-col col-4 class="right">
+              <span item-right class="success"> INR.{{(proddata.savingProduct.defSerCharge * proddata.savingProduct.selectedCount - proddata.savingProduct.servicecharge
+                * proddata.savingProduct.selectedCount)}}
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+        <div class="mgbottom-10">
+          <div center class="note-style">NOTE:
+            <br>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_proceed_order_price_might_vary' | translate}}
+          </div>
+
+          <div center class="note-style">{{'CONFIRM_ORDER_PAGE.LABELS.lb_proceed_water_can_text' | translate}}
+          </div>
+        </div>
+      </ion-card>
+    </div>
+    <div class="preview_ord_container">
+      <h6 class="sumry_dtls_label">
+        <ion-icon name="basket"></ion-icon>
+        Order Remarks
+      </h6>
+      <ion-card>
+        <ion-card-content class="no_padding no_margin">
+          <small *ngIf="remarks.length > 250" class="danger">{{remarks.length - 0}} / 250</small>
+          <small *ngIf="remarks.length < 251" class="primary">{{remarks.length - 0}} / 250</small>
+          <ion-row class="mgtop-5">
+            <ion-col col-sm-12 col-md-12 col-lg-12 col-xl-12>
+              <ion-textarea placeholder="Leave a comment" type="text" class="min-h100 add_textarea text_output" [(ngModel)]="remarks" clearInput></ion-textarea>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div class="preview_ord_container del_panel" *ngIf="showDiscount">
+      <h6 class="sumry_dtls_label">
+        <ion-icon name="pricetags"></ion-icon>
+        PROMO CODE
+      </h6>
+      <ion-card class="no_padding">
+
+        <ion-card-content>
+          <ion-row>
+            <ion-col col-9 class="mgtopbottom-5" style="position: initial">
+              <ion-input [(ngModel)]="discountCode" class="seprater" placeholder="Enter Promo Code" (ionChange)="changeDiscountCode()"></ion-input>
+              <small item-left class="danger" *ngIf="errorPromoText">
+                <ion-icon name="alert"></ion-icon>
+                &nbsp;
+                <span>{{errorPromoText}}</span>
+              </small>
+            </ion-col>
+            <ion-col col-3 class="center" (click)="validatePromoCode()">
+              <button *ngIf="!showDiscountProgress" class="pick_loction logo-bg height-30" ion-button float-right outline item-end icon-left>
+                Apply
+              </button>
+              <button *ngIf="showDiscountProgress" class="pick_loction logo-bg height-30" ion-button float-right outline item-end icon-left>
+                <ion-spinner block padding="40" name="dots" color="light" end></ion-spinner>
+
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="preview_ord_container del_panel">
+      <h6 class="sumry_dtls_label">
+        <ion-icon name="time"></ion-icon>
+        {{ 'PREVIEW_PAGE.LABELS.lb_delivery_time_head' | translate }}
+      </h6>
+      <ion-card class="no_padding">
+
+        <ion-card-content>
+          <label item-start>Date</label>
+          <ion-item text-right style="width: 60%; float: right;">
+            <ion-datetime text-right class="no_margin no_padding" text-start item-start item-left displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"
+              [min]="minDate" [(ngModel)]="dateOfevent" (ngModelChange)="delDateChange()" color="primary">
+            </ion-datetime>
+            <ion-label color="primary">
+              <ion-icon name="create" item-end large color="primary"></ion-icon>
+            </ion-label>
+          </ion-item>
+          <p class="mgtop-5">
+            <ion-label>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_avail_time' | translate }}</ion-label>
+            <div class="availability_label">
+
+              <ion-list radio-group [(ngModel)]="deliverySlot" item-right>
+                <ion-item class="schedule_radiobtn">
+                  <ion-radio item-left class="radio_btn" value="8AM-11AM" [disabled]="slot1"></ion-radio>
+                  <ion-label item-right="" style="padding: 5px; border-radius: 3px;">
+                    {{'CONFIRM_ORDER_PAGE.LABELS.lb_slot_1' | translate }}
+                  </ion-label>
+                </ion-item>
+                <ion-item class="schedule_radiobtn">
+                  <ion-radio item-left class="radio_btn" value="11AM-2PM" [disabled]="slot2"></ion-radio>
+                  <ion-label item-right style="padding: 5px; border-radius: 3px;">
+                    {{'CONFIRM_ORDER_PAGE.LABELS.lb_slot_2' | translate }}
+                  </ion-label>
+                </ion-item>
+                <ion-item class="schedule_radiobtn">
+                  <ion-radio item-left class="radio_btn" value="2PM-5PM" [disabled]="slot3"></ion-radio>
+                  <ion-label item-right style="padding: 5px; border-radius: 3px;">
+                    {{'CONFIRM_ORDER_PAGE.LABELS.lb_slot_3' | translate }}
+                  </ion-label>
+                </ion-item>
+                <ion-item class="schedule_radiobtn">
+                  <ion-radio item-left class="radio_btn" value="5PM-8PM" [disabled]="slot4"></ion-radio>
+                  <ion-label item-right style="padding: 5px; border-radius: 3px;">
+                    {{'CONFIRM_ORDER_PAGE.LABELS.lb_slot_4' | translate }}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+            </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="preview_ord_container">
+      <h6 class="sumry_dtls_label">
+        <ion-icon name="pin"></ion-icon>
+        {{ 'PREVIEW_PAGE.LABELS.lb_delivery_addr_head' | translate }}
+      </h6>
+      <ion-card>
+        <ion-spinner *ngIf="showAddrProgress" block padding="40" name="dots" color="primary" end></ion-spinner>
+
+        <ion-card-content class="no_padding no_margin">
+          <ion-row class="no_padding no_margin">
+            <ion-item class="no_padding no_margin pick_loc_cntnr" item-start>
+              <button class="pick_loction logo-bg" ion-button float-right outline item-end icon-left (click)="pickAddress()" *ngIf="showMap">
+                <ion-icon name="pin"></ion-icon>
+                {{ 'PREVIEW_PAGE.BUTTONS.btn_pick_loc' | translate }}
+              </button>
+              <button class="pick_loction pick_loc_cntnr logo-bg" float-right ion-button outline item-end icon-left (click)="fetchGeoAddr()">
+                <ion-icon name="locate" class=""></ion-icon>
+                {{ 'PREVIEW_PAGE.BUTTONS.btn_current_loc' | translate }}
+              </button>
+            </ion-item>
+          </ion-row>
+          <ion-row class="mgtop-5">
+            <ion-col col-sm-12 col-md-12 col-lg-12 col-xl-12>
+              <div class="textarea add_textarea " type="text" placeholder="Type your address">
+                <div *ngIf="landmark">
+                  <b>Landmark: </b>{{landmark}}
+                  <br>
+                </div>
+                <div *ngIf="buildingName">
+                  <b>Flat No: </b>{{buildingName}}
+                  <br>
+                </div>
+                <b>Address:</b> {{deliveryAddr}}
+              </div>
+            </ion-col>
+            <ion-col col-1 align-self-center (click)="editAddr()">
+              <ion-icon name="create" color="primary"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row class="mgtop-5">
+            <ion-col col-sm-12 col-md-12 col-lg-12 col-xl-12>
+              <ion-label class="fs-12">Alt Mobile Number </ion-label>
+              <ion-input [(ngModel)]="altmobileno" class="seprater" (click)="scrollToBottom()" placeholder="Alt Mobile Number" pattern="[0-9]*"
+                type="tel" maxlength="10" minlength="10" required></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <ion-buttons end *ngIf="calledFrom != 'myorders'">
+    <button ion-button block class="loc_confirm" (click)="placeOrder()">{{ 'PREVIEW_PAGE.BUTTONS.btn_place_order' | translate }}
+    </button>
+  </ion-buttons>
+  <ion-buttons end *ngIf="calledFrom == 'myorders'">
+    <button ion-button block class="loc_confirm" (click)="updateOrderTask()">Update Order</button>
+  </ion-buttons>
+</ion-footer>

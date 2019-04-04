@@ -1,0 +1,127 @@
+confirm-pg-styles {
+
+    .footer .toolbar-background-md {
+      background: #ffffff !important;
+    }
+
+  p {
+    font-size: 8px;
+  }
+  .label-md {
+    margin: 0px 8px 0px 0px !important;
+  }
+  .note-style {
+    margin: 5px 15px 0px 15px;
+    font-size: 13px;
+    color: #ed9a00;
+    text-align: justify;
+  }
+  .prdct_main_container {
+    margin: 0px 0px 10px !important;
+  }
+
+  .pdleftright-5 .col {
+    padding: 0px 5px !important;
+  }
+
+  .fsbold-14 {
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .item-md [item-left], .item-md [item-right], .item-md [item-start], .item-md [item-end] {
+    margin: 0px 8px 0px 5px;
+  }
+  .qty {
+    width: 50%
+  }
+  .card-md {
+    padding: 0px;
+  }
+  .confirm-style {
+    margin: 5px 0px 0px 10px;
+    color: #ffffff;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .item-md {
+    padding-left: 0px;
+  }
+  .availability_label {
+    padding: 0px 0px 10px 10px;
+    margin: 0;
+    background: #fff;
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .datetime-md {
+    font-size: 15px;
+    color: #408f98;
+    padding: 0px;
+  }
+
+  .cancel_order {
+    background: #6c6c6c;
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 4px;
+    margin: 10px 20px 0 0 !important;
+    display: block;
+  }
+  .confirm_order {
+    //background: #408f98;
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 4px;
+    margin-top: 10px !important;
+    display: block;
+  }
+  .button-md {
+    height: 3.5rem;
+    font-size: 1.2rem;
+  }
+  .table-style {
+    background: #dddddd;
+    margin: 1px 10px;
+    color: #333333;
+
+  }
+  .item.item-md .checkbox-md {
+    margin: 5px 5px 5px 0px;
+  }
+  .ngleft {
+    padding-left: 0px;
+  }
+  .textarea {
+    height: auto !important;
+  }
+
+  .add_textarea {
+    background: #f2f2f2;
+    border-radius: 3px;
+    padding: 5px !important;
+    margin: 3px !important;
+  }
+}
+
+.edit-style {
+  border: 1px solid;
+  color: #408f98;
+  padding: 5px 7px;
+  border-radius: 50%;
+}
+
+.brd-bottom {
+  border-bottom: 1px solid #ddd;
+}
+
+.mgbottom-10 {
+  //margin-bottom: 10px;
+}
+
+.mgleftright-10 {
+  margin: 0px 10px;
+}

@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title start>
+      <img src="assets/imgs/header_icon.png" class="header_icon"><span class="title-style"> {{ 'PLACE_AN_ORDER_PAGE.PAGE_TITLE' | translate }}</span>
+      <ion-spinner name="dots" color="light" class="spinner_center" *ngIf="showProgress"></ion-spinner>
+    </ion-title>
+    <ion-buttons end *ngIf="!showProgress">
+      <button ion-button icon-only color="primary" (click)="refreshTask()">
+        <ion-icon name="refresh-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="effect2" (click)="closeEmptyDialog()">
+  <!--<ion-refresher (ionRefresh)="doRefresh($event)" *ngIf="showRefresh">-->
+  <!--<ion-refresher-content>-->
+  <!--</ion-refresher-content>-->
+  <!--</ion-refresher>-->
+
+  <ion-row class=" bg-style " *ngIf="hideHeader">
+    <div class="pdtopbottom-5" *ngIf="lastOrderData">
+      <b class="brand-style " (click)="showSlider(false)" [ngClass]="colorHome">Home</b>
+    </div>
+    <div class="pdtopbottom-5" *ngFor="let category of categoryList; let i = index">
+      <b class="brand-style " (click)="changeSlide(category,i)" [ngClass]="category.color">{{category.category}}
+        <b *ngIf="category.selCnt" class="danger"> ( {{category.selCnt}} )</b></b>
+    </div>
+  </ion-row>
+
+
+  <div *ngIf="showLastOrder && lastOrderData">
+    <!--This is for RE_ORDER-->
+    <div *ngIf="lastOrderData">
+      <ion-card>
+        <h6 class="danger fs-18 no_margin center">
+          {{ 'MY_ORDERS_PAGE.LABELS.lb_previos_order' | translate }}
+        </h6>
+        <ion-row>
+          <ion-col>
+            <img src="{{lastOrderData.prodimg ? lastOrderData.pimg+defpng : 'assets/imgs/img_noproduct.png'}}"
+                 class="img-style">
+          </ion-col>
+        </ion-row>
+        <h6 class="bottle_name no_margin center">
+          <ion-icon name="cart"></ion-icon>
+          {{lastOrderData?.brandname}}
+          <span item-center class="pin_type" *ngIf="lastOrderData && lastOrderData.status !='delivered' && lastOrderData.secretpin">
+              <b item-right>
+                PIN: {{lastOrderData.secretpin}}</b>
+            </span>
+        </h6>
+        <ion-row class="mgleftright-15">
+          <ion-col class="left" col-4>
+            <span class="fs-12">Quantity</span><br>
+            <span class="gray6">{{lastOrderData?.quantity}}</span>
+          </ion-col>
+          <ion-col class="right" col>
+            <span class="fs-12">Ordered Date</span><br>
+            <span class="bottle_exp_time">{{lastOrderData?.ordered_date | utcDate}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="left" hidden>
+            <span class="fs-12">Product</span><br>
+            <b class="bottle_name"></b>
+          </ion-col>
+          <ion-col class="right" hidden>
+            <span class="fs-12">Quantity</span><br>
+          </ion-col>
+        </ion-row>
+
+        <ion-card-content>
+          <button ion-button class="btn-lg bg-logo bg-warning button button-round button-round-md" block
+                  color="primary" (click)="reorder()" *ngIf="!showProgressReorder">{{
+            'MY_ORDERS_PAGE.BUTTONS.btn_reorder' | translate }}
+          </button>
+          <button ion-button class="btn-lg bg-logo bg-warning button button-round button-round-md" block
+                  color="primary" *ngIf="showProgressReorder">
+            <ion-spinner name="dots" color="white" item-center *ngIf="showProgressReorder"></ion-spinner>
+          </button>
+          <h5 class="mg-10 center" *ngIf="brandProducts && brandProducts.length > 0 ">OR</h5>
+          <button ion-button class="btn-lg bg-logo button button-round button-round-md" block color="primary" block
+                  (click)="showSlider(true)" *ngIf="brandProducts && brandProducts.length > 0 ">View Products
+          </button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!--<div *ngIf="!lastOrderData">-->
+      <!--<h5 class="empty_middle_text_center" text-center="true">{{ 'MY_ORDERS_PAGE.LABELS.lb_empty_msg_1' |-->
+        <!--translate }}-->
+        <!--<br>please <b class="primary" (click)="showSlider(true)">CLICK HERE</b> to-->
+        <!--<b>Place A New Order</b> and enjoy hassle-free delivery.</h5>-->
+    <!--</div>-->
+  </div>
+  <!--Important div don't remove usage for slides-->
+  <div [hidden]="showLastOrder">
+    <ion-slides (ionSlideDidChange)="slideChanged()">
+      <ion-slide *ngFor="let mainItem of brandProducts; let i = index">
+        <select-product-view [totalamt]='totalamt' [mainIndex]="i" [savingProduct]="savingProduct"
+                             [brandProducts]="brandProducts" [mainItem]='mainItem'
+                             (countChangeListener)="qtyChangeListener($event)"
+                             (goNext)="goToNextSlide($event)"
+                             (goPrevios)="goToPreviousSlide($event)"
+                             (minus)="viewItemMinus($event)" (plus)="viewItemPlus($event)"
+                             (changeImg)="changeImage($event)" (emptyCanChange)="emptyCountChange($event)"
+                             (changeEmpCan)="emptyCanCheck($event)" (calTotalAmt)="calTotalAmt()"></select-product-view>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+</ion-content>
+<ion-footer [hidden]="hideFooter">
+  <ion-toolbar>
+    <ion-row justify-content-between>
+
+      <ion-col col align-self-center class="left">
+        <strong class="">Total M.R.P.: {{totalamt}} </strong>
+        <div *ngIf="savingProduct"
+             class="minorder-style">
+          <!--Congrat!!-->
+          <!--<div>-->
+              <span class="success">  <ion-icon name="thumbs-up"></ion-icon>
+  You are saving INR. {{(savingProduct.defSerCharge * savingProduct.selectedCount - savingProduct.servicecharge
+                * savingProduct.selectedCount)}}</span>
+          </div>
+        <!--</div>-->
+      </ion-col>
+      <ion-col col-4 class="right">
+        <button type="button" ion-button small (click)="nextPage()" class="btn ">Next &nbsp;
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+        <!--<button ion-button small (click)="nextPage()">Next</button>-->
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

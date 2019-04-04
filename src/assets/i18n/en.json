@@ -1,0 +1,368 @@
+{
+  "WELCOME_PAGE": {
+    "PAGE_TITLE": "Enter mobile number to verify your identity during signup!",
+    "BUTTONS": {
+      "btn_continue": "Continue",
+      "btn_skip": "Skip"
+    },
+    "LABELS": {
+      "lb_supp_code_title_1": "Got a code? ",
+      "lb_supp_code_title_2": "Apply here",
+      "lb_mobile_no_hint": "Mobile Number",
+      "lb_supp_code_hint": "Code (optional)",
+      "lb_register_title_1": "Already Registered?",
+      "lb_register_title_2": "Login"
+    }
+  },
+  "LOGIN_PAGE": {
+    "PAGE_TITLE": "LOGIN",
+    "BUTTONS": {
+      "btn_sign_in": "SIGN IN"
+    },
+    "LABELS": {
+      "lb_mobile_no_hint": "Mobile Number",
+      "lb_pwd_hint": "Password",
+      "lb_forgot_pwd_title": "Forgot Password?",
+      "lb_show_password": "Show password"
+    }
+  },
+  "SIGNUP_PAGE": {
+    "PAGE_TITLE_SIGNUP": "SIGN UP",
+    "PAGE_TITLE_LOGIN": "LOG IN",
+    "BUTTONS": {
+      "btn_sign_in": "SIGN IN",
+      "btn_sign_up": "SIGN UP",
+      "btn_login_in": "LOG IN"
+    },
+    "LABELS": {
+      "lb_mobile_no_hint": "Mobile Number",
+      "lb_pwd_hint": "OTP",
+      "lb_name_hint": "Name",
+      "lb_pwd_sent": "We sent your OTP through SMS. Please check your inbox",
+      "lb_pwd_sent_2": "You will get OTP by sms in 15 seconds",
+      "lb_resend_pwd": "Didn't receive OTP?",
+      "lb_usage_type_head": "Usage type (optional)",
+      "lb_usage_type_1": "Residential",
+      "lb_usage_type_2": "Commercial",
+      "lb_usage_type_3": "Corporate",
+      "lb_show_otp": "Show OTP"
+    }
+  },
+  "ABOUT_US_PAGE": {
+    "PAGE_TITLE": " About Us",
+    "LABELS": {
+      "lb_build_version_title": "Build Version",
+      "lb_about_title": "About",
+      "lb_about_content_1": "Moya - The water man is on demand drinking water delivery service that connects you to the distributor in your neighbourhood. Our aim is to provide a hassle free drinking water supply at your residences, offices, shops and parties. The app can be used to place an order by simple click of a button.",
+      "lb_about_content_2": "You can shop from different brands of drinking water. The app provides easy mode of payment - COD,Online payments or monthly payments. It allows you to schedule the time of delivery.It is hereby clarified that Moya-The Water Man doesn't sell products of their brand nor has their own deliverysystem. They just bring you in contact with the water distributor and take at most responsibility for delivery to happen at your doorstep.",
+      "lb_about_content_3": " Moya is powered by Virtus-IT, a UK based software company with company number 06810018, whose registered office is at Sterling House, 20 Station Road, Gerrards Cross, Bucks SL9 8EL, United Kingdom and any subsidiaries and affiliates of Virtus IT Limited, including but not limited to Virtus IT India Private Our business focuses on mobile based ERP solutions to enhance or rather technologies various businesses especially on the mobile platform,IoT, Bigdata, Salesforce and other latest technologies.",
+      "lb_about_content_4": " For business related queries or any other concern, please contact us at 9863636314/15 or write us  to sales@virtus-it.com",
+      "lb_terms": "terms and conditions",
+      "lb_privacy": "privacy policy"
+    }
+  },
+  "CONFIRM_ORDER_PAGE": {
+    "PAGE_TITLE": "Confirm Order",
+    "BUTTONS": {
+      "btn_cancel": "Cancel",
+      "btn_confirm": "Confirm"
+    },
+    "LABELS": {
+      "lb_proceed_order_price_might_vary": "* The final price might vary depending upon the assigned distributor and the delivery location.",
+      "lb_proceed_water_can_text": "* INR 150(Refundable amount) per water can will be collected, if no empty can to return.",
+      "lb_proceed_order_content": "Would you like to proceed with this order?",
+      "lb_delivery_time": "Delivery Time",
+      "lb_avail_time": "Available Slots",
+      "lb_slot_1": "8AM-11AM",
+      "lb_slot_2": "11AM-2PM",
+      "lb_slot_3": "2PM-5PM",
+      "lb_slot_4": "5PM-8PM",
+      "lb_qty": "Qty",
+      "lb_product_name": "Product Name",
+      "lb_price": "Price",
+      "lb_total_cost": "Total Amount: ",
+      "lb_total_item": "Total Item: "
+    }
+  },
+  "MY_ACCOUNT_PAGE": {
+    "PAGE_TITLE": "My Account",
+    "BUTTONS": {
+      "btn_my_profile": "My Profile",
+      "btn_my_payments": "My Payments",
+      "btn_my_schedule": "My Schedule Orders",
+      "btn_my_feedback": "My Feedback",
+      "btn_my_invite_firends": "Invite Friends",
+      "btn_rate_us": "Rate Us",
+      "btn_about_us": "About Us",
+      "btn_customer_care": "Customer Care",
+      "btn_log_out": "Log Out"
+    }
+  },
+  "EDIT_SCHEDULE_PAGE": {
+    "PAGE_TITLE": "ORDER CONFIRMATION",
+    "BUTTONS": {
+      "btn_confirm": "Confirm"
+    },
+    "LABELS": {
+      "lb_select_product": "Select Product *",
+      "lb_qty": "Quantity *",
+      "lb_schedule_type": "Schedule type *",
+      "lb_weekdays": "Week Days",
+      "lb_days": "Days",
+      "lb_all_week": "All Week",
+      "lb_all_days": "All Days",
+      "lb_sunday": "Sunday",
+      "lb_monday": "Monday",
+      "lb_tuesday": "Tuesday",
+      "lb_wednesday": "Wednesday",
+      "lb_thursday": "Thursday",
+      "lb_friday": "Friday",
+      "lb_saturday": "Saturday",
+      "lb_01": "01",
+      "lb_02": "02",
+      "lb_03": "03",
+      "lb_04": "04",
+      "lb_05": "05",
+      "lb_06": "06",
+      "lb_07": "07",
+      "lb_08": "08",
+      "lb_09": "09",
+      "lb_10": "10",
+      "lb_11": "11",
+      "lb_12": "12",
+      "lb_13": "13",
+      "lb_14": "14",
+      "lb_15": "15",
+      "lb_16": "16",
+      "lb_17": "17",
+      "lb_18": "18",
+      "lb_19": "19",
+      "lb_20": "20",
+      "lb_21": "21",
+      "lb_22": "22",
+      "lb_23": "23",
+      "lb_24": "24",
+      "lb_25": "25",
+      "lb_26": "26",
+      "lb_27": "27",
+      "lb_28": "28",
+      "lb_29": "29",
+      "lb_30": "30"
+    }
+  },
+  "MY_FEEDBACK_PAGE": {
+    "PAGE_TITLE": "My Feedbacks",
+    "BUTTONS": {
+      "btn_new": "New",
+      "btn_Reply": "Reply"
+    },
+    "LABELS": {
+      "lb_no_record": "We'd love to get feedback from you on our app, please add more details as much as you can."
+    }
+  },
+  "PLACE_AN_ORDER_PAGE": {
+    "PAGE_TITLE": "Place An Order",
+    "BUTTONS": {
+      "btn_next": "Next"
+    },
+    "LABELS": {
+      "lb_min_qty": "Min Qty :",
+      "lb_price_per_unit": "Price Per Unit :",
+      "lb_soldout": "SOLDOUT"
+    }
+  },
+  "INTIVE_FRIENDS_PAGE": {
+    "PAGE_TITLE": "Invite Friends",
+    "BUTTONS": {
+      "btn_import": "Multi invite",
+      "btn_send_invite": "Send Invite"
+    },
+    "LABELS": {
+      "lb_sub_title": "Tell your friends and family about ",
+      "lb_sub_title_2": "and help us grow our community!",
+      "lb_name": "Name",
+      "lb_mobile_no": "Mobile Number",
+      "lb_custom_msg": "Send a custom message",
+      "lb_req_msg": "Send A Invite Request Message"
+    }
+  },
+  "MAP_PAGE": {
+    "PAGE_TITLE": "Pick location",
+    "BUTTONS": {
+      "btn_confirm_loc": "Confirm Location"
+    }
+  },
+  "MY_ORDERS_PAGE": {
+    "PAGE_TITLE": "My Orders",
+    "BUTTONS": {
+      "btn_done": "Done",
+      "btn_view_details": "View Details",
+      "btn_cancle_order": "Cancel Order",
+      "btn_call_us": "Call Us",
+      "btn_raise_complain": "Raise a Complaint",
+      "btn_reorder": "Re-Order"
+    },
+    "LABELS": {
+      "lb_empty_msg_1": "Seems like you haven't placed any order",
+      "lb_empty_msg_2": " page to enjoy hassle-free delivery.",
+      "lb_previos_order": "Your previous order was",
+      "lb_exptd_time": "Expected Time : ",
+      "lb_card_id": "Cart Id",
+      "lb_order_id": "Order Id",
+      "lb_order_status": "Order Status",
+      "lb_last_action": "Last Action",
+      "lb_order_placed": "ORDER PLACED",
+      "lb_recv_order": "We have received your order",
+      "lb_on_the_way": "ON THE WAY",
+      "lb_order_dispatched": "Your order has been dispatched ",
+      "lb_completed": "COMPLETED"
+    }
+  },
+  "MY_PAYMENTS_PAGE": {
+    "PAGE_TITLE": "My Payment",
+    "BUTTONS": {
+      "btn_done": "Done",
+      "btn_send_invite": "Send Invite"
+    },
+    "LABELS": {
+      "lb_pending_inr": "Pending INR.",
+      "lb_amount": "AMOUNT",
+      "lb_paid_inr": "Paid INR.",
+      "lb_cycle_bill": "Current cycle bill for",
+      "lb_bill": "BILL",
+      "lb_cycle_bill_2": "bill for current cycle",
+      "lb_due_date": "Due Date:",
+      "lb_date": "DATE",
+      "lb_head_date": "Date",
+      "lb_head_amt": "Amount",
+      "lb_head_status": "Status"
+    }
+  },
+  "MY_PROFILE_PAGE": {
+    "BUTTONS": {
+      "btn_done": "Done",
+      "btn_send_invite": "Send Invite"
+    },
+    "LABELS": {
+      "lb_firstname": "First Name",
+      "lb_lastname": "Last Name",
+      "lb_password": "Password",
+      "lb_edit": "Edit",
+      "lb_address": "Address",
+      "lb_locality": "Landmark",
+      "lb_buildingname": "Flat No",
+      "lb_pick_loc": "Pick Location",
+      "lb_mobile": "Mobile",
+      "lb_email": "Email",
+      "lb_adv_amt": "Adv Amount",
+      "lb_pen_amt": "Pending Amt",
+      "lb_cans": "# of cans with you",
+      "lb_no_cans": "# no cans with you",
+      "lb_prod_name": "Product Name",
+      "lb_empty_cans": "Empty Cans"
+    }
+  },
+  "NOTIFICATION_PAGE": {
+    "BUTTONS": {
+      "btn_skip": "Skip"
+    }
+  },
+  "CONFIRMATION_PAGE": {
+    "PAGE_TITLE": "Order Confirmation",
+    "BUTTONS": {
+      "btn_done": "Done"
+    },
+    "LABELS": {
+      "lb_thanks_msg": "Thank you for your order!",
+      "lb_delivery_address": "Delivery Address",
+      "lb_qty": "Qty",
+      "lb_product_name": "Product Name",
+      "lb_price": "Price",
+      "lb_total_item": "Total Item:",
+      "lb_total_amt": "Total Amount:"
+    }
+  },
+  "ORDER_DETAILS_PAGE": {
+    "PAGE_TITLE": "Order Details",
+    "BUTTONS": {
+      "btn_done": "Done",
+      "btn_cancel": "Cancel"
+    },
+    "LABELS": {
+      "lb_order_id": "Order Id",
+      "lb_amt": "Amount",
+      "lb_qty": "Quantity",
+      "lb_product_name": "Product Name",
+      "lb_del_time": "Delivery Time",
+      "lb_order_staus_head": "ORDER STATUS",
+      "lb_created": "Created",
+      "lb_assigned": "Assigned",
+      "lb_completed": "Completed",
+      "lb_ordered": "Ordered",
+      "lb_delivered": "Delivered",
+      "lb_return": "Return",
+      "lb_supplier_details": "SUPPLIER DETAILS",
+      "lb_dealer_details": " DEALER DETAILS",
+      "lb_order_msg": "ORDER MESSAGES",
+      "lb_send_msg": "Send Message"
+    }
+  },
+  "PREVIEW_PAGE": {
+    "PAGE_TITLE": "Preview",
+    "BUTTONS": {
+      "btn_place_order": "Place Order",
+      "btn_pick_loc": "Pick Location",
+      "btn_current_loc": "Pick Current Location",
+      "btn_apply": "Apply"
+    },
+    "LABELS": {
+      "lb_order_summary": "ORDER SUMMARY",
+      "lb_price_head": "Price",
+      "lb_qty_head": "Qty",
+      "lb_product_name_head": "Product Name",
+      "lb_service_tax": "Service Tax",
+      "lb_inc": "Inclusive",
+      "lb_shipping_serice": "Shipping & Services",
+      "lb_service_applicable": "Service charge will be levied on all gated communities- (as applicable)",
+      "lb_exp_delivery": "EXPRESS DELIVERY",
+      "lb_total_amt": "Total Amount",
+      "lb_inr": "INR.",
+      "lb_delivery_time_head": "DELIVERY TIME",
+      "lb_date": "Date",
+      "lb_change": "Change",
+      "lb_delivery_addr_head": "DELIVERY ADDRESS",
+      "lb_del_time": "Delivery Time",
+      "lb_discount_code_head": " DISCOUNT CODE"
+    }
+  },
+  "PRODUCT_PAGE": {
+    "PAGE_TITLE": "Select products",
+    "BUTTONS": {
+      "btn_next": "Next"
+    }
+  },
+  "SCHEDULE_PAGE": {
+    "PAGE_TITLE": " Schedule Order",
+    "BUTTONS": {
+      "btn_new": "New"
+    },
+    "LABELS": {
+      "lb_empty_msg_1": "Would you like to automate your order ? just click on ",
+      "lb_empty_msg_2": "button on top-right to schedule your order everyday.",
+      "lb_exp_time": "Expected Time",
+      "lb_qty": "Quantity",
+      "lb_every_week": "Every Week on",
+      "lb_every_month": "Every Month on"
+    }
+  },
+  "RAISE_COMPLAIN_PAGE": {
+    "PAGE_TITLE": "Raise Complain",
+    "BUTTONS": {
+      "btn_done": "Done"
+    },
+    "LABELS": {
+      "lb_msg_1": "Can you please put down your concern below:",
+      "lb_after_send_msg": "Thank You for reaching out to this. We apologize to hear that you are facing issues with the delivery. We promise to get back to you on this soon."
+    }
+  }
+}

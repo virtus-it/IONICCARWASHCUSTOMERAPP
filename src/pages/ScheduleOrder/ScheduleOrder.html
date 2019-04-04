@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title><img src="assets/imgs/header_icon.png" class="header_icon"><span class="title-style"> {{ 'SCHEDULE_PAGE.PAGE_TITLE' | translate }}</span></ion-title>
+    <ion-buttons end>
+
+      <button ion-button icon-only color="primary" class="btn-header" (click)="createSchedule()">{{ 'SCHEDULE_PAGE.BUTTONS.btn_new' | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" class="center">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-spinner block name="crescent" color="primary" class="spinner_center" *ngIf="showProgress"
+               item-center></ion-spinner>
+
+  <h5 *ngIf="noRecords"  class="empty_middle_text_center" text-center="true">{{ 'SCHEDULE_PAGE.LABELS.lb_empty_msg_1' | translate }} <b>New</b> {{ 'SCHEDULE_PAGE.LABELS.lb_empty_msg_2' | translate }}</h5>
+<!-- <ion-icon name="add-circle" class="add-style" (click)="createSchedule()"></ion-icon> -->
+
+
+  <ion-list *ngIf="!noRecords">
+    <ion-item *ngFor="let item of items">
+      <ion-card>
+        <ion-row>
+          <ion-col col>
+            <b class="capitalize">{{item.product_type +" "+ item.product_quantity}}</b>
+          </ion-col>
+          <ion-col col-3>
+            <p class="gray7 right"><b> {{item.quantity}}</b>(Qty)</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row align-items-center>
+          <ion-col col-3>
+            <div>Create Date</div>
+            <div class="gray9 mgtop-5">{{item.createddate | utcDate}}</div>
+          </ion-col>
+          <ion-col col-5 align-items-center>
+            <div class="center">{{ 'SCHEDULE_PAGE.LABELS.lb_exp_time' | translate }}</div>
+            <div class="center gray9 mgtop-5">{{item.delivery_exceptedtime}}</div>
+          </ion-col>
+          <ion-col col-2 class="center">
+            <ion-icon name="create" class="logo-color" (click)="editScheduleOrder(item)"></ion-icon>
+          </ion-col>
+          <ion-col col-2 class="center">
+            <ion-icon name="trash" class="danger" (click)="deleteScheduleOrder(item)"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div *ngIf="item.scheduletype == 'weekdays' && item.weekdays">{{ 'SCHEDULE_PAGE.LABELS.lb_every_week' | translate }}</div>
+            <div *ngIf="item.scheduletype == 'weekdays' && item.weekdays " class="capitalize marquee ">
+              <div><span>{{item.weekdays}}</span> <span>{{item.weekdays}}</span></div>
+            </div>
+            <div *ngIf="item.scheduletype == 'days' && item.days">{{ 'SCHEDULE_PAGE.LABELS.lb_every_month' | translate }}</div>
+            <div *ngIf="item.scheduletype == 'days' && item.days" class="capitalize   marquee">
+              <div><span> {{item.days}}  </span> <span> {{item.days}}  </span></div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,168 @@
+.warning {
+  color: #eea236
+}
+
+.danger {
+  color: #d43f3a
+}
+
+.primary {
+  color: #408f98
+}
+
+.success {
+  color: #4cae4c
+}
+
+.card-md {
+  padding: 10px;
+}
+
+.border-top {
+  border-top: 1px solid #ddd;
+}
+
+.profile-img {
+  width: 34% !important;
+  height: 50% !important;
+  margin: 40px auto 50px;
+}
+
+.myprofilepg .login_fields {
+  padding: 15px 5px;
+}
+
+.myprofilepg .login_fields .profile_fields_container {
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+}
+
+.prfle_fields {
+  text-transform: uppercase;
+  font-size: 15px !important;
+  margin: 7px 0 0 0 !important;
+  color: #B0B0B0 !important;
+  display: block;
+}
+
+.adv_amount {
+  background: #4cae4c;
+  border-radius: 3px;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #fff !important;
+  margin: 20px 0 0;
+  padding: 12px;
+  height: 42px;
+  display: inline-block;
+  width: 50%;
+}
+
+.amount {
+  border-radius: 3px;
+  margin: -23px 0 0 0px;
+  color: #4cae4c;
+  padding: 3px 0;
+  /* border: 1px solid #32db64; */
+  width: auto;
+  font-size: 1.2rem;
+  /* height: 35px; */
+  text-align: center;
+  background: #fff;
+  display: block;
+  box-shadow: 0px 0px 7px #aaa;
+}
+
+.pnd_amount {
+  background: #eea236;
+  border-radius: 3px;
+  font-size: 1.8rem;
+  color: #fff !important;
+  margin: 20px 0 2px 0;
+  padding: 12px;
+  text-align: center;
+  height: 42px;
+  display: inline-block;
+  width: 50%;
+}
+
+.pnd_amount .amount {
+  font-size: 1.2rem;
+  color: #eea236;
+}
+
+.icon-md.profile_avatar {
+  margin: 5px 0 0 0px !important;
+  color: #B0B0B0;
+}
+
+ion-avatar.profile_avatar, .profile_avatar + .item-inner {
+  margin: 0 0 0 12px !important;
+}
+
+ion-avatar.profile_avatar, .item-md ion-avatar.profile_avatar {
+  margin: 0 0 0 8px !important;
+  min-width: 12px;
+}
+
+.change_pswd {
+  background: #408f98;
+  border-radius: 3px;
+  font-size: 14px;
+  position: absolute;
+  right: 40px;
+  padding: 5px 15px;
+  margin-top: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+.edt_profile {
+  border-radius: 50px;
+  background: #408f98;
+  color: #fff;
+  float: right;
+  padding: 4px 6px;
+  margin-right: 8px;
+}
+
+.textarea .text-input {
+  height: 50px !important;
+}
+
+.password-style {
+  padding-top: 10px !important;
+  font-size: 17px !important;
+  padding-left: 2px !important;
+}
+
+.myprofilepg ion-textarea .text-input-md, .myprofilepg ion-input .text-input-md {
+  margin: 4px 0 !important;
+}
+profile-page{
+.pdleft-ng8{
+  padding-left: 8px;
+}
+.label-md {
+  margin: 5px 0px 5px 0px !important;
+}
+.button-small-md{
+  padding: 0px !important;
+}
+//.login_fields{
+//  margin: -22px 30px 10px;
+//}
+
+  .login_fields {
+    margin: -22px 30px 10px;
+    background: #fff;
+    padding: 30px 30px 10px 30px;
+    height: auto;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px 0px 24px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 24px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 24px -1px rgba(0, 0, 0, 0.75);
+
+  }
+
+}

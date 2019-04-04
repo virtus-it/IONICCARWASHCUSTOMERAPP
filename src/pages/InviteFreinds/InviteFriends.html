@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img src="assets/imgs/header_icon.png" class="header_icon"><span class="title-style"> {{ 'INTIVE_FRIENDS_PAGE.PAGE_TITLE' | translate }}
+   </span></ion-title>
+    <ion-buttons end hidden>
+      <button ion-button icon-only color="primary" (click)="importContact()" *ngIf="!showProgress">{{
+        'INTIVE_FRIENDS_PAGE.BUTTONS.btn_import' | translate }}
+      </button>
+      <ion-spinner block padding="40" name="dots" color="light" *ngIf="showProgress" end></ion-spinner>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-spinner block padding="40" name="dots" color="primary" *ngIf="showLoading" end></ion-spinner>
+
+  <div class="bg_inviteFriend">
+
+  </div>
+
+  <div class="mgleftright-20" *ngIf="!showInvite">
+    <button ion-button class="btn-lg bg-logo button button-round button-round-md" block (click)="showInviteForm()">
+      <ion-icon name="person-add"></ion-icon> &nbsp; Invite your friends
+    </button>
+    <!-- <h5 class="mg-20 center">OR</h5>
+    <button ion-button class="btn-lg bg-warning button-round button-round-md "  block (click)="shareCode()">
+      <ion-icon name="share"></ion-icon> &nbsp; Share
+    </button> -->
+
+  </div>
+  <ion-card *ngIf="showInvite">
+
+    <div class="mgleft-15">
+      <h5>{{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_sub_title' | translate }}
+        <b>MOYA</b> {{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_sub_title_2' | translate }}
+      </h5>
+    </div>
+    <div *ngIf="!showContactsList">
+
+      <ion-item>
+        <ion-label color="primary" floating>{{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_name' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="name" clearInput required class="usr_namefeild"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" floating>{{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_mobile_no' | translate }}</ion-label>
+        <ion-input pattern="[0-9]*" type="tel" maxlength="10" minlength="10" class="usr_namefeild" clearInput
+                   [(ngModel)]="mobileNumber"
+                   required></ion-input>
+      </ion-item>
+      <br>
+
+      <ion-item>
+        <ion-label>
+          <b>{{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_custom_msg' | translate }}</b>
+        </ion-label>
+        <ion-checkbox [(ngModel)]="isCustomMsg" (ionChange)="checkClick()"></ion-checkbox>
+      </ion-item>
+
+      <ion-item *ngIf="isCustomMsg">
+
+        <ion-label color="primary" floating>{{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_req_msg' | translate }}</ion-label>
+        <ion-textarea class="textarea" [(ngModel)]="customMessage" placeholder="Enter a message"></ion-textarea>
+      </ion-item>
+
+    </div>
+
+    <ion-list *ngIf="showContactsList" class="mgbottom-10">
+
+      <ion-item *ngFor="let contact of filterList">
+        <ion-label>{{contact.name}}<br>{{contact.phonenumber}}</ion-label>
+        <ion-checkbox [(ngModel)]="contact.checked" (ionChange)="pickContact(contact)"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <ion-item *ngIf="showContactsList">
+      <ion-label>
+        <b>{{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_custom_msg' | translate }}</b>
+      </ion-label>
+      <ion-checkbox [(ngModel)]="isCustomMsg" (ionChange)="checkClick()"></ion-checkbox>
+    </ion-item>
+
+    <ion-item *ngIf="isCustomMsg && showContactsList">
+
+      <ion-label color="primary" floating>{{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_req_msg' | translate }}</ion-label>
+      <ion-textarea class="textarea" [(ngModel)]="customMessage" placeholder="Enter a message"></ion-textarea>
+    </ion-item>
+
+    <div class="mgtopleft-15x10">
+      <button ion-button round (click)="inviteFriend()" center>{{ 'INTIVE_FRIENDS_PAGE.BUTTONS.btn_send_invite' |
+        translate }}
+      </button>
+      <!--</ion-card>-->
+    </div>
+  </ion-card>
+  <div *ngIf="referData && referData.referral_code && !showInvite">
+    <h4 text-center><b>OR</b></h4>
+    <ion-card>
+      <h5 text-center *ngIf="referData.referral_code">{{referData.referral_code}}</h5>
+      <h5 *ngIf="referData.template_desc">{{referData.template_desc}}</h5>
+
+      <button class="btn-lg bg-warning button-round button-round-md " ion-button block (click)="shareCode()">
+          <ion-icon name="person-add"></ion-icon> &nbsp; Share Code</button>
+
+
+    </ion-card>
+  </div>
+
+</ion-content>

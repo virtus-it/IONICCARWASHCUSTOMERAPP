@@ -1,0 +1,862 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
+$font-path: "../assets/fonts";
+
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
+
+@import "ionic.globals";
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+  primary: #408f98,
+  secondary: #4cae4c,
+  danger: #f53d3d,
+  light: #f4f4f4,
+  dark: #222,
+  white:#fff,
+  info:#17a2b8,
+  gray:#999999
+);
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/ionicons/
+
+@import "ionic.ionicons";
+
+// Fonts
+// --------------------------------------------------
+
+//@import "roboto";
+//@import "noto-sans";
+//--------------------new code-----
+$sign-inlabel: #333;
+$sign-inlabel_font: 12px;
+$no_padding: 0px !important;
+$color-white: #fff;
+.toolbar-title-md {
+  color: #fff !important;
+  font-size: 1.5rem !important;
+  margin-top: -5px !important;
+}
+
+//----------------------
+.item-inner {
+  font-size: 15px !important;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
+
+.right {
+  text-align: right;
+}
+
+.capitalize {
+  text-transform: capitalize !important;
+}
+
+.powerby-style {
+  width: 50% !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mgleft-10 {
+  margin-left: 10px !important;
+}
+
+.toolbar-content-ios {
+  font-size: 16px !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.warning {
+  color: #eea236 !important;
+}
+
+.danger {
+  color: #d43f3a !important;
+}
+
+.primary {
+  color: #408f98 !important;
+}
+
+.success {
+  color: #4cae4c !important;
+}
+
+.gray9 {
+  color: #999999 !important;
+}
+
+.gray8 {
+  color: #888888 !important;
+}
+
+.black {
+  color: #222 !important;
+}
+.orange {
+  color: #f07b06 !important;
+}
+
+.center {
+  text-align: center;
+}
+.red {
+  color: red !important;
+}
+.gray {
+  color: gray !important;
+}
+.brown {
+  color: brown !important;
+}
+.bisque {
+  color: bisque !important;
+}
+.chocolate {
+  color: chocolate !important;
+}
+.gray {
+  color: gray !important;
+}
+.yellow {
+  color: yellow !important;
+}
+
+.green {
+  color: green !important;
+}
+.palevioletred {
+  color: palevioletred !important;
+}
+.steelblue {
+  color: steelblue !important;
+}
+.teal {
+  color: teal !important;
+}
+.slategray {
+  color: slategray !important;
+}
+.blue {
+  color: blue !important;
+}
+
+
+.border-top {
+  border-top: 1px solid #ddd !important;
+}
+
+.pd-2x5 {
+  padding: 2px 5px;
+}
+
+.title-style {
+  padding-left: 3px;
+}
+
+.pd-3 {
+  padding: 3px !important;
+}
+
+.border {
+  border: 1px solid #ddd !important;
+}
+.float-right{
+  float:right !important;
+}
+.header-bg {
+  background: #f1f5f7 !important;
+  border: 1px solid #ddd !important;
+}
+.info{
+  color:#17a2b8 !important;
+}
+.pdtop-5 {
+  padding-top: 5px !important;
+}
+
+.pdtop-10 {
+  padding-top: 10px !important;
+}
+
+.item-md ion-icon[item-left], .item-md ion-icon[item-right], .item-md ion-icon[item-start], .item-md ion-icon[item-end] {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.item-block {
+  min-height: 2.5rem !important;
+}
+
+.label-md {
+  margin: 5px 8px 5px 0px !important;
+}
+
+.wd-100pc {
+  width: 100% !important;
+}
+
+.mgleftright-15 {
+  margin: 0px 15px !important;
+}
+
+.mgtopbottom-0x10 {
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+.alert-md .alert-wrapper {
+  min-width: 50%;
+}
+.add-style{
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  z-index: 1000;
+  padding: 15px;
+  font-size: 40px;
+  color: #408f98;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-15 {
+  font-size: 15px;
+}
+
+.toolbar-title-md {
+  padding: 0 5px;
+}
+
+.mgtop-20 {
+  margin-top: 20px;
+}
+
+b {
+  font-weight: 500;
+}
+
+.logo-color {
+  color: #408f98 !important;
+}
+
+.logo-bg {
+  background: #408f98 !important;
+}
+
+.alert-md .alert-button {
+  padding: 7px;
+  border: 0.5px solid #408f98 !important;
+  background-color: #408f98 !important;
+  line-height: 1.4;
+}
+
+.alert-md .alert-head {
+  text-align: left;
+  text-align: start;
+  background: #408f98 !important;
+  padding: 15px 20px 10px !important;
+  color: #fff !important;
+  margin-bottom: 15px !important;
+}
+
+.alert-md .alert-button {
+  color: #FFFFFF !important;
+}
+
+.mgtopleft-10x15 {
+  margin: 10px 0 0 15px;
+}
+
+.brd-top {
+  border-top: 1px solid #ddd;
+}
+
+.mgleftright-10 {
+  margin: 0px 10px;
+}
+
+.mgbottom-10 {
+  margin-bottom: 10px !important;
+}
+
+.mgleft-15 {
+  margin-left: 15px;
+}
+
+.mgtopleft-10 {
+  margin: 10px 0 0 10px;
+}
+
+.badge-ios {
+  border: none !important;
+  background: #fff !important;
+  color: #333 !important;
+}
+
+.mgleft-5 {
+  margin-left: 5px !important;
+}
+
+.scroll-content {
+  background: #f1f5f7 !important;
+}
+
+.alert-title {
+  font-size: 18px !important;
+}
+
+.alert-message {
+  overflow-y: auto !important;
+}
+
+.mgtop-5 {
+  margin-top: 5px !important;
+}
+
+.mgtop-10 {
+  margin-top: 10px !important;
+}
+
+.mgtopbtm-10x5 {
+  margin-top: 10px !important;
+  margin-bottom: 5px !important;
+}
+
+.fs-12 {
+  font-size: 12px !important;
+}
+
+.msg-style {
+  background: #f1f5f7 !important;
+  padding: 10px !important;
+  border-radius: 5px !important;
+  margin-left: 10px !important;
+  border: 1px solid #ddd !important;
+  margin-top: 5px !important;
+}
+
+.greencircle-style {
+  color: #fff;
+  padding: 4px 8px;
+  background: green;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.card-content-ios {
+  padding: 8px !important;
+  font-size: 12px !important;
+  line-height: 12px !important;
+}
+
+.circle-button {
+  border: 1px solid #408f98 !important;
+  border-radius: 50% !important;
+  color: #408f98 !important;
+}
+
+.mg-15 {
+  margin: 15px !important;
+}
+
+.mg-10 {
+  margin: 10px !important;
+}
+
+.mg-20 {
+  margin: 20px !important;
+}
+
+.gray6 {
+  color: #666666;
+}
+
+.badge-md {
+  background: #fff;
+  border: none;
+  color: #333;
+}
+
+.bg-danger {
+  background: #dc3545 !important;
+  color: #ffffff !important;
+}
+
+.bg-basic {
+  background: #dddddd !important;
+  color: #333333 !important;
+}
+
+.bg-logo {
+  background: #408f98 !important;
+  color: #ffffff !important;
+}
+
+.bg-success {
+  background: #4cae4c !important;
+  color: #ffffff !important;
+}
+
+.bg-primary {
+  background: #007bff !important;
+  color: #ffffff !important;
+}
+
+.bg-info {
+  background: #17a2b8 !important;
+  color: #ffffff !important;
+}
+
+.bg-warning {
+  background: #eea236 !important;
+  color: #ffffff !important;
+}
+
+.bg-gray {
+  background: #5a6268 !important;
+  color: #ffffff !important;
+}
+.error{
+  color: red !important;
+}
+.pdleft-10 {
+  padding-left: 10px;
+}
+
+.back-button-md {
+  margin: 0px !important;
+}
+
+.back-button-icon-md {
+  padding: 0px 10px 5px 0px !important;
+}
+
+.back-button-md {
+  min-width: 15px !important;
+}
+
+.card-content-md {
+  padding: 5px 15px !important;
+}
+
+.pdright-15 {
+  padding-right: 15px;
+}
+
+.toolbar-md {
+  padding: 3px 12px !important;
+  min-height: 45px !important;
+}
+
+@media (max-device-width: 640px) {
+  /*Iphone portrait and smaller*/
+}
+
+@media (max-device-width: 540px) {
+  .app-root {
+    font-size: 10px;
+  }
+  .item-ios [item-left], .item-ios [item-start] {
+    margin: 0px !important;
+  }
+  .item-ios.item-block .item-inner {
+    padding-right: 0px !important;
+  }
+  .item-inner {
+    font-size: 12px !important;
+  }
+  .label-ios {
+    margin: 5px 0px 5px 0 !important;
+  }
+  .fs-18 {
+    font-size: 18px !important;
+  }
+  .item-ios ion-avatar[item-left], .item-ios ion-thumbnail[item-left], .item-ios ion-avatar[item-start], .item-ios ion-thumbnail[item-start] {
+    margin: 0px !important;
+  }
+  .login-img {
+    width: 60% !important;
+
+  }
+}
+
+@media (max-device-width: 320px) {
+  .item-ios ion-avatar[item-left], .item-ios ion-thumbnail[item-left], .item-ios ion-avatar[item-start], .item-ios ion-thumbnail[item-start] {
+    margin: 0px !important;
+  }
+  .item-ios [item-left], .item-ios [item-start] {
+    margin: 0px !important;
+  }
+  .img-style {
+    width: 20%;
+  }
+  .item-ios.item-block .item-inner {
+    padding-right: 0px !important;
+  }
+  .item-inner {
+    font-size: 12px !important;
+  }
+  .label-ios {
+    margin: 5px 0px 5px 0 !important;
+  }
+}
+
+// @media (max-width:640px) and (min-width:321px) {
+
+//   }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+ion-spinner * {
+  width: 28px;
+  height: 28px;
+  stroke: #444;
+  fill: #222;
+}
+
+.input-cover {
+  position: static;
+}
+
+.marquee {
+  width: 450px;
+  margin: 0 auto;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  animation: marquee 50s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused
+}
+
+.appcolor {
+  background: #9fe929;
+}
+
+.toolbar-background-md {
+  border-color: #fff !important;
+  background: #408f98 !important;
+}
+
+.toolbar-content-md {
+  color: #fff;
+}
+
+.mgtop-20 {
+  margin-top: 20px !important;
+}
+
+.button-md {
+  margin: 0px;
+  border-radius: 5px !important;
+}
+
+ion-app.md, body {
+  font-family: myfont !important;
+  color: #fff;
+}
+
+a {
+  font-family: myfont !important;
+}
+
+span {
+  font-family: myfont !important;
+}
+
+ion-label {
+  font-family: myfont !important;
+}
+
+.btn-lg {
+  height: 4.5rem !important;
+}
+
+@font-face {
+  font-family: 'myfont' ;
+  src: url('../assets/fonts/segoeuib/ubuntu-regular.woff');
+}
+
+.page_bg .scroll-content {
+  background-color: #eee !important;
+
+}
+
+.alert-wrapper {
+  max-height: 100% !important;
+  overflow: auto;
+}
+
+.add_textarea {
+  background: #f2f2f2;
+  border-radius: 3px;
+  padding: 1px !important;
+  margin: 3px !important;
+}
+
+.spinner_center {
+  position: absolute;
+  top: 40%;
+  left: 48%;
+}
+
+.text_head_label {
+  font-size: 1.5rem !important;
+  color: #777777 !important;
+  font-weight: bold;
+}
+
+.text_label {
+  font-size: 1.4rem !important;
+  color: #777777 !important;
+  font-weight: bold;
+}
+
+.text_output {
+  font-size: 1.5rem !important;
+  color: #666 !important;
+}
+
+.text_small {
+  color: #B0B0B0 !important;
+  font-size: 1.3rem !important;
+}
+
+.color_grey {
+  color: #B0B0B0;
+}
+
+.color_dark_grey {
+  color: #777777;
+}
+
+.color_dark_blue {
+  color: #777777;
+}
+
+.header_icon {
+  width: 25px;
+  height: 25px;
+  margin: 0px 0 -6px 0 !important
+}
+
+.header_icon_addrs {
+  width: 25px;
+  height: 25px;
+  margin: -1px 0 -6px 0
+}
+
+.mg-5 {
+  margin: 5px;
+}
+
+.mgleftright-20 {
+  margin: 0px 20px !important;
+}
+
+.empty_middle_text_center {
+  position: absolute;
+  top: 40%;
+  padding: 10px;
+}
+
+.pdtopbottom-5 {
+  padding: 5px 0px !important;
+}
+
+.mgtop-20 {
+  margin-top: 20px;
+}
+
+.primary.text_label {
+  color: #408f98 !important;
+  font-weight: normal;
+}
+
+.mgbtm-5 {
+  margin-bottom: 5px !important;
+}
+
+.wh-80x120 {
+  width: 80px;
+  height: 120px;
+}
+
+ion-header ion-buttons .bar-button-md-primary {
+  color: #fff !important;
+}
+
+.pdtopbottom-4 {
+  padding: 4px 0px;
+}
+
+ion-header ion-buttons .bar-button-md {
+  color: #fff !important;
+}
+
+ion-footer span {
+  font-size: 15px
+}
+
+.bar-button-md {
+  text-transform: capitalize !important;
+}
+
+.menu {
+  font-size: 15px;
+  padding: 12px 5px;
+}
+
+.mgbtm-10 {
+  margin-bottom: 10px;
+}
+
+.fs-50 {
+  font-size: 50px !important;
+}
+
+.left {
+  text-align: left !important;
+}
+
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+  color: $color-white !important;
+}
+
+.white {
+  color: #ffffff;
+}
+
+.mgbottomleft-5 {
+  margin: 0px 0px 5px 5px !important;
+}
+
+.wh-32 {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+//margin global classes
+.mgTop5 {
+  margin-top: 5px !important;
+}
+
+.editaddr {
+  height: 80%;
+  margin-top: 20%;
+  margin-left: 5%;
+  width: 89%;
+  border: 1px solid #408f98;
+}
+.editFeedback {
+  height: 65%;
+  margin-top: 20%;
+  margin-left: 5%;
+  width: 89%;
+  border: 1px solid #408f98;
+}
+
+.editemptycan {
+  height: 52%;
+  margin-top: 50%;
+  margin-left: 10%;
+  width: 80%;
+  border: 1px solid #408f98;
+}
+
+.raiserequestdialog {
+  max-height: 60%;
+  margin-top: 40%;
+  margin-left: 10%;
+  width: 80%;
+  border: 1px solid #408f98;
+}
+
+.img-rupee {
+  width: 3.8% !important;
+  margin-left: 3px;
+  margin-right: 2px;
+}
+
+ion-card img.img-rupee {
+  display: inline-block !important;
+}
+
+.pdleftright-10 {
+  padding: 0px 10px !important;
+}
+ion-navbar.toolbar .btn-header {
+  padding: 10px !important;
+}
+.mr-auto{
+  margin-right: auto;
+}
+.d-flex{
+  display: flex;
+}
+.blink-text {
+  animation: blink-text 0.6s linear infinite;
+}
+@keyframes blink-text {
+  50% { opacity: 0; }
+}

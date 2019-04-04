@@ -1,0 +1,30 @@
+page-cancel-order {
+  .min-h100 .text-input{
+    min-height: 100px !important;
+  }
+  .text-input-md{
+    margin: 10px;
+    color: #333;
+  }
+  .item-block{
+    padding-left: 0px;
+  }
+  ion-label{
+      text-overflow: unset;
+     white-space: unset; 
+     font-size: 15px;
+     line-height: 1.5;
+  }
+  .radio-md .radio-inner {
+    left: 3px;
+    top: 3px;
+    border-radius: 50%;
+    position: absolute;
+    width: 10px;
+    height: 10px;}
+    .radio-md .radio-icon {
+
+      width: 20px;
+      height: 20px;
+    }
+}

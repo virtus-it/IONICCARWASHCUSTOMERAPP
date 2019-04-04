@@ -1,0 +1,43 @@
+invitefriend-page{
+.card-md{
+  padding: 15px;
+}
+  .btn-lg{
+    height: 4.5rem !important;
+  }
+.textarea .text-input{
+  overflow: auto;
+  height: 80px;
+  font: inherit;
+  color: inherit;
+}
+.img-fluid.label-md
+{width: 100%;
+  height: auto;
+  margin: 0 !important;
+ }
+ .item.item-md .checkbox-md {
+  margin: 5px 8px 5px 4px;
+}
+.scroll-content {
+  background: #eee !important;
+}
+.mgtopleft-15x10{
+  margin: 12px 0px 0px 10px;
+}
+//.header_icon {
+//  margin: 0px 0px -4px 0 !important;
+//}
+.textarea{
+  margin-bottom: 10px;
+}
+  .bg_inviteFriend{
+    background: url(../assets/imgs/img_invitefriend.png);
+    height: 270px;
+    max-width: 100%!important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 10px;
+  }
+
+}

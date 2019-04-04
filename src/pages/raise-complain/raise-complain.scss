@@ -1,0 +1,40 @@
+page-raise-complain {
+  margin-bottom: 10px;
+  margin-top: 0px;
+
+  .min-h100 .text-input{
+    min-height: 100px !important;
+  }
+  .ion-footer{
+    margin: 5px;
+    width: 97%;
+  }
+  .text-input-md{
+    margin: 10px;
+    color: #333;
+  }
+  .input-md[clearInput] .text-input{
+    padding-right: 0px;
+  }
+  .editaddr{
+    min-height: 70% !important;
+  }
+  ion-footer   .toolbar-background-md {
+    margin: 5px;
+    background: #ffffff !important;
+  }
+  .item-md.item-block .item-inner{
+    padding-right: 0px !important;
+  }
+  .item-md{
+    padding-left: 0px !important;
+  }
+
+  ion-footer .toolbar-md {
+    padding:0px !important
+  }
+  .bg-basic{
+    background: #dddddd !important;
+    color: #333333 !important;
+  }
+}

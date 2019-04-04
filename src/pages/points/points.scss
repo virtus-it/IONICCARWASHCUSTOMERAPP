@@ -1,0 +1,111 @@
+page-points {
+  .card-md {
+    margin: 0px;
+    border-radius: 2px;
+    width: 100%;
+  }
+  .scroll-content {
+    background: #f1f1f2 !important;
+    padding: 12px !important;
+
+  }
+  .no_padding .col {
+    padding: 0px !important;
+  }
+  .head-style {
+    padding: 5px !important;
+    background: #408f98;
+    border: 1px solid #ddd;
+    color: #fff;
+  }
+  .pd-3x5{
+    padding: 5px 5px 0px !important;
+  }
+  .pdtopbottom-2{
+    padding: 2px 0px;
+  }
+  .item-md{
+    padding-left: 0px;
+  }
+  .label-md {
+    margin: 0px !important;
+  }
+  .item-md.item-block .item-inner {
+    padding-right: 0px !important;
+  }
+  .line-style{
+   border-bottom: 1px solid #ddd;
+    padding: 0px 0px 10px 0px;
+  }
+  .pd-15x25{
+    padding: 15px 25px;
+  }
+.position-right{
+  position: absolute;
+  right: 18px;
+  top: 15px;
+  font-size:35px;
+  cursor: pointer;
+}
+  .point-style{
+    padding: 8px;
+    background: #eea236 ;
+    border-radius: 10px;
+    color: #fff;
+  }
+  .info-style{
+        border-bottom: 1px solid #ddd;
+  }
+  .pdtopbottom-10x5{
+    padding: 10px 0px 5px 0px;
+  }
+  .pointInfo{
+text-align: center;
+    background: #eea236;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.77;
+    height: 22px;
+    width: 50px;
+  }
+  .lineheight{
+    line-height: 1.4;
+  }
+  .logo-style{
+    height: 65px;
+    width: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+  }
+  .infotitle-style{
+    text-align: center;
+    font-size: 18px;
+   padding: 10px 0px 5px;
+   color:#d43f3a;
+  }
+  .mg-0{
+    margin: 0px;
+  }
+  .fs-17{
+    font-size: 17px;
+    color: #333;
+  }
+  .adduser{
+    display: inline;
+   height: 20px;
+  width: 20px;
+}
+span::first-letter {
+ text-transform: uppercase !important;
+}
+.pd{
+  padding: 5px 5px 3px 3px !important;
+  align-items: center;
+}
+  //.pd-5{
+  //  padding: 5px !important;
+  //}
+
+}

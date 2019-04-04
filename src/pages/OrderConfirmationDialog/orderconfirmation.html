@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-title>
+      <img src="assets/imgs/header_icon.png" class="header_icon"> {{ 'CONFIRMATION_PAGE.PAGE_TITLE' | translate }}
+    </ion-title>
+    <ion-buttons end hidden>
+      <button ion-button clear class="btn-header" (click)="close()">{{ 'CONFIRMATION_PAGE.BUTTONS.btn_done' | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="prdct_main_container ">
+    <ion-card class="succes_screen">
+      <span class="success_icon">
+        <ion-icon name="checkmark" color="primary"></ion-icon>
+      </span>
+      <!-- <h1 center text-center class="thanku_msg">Order Successful</h1> -->
+      <h2 center class="thanku_msg" color="success">{{ 'CONFIRMATION_PAGE.LABELS.lb_thanks_msg' | translate }}</h2>
+      <div class="border-addr">
+        <div>{{ 'CONFIRMATION_PAGE.LABELS.lb_delivery_address' | translate }}</div>
+        <ion-row>
+          <ion-col col-1>
+            <ion-icon name="home" class="fs-14"></ion-icon>
+          </ion-col>
+          <ion-col col-11>
+            <span class="gray7">{{addr}}</span>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <ion-row style="border-bottom: 1px solid #ccc;">
+        <ion-col col-2>
+          <span item-right>{{ 'CONFIRMATION_PAGE.LABELS.lb_qty' | translate }}</span>
+        </ion-col>
+        <ion-col col-7>
+          <span item-right>{{ 'CONFIRMATION_PAGE.LABELS.lb_product_name' | translate }}</span>
+        </ion-col>
+        <ion-col col-3 class="right">
+          <span item-right>{{ 'CONFIRMATION_PAGE.LABELS.lb_price' | translate }}
+          </span>
+        </ion-col>
+      </ion-row>
+      <div *ngFor="let item of items">
+        <ion-row>
+          <!-- <ion-col col-2>
+            <p item-right class="">{{item.count}}</p>
+          </ion-col> -->
+          <ion-col col-9>
+            <span item-right>
+              <b *ngIf="item.category">{{item.category}} </b> {{item.brandname +" "+item.ptype}}</span>
+          </ion-col>
+
+          <ion-col col-3 class="right">
+            <span item-right>{{(item.pcost)}}
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-between *ngIf="item.mdemptycount">
+          <ion-col col-sm-3 col-xs-3 col-md-3 col-lg-3 col-xl-3>
+            <span item-right> Advance Amt (refundable) {{item.mdemptycount}} x 150</span>
+          </ion-col>
+          <ion-col col-sm-2 col-md-2 col-lg-2 col-xl-2 class="right">
+            <span item-right>{{(item.mdemptycount * 150)}}
+            </span>
+          </ion-col>
+        </ion-row>
+      </div>
+      <ion-row justify-content-between *ngIf="serviceCharge">
+        <ion-col col-sm-3 col-xs-3 col-md-3 col-lg-3 col-xl-3>
+          <span item-right> Shipping & Services</span>
+        </ion-col>
+        <ion-col col-sm-2 col-md-2 col-lg-2 col-xl-2 class="right">
+          <span item-right>{{serviceCharge ? serviceCharge :'Inclusive'}}
+          </span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row justify-content-between *ngIf="cbExpDel && expDelCharge > 0">
+        <ion-col col-sm-3 col-xs-3 col-md-3 col-lg-3 col-xl-3>
+          <span item-right> EXPRESS DELIVERY</span>
+        </ion-col>
+        <ion-col col align-self-center class="right" *ngIf="cbExpDel && expDelCharge > 0">
+          <span item-right>{{expDelCharge}}
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-between *ngIf="discountAmt && discountAmt > 0">
+        <ion-col col-sm-3 col-xs-3 col-md-3 col-lg-3 col-xl-3>
+          <span item-right class="success">Discount</span>
+        </ion-col>
+        <ion-col col-sm-2 col-md-2 col-lg-2 col-xl-2 class="right">
+          <span class="success" item-right>-{{discountAmt}}
+          </span>
+          <!-- <span class="success" item-right>Price after discount : {{ totalAmount*(100-validPromoCodeData.typevalue)/100}}
+          </span> -->
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row justify-content-between>
+      <ion-col col>
+        <span item-right class="fs-14">{{ 'CONFIRMATION_PAGE.LABELS.lb_total_item' | translate }}
+          <b> {{totalItem}}</b>
+        </span>
+      </ion-col>
+      <ion-col col class="right">
+        <span item-right class="fs-14">{{ 'CONFIRMATION_PAGE.LABELS.lb_total_amt' | translate }}
+          <b> {{totalCost}} </b>
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button *ngIf="!showProgressPayNow" [disabled]="isPaytmDisabled" class="cancel_order" color="secondary" ion-button full (click)="paynow()">
+          Pay Now
+        </button>
+        <button class="cancel_order" color="secondary" *ngIf="showProgressPayNow" ion-button full>
+          <ion-spinner block padding="40" name="dots" color="light" end></ion-spinner>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button class="confirm_order" color="light" style="color: #408f98" ion-button full (click)="paylater()">
+          Pay Later
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

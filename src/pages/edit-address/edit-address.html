@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()" class="my-style-for-modal">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+        <ion-title >
+          <img src="assets/imgs/header_icon.png" class="header_icon_addrs"> <span class="title-style">Edit Address</span>
+         </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!--</ion-header>-->
+<!--<ion-header>-->
+  <!--<ion-navbar>-->
+    <!--<ion-buttons left *ngIf="calledFrom == 'myorders'">-->
+      <!--<button ion-button icon-only (click)="dismiss()" class="my-style-for-modal">-->
+        <!--<ion-icon name="arrow-back"></ion-icon>-->
+      <!--</button>-->
+    <!--</ion-buttons>-->
+    <!--<ion-title>-->
+      <!--<img src="assets/imgs/header_icon.png" class="header_icon"><span class="title-style">Edit Address</span>-->
+    <!--</ion-title>-->
+
+  <!--</ion-navbar>-->
+<!--</ion-header>-->
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label stacked >Address</ion-label>
+    <ion-textarea class="textarea" [(ngModel)]="addr" type="text"></ion-textarea>
+  </ion-item>
+
+  <ion-item class="mgtop-10">
+    <ion-label stacked  >Landmark</ion-label>
+    <ion-input [(ngModel)]="landmark" type="text"></ion-input>
+  </ion-item>
+  <ion-item class="mgtop-10">
+    <ion-label stacked >Flat Number</ion-label>
+    <ion-input [(ngModel)]="buildingName" type="text"></ion-input>
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button class="btn-lg bg-logo button button-round button-round-md" block (click)="chooseItem()">&nbsp; Update
+    </button>
+  </ion-toolbar>
+</ion-footer>
+

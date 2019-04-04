@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="assets/imgs/header_icon.png" class="header_icon">
+      <span class="title-style"> My Rides</span>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="addNewRide()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngFor="let item of items">
+    <ion-card>
+      <img src="https://img.appx4fun.com/a7/8d/9d/a06cbe6a-05a4-4e71-970e-98325530e591-logo.jpg" />
+      <ion-card-content>
+        <ion-card-title>
+          {{item.manufacturer}} {{item.model}} {{item.modelyear}}
+        </ion-card-title>
+        <p>
+          {{item.modelcode}} {{item.modelnumber}}
+        </p>
+        <ion-row>
+          <ion-col>
+            <ion-buttons start>
+              <button ion-button (click)="update(item)">
+                <ion-icon name="md-create"></ion-icon>
+              </button>
+            </ion-buttons>
+          </ion-col>
+          <ion-col>
+            <ion-buttons end>
+              <button ion-button (click)="delete(item)">
+                <ion-icon name="md-trash"></ion-icon>
+              </button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

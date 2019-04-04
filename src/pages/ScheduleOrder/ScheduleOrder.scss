@@ -1,0 +1,64 @@
+page-schedule{
+  ion-navbar.toolbar .btn-header {
+    width: 40px !important;
+}
+ .scroll-content{
+    background: #eee !important;
+  }
+    .card-md{
+        width: 100% !important;
+        margin: 10px 0px !important;
+        padding: 5px 10px  !important;
+    }
+
+    .item-md{
+      background: #eee;
+      padding-left: 8px  !important;
+    }
+    .list-md .item-block .item-inner {
+      border-bottom: none;
+  }
+  .days-style{
+padding-top: 5px;
+border-top: 1px solid #ddd;
+  }
+  .label-md {
+    margin: 0px !important;
+}
+
+    /* Make it a marquee */
+.marquee {
+  height: 25px;
+  width: 500px;
+  line-height: 2;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee div {
+  display: block;
+  width: 200%;
+  height: 30px;
+  position: absolute;
+  overflow: hidden;
+
+  animation: marquee 5s linear infinite;
+}
+
+.marquee span {
+  float: left;
+  width: 50%;
+}
+
+@keyframes marquee {
+  0% { left: 0; }
+  100% { left: -100%; }
+}
+.logo-color{
+    color: #408f98;
+}
+}
+
+.capitalize{
+    text-transform: capitalize !important;
+}

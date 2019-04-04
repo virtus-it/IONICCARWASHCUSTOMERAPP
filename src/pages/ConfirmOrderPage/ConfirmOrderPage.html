@@ -1,0 +1,221 @@
+<ion-header>
+  <ion-navbar hideBackButton="{{navBack}}">
+    <ion-row align-items-center>
+      <div start *ngIf="calledfrom == 'reorder'">
+        <ion-icon style="font-size: 1.7em;" name="arrow-round-back" (click)="goBack()"></ion-icon>
+      </div>
+      <ion-title>
+        <img src="assets/imgs/header_icon.png" class="header_icon">
+        <span class="title-style"> {{title}}
+        </span>
+      </ion-title>
+      <ion-buttons end *ngIf="!showEditProduct && calledfrom == 'reorder'">
+        <button ion-button icon-only color="primary" (click)="editProduct()">Edit Product</button>
+      </ion-buttons>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="!showEditProduct" class="page_bg">
+    <ion-card-content class=" prdct_main_container">
+      <ion-row>
+        <ion-col col-sm-12 col-md-12 col-lg-12 col-xl-12>
+          <div class="textarea add_textarea" type="text" placeholder="Type your address">
+            <div *ngIf="landmark">
+              <b>Landmark: </b>{{landmark}}
+              <br>
+            </div>
+            <div *ngIf="buildingName">
+              <b>Flat No: </b>{{buildingName}}
+              <br>
+            </div>
+            <b>Address:</b> {{deliveryAddr}}
+          </div>
+        </ion-col>
+        <ion-col col-1 align-self-center (click)="editAddr()">
+          <ion-icon name="create" color="primary"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <div class="mgleft-10">
+        <label item-start>Date</label>
+        <ion-item text-right style="width: 60%; float: right;">
+          <ion-datetime text-right class="no_margin no_padding" text-start item-start item-left displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"
+            [min]="minDate" [(ngModel)]="dateOfevent" (ngModelChange)="delDateChange()">
+          </ion-datetime>
+          <ion-label color="primary">
+            <ion-icon name="create" color="primary"></ion-icon>
+          </ion-label>
+        </ion-item>
+      </div>
+      <p class="mgtop-5 mgleft-10">
+        <ion-label>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_avail_time' | translate }}</ion-label>
+      </p>
+      <div class="availability_label">
+        <ion-list radio-group [(ngModel)]="deliverySlot" item-right>
+          <ion-item class="schedule_radiobtn">
+            <ion-radio item-left class="radio_btn" value="8AM-11AM" [disabled]="slot1"></ion-radio>
+            <ion-label item-right="" style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_1' | translate }}
+            </ion-label>
+          </ion-item>
+          <ion-item class="schedule_radiobtn">
+            <ion-radio item-left class="radio_btn" value="11AM-2PM" [disabled]="slot2"></ion-radio>
+            <ion-label item-right style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_2' | translate }}
+            </ion-label>
+          </ion-item>
+          <ion-item class="schedule_radiobtn">
+            <ion-radio item-left class="radio_btn" value="2PM-5PM" [disabled]="slot3"></ion-radio>
+            <ion-label item-right style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_3' | translate }}
+            </ion-label>
+          </ion-item>
+          <ion-item class="schedule_radiobtn">
+            <ion-radio item-left class="radio_btn" value="5PM-8PM" [disabled]="slot4"></ion-radio>
+            <ion-label item-right style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_4' | translate }}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <ion-row class="table-style">
+        <!--<ion-col col-2>-->
+        <!--<span item-right><b>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_qty' | translate }}</b></span>-->
+        <!--</ion-col>-->
+        <ion-col>
+          <span item-right>
+            <b>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_product_name' | translate }}</b>
+          </span>
+        </ion-col>
+        <ion-col col-3 col-md-4 col-lg-4 col-xl-4 class="right">
+          <span item-right>
+            <b>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_price' | translate }}</b>
+          </span>
+        </ion-col>
+      </ion-row>
+      <div *ngFor="let item of items" class="mgleftright-10">
+        <ion-row>
+          <!--<ion-col col-2>-->
+          <!--<span item-left>{{item.count}} </span>-->
+          <!--</ion-col>-->
+          <ion-col>
+            <span item-right>{{item.brandname}} {{item.ptype}}
+             
+            </span>
+          </ion-col>
+          <ion-col col-3 class="right">
+            <span item-right>{{item.pcost}}
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row class="pdleftright-5 mgbtm-5" *ngIf="item.servicecharge && item.servicecharge > 0">
+
+          <ion-col align-self-start>
+            Service charge
+            <small>{{item.count}} x
+              <img class="img-rupee" src="assets/imgs/img_rupee_black.png">{{item.servicecharge}}
+            </small>
+          </ion-col>
+          <ion-col col-2 align-self-end class="right">
+            {{item.servicecharge * item.count}}
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-between *ngIf="item.mdemptycount" class="pdleftright-5">
+          <ion-col>
+            <span item-right> Advance Amt (refundable)
+              <small>{{item.mdemptycount}} x
+                <img class="img-rupee" src="assets/imgs/img_rupee_black.png"> 150</small>
+            </span>
+          </ion-col>
+          <ion-col col-2 class="right">
+            <span item-right>{{(item.mdemptycount * 150)}}
+            </span>
+          </ion-col>
+        </ion-row>
+      </div>
+      <ion-row justify-content-between class="mgleftright-10" hidden>
+        <ion-col col-sm-3 col-xs-3 col-md-3 col-lg-3 col-xl-3>
+          <span item-right> Shipping & Services</span>
+        </ion-col>
+        <ion-col col-sm-2 col-md-2 col-lg-2 col-xl-2 class="right">
+          <span item-right>{{serviceCharge ? serviceCharge :'Inclusive'}}
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row class="mgleftright-10" *ngIf="expDelCharge && expDelCharge > 0">
+        <ion-col col>
+          <ion-item class="ngleft">
+            <ion-label>EXPRESS DELIVERY ({{expDelCharge}})</ion-label>
+            <ion-checkbox [(ngModel)]="cbExpDel" (ionChange)="checkClick()">
+            </ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col align-self-center class="right" *ngIf="cbExpDel && expDelCharge > 0">
+          <span item-right>{{expDelCharge}}
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-between class="mgleftright-10" *ngIf="proddata && proddata.savingProduct && proddata.savingProduct.defSerCharge != proddata.savingProduct.servicecharge">
+        <ion-col col-9>
+          <span item-right class="success">
+            <ion-icon name="thumbs-up"></ion-icon> Your saving on this order</span>
+        </ion-col>
+        <ion-col col-3 class="right">
+          <span item-right class="success">
+            <img class="img-rupee" style="width:10.8% !important" src="assets/imgs/img_rupee_black.png"> {{(proddata.savingProduct.defSerCharge * proddata.savingProduct.selectedCount - proddata.savingProduct.servicecharge
+            * proddata.savingProduct.selectedCount)}}
+          </span>
+        </ion-col>
+      </ion-row>
+      <div  hidden center class="note-style">NOTE:
+        <br>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_proceed_order_price_might_vary' | translate}}
+      </div>
+
+      <div hidden center class="note-style">{{'CONFIRM_ORDER_PAGE.LABELS.lb_proceed_water_can_text' | translate}}
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <div *ngIf="showEditProduct" >
+    <ion-slides>
+      <ion-slide *ngFor="let item of brandProducts">
+        <select-product-view [totalamt]='proTotalCost' [mainIndex]="0" [savingProduct]="savingProduct" [brandProducts]="brandProducts"
+          [mainItem]='item' (countChangeListener)="qtyChangeListener($event)" (goNext)="goToNextSlide($event)" (goPrevios)="goToPreviousSlide($event)"
+          (minus)="viewItemMinus($event)" (plus)="viewItemPlus($event)" (changeImg)="changeImage($event)" (emptyCanChange)="emptyCountChange($event)"
+          (changeEmpCan)="emptyCanCheck($event)" (calTotalAmt)="calTotalAmt()"></select-product-view>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
+
+
+<ion-footer [ngClass]="{'' : (!showEditProduct), 'footer':(showEditProduct)}">
+  <ion-toolbar>
+    <ion-row justify-content-between *ngIf="!showEditProduct">
+      <ion-col col-sm-3 col-xs-3 col-md-3 col-lg-3 col-xl-3>
+        <span item-right>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_total_item' | translate }}
+          <b> {{totalItem}}</b>
+        </span>
+      </ion-col>
+      <ion-col col-sm-4 col-md-4 col-lg-4 col-xl-4 class="right">
+        <span item-right>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_total_cost' | translate }}
+          <b> {{tAmount}} </b>
+        </span>
+
+      </ion-col>
+    </ion-row>
+    <div center class="confirm-style" *ngIf="!showEditProduct">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_proceed_order_content' | translate }}
+    </div>
+    <ion-row *ngIf="!showEditProduct">
+      <ion-col>
+        <button class="cancel_order" ion-button full (click)="cancel()">
+          <ion-icon name="close-circle" style="margin-right: 5px;"></ion-icon>
+          {{ 'CONFIRM_ORDER_PAGE.BUTTONS.btn_cancel' | translate }}
+        </button>
+      </ion-col>
+      <ion-col>
+        <button class="confirm_order" color="secondary" ion-button full (click)="placeOrder()">
+          <ion-icon name="checkmark-circle-outline" style="margin-right: 5px;"></ion-icon>
+          {{ 'CONFIRM_ORDER_PAGE.BUTTONS.btn_confirm' | translate }}
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

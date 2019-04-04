@@ -1,0 +1,80 @@
+feedback-style{
+.feed_subject {
+  border-bottom: 1px solid #eee;
+  padding: 0 3px;
+}
+.scroll-content{
+  background: #eee !important;
+}
+.feed_admin_reply {
+  background: #f1f5f7;
+  border-radius: 5px;
+  padding: 3px;
+  width: 84%;
+  float: right;
+  margin-right: 0px;
+}
+
+.editaddr {
+  height: 65% !important;
+}
+
+.feed_customer_reply_cntr img {
+  float: left;
+  margin: 9px 5px 0 0;
+  width: 40px;
+  height: 84%;
+  display: inline;
+  border-radius: 50px;
+}
+
+.feed_admin_reply {
+  background: #ddd;
+  border-radius: 5px;
+  width: 84%;
+  float: right;
+  padding: 3px;
+  margin-right: 0;
+  margin-bottom: 6px;
+}
+.card-content-md{
+  padding: 5px;
+}
+.padding-5{
+  padding: 5px !important
+}
+.reply-style{
+  white-space: normal;
+  font-size:14px;
+  color:#666
+}
+.feed_customer_reply {
+  background: #f1f5f7;
+  border-radius: 5px;
+  width: 84% !important;
+  float: right;
+  padding: 3px;
+  margin-right: 16% !important;;
+  margin-bottom: 6px;
+}
+
+.feed_customer_reply:before {
+  width: 5px;
+  height: 5px;
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid green;
+}
+  ion-modal, .ion-page {
+    left: 0;
+    top: 0;
+    position: absolute;
+    display: block;
+    width: 70% !important;
+    border: 1px solid #408f98 !important;
+    margin-left: auto;
+    height: 70% !important;
+    contain: strict;
+    margin-right: auto;
+  }
+}

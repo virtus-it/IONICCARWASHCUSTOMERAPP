@@ -1,0 +1,50 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()" class="my-style-for-modal">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      <img src="assets/imgs/header_icon.png" class="header_icon_addrs">
+      <span class="title-style"> Select Empty Bottle
+    </span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <p class="danger pdleftright-10" *ngIf="showErr">* Empty can should not be greater then product quantity, please change it</p>
+  <ion-row justify-content-center align-items-center class="mgbtm-3">
+    <ion-col col-2 class="right">
+      <ion-icon name="remove" class="fs-20b" (click)="clickMinus(mainItem)"></ion-icon>
+    </ion-col>
+    <ion-col col-3 align-self-center>
+      <input type="text" placeholder="Items" type="tel" ng-pattern="[0-9]*" minlength="1" maxlength="3"
+             [(ngModel)]="mainItem.emptycount" (input)="prodCountChangeListener(mainItem)" class="input-style"/>
+    </ion-col>
+    <ion-col col-2 class="left">
+      <ion-icon name="add" class="fs-20b" (click)="clickPlus(mainItem)"></ion-icon>
+    </ion-col>
+  </ion-row>
+  <p class="center warning">Each empty bottle cost INR.150</p>
+  <!--<ion-row justify-content-center align-items-center class="amt-style">-->
+  <!--<ion-col col class="left">-->
+  <!--<h5> Amount(INR.)</h5>-->
+  <!--</ion-col>-->
+  <!--<ion-col col class="right">-->
+  <!--<h5> {{mainItem.emptycount * 150}}</h5>-->
+  <!--</ion-col>-->
+  <!--</ion-row>-->
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="no_padding mgleftright-2x3">
+      <ion-col class="col">
+        <button ion-button class="bg-logo wd-100pc" (click)="update()">Update</button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

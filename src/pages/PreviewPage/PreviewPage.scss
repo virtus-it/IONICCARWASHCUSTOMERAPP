@@ -1,0 +1,194 @@
+preview-page {
+  ion-buttons button[icon-only].my-style-for-modal {
+    margin: 0 6px;
+    min-width: 36px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+  .img-rupee{
+    width: 3% !important;
+  }
+
+  .no_padding .col{
+    padding: 0px !important;
+    font-size: 12px !important;
+  }
+  .note-style {
+    margin: 5px 15px 0px 15px;
+    font-size: 10px;
+    color: #ed9a00;
+    text-align: justify;
+  }
+  .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .nopdtop-col .col .item-checkbox {
+    padding-left: 10px !important;
+  }
+  .no_padding1 .col {
+    padding: 0px !important;
+  }
+  .pdbtm-0 .col {
+    padding: 5px 5px 0px 5px !important;
+  }
+  .list-md{
+    margin: 5px 0px 0px !important;
+  }
+  .datetime-text {
+    color: #408f98;
+  }
+  .mgbtm-5 {
+    margin-bottom: 5px;
+  }
+  .nopdtop-col .col {
+    padding: 0px 5px 5px 5px;
+  }
+  .corner-ribbon {
+    width: 185px;
+    height: 32px;
+    background: #7cd6d1;
+    position: absolute;
+    top: 23px;
+    left: -44px;
+    text-align: center;
+    line-height: 35px;
+    letter-spacing: 1px;
+    color: black;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-40deg);
+    font-size: 12px;
+  }
+
+  //  .header_icon{
+  //  margin: 0px 0px -6px 0px !important;
+  // }
+  .height-30 {
+    height: 30px
+  }
+  //.item-md{
+  //  padding-left: 5px !important;
+  //}
+  .item-md .item-button {
+    height: 30px
+  }
+  .textarea .text-input {
+    overflow: auto;
+    height: auto !important;
+    font: inherit;
+    color: inherit;
+  }
+  .sumry_dtls_label1 {
+    color: #777777;
+    font-size: 12px;
+  }
+  .pdtopbottom-2 .col{
+    padding: 2px 0px !important;
+  }
+
+  .pick_loc_cntnr .input-wrapper {
+    display: none;
+  }
+  .pick_loction {
+    background: #408f98 !important;
+    padding: 5px 10px !important;
+    margin: 0 0 0 10px !important;
+    text-transform: capitalize;
+    border-radius: 3px;
+    border: none;
+    color: #fff;
+  }
+  .prdct_main_container {
+    background: #eee !important;
+  }
+
+  .add_textarea {
+    background: #f2f2f2;
+    border-radius: 3px;
+    padding: 5px !important;
+    margin: 3px !important;
+  }
+
+  .smry_item_typ {
+    color: #B0B0B0 !important;
+    font-size: 12px;
+  }
+
+  .seprater {
+    border-bottom: 1px solid #ddd;
+  }
+  .mgtopbottom-5 .text-input-md {
+    margin: 5px 0px;
+  }
+  .availability_label {
+    margin: 0px 0px 5px 0px;
+    display: flex;
+  }
+
+  .sumry_dtls_label {
+    padding: 0 15px;
+    color: #777777;
+    font-size: 12px;
+  }
+  .sumry_dtls_label h6{
+    margin-top: 1.2rem;
+  }
+  .sumry_dtls_label ion-icon {
+    color: #408f98;
+    font-size: 1.2em
+  }
+
+  .total_amt_red_color {
+    color: #B12704 !important;
+    border-top: 1px solid #ccc;
+    font-size: 1.1em;
+    padding: 5px 0px;
+    font-weight: 500;
+  }
+
+  .del_panel .card-content-md {
+    padding-top: 11px !important;
+  }
+  .pdleftright-0 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .mglfrgbtm-5 {
+    margin: 0px 5px 5px 5px;
+  }
+  .pdtop-1 {
+    padding-top: 1px !important;
+  }
+  .item.item-md .checkbox-md {
+
+    margin: 5px 5px 9px -10px !important;
+  }
+  .textarea {
+    height: auto !important;
+  }
+  @media screen and (min-width: 480px) and (max-width: 600px) {
+    .product_thumb {
+      margin: -65px 43% 12px !important;
+    }
+    .ad_quantity {
+      width: 130px;
+    }
+  }
+  @media screen and (min-width: 601px) and (max-width: 800px) {
+    .product_thumb {
+      margin: -65px 45% 12px !important;
+    }
+    .ad_quantity {
+      width: 130px;
+    }
+  }
+  @media screen and (min-width: 801px) and (max-width: 1024px) {
+    .product_thumb {
+      margin: -65px 46% 12px !important;
+    }
+    .ad_quantity {
+      width: 130px;
+    }
+  }
+}
+

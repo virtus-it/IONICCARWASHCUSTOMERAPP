@@ -1,0 +1,342 @@
+MAP DEVELOPMENT KEY ANDROID == AIzaSyBv-ulk826EXLlELCVIVYKahr7ALkUFJAk
+MAP DEV USING KEY == AIzaSyBNG8zUekkqoqj1fi1mHRyZHtylAf-IYfw
+
+GOOGLE GEOCODE API KEY DEVELOPMENT === AIzaSyClwzzK1ngwEmeDj9oTjI7a6HM_1mJJd60
+Existing DEV MAP API KEY DEVELOPMENT == AIzaSyCJspGuVAKhtNeo2DQewNA1JngJ-6y0pDs
+MAP javasript APi == AIzaSyDM6lRww_5D1t43FqCIr3Gpw03sVbLcX0Y
+PRODDUCTION MAP KEY = AIzaSyDvx7hRyfAANcclfTD41ZjVu6Y1y8t6MA0
+-------------------------------------------------------------
+Apple App ID :1347449932
+
+
+
+DEV JAVASCRIPT MAP KEY USING == AIzaSyDWxagvr69no7TBKZpRhzfpTy370RCyKmU
+PRODDUCTION MAP KEY USING = AIzaSyDoS0Blw09XR34phjQ4BGF6v8mpQ5E8aSM
+COMMAND TO REALEASE BUILD:
+1.ionic cordova build android --prod --release
+2.jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore moya.keystore android-release-unsigned.apk "mineral water"
+---jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore moya.keystore android-release-unsigned.apk "mineral water"
+2.1 zipalign -v 4 android-release-unsigned.apk moyacustomer.apk
+3.Production url
+5.remove console.logs
+6.Welcome next button
+7.APP COMPONENT
+8.API call header enable
+9.1 MAP KEY package.json,config.xml,fetch.json
+9.2 config /preview page/MAP Page/index.ts Map key
+10.version code/ DATE / package name
+11.change version code in header
+
+https://www.youtube.com/watch?v=LPd4T7NTxzM
+=======================================================================
+keyboard
+$ ionic cordova plugin add ionic-plugin-keyboard
+$ npm install --save @ionic-native/keyboard
+
+Share on social media
+$ ionic cordova plugin add cordova-plugin-x-socialsharing
+$ npm install --save @ionic-native/social-sharing
+
+UUID
+$ ionic cordova plugin add cordova-plugin-device
+$ npm install --save @ionic-native/device
+
+GEOLOCATION
+$ ionic cordova plugin add cordova-plugin-geolocation --variable GEOLOCATION_USAGE_DESCRIPTION="To locate you"
+$ npm install --save @ionic-native/geolocation
+
+Reversgeocode
+$ ionic cordova plugin add cordova-plugin-nativegeocoder
+$ npm install --save @ionic-native/native-geocoder
+
+native storage
+ionic cordova plugin add cordova-plugin-nativestorage
+$ npm install --save @ionic-native/native-storage
+
+App Version
+
+ionic cordova plugin add cordova-plugin-app-version
+$ npm install --save @ionic-native/app-version
+
+Moment
+npm install moment --save
+
+App rate
+ionic cordova plugin add cordova-plugin-apprate
+npm install --save @ionic-native/app-rate
+
+PhotoViewer *REMOVED
+ionic cordova plugin remove com-sarriaroman-photoviewer
+npm uninstall --save @ionic-native/photo-viewer
+
+GOOGLE MAPS:
+ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyBNG8zUekkqoqj1fi1mHRyZHtylAf-IYfw" --variable API_KEY_FOR_IOS="AIzaSyBNG8zUekkqoqj1fi1mHRyZHtylAf-IYfw"
+
+npm install --save @ionic-native/google-maps
+
+Call Phone number
+ionic cordova plugin add call-number
+npm install --save @ionic-native/call-number
+
+Toast Message
+ionic cordova plugin add cordova-plugin-x-toast
+npm install --save @ionic-native/toast
+
+Import Contact
+
+ionic cordova plugin add cordova-plugin-contacts
+npm install --save @ionic-native/contacts
+
+Check location enable or wifi
+ionic cordova plugin add cordova.plugins.diagnostic
+npm install --save @ionic-native/diagnostic
+
+Splash Screen
+ionic cordova plugin add cordova-plugin-splashscreen
+npm install --save @ionic-native/splash-screen
+
+native setting
+ionic cordova plugin add cordova-open-native-settings
+npm install --save @ionic-native/open-native-settings
+
+Native Network Stats
+ionic cordova plugin add cordova-plugin-network-information
+npm install --save @ionic-native/network
+
+status bar
+
+ionic cordova plugin add cordova-plugin-statusbar
+npm install --save @ionic-native/status-bar
+
+...................................................
+PUSH notifications(USING)
+ionic cordova plugin add phonegap-plugin-push
+npm install --save @ionic-native/push
+
+ONE signal push notification
+ionic cordova plugin add onesignal-cordova-plugin
+npm install --save @ionic-native/onesignal
+
+
+
+FCM PUSH NOTIFICATION
+ ionic cordova plugin add cordova-plugin-fcm
+ npm install --save @ionic-native/fcm
+.......................................................
+places search
+https://ampersandacademy.com/tutorials/ionic-framework-version-2/google-map-places-search-api-example
+npm install @types/googlemaps --save-dev
+------------------------------------------------------
+Sim and mobile info
+ionic cordova plugin remove cordova-plugin-sim
+npm uninstall --save @ionic-native/sim
+---------------------------------------------
+Device Accounts
+ionic cordova plugin remove cordova-device-accounts
+npm uninstall --save @ionic-native/device-accounts
+-----------------------------------------------
+CAMERA
+ionic cordova plugin add cordova-plugin-camera
+npm install --save @ionic-native/camera
+----------------------------------------------
+FILE
+ionic cordova plugin add cordova-plugin-file
+npm install --save @ionic-native/file
+------------------------------------
+File Transfer
+ionic cordova plugin add cordova-plugin-file-transfer
+npm install --save @ionic-native/file-transfer
+-----------------------------------------
+File Path
+ionic cordova plugin add cordova-plugin-filepath
+npm install --save @ionic-native/file-path
+-----------------------------------------
+ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="181656469267841" --variable APP_NAME="Moya - TheWaterman"
+
+npm install --save @ionic-native/facebook
+-------------------------------------------
+ionic cordova plugin add ionic-plugin-keyboard
+npm install --save @ionic-native/keyboard
+
+54.213.42.95
+//////////////////////////////////////
+
+https://developers.google.com/maps/documentation/geocoding/usage-limits?hl=en_US
+https://console.developers.google.com/apis/api/geocoding-backend.googleapis.com/quotas?project=ionicmap-187309&duration=P30D
+
+https://developers.google.com/maps/documentation/javascript/get-api-key
+https://developers.google.com/maps/documentation/javascript/usage
+
+link to upload app to playstore
+https://www.youtube.com/watch?v=tnbOcpwJGa8
+
+IOS api issue
+
+Removing the WkWebView solves the issue.
+
+ionic cordova plugin remove cordova-plugin-wkwebview-engine
+https://forum.ionicframework.com/t/ios10-http-requests-blocked/67663/5
+
+npm uninstall -g cordova
+npm install -g cordova@7.1.0
+Adding "C:\Windows\System32" was sufficient for me.
+
+C:\Users\Muheeth Ali\AppData\Local\Android\Sdk\tools\bin\sdkmanager --licenses
+
+
+ // Utils.USER_INFO_DATA = {
+    //   "Result": 1,
+    //   "userid": 1891,
+    //   "username": null,
+    //   "email": "ali@test.com",
+    //   "mobileno": "0000000073",
+    //   "USERTYPE": "customer",
+    //   "first_name": "Ali Abbas",
+    //   "last_name": "Abbas",
+    //   "gcm_regid": "",
+    //   "gcm_mailid": "ali@test.com",
+    //   "imagename": null,
+    //   "imageurl": null,
+    //   "locality": null,
+    //   "buildingname": null,
+    //   "imgversion": 0,
+    //   "address": "8-1-5, Old Mumbai Hwy, Surya Nagar, Toli Chowki, Hyderabad, Telangana 500008, India",
+    //   "city": null,
+    //   "state": null,
+    //   "isuserassigned": "1",
+    //   "areaid": null,
+    //   "areaname": "",
+    //   "pincode": null,
+    //   "country": null,
+    //   "theme": null,
+    //   "latitude": "17.399035047363547",
+    //   "longitude": "78.41531831771135",
+    //   "companylogo": null,
+    //   "companylogo_version": null,
+    //   "viewplaceorder": null,
+    //   "apptype": "moya",
+    //   "usertypes": null,
+    //   "issuperdealer": "false",
+    //   "issuppersupplier": "false",
+    //   "superdealerid": 289,
+    //   "promocodestatus": 1,
+    //   "dealers": {
+    //     "dealerid": 289,
+    //     "firstname": "Dev Super",
+    //     "lastname": "Dealer",
+    //     "mobileno": "8897078671",
+    //     "theme": null,
+    //     "issuperdealer" :true
+    //   },
+    //   "sdealers": null
+    // };
+
+
+ // this.items = {
+    //   "title": "first msg",
+    //   "message": "test this is body",
+    //   "additionalData": {
+    //     "content - available": "1",
+    //     "status": "notification",
+    //     "usertype": "dealer",
+    //     "obj": {
+    //       "mobilenumber": [{
+    //         "gcm_regid": "cSRoQkWskf8:APA91bG09VmcxFdXgyxCl6vajoqPtptaUlJAH7KlZqBKOp6DyWxpwXSt1VAvwX3XE83i-eSsOhWd5N8L6ctRETmG3ywYEpImLU7lj7ZQaakxYKgRE6OcE7yY714UWHXYzhX6xqL-h0cE",
+    //         "fullName": "Ali Abbas",
+    //         "mobileno": "0000000073"
+    //       }],
+    //       "loginid": "289",
+    //       "smstype": "notification",
+    //       "apptype": "moya",
+    //       "count": "1",
+    //       "TransType": "createsms",
+    //       "user_type": "dealer",
+    //       "name": "",
+    //       "type": "checkbox",
+    //       "redirecturl": "https://play.google.com/store/apps/details?id=com.moya&hl=en",
+    //       "showcomment": "true",
+    //       "body": "To make your Holidays more special, here is an offer to save more  at PushEngage.Now get  30% Off our Annual plans using the coupon NEWYEAR2018.  You can also use it for Monthly plan and get 18% off on first month.",
+    //       "title": "Happy New Year",
+    //       "url": "http://moya.online/images/berry/logo.png",
+    //       "sliderurl": [
+    //         {
+    //           image: "https://ionicframework.com/dist/preview-app/www/assets/img/ica-slidebox-img-1.png",
+    //           title: "MOYA - The Water Man",
+    //           description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic."
+    //         },
+    //         {
+    //           image: "http://moya.online/images/moya_logo.png",
+    //           title: "MOYA",
+    //           description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic."
+    //         },
+    //         {image: "http://moya.online/images/moya_logo.png"},
+    //       ],
+    //       "buttons": ["Rate Now", "No Thanks", "Remind me later"],
+    //       "buttonactions": [
+    //         {text: "Rate Now", actiontype: "playstore"},
+    //         {text: "No Thanks", actiontype: "api"},
+    //         {text: "Remind me later", actiontype: "api"}],
+    //       "option": ["Polite and professional supplier",
+    //         "On-time delivery",
+    //         "Supplier familiar with route",
+    //         "Value for money",
+    //         "My reason is not listed"
+    //       ]
+    //     },
+    //     "notId": "10",
+    //     "dismissed": false,
+    //     "coldstart": false,
+    //     "visibility": "1",
+    //     "foreground": false
+    //   }
+    // };
+
+
+    if (IS_WEBSITE) {
+        //   Utils.USER_INFO_DATA = {
+        //     "Result": 1,
+        //     "userid": 1914,
+        //     "username": null,
+        //     "email": "ali@test.com",
+        //     "mobileno": "0000000073",
+        //     "USERTYPE": "customer",
+        //     "first_name": "Ali Abbas",
+        //     "last_name": "Abbas",
+        //     "gcm_regid": "",
+        //     "gcm_mailid": "ali@test.com",
+        //     "imagename": null,
+        //     "imageurl": null,
+        //     "locality": null,
+        //     "buildingname": null,
+        //     "imgversion": 0,
+        //     "address": "8-1-5, Old Mumbai Hwy, Surya Nagar, Toli Chowki, Hyderabad, Telangana 500008, India",
+        //     "city": null,
+        //     "state": null,
+        //     "isuserassigned": "1",
+        //     "areaid": null,
+        //     "areaname": "",
+        //     "pincode": null,
+        //     "country": null,
+        //     "theme": null,
+        //     "latitude": "17.399035047363547",
+        //     "longitude": "78.41531831771135",
+        //     "companylogo": null,
+        //     "companylogo_version": null,
+        //     "viewplaceorder": null,
+        //     "apptype": "moya",
+        //     "usertypes": null,
+        //     "issuperdealer": "false",
+        //     "issuppersupplier": "false",
+        //     "superdealerid": 289,
+        //     "promocodestatus": 1,
+        //     "dealers": {
+        //       "dealerid": 289,
+        //       "firstname": "Dev Super",
+        //       "lastname": "Dealer",
+        //       "mobileno": "8897078671",
+        //       "theme": null,
+        //       "issuperdealer": true
+        //     },
+        //     "sdealers": null
+        //   };
+        // }

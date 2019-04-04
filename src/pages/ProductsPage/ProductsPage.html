@@ -1,0 +1,68 @@
+<ion-header class="appcolor">
+  <ion-navbar>
+    <ion-buttons left *ngIf="calledFrom == 'myorders'">
+      <button ion-button icon-only (click)="viewCtrl.dismiss()" class="my-style-for-modal">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title start>
+      <img src="assets/imgs/header_icon.png" class="header_icon"><span class="title-style"> {{calledFrom == 'myorders' ? 'Update Product' : 'Select products'}}
+    </span>
+    </ion-title>
+    <!--<ion-buttons end >-->
+      <!--<button ion-button icon-only color="primary" >-->
+        <!--<ion-icon name="refresh-circle"></ion-icon>-->
+      <!--</button>-->
+    <!--</ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="overflow: hidden" (click)="closeEmptyDialog()">
+  <ion-spinner block name="crescent" color="primary" class="spinner_center" *ngIf="showProgress"
+               item-center></ion-spinner>
+  <ion-row class=" bg-style " *ngIf="hideHeader">
+    <div class="pdtopbottom-5" *ngFor="let category of categoryList; let i = index">
+      <b class="brand-style " (click)="changeSlide(category,i)" [ngClass]="category.color">{{category.category}}
+        <b *ngIf="category.selCnt" class="danger"> ( {{category.selCnt}} )</b></b>
+    </div>
+  </ion-row>
+  <div class="row">
+    <ion-slides (ionSlideDidChange)="slideChanged()">
+      <ion-slide *ngFor="let mainItem of brandProducts; let i = index" style="overflow-y: auto">
+        <select-product-view [totalamt]='totalamt' [brandProducts]="brandProducts" [savingProduct]="savingProduct"
+                             [mainIndex]="i" [mainItem]='mainItem'
+                             (countChangeListener)="qtyChangeListener($event)"
+                             (goNext)="goToNextSlide($event)"
+                             (goPrevios)="goToPreviousSlide($event)"
+                             (minus)="viewItemMinus($event)" (plus)="viewItemPlus($event)"
+                             (changeImg)="changeImage($event)" (emptyCanChange)="emptyCountChange($event)"
+                             (changeEmpCan)="changeEmptyCan($event)"
+                             (calTotalAmt)="calTotalAmt()"></select-product-view>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
+<ion-footer *ngIf="hideHeader">
+  <ion-toolbar>
+    <ion-row justify-content-between>
+      <ion-col col align-self-center class="left">
+        <strong class="">Total M.R.P.:
+          {{totalamt}}
+        </strong>
+        <div *ngIf="savingProduct"
+             class="minorder-style">
+          <!--Congrat!!-->
+          <!--<div>-->
+          <span class="success">  <ion-icon name="thumbs-up"></ion-icon>
+  You are saving INR. {{(savingProduct.defSerCharge * savingProduct.selectedCount - savingProduct.servicecharge
+                * savingProduct.selectedCount)}}</span>
+        </div>
+      </ion-col>
+      <ion-col col-4 class="right">
+        <button type="button" ion-button small (click)="nextPage()" class="btn ">Next &nbsp;
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

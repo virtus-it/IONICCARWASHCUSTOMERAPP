@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col col-1>
+        <ion-icon name="arrow-round-back" item-start (click)="dismiss()" start class="back_btn_map"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-searchbar end [(ngModel)]="autocomplete.query" class="srch_bar"
+                       placeholder="Start typing and select ..." (ionInput)="updateSearch()"
+        ></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item class="citylist" *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">
+      <span> {{ item }}</span>
+    </ion-item>
+  </ion-list>
+</ion-content>

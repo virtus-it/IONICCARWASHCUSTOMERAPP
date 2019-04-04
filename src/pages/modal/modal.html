@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()" class="my-style-for-modal">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      <img src="assets/imgs/header_icon.png" class="header_icon_addrs">
+      <span class="title-style">SEND FEEDBACK</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <p>We value your feedback and welcome any comments you may have to help improve our programs and services.</p>
+  </ion-row>
+  <h6 class="error mgtop-10" *ngIf="validationError">Please enter {{validationError}}</h6>
+
+  <ion-item class="no_bg no_shadow input_container ">
+    <ion-label floating>Subject</ion-label>
+    <ion-input class="" type="text" [(ngModel)]="userType.subject" maxlength="50" required></ion-input>
+  </ion-item>
+  <ion-item class="no_bg no_shadow input_container">
+    <ion-label floating>Message</ion-label>
+    <ion-textarea [(ngModel)]="userType.message" maxlength="250"></ion-textarea>
+  </ion-item>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="">
+      <ion-col align-self-center="">
+        <button ion-button class="wd-100pc" type="submit" (click)="next()">Submit</button>
+      </ion-col>
+      <ion-col align-self-center="">
+        <button ion-button class="wd-100pc bg-gray" (click)="closeModal()">Cancel</button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

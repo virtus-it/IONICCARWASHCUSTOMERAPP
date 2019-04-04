@@ -1,0 +1,122 @@
+<ion-content>
+  <div #map id="map" style="height: 75%">
+
+
+    <ion-icon *ngIf="calledFrom" color="primary" name="arrow-round-back" class="ion-style" (click)="goBack()"></ion-icon>
+    <button *ngIf="!calledFrom" ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-fab right top (click)="getMyLocation()">
+      <button ion-fab>
+        <ion-icon name="locate"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-fab center middle class="mgleft-ng16">
+      <img src="assets/imgs/marker_pin.png" item-center height="40px">
+    </ion-fab>
+
+  </div>
+
+
+  <ion-footer>
+    <div class="ion-footer">
+
+      <!-- sliders rides -->
+      <div style="border: 2px solid #000000;border-radius: 7px;padding: 3px;" *ngIf="rides.length > 0">
+        <ion-slides (ionSlideDidChange)="onSlideChanged()">
+          <ion-slide *ngFor="let slide of rides; let i = index">
+            <h2>{{slide.manufacturer}} {{slide.model}} {{slide.modelcode}}</h2>
+            <!-- Add Pagination -->
+            <div *ngIf="currentIndex > 0" class="swiper-button-prev" (click)="previousSlide()"></div>
+            <div *ngIf="currentIndex < (rides.length-1)" class="swiper-button-next " (click)="nextSlide()"></div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+      <!-- sliders rides -->
+
+      <!-- add new rider -->
+      <div class="center" *ngIf="rides.length == 0">
+        <button ion-button (click)="addNewRide()">
+          <ion-icon slot="icon-only" name="md-add-circle"></ion-icon>
+        </button>
+        <ion-label>Add a vehicle</ion-label>
+      </div>
+<!-- add new rider -->
+
+<!-- Categories  -->
+      <ion-row>
+        <ion-item no-lines>
+          <ion-scroll scrollX="true" scroll-avatar>
+            <ion-avatar>
+              <img src="http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png" *ngFor="let item of categoryData"
+                class="scroll-item" (click)="showServices(item)" />
+            </ion-avatar>
+          </ion-scroll>
+        </ion-item>
+        <ion-item no-lines>
+          <ion-scroll scrollX="true" scroll-avatar>
+            <h5 class="scroll-item" *ngFor="let item of categoryData"> {{item.category}}</h5>
+          </ion-scroll>
+        </ion-item>
+      </ion-row>
+<!-- Categories  -->
+
+
+      <div *ngIf="showMap">
+        <div *ngIf="this.calledFrom == 'login'">
+          <p class="warning fs-15">Seems like your address is outdated , please update your address</p>
+        </div>
+        <ion-row>
+          <ion-col>
+            <ion-row hidden>
+              <ion-col><b class="fs-18">Pick delivery location</b></ion-col>
+              <ion-col col-1>
+                <ion-icon (click)="btnMoreDetails(false)" *ngIf="showDetails" name="arrow-down" color="primary"></ion-icon>
+              </ion-col>
+            </ion-row>
+
+            <ion-item (click)="showAddressModal()" hidden>
+              <ion-label stacked>ADDRESS</ion-label>
+              <ion-input [(ngModel)]="userAddr" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="showDetails">
+          <ion-col>
+            <ion-item>
+              <ion-label stacked>FLAT NO</ion-label>
+              <ion-input [(ngModel)]="buildingname" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showDetails">
+          <ion-col>
+            <ion-item>
+              <ion-label stacked>LANDMARK</ion-label>
+              <ion-input [(ngModel)]="landMark" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="mgtop-10">
+          <button ion-button col block outline class="fs-12" *ngIf="showDetails" (click)="btnMoreDetails(true)">Add
+            More
+            Details
+          </button>
+          &nbsp;&nbsp;&nbsp;
+          <button ion-button col color="primary" *ngIf="showDetails" class="fs-12" block (click)="confirmLocation()">
+            {{'MAP_PAGE.BUTTONS.btn_confirm_loc' | translate }}
+          </button>
+          <button ion-button col color="primary" class="fs-12" block (click)="next()">
+            Continue
+          </button>
+        </ion-row>
+      </div>
+      <div *ngIf="!showMap">
+        <p class="warning fs-15">Sorry! currently we are not serving in selected location</p>
+      </div>
+    </div>
+  </ion-footer>
+</ion-content>

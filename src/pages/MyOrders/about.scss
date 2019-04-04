@@ -1,0 +1,348 @@
+page-about {
+  .raiserequestdialog {
+    height: 50% !important;
+    margin-top: 35% !important;
+  }
+  .bottle_name {
+    font-size:14px !important;
+    font-weight: bold !important;
+    color: #000 !important;
+    text-transform: capitalize;
+  }
+
+  .cartidlabel {
+    margin: 5px !important;
+  }
+  .mgtopleftright-5x2x3{
+    margin: 5px 2px 0px 3px;
+  }
+
+  .btn-lg{
+    height: 4.6rem;
+    width: 100%;
+  }
+  .edt_profile {
+    border-radius: 50px;
+    background: #408f98;
+    color: #fff;
+    float: right;
+    padding: 6px 8px;
+    margin-right: 3px;
+    margin-left: 5px;
+  }
+  .mgleftright-2x3{
+    margin: 0px 5px 0px 2px;
+  }
+  .no_padding .col{
+    padding: 0px !important;
+  }
+  .bg-warning{
+    background: #eea236 !important;
+    color: #ffffff !important;
+  }
+  .bg-gray{
+    background: #5a6268 !important;
+    color: #ffffff !important;
+  }
+  .bg-success{
+    background: #4cae4c !important;
+    color: #ffffff !important;
+  }
+  .hover_button {
+    border-radius: 4px;
+    background-color: #408f98;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 12px;
+    padding: 10px;
+    width: 100%;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    padding-right: 5px;
+  }
+  .prdct_main_container {
+    background: #eee !important;
+  }
+  .card-md {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+  .bg-border {
+    background: #eee;
+    border: 1px solid #ddd;
+  }
+  .highlight-field {
+    border: 0.5px solid #ed9a00;
+    background: #f1f5f7;
+    margin: 5px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+  .heading-style {
+    color: #4cae4c;
+    font-size: 14px;
+    //padding-left: 5px;
+  }
+  .left {
+    text-align: left;
+  }
+  .nopd {
+    padding: 0px !important;
+  }
+
+  .message-wrap .message {
+    padding: 0 10px;
+  }
+  .textarea-style {
+    background: transparent;
+    border: 0px;
+    width: 100%;
+    border-bottom: 1px solid #999;
+  }
+  .input-wrap{
+    background: #f1f1f2;
+    border-top: 1px solid #999;
+  }
+
+  $userBackgroundColor: #ffffff;
+  $toUserBackgroundColor: #387ef5;
+  .message-wrap {
+    .message {
+      position: relative;
+      padding: 10px;
+      .user-img {
+        position: absolute;
+        border-radius: 45px;
+        width: 45px;
+        height: 45px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
+      }
+
+      .msg-detail {
+        width: 100%;
+        display: inline-block;
+        p {
+          margin: 0;
+        }
+        .msg-info {
+          p {
+            font-size: .8em;
+            color: #888;
+          }
+        }
+
+        .msg-content {
+          position: relative;
+          margin-top: 5px;
+          border-radius: 5px;
+          padding: 8px;
+          border: 1px solid #ddd;
+          color: #fff;
+          width: auto;
+          max-width: 100%;
+          span.triangle {
+            background-color: #387ef5;
+            border-radius: 2px;
+            height: 8px;
+            width: 8px;
+            top: 12px;
+            display: block;
+            border-style: solid;
+            border-color: #ddd;
+            border-width: 1px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+          }
+        }
+
+      }
+    }
+
+    .message.left {
+      .msg-content {
+        background-color: $toUserBackgroundColor;
+        float: left;
+      }
+      .msg-detail {
+        padding-left: 60px;
+      }
+      .user-img {
+        left: 10px;
+      }
+      .msg-content {
+        color: #343434;
+        span.triangle {
+          border-top-width: 0;
+          border-right-width: 0;
+          left: -5px;
+        }
+      }
+
+    }
+
+    .message.right {
+      .msg-detail {
+        // padding-right: 60px;
+        .msg-info {
+          text-align: right;
+        }
+      }
+      .user-img {
+        right: 0;
+      }
+      // ion-spinner {
+      //   position: absolute;
+      //   right: 10px;
+      //   top: 50px;
+      // }
+      .msg-content {
+        background-color: $userBackgroundColor;
+        float: right;
+        span.triangle {
+          background-color: $userBackgroundColor;
+          border-bottom-width: 0;
+          border-left-width: 0;
+          right: -5px;
+        }
+      }
+
+    }
+
+  }
+
+}
+
+.qty_delivered {
+  float: right;
+  background: #4cae4c !important;
+  color: #fff !important;
+  margin: 0 !important;
+  margin-right: 8px;
+  border-radius: 25px;
+  padding: 10px 13px;
+}
+
+.pin_type {
+  background: #fff;
+  font-size: 15px;
+  border: 2px solid #ed9a00;
+  margin-left: 10px !important;
+  padding-left: 7px;
+
+}
+.money_type {
+  background: #fff;
+  font-size: 15px;
+  padding: 6px;
+  border-radius: 10px;
+  border: 2px dashed #ed9a00;
+  margin: 0 !important;
+}
+
+.prdct_list_container {
+  border-radius: 2px;
+  margin: 10px 5px;
+  // border-top: 0.5px solid #408f98;
+  // border-right: 0.5px solid #408f98;
+  // border-left: 0.5px solid #408f98;
+  height: auto;
+}
+
+
+
+.user_thumb {
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+.cart_label {
+  color: $sign-inlabel;
+  width: 100%;
+  display: block;
+}
+.track_ord_cntnr {
+  background: #f1f5f7;
+  padding: 0;
+}
+
+
+.trackorder .label-ios {
+  margin: 5px 0 0 0 !important;
+}
+
+.bottle_exp_time {
+  font-size: 1.2rem !important;
+  color: #ccc;
+  margin: 5px 0 !important;
+}
+
+.delete_order.track {
+  background: #408f98;
+}
+.btn-space{
+  margin: 0px 5px 2px;
+}
+.btn-space1{
+  margin: 2px 5px 5px;
+}
+
+.complain_order.track {
+  background: #eea236;
+  color: #fff;
+  width: 50%;
+  padding: 15px 0;
+  float: left;
+  font-size: 16px;
+}
+
+.call_order {
+  background: #4cae4c;
+  width: 50%;
+  padding: 15px 0;
+  color: #fff;
+  float: left;
+  font-size: 16px;
+}
+
+.delete_order {
+  background: #6c6c6c;
+  width: 50%;
+  padding: 15px 0;
+  color: #fff;
+  float: left;
+  font-size: 16px;
+}
+
+.myorder_action_btn {
+  width: 100%;
+  display: inline-block;
+}
+
+.ord_cash_cntnr .cart_label {
+  margin: 3px 0;
+}
+
+.cartidlabel {
+  border-bottom: 1px dashed #444;
+  font-size: 12px;
+  line-height: 18px;
+  color: #777;
+}
+
+.cartid_cntnr {
+  padding: 10px 10px 0px 10px !important;
+}
+
+.ord_cash_cntnr {
+  padding: 5px 8px 5px 5px;
+}
+
+.middle {
+  vertical-align: middle !important;
+}

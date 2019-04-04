@@ -1,0 +1,115 @@
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { GetService } from '../../app/services/get.servie';
+import { Utils, INTERNET_ERR_MSG, APP_TYPE } from '../../app/services/Utils';
+
+/**
+ * Generated class for the MyridesPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
+@Component({
+  selector: 'page-myrides',
+  templateUrl: 'myrides.html',
+})
+export class MyridesPage {
+  items: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private modalCtrl: ModalController, private alertCtrl: AlertController) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MyridesPage');
+  }
+
+
+  ngOnInit() {
+    this.fetchRides();
+  }
+
+  update(item) {
+    let model = this.modalCtrl.create('AddupdateridesPage', { "from": "update", "updateitem": item });
+    model.present();
+    model.onDidDismiss(data => {
+      if (data) {
+        this.alertUtils.showLog(data);
+        if (this.alertUtils.networkStatus()) {
+          this.fetchRides();
+        } else {
+          this.alertUtils.showAlert("INTERNET CONNECTION", INTERNET_ERR_MSG, "OK");
+        }
+      }
+    });
+  }
+  delete(item) {
+    console.log(item);
+
+    let alert = this.alertCtrl.create({
+      title: 'WARNING',
+      message: 'Are you sure you want to delete ?',
+      buttons: [
+        {
+          text: 'NO',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'YES',
+          handler: () => {
+            if (this.alertUtils.networkStatus()) {
+
+              this.deleteTask(item);
+            } else {
+              this.alertUtils.showAlert("INTERNET CONNECTION", INTERNET_ERR_MSG, "OK");
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+
+  }
+
+  deleteTask(item) {
+    let input = { "User": { "id": item.id, "userid": Utils.USER_INFO_DATA.userid, "apptype": APP_TYPE, "TransType": "deleteextrainformation" } };
+    this.apiService.postReq(GetService.ride(), input).then(res => {
+      console.log(res)
+      if (res && res.data) {
+        this.fetchRides();
+
+      }
+    })
+  }
+
+  addNewRide() {
+    let model = this.modalCtrl.create('AddupdateridesPage', { "from": "create" });
+    model.present();
+    model.onDidDismiss(data => {
+      if (data) {
+        this.alertUtils.showLog(data);
+        if (this.alertUtils.networkStatus()) {
+          this.fetchRides();
+        } else {
+          this.alertUtils.showAlert("INTERNET CONNECTION", INTERNET_ERR_MSG, "OK");
+        }
+      }
+    });
+  }
+
+
+  fetchRides() {
+    let input = { "User": { "userid": Utils.USER_INFO_DATA.userid, "apptype": APP_TYPE, "TransType": "getextrainformation" } };
+    this.apiService.postReq(GetService.ride(), input).then(res => {
+      console.log(res)
+      if (res && res.data) {
+        this.items = res.data;
+      }
+    })
+  }
+
+}

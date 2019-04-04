@@ -1,0 +1,198 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title start>
+      <img src="assets/imgs/header_icon.png" class="header_icon">
+      <span class="title-style"> {{ 'MY_ORDERS_PAGE.PAGE_TITLE' | translate }}</span>
+    </ion-title>
+    <ion-buttons end *ngIf="calledfrom == 'pushnotification'">
+      <button ion-button clear color="primary" (click)="close()">{{ 'MY_ORDERS_PAGE.BUTTONS.btn_done' | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content (click)="closeEmptyDialog()">
+  <ion-spinner block name="crescent" color="primary" class="spinner_center" *ngIf="showProgress" item-center></ion-spinner>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <h5 *ngIf="noRecords" class="empty_middle_text_center" text-center="true">{{ 'MY_ORDERS_PAGE.LABELS.lb_empty_msg_1' |
+    translate }}
+    <br>please navigate to
+    <b>HOME</b>{{ 'MY_ORDERS_PAGE.LABELS.lb_empty_msg_2' | translate }}</h5>
+
+
+  <ion-list class="prdct_main_container" *ngIf="!noRecords">
+    <div *ngFor="let item of response; let i = index" class="prdct_list_container trackorder">
+      <ion-card>
+        <ion-item no-lines class="cartid_cntnr ">
+          <ion-row class="no_padding">
+            <ion-col>
+              <h2 hidden class="bottle_name" *ngIf="item.brandname">{{item.brandname}}
+                <span item-center class="pin_type" *ngIf="item.orderstatus !='Delivered' && item.secretpin">
+                  <b item-right>
+                    PIN: {{item.secretpin}}</b>
+                </span>
+              </h2>
+              <p class="bottle_exp_time">
+                <b>{{ 'MY_ORDERS_PAGE.LABELS.lb_exptd_time' | translate }}</b>{{item.delivery_exceptedtime}}</p>
+            </ion-col>
+            <ion-col col-2 align-self-center hidden *ngIf="item.orderstatus == 'Order Placed'">
+              <ion-icon (click)="editOrder(item)" name="create" color="primary" class="edt_profile" style="font-size: 20px !important"></ion-icon>
+            </ion-col>
+
+          </ion-row>
+        </ion-item>
+        <ion-row text-center="" class="ord_cash_cntnr ">
+          <ion-col text-left="">
+            <span item-left class="cartidlabel">
+              <b>{{ 'MY_ORDERS_PAGE.LABELS.lb_card_id' | translate }}</b>
+              <br> #{{item.cart_id}}
+            </span>
+          </ion-col>
+          <ion-col col align-self-center class="right">
+            <span item-center class="money_type" *ngIf="item.orderstatus !='Delivered'">
+              <b item-right>
+                <ion-icon name="cash" class="middle"></ion-icon>
+                <label item-right class="gray8"> {{item.paymenttype}}</label>
+                {{item.orderamt}}
+              </b>
+            </span>
+            <span item-center class="money_type" *ngIf="item.orderstatus =='Delivered'">
+              <b item-right>
+                <ion-icon name="cash" class="middle"></ion-icon>
+                <label item-right class="gray8"> {{item.paymenttype}}</label>
+                {{item.bill_amount}}
+              </b>
+            </span>
+          </ion-col>
+          <ion-col col-2 align-items-end>
+            <ion-badge item-end class="greencircle-style center  qty_delivered" icon-right="">{{item.quantity}}
+            </ion-badge>
+          </ion-col>
+        </ion-row>
+
+        <ion-row text-center="" class="ord_cash_cntnr ">
+          <ion-col text-left="" col-3 class="left gray9">
+            <span class="cart_label">
+              <b>{{ 'MY_ORDERS_PAGE.LABELS.lb_order_id' | translate }}</b>
+            </span>
+            #{{item.order_id}}
+          </ion-col>
+          <ion-col col-5>
+            <span class="cart_label">
+              <b>{{ 'MY_ORDERS_PAGE.LABELS.lb_order_status' | translate }}</b>
+            </span>
+            <span [ngClass]="item.statusColor">{{item.orderstatus}}</span>
+          </ion-col>
+          <ion-col col-4 class="right">
+            <span class="cart_label">
+              <b>{{ 'MY_ORDERS_PAGE.LABELS.lb_last_action' | translate }}</b>
+            </span>
+            <span class="gray9 pointer">{{item.timestamp | utcDate}}</span>
+
+          </ion-col>
+
+        </ion-row>
+        <ion-row *ngIf="item.isfirstorder == '1' && item.orderstatus == 'Order Placed'">
+          <ion-col col-sm-12 col-md-12 col-lg-12 col-xl-12>
+            <span class="cart_label mgleft-5 warning" *ngIf="!item.orderby_buildingname">Will you help us more by
+              entering flat no and landmark details, please click
+              <b class="primary" (click)="editAddr(item)">HERE</b> to update more details</span>
+            <div class="textarea add_textarea " type="text" placeholder="Type your address">
+              <div *ngIf="item.orderby_locality">
+                <b>Landmark: </b>{{item.orderby_locality}}
+                <br>
+              </div>
+              <div *ngIf="item.orderby_buildingname">
+                <b>Flat No: </b>{{item.orderby_buildingname}}
+                <br>
+              </div>
+              <b>Address:</b> {{item.orderby_address}}
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="no_padding mgleftright-2x3" *ngIf="item.orderstatus == 'Order Placed' || item.status == 'assigned' ">
+          <ion-col class="col">
+            <ion-buttons *ngIf="item.orderstatus != 'Delivered'" (click)="viewComplainDialog(item)">
+              <button ion-button class="btn-lg bg-warning">{{ 'MY_ORDERS_PAGE.BUTTONS.btn_raise_complain' | translate
+                }}
+              </button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+        <ion-row class="no_padding mgleftright-2x3">
+          <ion-col class="col" *ngIf="item.orderstatus == 'Order Placed' || item.status == 'assigned' ">
+            <ion-buttons (click)="callUs()">
+              <button ion-button class="btn-lg bg-success">{{ 'MY_ORDERS_PAGE.BUTTONS.btn_call_us' | translate }}
+              </button>
+            </ion-buttons>
+          </ion-col>
+          <ion-col class="col" *ngIf="item.orderstatus == 'Order Placed'">
+            <ion-buttons>
+              <button ion-button class="btn-lg bg-danger" (click)="cancelOrder(item)">{{
+                'MY_ORDERS_PAGE.BUTTONS.btn_cancle_order' | translate }}
+              </button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="no_padding mgleftright-2x3">
+          <ion-col class="col" *ngIf="item.orderstatus == 'Order Placed' || item.orderstatus == 'Assigned to supplier'">
+            <ion-buttons>
+              <button ion-button class="btn-lg bg-info" (click)="showComments(item,i)">{{item.commentstext}}</button>
+            </ion-buttons>
+          </ion-col>
+          <ion-col class="col">
+            <ion-buttons>
+              <button ion-button class="btn-lg" (click)="viewOrderDetails(item)">{{
+                'MY_ORDERS_PAGE.BUTTONS.btn_view_details' | translate }}
+              </button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+        <div class="message-wrap" *ngIf="item.messages && item.showcommentsbox">
+          <div *ngFor="let mes of (item.messages | slice:(item.messages.length - 3):item.messages.length)" class="message"
+            [class.left]=" mes.user.userid != userID " [class.right]=" mes.user.userid == userID ">
+            <img class="user-img" src="assets/imgs/img_user.png" alt="" *ngIf="mes.user.userid != userID">
+            <div class="msg-detail">
+              <div class="msg-info">
+                <p>
+                  {{mes.user.firstname}}&nbsp;&nbsp;&nbsp;{{mes.createddate | utcDate }}</p>
+              </div>
+              <div class="msg-content">
+                <span class="triangle"></span>
+                <p class="line-breaker ">{{mes.message}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="input-wrap" *ngIf="item.showcommentsbox">
+          <ion-row>
+            <ion-col col-10>
+              <textarea #chat_input class="textarea-style" placeholder="Type message here" [(ngModel)]="editorMsg"
+                (keyup.enter)="sendMsg(item)">
+                      <!--(focusin)="onFocus()"--> </textarea>
+            </ion-col>
+            <ion-col col-2>
+              <button ion-button clear icon-only item-right (click)="sendMsg(item)">
+                <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+
+      </ion-card>
+
+    </div>
+
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite($event))">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

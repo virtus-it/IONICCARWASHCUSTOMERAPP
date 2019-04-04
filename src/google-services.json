@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "530358294125",
+    "firebase_url": "https://moya-thewaterman.firebaseio.com",
+    "project_id": "moya-thewaterman",
+    "storage_bucket": "moya-thewaterman.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530358294125:android:21539c6425a6316d",
+        "android_client_info": {
+          "package_name": "com.moya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530358294125-aep0p5valo81p4vkn7btkp7h0knvenvd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMCUC6Q3FWHnKuGHMDkpBTxSuXvku9-Rg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

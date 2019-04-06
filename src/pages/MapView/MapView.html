@@ -28,7 +28,7 @@
     <div style="border: 2px solid #000000;border-radius: 7px;padding: 3px;" *ngIf="rides.length > 0">
       <ion-slides (ionSlideDidChange)="onSlideChanged()">
         <ion-slide *ngFor="let slide of rides; let i = index">
-          <h2>{{slide.manufacturer}} {{slide.model}} {{slide.modelcode}}</h2>
+          <h2 style="color: black">{{slide.manufacturer}} {{slide.model}} {{slide.modelcode}}</h2>
           <!-- Add Pagination -->
           <div *ngIf="currentIndex > 0" class="swiper-button-prev" (click)="previousSlide()"></div>
           <div *ngIf="currentIndex < (rides.length-1)" class="swiper-button-next " (click)="nextSlide()"></div>

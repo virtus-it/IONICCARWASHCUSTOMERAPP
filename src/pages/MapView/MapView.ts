@@ -94,7 +94,7 @@ export class MapView {
       } catch (e) {
         this.alertUtils.showLog(e);
       }
-      
+
 
       if (IS_WEBSITE) {
         this.getCategoryTask();
@@ -231,7 +231,7 @@ export class MapView {
     })
   }
 
- 
+
 
 
   showAddressModal() {
@@ -405,10 +405,10 @@ export class MapView {
   confirmLocation() {
     console.log(this.calledFrom);
 
-    // this.userAddr = "Tolichowki"
+    // this.userAddr = "Tolichowki";
     try {
       if (Utils.categoryList == undefined || Utils.categoryList == null) {
-        this.alertUtils.showToast("Please select alteast one service");
+        this.alertUtils.showToast("Please select at least one service");
         return false;
       }
       if (this.rides && this.rides.length > 0) {
@@ -416,7 +416,7 @@ export class MapView {
         Utils.rideSelected = this.rides[this.slides.getActiveIndex()];
         console.log(Utils.rideSelected);
       } else {
-        this.alertUtils.showToast("Please add alteast one ride");
+        this.alertUtils.showToast("Please add at least one ride");
       }
 
       if (this.userAddr) {

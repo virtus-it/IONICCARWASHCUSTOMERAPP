@@ -274,29 +274,29 @@
             </label>
           </ion-col>
         </ion-row>
-        <ion-row class="border-top pdtop-5">
-          <ion-col col-sm-4 col-md-4 col-lg-4 col-xl-4>
-            <label item-right class="Ordstatus-style">{{item?.ordered_qty}}</label>{{'ORDER_DETAILS_PAGE.LABELS.lb_ordered' | translate }}
-          </ion-col>
-          <ion-col col-sm-4 col-md-4 col-lg-4 col-xl-4 class="center">
-            <div *ngIf="item?.status == 'delivered' ">
-              <label item-right class="Delstatus-style">{{item?.delivered_quantity}}</label>
-              {{'ORDER_DETAILS_PAGE.LABELS.lb_delivered' | translate }}
-            </div>
-            <div *ngIf="item?.status != 'delivered' ">
-              <label item-right class="Delstatus-style">0</label>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_delivered' | translate }}
-            </div>
+        <!--<ion-row class="border-top pdtop-5">-->
+          <!--<ion-col col-sm-4 col-md-4 col-lg-4 col-xl-4>-->
+            <!--<label item-right class="Ordstatus-style">{{item?.ordered_qty}}</label>{{'ORDER_DETAILS_PAGE.LABELS.lb_ordered' | translate }}-->
+          <!--</ion-col>-->
+          <!--<ion-col col-sm-4 col-md-4 col-lg-4 col-xl-4 class="center">-->
+            <!--<div *ngIf="item?.status == 'delivered' ">-->
+              <!--<label item-right class="Delstatus-style">{{item?.delivered_quantity}}</label>-->
+              <!--{{'ORDER_DETAILS_PAGE.LABELS.lb_delivered' | translate }}-->
+            <!--</div>-->
+            <!--<div *ngIf="item?.status != 'delivered' ">-->
+              <!--<label item-right class="Delstatus-style">0</label>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_delivered' | translate }}-->
+            <!--</div>-->
 
-          </ion-col>
-          <ion-col col-sm-3 col-md-4 col-lg-4 col-xl-4 class="right">
-            <div *ngIf="item?.status == 'delivered' ">
-              <label item-right class="Retstatus-style">{{item?.return_cans}}</label>{{'ORDER_DETAILS_PAGE.LABELS.lb_return' | translate }}
-            </div>
-            <div *ngIf="item?.status != 'delivered' ">
-              <label item-right class="Retstatus-style">0</label>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_return' | translate }}
-            </div>
-          </ion-col>
-        </ion-row>
+          <!--</ion-col>-->
+          <!--<ion-col col-sm-3 col-md-4 col-lg-4 col-xl-4 class="right">-->
+            <!--<div *ngIf="item?.status == 'delivered' ">-->
+              <!--<label item-right class="Retstatus-style">{{item?.return_cans}}</label>{{'ORDER_DETAILS_PAGE.LABELS.lb_return' | translate }}-->
+            <!--</div>-->
+            <!--<div *ngIf="item?.status != 'delivered' ">-->
+              <!--<label item-right class="Retstatus-style">0</label>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_return' | translate }}-->
+            <!--</div>-->
+          <!--</ion-col>-->
+        <!--</ion-row>-->
       </ion-card-content>
     </ion-card>
     <ion-card *ngIf="item?.showassignstatus == true " class="dealer_contnr">

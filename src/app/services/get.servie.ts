@@ -19,7 +19,7 @@ export class GetService {
 
   constructor(http: Http, private alertUtils: Utils) {
     this.http = http;
-    this.baseUrl = GetService.TESTING_URL;
+    this.baseUrl = GetService.DEVELOPMENT_URL;
   }
 
 

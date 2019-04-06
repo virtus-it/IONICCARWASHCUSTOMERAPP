@@ -3,7 +3,7 @@ map-page {
 
   .center {
     margin: auto;
-    width: 50%;   
+    width: 50%;
   }
   ion-scroll[scrollX] {
     white-space: nowrap;
@@ -14,32 +14,31 @@ map-page {
       display: inline-block;
     }
 
-    .selectable-icon{
+    .selectable-icon {
       margin: 10px 20px 10px 20px;
       color: red;
       font-size: 100px;
     }
 
-    ion-avatar img{
+    ion-avatar img {
       margin: 10px;
     }
   }
 
-  ion-scroll[scroll-avatar]{
+  ion-scroll[scroll-avatar] {
     height: 60px;
   }
 
   /* Hide ion-content scrollbar */
-  ::-webkit-scrollbar{
-    display:none;
+  ::-webkit-scrollbar {
+    display: none;
   }
 
-
-    .circle-pic{
-      width:50px;
-      height:50px;
-      -webkit-border-radius: 50%;
-      border-radius: 50%;
+  .circle-pic {
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
   }
   ion-app._gmaps_cdv_ .nav-decor {
     background-color: transparent !important
@@ -126,58 +125,91 @@ map-page {
     text-transform: capitalize;
   }
   @media screen and (min-width: 320px) and (max-width: 480px) {
-    .fs-12 span{
-      font-size:  12px !important;
+    .fs-12 span {
+      font-size: 12px !important;
     }
     ion-footer span {
       font-size: 12px;
     }
-    .mgtop-10{
+    .mgtop-10 {
       padding-left: 3px !important;
     }
   }
   @media screen and (min-width: 481px) and (max-width: 600px) {
-    .fs-12 span{
-      font-size:  12px !important;
+    .fs-12 span {
+      font-size: 12px !important;
     }
     ion-footer span {
       font-size: 12px;
     }
-    .mgtop-10{
+    .mgtop-10 {
       padding-left: 3px !important;
     }
 
   }
   @media screen and (min-width: 601px) and (max-width: 800px) {
-    .fs-12 span{
-      font-size:  12px !important;
+    .fs-12 span {
+      font-size: 12px !important;
     }
     ion-footer span {
       font-size: 12px;
     }
-    .mgtop-10{
+    .mgtop-10 {
       padding-left: 3px !important;
     }
   }
   @media screen and (min-width: 801px) and (max-width: 1024px) {
-    .fs-12 span{
-      font-size:  14px !important;
+    .fs-12 span {
+      font-size: 14px !important;
     }
-
 
   }
   @media screen and (min-width: 1025px) and (max-width: 1600px) {
-    .fs-12 span{
-      font-size:  15px !important;
+    .fs-12 span {
+      font-size: 15px !important;
     }
 
   }
   @media screen and (min-width: 1600px) and (max-width: 2000px) {
-    .fs-12 span{
-      font-size:  15px !important;
+    .fs-12 span {
+      font-size: 15px !important;
     }
 
   }
 
-
+  .category_container {
+    span {
+      width: 70px;
+      height: 70px;
+      background: #d0d0d0;
+      display: inline-block;
+      border-radius: 80px;
+      margin-right: 10px;
+      text-align: center;
+      padding: 6px;
+    }
+    label {
+      width: 70px;
+      text-align: center;
+      display: inline-block;
+      margin-right: 10px;
+      margin-top: 4px;
+    }
+  }
 }
+  .list_container{border-bottom: 1px solid #ccc; display:block;
+    .list_img {
+      width: 20%;
+      display: inline-block;
+    }
+    .list_decs {
+      width: 59%;
+      display: inline-block;
+    }
+    .list_chkbtn {
+      width: 19%;
+      display: inline-block;
+    }
+  }
+
+

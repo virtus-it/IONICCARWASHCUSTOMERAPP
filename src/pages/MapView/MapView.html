@@ -48,16 +48,32 @@
 <!-- Categories  -->
       <ion-row>
         <ion-item no-lines>
+          <div  class="category_container">
+            <span *ngFor="let item of categoryData">
+            <img src="http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png"
+                 class="scroll-item" (click)="showServices(item)"  />
+              </span>
+            <div>
+            <label class="scroll-item" *ngFor="let item of categoryData"> {{item.category}}</label>
+            </div>
+          </div>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item no-lines>
           <ion-scroll scrollX="true" scroll-avatar>
             <ion-avatar>
-              <img src="http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png" *ngFor="let item of categoryData"
-                class="scroll-item" (click)="showServices(item)" />
+<div *ngFor="let item of categoryData">
+
+</div>
+
+
             </ion-avatar>
           </ion-scroll>
         </ion-item>
         <ion-item no-lines>
           <ion-scroll scrollX="true" scroll-avatar>
-            <h5 class="scroll-item" *ngFor="let item of categoryData"> {{item.category}}</h5>
+
           </ion-scroll>
         </ion-item>
       </ion-row>

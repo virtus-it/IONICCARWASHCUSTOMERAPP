@@ -24,7 +24,6 @@ import {Device} from "@ionic-native/device";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {Keyboard} from "@ionic-native/keyboard";
 // import { SMS } from '@ionic-native/sms';
-import { ListPage } from "../pages/list/list";
 
 import {SignUp} from "../pages/SignUp/SignUp";
 import {Login} from "../pages/LoginIn/Login";
@@ -67,7 +66,6 @@ export function createTranslateLoader(http: HttpClient) {
     ConfirmOrder,
     NotificationPage,
     SelectProductViewComponent,
-    ListPage,
     TabsPage,
     // ModalPage
   ],
@@ -91,7 +89,6 @@ export function createTranslateLoader(http: HttpClient) {
     ContactPage,
     SignUp,
     HomePage,
-    ListPage,
     Login,
     OrderConfirmation,
     MapView,

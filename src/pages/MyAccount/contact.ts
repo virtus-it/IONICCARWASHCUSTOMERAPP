@@ -3,7 +3,7 @@ import {AlertController, App, NavController} from "ionic-angular";
 import {AppRate} from "@ionic-native/app-rate";
 import {APP_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, TRY_AGAIN_ERR_MSG, Utils} from "../../app/services/Utils";
 import {GetService} from "../../app/services/get.servie";
-import {WelcomePage} from "../WelcomePage/Welcome";
+import { WelcomePage } from "../WelcomePage/Welcome";
 
 
 @Component({
@@ -108,7 +108,7 @@ export class ContactPage {
   customerCareDialog() {
     let alert = this.alertCtrl.create({
       title: "CUSTOMER CARE",
-      message: "Our Customer service offers a variety of customer care and customer support options to help you in every possible manner. \n Office timing : 09:30AM - 06:30PM IST \n\n Customer care number : 9863636314/15",
+      message: "Our Customer service offers a variety of customer care and customer support options to help you in every possible manner. \n Office timing : 09:30AM - 06:30PM IST \n\n Customer care number : 9121642009",
       buttons: [
         {
           text: "CLOSE",

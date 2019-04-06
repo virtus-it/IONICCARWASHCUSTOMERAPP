@@ -3,13 +3,6 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { GetService } from '../../app/services/get.servie';
 import { Utils, APP_TYPE } from '../../app/services/Utils';
 
-/**
- * Generated class for the AddupdateridesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-addupdaterides',
@@ -17,6 +10,7 @@ import { Utils, APP_TYPE } from '../../app/services/Utils';
 })
 export class AddupdateridesPage {
   items: any;
+  filterItems: any;
   page1: boolean = true;
   page2: boolean = false;
   page3: boolean = false;
@@ -29,7 +23,7 @@ export class AddupdateridesPage {
   pColor: string = "";
   calledFrom: string = "";
   updateItem: any;
-
+  searchTerm: string = "";
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef, private viewCtrl: ViewController) {
@@ -56,6 +50,9 @@ export class AddupdateridesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddupdateridesPage');
   }
+  filterItem() {
+    this.filterItems = this.items.filter(item => item.manufacturer.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1 || item.model.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1);
+  }
   pickColor(color) {
     this.pColor = color;
   }
@@ -69,7 +66,8 @@ export class AddupdateridesPage {
       return false;
     }
     if (this.year) {
-      if (parseInt(this.year) > 2019) {
+      console.log("YEAR : " + new Date().getFullYear())
+      if (parseInt(this.year) > new Date().getFullYear()) {
         this.alertUtils.showToast("Invalid year");
         return false;
       }
@@ -135,6 +133,7 @@ export class AddupdateridesPage {
       console.log(res)
       if (res && res.data) {
         this.items = res.data;
+        this.filterItems = res.data;
         if (this.calledFrom == "update") {
           for (let i = 0; i < this.items.length; i++) {
             const element = this.items[i];

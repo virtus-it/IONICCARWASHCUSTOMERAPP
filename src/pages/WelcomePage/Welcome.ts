@@ -15,8 +15,6 @@ import { TabsPage } from "../tabs/tabs";
 import { MapView } from "../MapView/MapView";
 import { Diagnostic } from "@ionic-native/diagnostic";
 import { AppRate } from "@ionic-native/app-rate";
-import { AboutPage } from "../MyOrders/about";
-import { ListPage } from "../list/list";
 import { SignUp } from "../SignUp/SignUp";
 
 @Component({
@@ -509,7 +507,7 @@ export class WelcomePage {
 
   viewPage() {
     // this.navCtrl.push(MapView);
-    this.navCtrl.setRoot('MyridesPage');
+    // this.navCtrl.setRoot('MyridesPage');
 
   }
 }

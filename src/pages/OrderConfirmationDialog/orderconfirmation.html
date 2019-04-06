@@ -4,7 +4,8 @@
       <img src="assets/imgs/header_icon.png" class="header_icon"> {{ 'CONFIRMATION_PAGE.PAGE_TITLE' | translate }}
     </ion-title>
     <ion-buttons end hidden>
-      <button ion-button clear class="btn-header" (click)="close()">{{ 'CONFIRMATION_PAGE.BUTTONS.btn_done' | translate }}
+      <button ion-button clear class="btn-header" (click)="close()">{{ 'CONFIRMATION_PAGE.BUTTONS.btn_done' | translate
+        }}
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -32,10 +33,7 @@
       </div>
 
       <ion-row style="border-bottom: 1px solid #ccc;">
-        <ion-col col-2>
-          <span item-right>{{ 'CONFIRMATION_PAGE.LABELS.lb_qty' | translate }}</span>
-        </ion-col>
-        <ion-col col-7>
+        <ion-col col-9>
           <span item-right>{{ 'CONFIRMATION_PAGE.LABELS.lb_product_name' | translate }}</span>
         </ion-col>
         <ion-col col-3 class="right">
@@ -44,13 +42,10 @@
         </ion-col>
       </ion-row>
       <div *ngFor="let item of items">
-        <ion-row>
-          <!-- <ion-col col-2>
-            <p item-right class="">{{item.count}}</p>
-          </ion-col> -->
+        <ion-row>          
           <ion-col col-9>
             <span item-right>
-              <b *ngIf="item.category">{{item.category}} </b> {{item.brandname +" "+item.ptype}}</span>
+              <b *ngIf="item.category">{{item.category}} </b> {{item.brandname}}</span>
           </ion-col>
 
           <ion-col col-3 class="right">
@@ -118,7 +113,8 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <button *ngIf="!showProgressPayNow" [disabled]="isPaytmDisabled" class="cancel_order" color="secondary" ion-button full (click)="paynow()">
+        <button *ngIf="!showProgressPayNow" [disabled]="isPaytmDisabled" class="cancel_order" color="secondary"
+          ion-button full (click)="paynow()">
           Pay Now
         </button>
         <button class="cancel_order" color="secondary" *ngIf="showProgressPayNow" ion-button full>

@@ -20,11 +20,11 @@
 
 <ion-content padding>
   <div *ngIf="page1">
-    <ion-searchbar [(ngModel)]="searchTerm" placeholder="Search manufacturer"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterItem()" placeholder="Search manufacturer"></ion-searchbar>
 
     <ion-list>
-      <ion-item *ngFor="let item of items | search : searchTerm : 'manufacturer': 'model'" (click)="pickedItem(item)">
-        {{ item.manufacturer }} {{ " - "+item.model }}
+      <ion-item *ngFor="let item of filterItems" (click)="pickedItem(item)">
+        {{ item.manufacturer }} {{item.model }}
       </ion-item>
     </ion-list>
   </div>

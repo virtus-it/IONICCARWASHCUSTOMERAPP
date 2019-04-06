@@ -12,7 +12,6 @@ import {
   MOBILE_TYPE,
   Utils
 } from "../../app/services/Utils";
-import {ProductsPage} from "../ProductsPage/ProductsPage";
 import {Diagnostic} from "@ionic-native/diagnostic";
 import {SignUp} from "../SignUp/SignUp";
 import {ConfirmOrder} from "../ConfirmOrderPage/ConfirmOrderPage";
@@ -56,8 +55,6 @@ export class MapView {
 
         this.calledFrom = this.param.get("from");
         console.log("Page came from :" + this.calledFrom);
-
-
         this.isExisting = this.param.get("isExisting");
         this.exMobileno = this.param.get("exMobileno");
         this.referCode = this.param.get("referCode");
@@ -97,9 +94,7 @@ export class MapView {
       } catch (e) {
         this.alertUtils.showLog(e);
       }
-      if (this.calledFrom == "myprofile") {
-        this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-      }
+      
 
       if (IS_WEBSITE) {
         this.getCategoryTask();
@@ -236,11 +231,7 @@ export class MapView {
     })
   }
 
-  ionViewWillEnter() {
-    if (this.calledFrom == "myprofile") {
-      this.tabBarElement.style.display = 'none';
-    }
-  }
+ 
 
 
   showAddressModal() {

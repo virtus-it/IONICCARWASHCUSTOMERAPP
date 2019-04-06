@@ -197,6 +197,9 @@ map-page {
     }
   }
 }
+
+
+
   .list_container{border-bottom: 1px solid #ccc; display:block;
     .list_img {
       width: 20%;
@@ -212,4 +215,7 @@ map-page {
     }
   }
 
-
+.calender_icon:before{font-size:35px;    margin: 5px 0 0 7px;}
+.scroll-content._gmaps_cdv_ {
+  margin-bottom: 0 !important;
+}

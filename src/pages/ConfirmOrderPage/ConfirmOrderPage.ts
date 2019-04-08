@@ -812,8 +812,8 @@ export class ConfirmOrder {
       "charity_option": "Education"
     }
   }
-     * 
-     * 
+     *
+     *
      *  */
     try {
       this.selectProducts = this.items;
@@ -877,11 +877,11 @@ export class ConfirmOrder {
           }
           order["paymentmode"] = "cash";
           order["orderstatus"] = "ordered";
-          order["orderfrom"] = this.userID;
-          order["orderto"] = this.dealerID;
+          order["orderfrom"] = Utils.USER_INFO_DATA.userid;
+          order["orderto"] = Utils.USER_INFO_DATA.superdealerid;
           order["orderthrough"] = FRAMEWORK + MOBILE_TYPE;
-          order["userid"] = this.userID;
-          order["loginid"] = this.userID;
+          order["userid"] = Utils.USER_INFO_DATA.userid;
+          order["loginid"] = Utils.USER_INFO_DATA.userid;
           order["user_type"] = APP_USER_TYPE;
           order["apptype"] = APP_TYPE;
           Obj1["order"] = order;

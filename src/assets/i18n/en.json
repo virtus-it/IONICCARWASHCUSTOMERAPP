@@ -78,7 +78,7 @@
       "lb_slot_3": "2PM-5PM",
       "lb_slot_4": "5PM-8PM",
       "lb_qty": "Qty",
-      "lb_product_name": "Product Name",
+      "lb_product_name": "Service Name",
       "lb_price": "Price",
       "lb_total_cost": "Total Amount: ",
       "lb_total_item": "Total Item: "
@@ -104,7 +104,7 @@
       "btn_confirm": "Confirm"
     },
     "LABELS": {
-      "lb_select_product": "Select Product *",
+      "lb_select_product": "Select Service *",
       "lb_qty": "Quantity *",
       "lb_schedule_type": "Schedule type *",
       "lb_weekdays": "Week Days",
@@ -258,7 +258,7 @@
       "lb_pen_amt": "Pending Amt",
       "lb_cans": "# of cans with you",
       "lb_no_cans": "# no cans with you",
-      "lb_prod_name": "Product Name",
+      "lb_prod_name": "Service Name",
       "lb_empty_cans": "Empty Cans"
     }
   },
@@ -276,7 +276,7 @@
       "lb_thanks_msg": "Thank you for your order!",
       "lb_delivery_address": "Delivery Address",
       "lb_qty": "Qty",
-      "lb_product_name": "Product Name",
+      "lb_product_name": "Service Name",
       "lb_price": "Price",
       "lb_total_item": "Total Item:",
       "lb_total_amt": "Total Amount:"
@@ -292,7 +292,7 @@
       "lb_order_id": "Order Id",
       "lb_amt": "Amount",
       "lb_qty": "Quantity",
-      "lb_product_name": "Product Name",
+      "lb_product_name": "Service Name",
       "lb_del_time": "Delivery Time",
       "lb_order_staus_head": "ORDER STATUS",
       "lb_created": "Created",
@@ -301,8 +301,8 @@
       "lb_ordered": "Ordered",
       "lb_delivered": "Delivered",
       "lb_return": "Return",
-      "lb_supplier_details": "SUPPLIER DETAILS",
-      "lb_dealer_details": " DEALER DETAILS",
+      "lb_supplier_details": "SERVICE ENGINEER DETAILS",
+      "lb_dealer_details": " VENDOR DETAILS",
       "lb_order_msg": "ORDER MESSAGES",
       "lb_send_msg": "Send Message"
     }
@@ -319,7 +319,7 @@
       "lb_order_summary": "ORDER SUMMARY",
       "lb_price_head": "Price",
       "lb_qty_head": "Qty",
-      "lb_product_name_head": "Product Name",
+      "lb_product_name_head": "Service Name",
       "lb_service_tax": "Service Tax",
       "lb_inc": "Inclusive",
       "lb_shipping_serice": "Shipping & Services",

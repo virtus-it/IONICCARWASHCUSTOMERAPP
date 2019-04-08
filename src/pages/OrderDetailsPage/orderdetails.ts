@@ -37,16 +37,16 @@ export class OrderDetails {
 
     this.callFrom = this.param.get("callfrom");
     this.order = this.param.get("order");
-    // if (IS_WEBSITE) {
-    //   this.userID = Utils.USER_INFO_DATA.userid;
-    //   this.dealerID = Utils.USER_INFO_DATA.superdealerid;
-    //   if (this.order && this.order.order_id) {
-    //     this.fetchOrderDetails();
-    //     this.fetchOrderProducts();
-    //   }
-    //   else
-    //     Utils.sLog("order id not found");
-    // }
+    if (IS_WEBSITE) {
+      this.userID = Utils.USER_INFO_DATA.userid;
+      this.dealerID = Utils.USER_INFO_DATA.superdealerid;
+      if (this.order && this.order.order_id) {
+        this.fetchOrderDetails();
+        this.fetchOrderProducts();
+      }
+      else
+        Utils.sLog("order id not found");
+    }
   }
 
 

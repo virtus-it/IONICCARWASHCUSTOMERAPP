@@ -1,17 +1,17 @@
-import { ChangeDetectorRef, Component, ElementRef, ViewChild } from "@angular/core";
-import { AlertController, App, ModalController, NavController, NavParams } from "ionic-angular";
+import {ChangeDetectorRef, Component, ElementRef, ViewChild} from "@angular/core";
+import {AlertController, App, ModalController, NavController, NavParams} from "ionic-angular";
 import {
   APP_TYPE,
   APP_USER_TYPE,
   INTERNET_ERR_MSG,
+  IS_WEBSITE,
   RES_SUCCESS,
   TRY_AGAIN_ERR_MSG,
-  Utils,
-  IS_WEBSITE
+  Utils
 } from "../../app/services/Utils";
-import { GetService } from "../../app/services/get.servie";
-import { TabsPage } from "../tabs/tabs";
-import { ProductsPage } from "../ProductsPage/ProductsPage";
+import {GetService} from "../../app/services/get.servie";
+import {TabsPage} from "../tabs/tabs";
+import {ProductsPage} from "../ProductsPage/ProductsPage";
 
 @Component({
   selector: 'page-about',
@@ -49,7 +49,7 @@ export class AboutPage {
   }
 
   close() {
-    this.appCtrl.getRootNav().setRoot(TabsPage, { from: "pushnotification" });
+    this.appCtrl.getRootNav().setRoot(TabsPage, {from: "pushnotification"});
   }
 
   closeEmptyDialog() {
@@ -58,16 +58,20 @@ export class AboutPage {
     // }
   }
 
+  trackOrder(item) {
+
+  }
+
   editAddr(item) {
     this.model = this.modalCtrl.create('EditAddressPage', {
       addr: item.orderby_address,
       landmark: item.orderby_locality,
       buildingname: item.orderby_buildingname
     }, {
-        showBackdrop: true,
-        enableBackdropDismiss: true,
-        cssClass: 'editaddr'
-      });
+      showBackdrop: true,
+      enableBackdropDismiss: true,
+      cssClass: 'editaddr'
+    });
     this.model.present();
     this.model.onDidDismiss(data => {
       if (data) {
@@ -137,10 +141,10 @@ export class AboutPage {
     let model = this.modalCtrl.create('RaiseComplainPage', {
       data: item
     }, {
-        showBackdrop: false,
-        enableBackdropDismiss: false,
-        cssClass: 'raiserequestdialog'
-      });
+      showBackdrop: false,
+      enableBackdropDismiss: false,
+      cssClass: 'raiserequestdialog'
+    });
     model.present();
   }
 

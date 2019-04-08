@@ -4,6 +4,7 @@ import {AppRate} from "@ionic-native/app-rate";
 import {APP_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, TRY_AGAIN_ERR_MSG, Utils} from "../../app/services/Utils";
 import {GetService} from "../../app/services/get.servie";
 import { WelcomePage } from "../WelcomePage/Welcome";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 
 @Component({
@@ -12,7 +13,7 @@ import { WelcomePage } from "../WelcomePage/Welcome";
 })
 export class ContactPage {
 
-  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public alertUtils: Utils, private getService: GetService, private appRate: AppRate, private appCtrl: App) {
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public alertUtils: Utils, private getService: GetService, private appRate: AppRate, private appCtrl: App,private socialSharing: SocialSharing) {
 
 
   }
@@ -37,7 +38,7 @@ export class ContactPage {
     this.getData();
   }
 
-  
+
   getData() {
     try {
       this.alertUtils.showLoading();
@@ -79,9 +80,10 @@ export class ContactPage {
   }
 
   myPoints() {
-    this.navCtrl.push('PointsPage', {
-      items: "myaccount"
-    })
+    // this.navCtrl.push('PointsPage', {
+    //   items: "myaccount"
+    // })
+    this.socialSharing.shareViaWhatsAppToReceiver("+919121642009","Hi");
   }
 
   mySchedules() {

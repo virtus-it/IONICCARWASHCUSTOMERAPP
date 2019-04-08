@@ -10,7 +10,6 @@ import {
   Utils
 } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
-import { TabsPage } from "../tabs/tabs";
 import { MapView } from "../MapView/MapView";
 
 

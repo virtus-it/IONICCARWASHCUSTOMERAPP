@@ -113,6 +113,7 @@ export class MapView {
       });
 
 
+
     });
 
   }
@@ -453,7 +454,6 @@ export class MapView {
             buildingname: this.buildingname
           };
           this.viewCtrl.dismiss(addrData);
-          ``
         } else if (this.calledFrom == "login") {
           this.doUpdateUser();
         } else if (!this.calledFrom) {

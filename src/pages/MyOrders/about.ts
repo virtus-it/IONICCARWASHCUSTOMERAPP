@@ -13,6 +13,7 @@ import {GetService} from "../../app/services/get.servie";
 import {TabsPage} from "../tabs/tabs";
 import {ProductsPage} from "../ProductsPage/ProductsPage";
 
+
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
@@ -60,7 +61,10 @@ export class AboutPage {
 
   trackOrder(item) {
 
+
+    this.navCtrl.push('TrackorderPage', {"from": "myorder", "order": item});
   }
+
 
   editAddr(item) {
     this.model = this.modalCtrl.create('EditAddressPage', {

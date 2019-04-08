@@ -19,8 +19,9 @@
 <ion-content padding>
   <div *ngFor="let item of items">
     <ion-card>
-      <img src="https://img.appx4fun.com/a7/8d/9d/a06cbe6a-05a4-4e71-970e-98325530e591-logo.jpg" />
-      <ion-card-content>
+      <div class="left_imag"><img src="https://img.appx4fun.com/a7/8d/9d/a06cbe6a-05a4-4e71-970e-98325530e591-logo.jpg" /></div>
+
+      <ion-card-content class="ridesdetails_rght">
         <ion-card-title>
           {{item.manufacturer}} {{item.model}} {{item.modelyear}}
         </ion-card-title>

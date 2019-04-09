@@ -8,6 +8,18 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
+    <ion-fab top center (click)="search()" class="search_box">
+      <ion-row>
+        <ion-col col-2>
+          <ion-icon name="md-search"></ion-icon>
+        </ion-col>
+        <ion-col>
+          <p>Search</p>
+          <p *ngIf="userAddr">{{userAddr}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-fab>
+
     <ion-fab right top (click)="getMyLocation()">
       <button ion-fab>
         <ion-icon name="locate"></ion-icon>
@@ -25,16 +37,36 @@
   <div class="ion-footer">
 
     <!-- sliders rides -->
-    <div style="border: 2px solid #000000;border-radius: 7px;padding: 3px;" *ngIf="rides.length > 0">
+    <ion-row justify-content-center align-items-center *ngIf="rides.length > 0">
+      <ion-col col-10>
+        <div style="border: 2px solid #000000;border-radius: 7px;padding: 3px;" *ngIf="rides.length > 0">
+          <ion-slides (ionSlideDidChange)="onSlideChanged()">
+            <ion-slide *ngFor="let slide of rides; let i = index">
+              <h2 style="color: black">{{slide.manufacturer}} {{slide.model}} {{slide.modelcode}}</h2>
+              <!-- Add Pagination -->
+              <div *ngIf="currentIndex > 0" class="swiper-button-prev" (click)="previousSlide()"></div>
+              <div *ngIf="currentIndex < (rides.length-1)" class="swiper-button-next " (click)="nextSlide()"></div>
+            </ion-slide>
+          </ion-slides>
+        </div>
+      </ion-col>
+
+      <ion-col col-2>
+        <button ion-button (click)="addNewRide()">
+          <ion-icon slot="icon-only" name="md-add-circle"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <!-- <div style="border: 2px solid #000000;border-radius: 7px;padding: 3px;" *ngIf="rides.length > 0">
       <ion-slides (ionSlideDidChange)="onSlideChanged()">
         <ion-slide *ngFor="let slide of rides; let i = index">
           <h2 style="color: black">{{slide.manufacturer}} {{slide.model}} {{slide.modelcode}}</h2>
-          <!-- Add Pagination -->
           <div *ngIf="currentIndex > 0" class="swiper-button-prev" (click)="previousSlide()"></div>
           <div *ngIf="currentIndex < (rides.length-1)" class="swiper-button-next " (click)="nextSlide()"></div>
         </ion-slide>
       </ion-slides>
-    </div>
+    </div> -->
     <!-- sliders rides -->
 
     <!-- add new rider -->
@@ -50,10 +82,10 @@
     <ion-row>
       <ion-item no-lines>
         <div class="category_container">
-            <span *ngFor="let item of categoryData">
-            <img src="http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png"
-                 class="scroll-item" (click)="showServices(item)"/>
-              </span>
+          <span *ngFor="let item of categoryData">
+            <img src="http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png" class="scroll-item"
+                 (click)="showServices(item)"/>
+          </span>
           <div>
             <label class="scroll-item" *ngFor="let item of categoryData"> {{item.category}}</label>
           </div>
@@ -74,4 +106,3 @@
     </div>
   </div>
 </ion-footer>
-

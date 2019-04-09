@@ -153,7 +153,7 @@ export class AboutPage {
   }
 
   callUs() {
-    this.alertUtils.callNumber("9863636314");
+    this.alertUtils.callNumber("9121642009");
   }
 
 

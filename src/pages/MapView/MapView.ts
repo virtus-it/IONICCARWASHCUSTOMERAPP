@@ -118,6 +118,10 @@ export class MapView {
 
   }
 
+  search(){
+    this.showAddressModal();
+  }
+
   addNewRide() {
     let model = this.modalCtrl.create('AddupdateridesPage', {"from": "create"});
     model.present();

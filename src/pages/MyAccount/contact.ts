@@ -120,7 +120,7 @@ export class ContactPage {
         {
           text: "CALL NOW",
           handler: () => {
-            this.alertUtils.callNumber("9863636315");
+            this.alertUtils.callNumber("9121642009");
           }
         }
       ]

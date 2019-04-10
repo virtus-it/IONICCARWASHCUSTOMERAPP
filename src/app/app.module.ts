@@ -19,7 +19,6 @@ import {Diagnostic} from "@ionic-native/diagnostic";
 import {OpenNativeSettings} from "@ionic-native/open-native-settings";
 import {Network} from "@ionic-native/network";
 import {Push} from "@ionic-native/push";
-import {Facebook} from "@ionic-native/facebook";
 import {Device} from "@ionic-native/device";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {Keyboard} from "@ionic-native/keyboard";
@@ -124,7 +123,6 @@ const config: SocketIoConfig = { url: 'http://192.168.1.50:1900', options: {} };
     SocialSharing,
     Device,
     Push,
-    Facebook,
     SplashScreen,
     ModalController,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="com.moya" android-versionCode="1" id="com.moya" version="1.00.00.00" xmlns="http://www.w3.org/ns/widgets">
-    <name>Car Wash</name>
+<widget android-packageName="com.washonclick" android-versionCode="1" id="com.washonclick" version="1.00.00.00" xmlns="http://www.w3.org/ns/widgets">
+    <name>Wash On Click</name>
     <description>Car wash online</description>
     <author email="sales@virtus-it.com" href="">Virtus Team</author>
     <content src="index.html" />
@@ -115,14 +115,5 @@
         <variable name="FCM_VERSION" value="11.0.1" />
         <variable name="SENDER_ID" value="530358294125" />
     </plugin>
-    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
-        <variable name="APP_ID" value="1539281006192787" />
-        <variable name="APP_NAME" value="Moya - The Water Man" />
-    </plugin>
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.2" />
-    <plugin name="cordova-plugin-paytm" spec="0.0.5">
-        <variable name="MERCHANT_ID" value="dummyS79577994716430" />
-        <variable name="INDUSTRY_TYPE_ID" value="Retail" />
-        <variable name="WEBSITE" value="APPSTAGING" />
-    </plugin>
 </widget>

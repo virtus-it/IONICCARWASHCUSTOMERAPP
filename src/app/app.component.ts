@@ -9,7 +9,6 @@ import {AboutPage} from "../pages/MyOrders/about";
 import {NotificationPage} from "../pages/NotificationTemplate/NotificationPage";
 import {HomePage} from "../pages/PlaceAnOrder/home";
 import {ContactPage} from "../pages/MyAccount/contact";
-import {Facebook} from "@ionic-native/facebook";
 import {TranslateService} from "@ngx-translate/core";
 import {GetService} from "./services/get.servie";
 import {Login} from "../pages/LoginIn/Login";
@@ -28,7 +27,7 @@ export class MyApp {
 
   constructor(private apiService: GetService, private translateService: TranslateService,
               private platform: Platform, statusBar: StatusBar, public splashScreen: SplashScreen, public push: Push,
-              public alertCtrl: AlertController, public alertUtils: Utils, private fb: Facebook) {
+              public alertCtrl: AlertController, public alertUtils: Utils) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

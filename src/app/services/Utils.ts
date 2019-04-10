@@ -10,6 +10,7 @@ import { Diagnostic } from "@ionic-native/diagnostic";
 import { AppRate } from "@ionic-native/app-rate";
 import * as moment from "moment";
 import { Device } from "@ionic-native/device";
+import { LatLng } from "@ionic-native/google-maps";
 
 export const SHOW_ALL = false;
 export const IS_WEBSITE: boolean = true;

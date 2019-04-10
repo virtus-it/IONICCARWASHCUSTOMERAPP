@@ -262,7 +262,7 @@ export class MapView {
         if (this.latitude != 0 && this.longitude != 0) {
           let loc: LatLng;
           loc = new LatLng(this.latitude, this.longitude);
-          this.map.animateCamera({
+          this.map.moveCamera({
             target: loc,
             zoom: 17,
             tilt: 10,
@@ -284,7 +284,7 @@ export class MapView {
       this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
         this.geoLocation().then(res => {
           loc = new LatLng(res.coords.latitude, res.coords.longitude);
-          this.map.animateCamera({
+          this.map.moveCamera({
             target: loc,
             zoom: 17,
             tilt: 10,
@@ -370,7 +370,7 @@ export class MapView {
           let loc: LatLng;
           this.geoLocation().then(res => {
             loc = new LatLng(res.coords.latitude, res.coords.longitude);
-            this.map.animateCamera({
+            this.map.moveCamera({
               target: loc,
               zoom: 17,
               tilt: 10,
@@ -408,9 +408,9 @@ export class MapView {
   }
 
   confirmLocation() {
-    console.log(this.calledFrom);
+    console.log(Utils.categoryList);
 
-    // this.userAddr = "Tolichowki";
+    this.userAddr = "Tolichowki";
     try {
       if (Utils.categoryList == undefined || Utils.categoryList == null) {
         this.alertUtils.showToast("Please select at least one service");

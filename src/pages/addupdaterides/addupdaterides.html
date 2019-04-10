@@ -1,9 +1,3 @@
-<!--
-  Generated template for the AddupdateridesPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -34,8 +28,8 @@
       <ion-label>Year</ion-label>
       <ion-input pattern="[0-9]*" type="tel" maxlength="4" minlength="4" [(ngModel)]="year"></ion-input>
     </ion-item>
-    <h4>You Selected <b [ngClass]="pColor" style="border: 2px solid #ccc;border-radius: 7px;padding: 3px;">COLOR</b></h4>
-    <h4>Pick Color </h4>
+  
+    <h4>Pick Color <b [ngClass]="pColor" style="border: 2px solid #ccc;border-radius: 7px;padding: 3px;padding-left: 50px;"></b></h4>
     <ion-grid>
       <ion-row>
         <ion-col class="pd-20" style='flex: 0 0 30px;background-color:red' (click)="pickColor('red')"></ion-col>

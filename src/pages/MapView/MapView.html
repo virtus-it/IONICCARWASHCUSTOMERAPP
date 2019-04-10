@@ -2,23 +2,22 @@
   <div #map id="map" style="height: 75%">
 
 
-    <ion-icon *ngIf="calledFrom" color="primary" name="arrow-round-back" class="ion-style"
-              (click)="goBack()"></ion-icon>
+    <ion-icon *ngIf="calledFrom" color="primary" name="arrow-round-back" class="ion-style" (click)="goBack()"></ion-icon>
     <button *ngIf="!calledFrom" ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-fab top center (click)="search()" class="search_box">
+    <!-- <ion-fab top center (click)="search()" class="search_box">
       <ion-row>
         <ion-col col-2>
           <ion-icon name="md-search"></ion-icon>
         </ion-col>
         <ion-col>
           <p>Search</p>
-          <p *ngIf="userAddr">{{userAddr}}</p>
+          <h6 *ngIf="userAddr">{{userAddr}}</h6>
         </ion-col>
       </ion-row>
-    </ion-fab>
+    </ion-fab> -->
 
     <ion-fab right top (click)="getMyLocation()">
       <button ion-fab>
@@ -27,7 +26,7 @@
     </ion-fab>
 
     <ion-fab center middle class="mgleft-ng16">
-      <img src="assets/imgs/marker_pin.png" item-center height="40px">
+      <img src="assets/imgs/marker_pin.png" item-center height="50px">
     </ion-fab>
 
   </div>
@@ -67,6 +66,7 @@
         </ion-slide>
       </ion-slides>
     </div> -->
+
     <!-- sliders rides -->
 
     <!-- add new rider -->
@@ -84,7 +84,7 @@
         <div class="category_container">
           <span *ngFor="let item of categoryData">
             <img src="http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png" class="scroll-item"
-                 (click)="showServices(item)"/>
+              (click)="showServices(item)" />
           </span>
           <div>
             <label class="scroll-item" *ngFor="let item of categoryData"> {{item.category}}</label>
@@ -95,10 +95,19 @@
     <!-- Categories  -->
     <div *ngIf="showMap">
       <ion-row class="mgtop-10">
-        <button ion-button col color="primary" class="fs-12" block (click)="next()">
-          Continue
-        </button>
-        <ion-icon ios="ios-calendar" md="md-calendar" class="calender_icon"></ion-icon>
+        <ion-col>
+          <button ion-button col color="primary" class="fs-12" block (click)="next()">
+            Continue
+          </button>
+        </ion-col>
+        <ion-col col-2>
+          <ion-item>
+            <ion-datetime displayFormat="DD-MM-YYYY HH:MM:SS"></ion-datetime>
+            <button ion-button icon-only>
+              <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+            </button>
+          </ion-item>
+        </ion-col>
       </ion-row>
     </div>
     <div *ngIf="!showMap">

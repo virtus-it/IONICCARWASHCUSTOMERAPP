@@ -37,7 +37,7 @@
           <ion-icon name="create" color="primary"></ion-icon>
         </ion-col>
       </ion-row>
-      <div class="mgleft-10">
+      <!-- <div class="mgleft-10">
         <label item-start>Date</label>
         <ion-item text-right style="width: 60%; float: right;">
           <ion-datetime text-right class="no_margin no_padding" text-start item-start item-left displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"
@@ -47,11 +47,18 @@
             <ion-icon name="create" color="primary"></ion-icon>
           </ion-label>
         </ion-item>
-      </div>
-      <p class="mgtop-5 mgleft-10">
+      </div> -->
+      <div class="mgleft-10">
+          <label item-start>Service Time</label>
+          <ion-item text-right style="width: 60%; float: right;">
+            <p *ngIf="pickedDate">{{pickedDate}}</p>
+            <p *ngIf="!pickedDate">{{dateOfevent.slice(0, 10)}}</p>
+          </ion-item>
+        </div>
+      <p class="mgtop-5 mgleft-10" hidden>
         <ion-label>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_avail_time' | translate }}</ion-label>
       </p>
-      <div class="availability_label">
+      <div class="availability_label" hidden>
         <ion-list radio-group [(ngModel)]="deliverySlot" item-right>
           <ion-item class="schedule_radiobtn">
             <ion-radio item-left class="radio_btn" value="8AM-11AM" [disabled]="slot1"></ion-radio>
@@ -85,7 +92,7 @@
             <b>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_product_name' | translate }}</b>
           </span>
         </ion-col>
-        <ion-col col-3 col-md-4 col-lg-4 col-xl-4 class="right">
+        <ion-col  col-3 class="right">
           <span item-right>
             <b>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_price' | translate }}</b>
           </span>
@@ -106,7 +113,7 @@
             </span>
           </ion-col>
         </ion-row>
-        <ion-row class="pdleftright-5 mgbtm-5" *ngIf="item.servicecharge && item.servicecharge > 0">
+        <!-- <ion-row class="pdleftright-5 mgbtm-5" *ngIf="item.servicecharge && item.servicecharge > 0">
 
           <ion-col align-self-start>
             Service charge
@@ -129,7 +136,7 @@
             <span item-right>{{(item.mdemptycount * 150)}}
             </span>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
       </div>
       <ion-row justify-content-between class="mgleftright-10" hidden>
         <ion-col col-sm-3 col-xs-3 col-md-3 col-lg-3 col-xl-3>
@@ -140,7 +147,7 @@
           </span>
         </ion-col>
       </ion-row>
-      <ion-row class="mgleftright-10" *ngIf="expDelCharge && expDelCharge > 0">
+      <ion-row class="mgleftright-10" *ngIf="expDelCharge && expDelCharge > 0" hidden>
         <ion-col col>
           <ion-item class="ngleft">
             <ion-label>EXPRESS DELIVERY ({{expDelCharge}})</ion-label>
@@ -153,18 +160,7 @@
           </span>
         </ion-col>
       </ion-row>
-      <ion-row justify-content-between class="mgleftright-10" *ngIf="proddata && proddata.savingProduct && proddata.savingProduct.defSerCharge != proddata.savingProduct.servicecharge">
-        <ion-col col-9>
-          <span item-right class="success">
-            <ion-icon name="thumbs-up"></ion-icon> Your saving on this order</span>
-        </ion-col>
-        <ion-col col-3 class="right">
-          <span item-right class="success">
-            <img class="img-rupee" style="width:10.8% !important" src="assets/imgs/img_rupee_black.png"> {{(proddata.savingProduct.defSerCharge * proddata.savingProduct.selectedCount - proddata.savingProduct.servicecharge
-            * proddata.savingProduct.selectedCount)}}
-          </span>
-        </ion-col>
-      </ion-row>
+      
       <div  hidden center class="note-style">NOTE:
         <br>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_proceed_order_price_might_vary' | translate}}
       </div>
@@ -173,16 +169,6 @@
       </div>
     </ion-card-content>
   </ion-card>
-  <div *ngIf="showEditProduct" >
-    <ion-slides>
-      <ion-slide *ngFor="let item of brandProducts">
-        <select-product-view [totalamt]='proTotalCost' [mainIndex]="0" [savingProduct]="savingProduct" [brandProducts]="brandProducts"
-          [mainItem]='item' (countChangeListener)="qtyChangeListener($event)" (goNext)="goToNextSlide($event)" (goPrevios)="goToPreviousSlide($event)"
-          (minus)="viewItemMinus($event)" (plus)="viewItemPlus($event)" (changeImg)="changeImage($event)" (emptyCanChange)="emptyCountChange($event)"
-          (changeEmpCan)="emptyCanCheck($event)" (calTotalAmt)="calTotalAmt()"></select-product-view>
-      </ion-slide>
-    </ion-slides>
-  </div>
 </ion-content>
 
 

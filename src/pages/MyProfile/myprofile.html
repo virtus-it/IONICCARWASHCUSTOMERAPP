@@ -9,66 +9,7 @@
     </ion-item>
   </ion-card>
   <ion-row>
-<!--<ion-item class="profile_fields_container">-->
-    <!--<ion-icon name="person" item-left small class="profile_avatar"></ion-icon>-->
-    <!--<ion-label color="primary" stacked class="profile_avatar">First name-->
 
-    <!--</ion-label>-->
-    <!--<ion-input type="text" [(ngModel)]="items.user.firstname"  clearInput start></ion-input>-->
-  <!--</ion-item>-->
-
-  <!--<ion-item class="profile_fields_container">-->
-    <!--<ion-icon name="person" item-left small class="profile_avatar"></ion-icon>-->
-    <!--<ion-label color="primary" stacked class="profile_avatar">Last name-->
-    <!--</ion-label>-->
-    <!--<ion-input type="text" class="no_margin" [(ngModel)]="items.user.lastname"  clearInput-->
-               <!--end></ion-input>-->
-  <!--</ion-item>-->
-
-  <!--<ion-row class="profile_fields_container " >-->
-    <!--<ion-icon name="lock" item-left small class="profile_avatar password-style"></ion-icon>-->
-    <!--<span style="margin-left:20px; ">-->
-          <!--<ion-label color="primary" class="">Password</ion-label>-->
-          <!--<h3>..........</h3>-->
-        <!--</span>-->
-    <!--<label style=" text-align: right;" class="change_pswd" (click)="changePassword()">EditPassword</label>-->
-
-  <!--</ion-row>-->
-  <!--<ion-item class="profile_fields_container" >-->
-    <!--<ion-icon name="call" item-left small class="profile_avatar"></ion-icon>-->
-    <!--<span class="label label-md label-md-primary" color="primary">Mobileno</span>-->
-    <!--<h2 class="prfle_fields">{{items.user.mobileno}}</h2>-->
-  <!--</ion-item>-->
-
-  <!--<ion-item class="profile_fields_container">-->
-    <!--<ion-icon name="mail" item-left small class="profile_avatar"></ion-icon>-->
-    <!--<ion-label color="primary" stacked>Emailid</ion-label>-->
-    <!--<ion-input type="email" [(ngModel)]="items.user.emailid" clearInput></ion-input>-->
-  <!--</ion-item>-->
-
-  <!--<ion-item class="profile_fields_container">-->
-    <!--<ion-icon name="home" item-left small class="profile_avatar"></ion-icon>-->
-    <!--<ion-label color="primary" stacked class="profile_avatar">Locality-->
-    <!--</ion-label>-->
-    <!--<ion-input type="text" class="no_margin" [(ngModel)]="items.user.locality" disabled="{{isEdit}}"-->
-               <!--end></ion-input>-->
-  <!--</ion-item>-->
-  <!--<ion-item class="profile_fields_container">-->
-    <!--<ion-icon name="home" item-left small class="profile_avatar"></ion-icon>-->
-    <!--<ion-label color="primary" stacked class="profile_avatar">Buildingname-->
-    <!--</ion-label>-->
-    <!--<ion-input type="text" class="no_margin" [(ngModel)]="items.user.buildingname" disabled="{{isEdit}}"-->
-               <!--end></ion-input>-->
-  <!--</ion-item>-->
-  <!--<ion-item class="profile_fields_container" (click)="getAddress()">-->
-    <!--<ion-icon name="pin" item-left small class="profile_avatar password-style"></ion-icon>-->
-    <!--<ion-label color="primary" stacked>Address-->
-      <!--<span float-right class="no_margin" style="color:#408f98;text-decoration: underline;">-->
-              <!--Address-->
-          <!--</span>-->
-    <!--</ion-label>-->
-    <!--<ion-textarea type="text" class="textarea" [(ngModel)]="items.user.address" disabled="true"></ion-textarea>-->
-  <!--</ion-item>-->
     <ion-card col class="no_bg no_shadow login_fields">
       <ion-row>
         <ion-icon name="arrow-round-back" item-start (click)="goBack()" start style="margin: 5px 0 0 12px"></ion-icon>
@@ -138,61 +79,25 @@
         <ion-input type="text" class="no_margin" [(ngModel)]="items.user.buildingname" disabled="{{isEdit}}"
                    end></ion-input>
       </ion-item>
-      <ion-item class="profile_fields_container" (click)="!isEdit ? getAddress(): '' ">
+      <ion-item class="profile_fields_container" >
         <ion-icon name="pin" item-left small class="profile_avatar password-style"></ion-icon>
-        <ion-label color="primary" stacked>{{ 'MY_PROFILE_PAGE.LABELS.lb_address' | translate }}
-          <span float-right class="no_margin" style="color:#408f98;text-decoration: underline;" *ngIf="!isEdit">
-              {{ 'MY_PROFILE_PAGE.LABELS.lb_pick_loc' | translate }}
-          </span>
+        <ion-label color="primary" stacked>{{ 'MY_PROFILE_PAGE.LABELS.lb_address' | translate }}          
         </ion-label>
-        <ion-textarea type="text" class="textarea" [(ngModel)]="items.user.address" disabled="true"></ion-textarea>
+        <ion-textarea type="text" class="textarea" [(ngModel)]="items.user.address" ></ion-textarea>
       </ion-item>
 
 
-      <ion-item class="profile_fields_container" *ngIf="isEdit">
+      <!-- <ion-item class="profile_fields_container" *ngIf="isEdit">
         <ion-icon name="cash" item-left small class="profile_avatar"></ion-icon>
         <ion-col color="" class="adv_amount col-sm-6 success">
-          <span class="amount">{{ 'MY_PROFILE_PAGE.LABELS.lb_adv_amt' | translate }}</span>
+          <span class="amount" *ngIf="items.user.payment.advance_amount && items.user.payment.advance_amount">{{ 'MY_PROFILE_PAGE.LABELS.lb_adv_amt' | translate }}</span>
           {{items.user.payment.advance_amount}}
         </ion-col>
         <ion-col class="pnd_amount col-sm-6 ">
           <span class="amount">{{ 'MY_PROFILE_PAGE.LABELS.lb_pen_amt' | translate }}</span>{{items.user.payment.amount_pending}}
         </ion-col>
-      </ion-item>
+      </ion-item> -->
 
-
-      <ion-item *ngIf="items.user.cansarray && isEdit " class="pdleft-ng8">
-        <ion-row class="" *ngIf="isEdit">
-          <ion-col>
-            <button ion-button icon-left clear small>
-              <ion-icon name="beaker"></ion-icon>
-              <div color="primary" *ngIf="items.user.cansarray">{{ 'MY_PROFILE_PAGE.LABELS.lb_cans' | translate }}</div>
-              <div color="primary" *ngIf="!items.user.cansarray">{{ 'MY_PROFILE_PAGE.LABELS.lb_no_cans' | translate }}
-              </div>
-            </button>
-          </ion-col>
-        </ion-row>
-        <ion-row class="header-bg pd-2x5" *ngIf="items.user.cansarray">
-          <ion-col class="col-md-8 col-sm-8 col-lg-8 col-xs-8">{{ 'MY_PROFILE_PAGE.LABELS.lb_prod_name' | translate }}
-          </ion-col>
-          <ion-col class="col-md-4 col-sm-4 col-lg-4 col-xs-4" align="right">{{ 'MY_PROFILE_PAGE.LABELS.lb_empty_cans' |
-            translate }}
-          </ion-col>
-        </ion-row>
-
-        <!-- <ion-row *ngFor="let emptycan of items.user.cansarray" class="pd-2x5" hidden>
-          <ion-col class="col-md-8 col-sm-8 col-lg-8 col-xs-8">
-            <b *ngIf="emptycan.product.category"> {{emptycan.product.category}} </b>{{emptycan.product.productname}}
-          </ion-col>
-          <ion-col class="col-md-4 col-sm-4 col-lg-4 col-xs-4" [ngClass]="emptycan.cancolor" align="right">
-            <span class="col-md-4 col-sm-4 col-lg-4 col-xs-4" *ngIf="emptycan.cancolor" align="right">
-              <ion-icon name="warning" (click)="cansInMinus(emptycan.avaliablecans)" class="warning"></ion-icon>
-            </span>
-            {{emptycan.avaliablecans}}
-          </ion-col>
-        </ion-row> -->
-
-      </ion-item>
     </ion-card>
   </ion-row>
 </ion-content>

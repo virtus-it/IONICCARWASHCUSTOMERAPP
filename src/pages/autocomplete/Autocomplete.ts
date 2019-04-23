@@ -1,7 +1,7 @@
-import {Component, NgZone} from "@angular/core";
-import {ViewController, IonicPage} from "ionic-angular";
-import {googlemaps} from "googlemaps";
-import {Utils} from "../../app/services/Utils";
+import { Component, NgZone } from "@angular/core";
+import { ViewController, IonicPage } from "ionic-angular";
+import { googlemaps } from "googlemaps";
+import { Utils } from "../../app/services/Utils";
 
 declare var google;
 
@@ -42,14 +42,16 @@ export class AutocompletePage {
       let me = this;
       this.service.getPlacePredictions({
         input: this.autocomplete.query,
-        componentRestrictions: {country: "IN"}
+        componentRestrictions: { country: ["AE","IN"] }
       }, function (predictions, status) {
-        me.autocompleteItems = [];
-        me.zone.run(function () {
-          predictions.forEach(function (prediction) {
-            me.autocompleteItems.push(prediction.description);
+        if (predictions) {
+          me.autocompleteItems = [];
+          me.zone.run(function () {
+            predictions.forEach(function (prediction) {
+              me.autocompleteItems.push(prediction.description);
+            });
           });
-        });
+        }
       });
     } catch (e) {
       this.alertUtils.showLog(e.toString());

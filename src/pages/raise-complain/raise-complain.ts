@@ -1,7 +1,8 @@
-import {Component} from "@angular/core";
-import {IonicPage, NavController, NavParams, ViewController} from "ionic-angular";
-import {Utils, APP_TYPE, APP_USER_TYPE, INTERNET_ERR_MSG, RES_SUCCESS} from "../../app/services/Utils";
-import {GetService} from "../../app/services/get.servie";
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams, ViewController } from "ionic-angular";
+import { Utils, APP_TYPE, APP_USER_TYPE, INTERNET_ERR_MSG, RES_SUCCESS } from "../../app/services/Utils";
+import { GetService } from "../../app/services/get.servie";
+import { TranslateService } from "@ngx-translate/core";
 @IonicPage()
 @Component({
   selector: 'page-raise-complain',
@@ -14,7 +15,15 @@ export class RaiseComplainPage {
   private showProgress: boolean = false;
   private showClose: boolean = false;
 
-  constructor(private viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private apiService: GetService, private alertUtils: Utils) {
+  constructor(private translateService: TranslateService, private viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private apiService: GetService, private alertUtils: Utils) {
+    let lang = "en";
+    if (Utils.lang) {
+      lang = Utils.lang
+    }
+    console.log(lang);
+    // translateService.setDefaultLang(lang);
+    translateService.use(lang);
+
   }
 
   ionViewDidLoad() {

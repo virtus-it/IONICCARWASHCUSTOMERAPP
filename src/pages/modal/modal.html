@@ -7,23 +7,23 @@
     </ion-buttons>
     <ion-title>
       <img src="assets/imgs/header_icon.png" class="header_icon_addrs">
-      <span class="title-style">SEND FEEDBACK</span>
+      <span class="title-style">{{ 'MY_FEEDBACK_PAGE.PAGE_TITLE_2' | translate }}</span>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-row>
-    <p>We value your feedback and welcome any comments you may have to help improve our programs and services.</p>
+    <p>{{ 'MY_FEEDBACK_PAGE.LABELS.lb_content' | translate }}</p>
   </ion-row>
   <h6 class="error mgtop-10" *ngIf="validationError">Please enter {{validationError}}</h6>
 
   <ion-item class="no_bg no_shadow input_container ">
-    <ion-label floating>Subject</ion-label>
+    <ion-label floating>{{ 'MY_FEEDBACK_PAGE.LABELS.lb_subject' | translate }}</ion-label>
     <ion-input class="" type="text" [(ngModel)]="userType.subject" maxlength="50" required></ion-input>
   </ion-item>
   <ion-item class="no_bg no_shadow input_container">
-    <ion-label floating>Message</ion-label>
+    <ion-label floating>{{ 'MY_FEEDBACK_PAGE.LABELS.lb_mesg' | translate }}</ion-label>
     <ion-textarea [(ngModel)]="userType.message" maxlength="250"></ion-textarea>
   </ion-item>
 
@@ -32,10 +32,12 @@
   <ion-toolbar>
     <ion-row class="">
       <ion-col align-self-center="">
-        <button ion-button class="wd-100pc" type="submit" (click)="next()">Submit</button>
+        <button ion-button class="wd-100pc" type="submit" (click)="next()">{{ 'MY_FEEDBACK_PAGE.BUTTONS.btn_submit' |
+          translate }}</button>
       </ion-col>
       <ion-col align-self-center="">
-        <button ion-button class="wd-100pc bg-gray" (click)="closeModal()">Cancel</button>
+        <button ion-button class="wd-100pc bg-gray" (click)="closeModal()">{{ 'MY_FEEDBACK_PAGE.BUTTONS.btn_cancel' |
+          translate }}</button>
       </ion-col>
     </ion-row>
   </ion-toolbar>

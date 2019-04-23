@@ -7,8 +7,8 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <!-- <ion-fab top center (click)="search()" class="search_box">
-      <ion-row>
+    <!-- <ion-fab justify-content-center align-items-center top center (click)="search()" class="search_box mgleft-ng16">
+      <ion-row >
         <ion-col col-2>
           <ion-icon name="md-search"></ion-icon>
         </ion-col>
@@ -19,10 +19,13 @@
       </ion-row>
     </ion-fab> -->
 
-    <ion-fab right top (click)="getMyLocation()">
-      <button ion-fab>
+    <ion-fab right top >
+      <button ion-fab (click)="getMyLocation()">
         <ion-icon name="locate"></ion-icon>
       </button>
+      <button ion-fab (click)="search()">
+          <ion-icon name="md-search"></ion-icon>
+        </button>
     </ion-fab>
 
     <ion-fab center middle class="mgleft-ng16">
@@ -56,25 +59,12 @@
         </button>
       </ion-col>
     </ion-row>
-
-    <!-- <div style="border: 2px solid #000000;border-radius: 7px;padding: 3px;" *ngIf="rides.length > 0">
-      <ion-slides (ionSlideDidChange)="onSlideChanged()">
-        <ion-slide *ngFor="let slide of rides; let i = index">
-          <h2 style="color: black">{{slide.manufacturer}} {{slide.model}} {{slide.modelcode}}</h2>
-          <div *ngIf="currentIndex > 0" class="swiper-button-prev" (click)="previousSlide()"></div>
-          <div *ngIf="currentIndex < (rides.length-1)" class="swiper-button-next " (click)="nextSlide()"></div>
-        </ion-slide>
-      </ion-slides>
-    </div> -->
-
-    <!-- sliders rides -->
-
     <!-- add new rider -->
     <div class="center" *ngIf="rides.length == 0">
       <button ion-button (click)="addNewRide()">
         <ion-icon slot="icon-only" name="md-add-circle"></ion-icon>
       </button>
-      <ion-label>Add a vehicle</ion-label>
+      <ion-label style="color: #000000;">Add a vehicle</ion-label>
     </div>
     <!-- add new rider -->
 
@@ -82,12 +72,12 @@
     <ion-row>
       <ion-item no-lines>
         <div class="category_container">
-          <span *ngFor="let item of categoryData">
-            <img src="http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png" class="scroll-item"
-              (click)="showServices(item)" />
+          <span *ngFor="let item of list">
+            <img src="{{item.imgurl}}" (error)="changeImage(item)" class="scroll-item"
+              (click)="showServices(item.category)" />
           </span>
           <div>
-            <label class="scroll-item" *ngFor="let item of categoryData"> {{item.category}}</label>
+            <label class="scroll-item" *ngFor="let item of list"> {{item.category}} </label>
           </div>
         </div>
       </ion-item>
@@ -97,16 +87,21 @@
       <ion-row class="mgtop-10">
         <ion-col>
           <button ion-button col color="primary" class="fs-12" block (click)="next()">
-            Continue
+              {{ 'MAP_PAGE.BUTTONS.btn_continue' | translate }}
           </button>
         </ion-col>
         <ion-col col-2>
-          <ion-item>
-            <ion-datetime displayFormat="DD-MM-YYYY HH:MM:SS"></ion-datetime>
-            <button ion-button icon-only>
+            <!-- <ion-item text-right style="width: 60%; float: right;">
+                <ion-datetime text-right class="no_margin no_padding" text-start item-start item-left displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"
+                  [min]="minDate" [(ngModel)]="dateOfevent" (ngModelChange)="delDateChange()" color="primary">
+                </ion-datetime>
+                <ion-label color="primary">
+                  <ion-icon name="create" item-end large color="primary"></ion-icon>
+                </ion-label>
+              </ion-item> -->
+            <button ion-button icon-only (click)="openDatePicker()">
               <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
             </button>
-          </ion-item>
         </ion-col>
       </ion-row>
     </div>

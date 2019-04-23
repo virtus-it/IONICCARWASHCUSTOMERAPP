@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
-import {Utils} from "../../app/services/Utils";
-import {IonicPage} from "ionic-angular";
-import {TranslateService} from "@ngx-translate/core";
+import { Component } from "@angular/core";
+import { Utils } from "../../app/services/Utils";
+import { IonicPage } from "ionic-angular";
+import { TranslateService } from "@ngx-translate/core";
 
 @IonicPage()
 @Component({
@@ -12,8 +12,12 @@ export class AboutUs {
   tabBarElement: any;
 
   constructor(private translateService: TranslateService, private alertUtils: Utils) {
-    translateService.setDefaultLang('en');
-    translateService.use('en');
+    let lang = "en";
+    if (Utils.lang) {
+      lang = Utils.lang
+    }
+    console.log(lang);
+    translateService.use(lang);
 
     let verCode, verName;
     this.alertUtils.getVersionCode().then(code => {
@@ -30,11 +34,7 @@ export class AboutUs {
   }
 
   ngOnInit() {
-    try {
-      this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-    } catch (e) {
-      this.alertUtils.showLog(e);
-    }
+
   }
 
 }

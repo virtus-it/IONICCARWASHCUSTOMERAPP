@@ -43,10 +43,14 @@ export class ProductsPage {
       }
     }
   }
+  changeImage(item){
+    item.imgurl = "http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png";
+  }
   ngOnInit() {
     console.log(Utils.productsList)
-    this.productList = Utils.productsList;
     this.pageDetails = this.navParams.get("category");
+    this.productList = Utils.categoryList.get(this.pageDetails);
+    Utils.productsList = this.productList;
 
   }
 

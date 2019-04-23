@@ -54,6 +54,7 @@ export class ConfirmOrder {
   private increment: boolean = true;
   private model: any;
   private isModelActive: boolean = false;
+  pickedDate: any;
 
   constructor(platform: Platform, private navCtrl: NavController, private modalCtrl: ModalController, private param: NavParams, private getService: GetService, private alertUtils: Utils, private viewCtrl: ViewController) {
 
@@ -100,7 +101,13 @@ export class ConfirmOrder {
       this.userLat = this.param.get("lat");
       this.userLng = this.param.get("lng");
       this.proddata = this.param.get("savingobj");
+
       console.log(this.proddata);
+
+      if (Utils.datePicked) {
+        console.log(Utils.datePicked);
+        this.pickedDate = Utils.datePicked;
+      }
       // car wash change
       this.items = [];
       this.tAmount = 0;
@@ -842,7 +849,7 @@ export class ConfirmOrder {
           order["delivery_address"] = this.deliveryAddr;
           order["delivery_latitude"] = this.userLat;
           order["delivery_longitude"] = this.userLng;
-          order["excepted_time"] = Utils.formatDateToDDMMYYYY(this.dateOfevent) + " " + this.deliverySlot;
+          //order["excepted_time"] = Utils.formatDateToDDMMYYYY(this.dateOfevent) + " " + this.deliverySlot;
           if (this.selectProducts[i].servicecharge && this.selectProducts[i].servicecharge > 0) {
             order["servicecharge"] = (this.selectProducts[i].servicecharge * this.selectProducts[i].count);
           }
@@ -875,6 +882,11 @@ export class ConfirmOrder {
             if (slotDate)
               order["slotdate"] = slotDate;
           }
+          if (this.pickedDate)
+            order["excepted_time"] = this.pickedDate;
+          else
+            order["excepted_time"] = Utils.formatDateToDDMMYYYY(this.dateOfevent);
+
           order["paymentmode"] = "cash";
           order["orderstatus"] = "ordered";
           order["orderfrom"] = Utils.USER_INFO_DATA.userid;
@@ -896,6 +908,8 @@ export class ConfirmOrder {
         this.alertUtils.showLog(res);
         if (res.result == RES_SUCCESS) {
           if (res.data) {
+            Utils.productsList = [];
+            Utils.datePicked = "";
             this.showConfirmationDialog(res)
           } else {
             this.alertUtils.showToast("Something went wrong please try again later");

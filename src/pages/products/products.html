@@ -5,7 +5,7 @@
         <ion-icon name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>{{pageDetails.category}}</ion-title>
+    <ion-title>{{pageDetails | capitalize}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,7 +17,7 @@
     <ion-row class="list_container" (click)="add(data)">
       <ion-col col="2" class="list_img">
         <ion-avatar slot="start">
-          <img src="http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png" />
+          <img src="{{data.imgurl}}" (error)="changeImage(data)"/>
         </ion-avatar>
       </ion-col>
       <ion-col col="4" class="list_decs">

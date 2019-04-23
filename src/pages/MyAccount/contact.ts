@@ -5,6 +5,7 @@ import {APP_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, TRY_AGAIN_ERR_MSG, Utils} from 
 import {GetService} from "../../app/services/get.servie";
 import { WelcomePage } from "../WelcomePage/Welcome";
 import {SocialSharing} from "@ionic-native/social-sharing";
+import { TranslateService } from "@ngx-translate/core";
 
 
 @Component({
@@ -12,8 +13,9 @@ import {SocialSharing} from "@ionic-native/social-sharing";
   templateUrl: 'contact.html'
 })
 export class ContactPage {
-
-  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public alertUtils: Utils, private getService: GetService, private appRate: AppRate, private appCtrl: App,private socialSharing: SocialSharing) {
+  languages = [{ name: "English", code: "en" }, { name: "Arabic", code: "ar" }];
+  languageSelected: any;
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public alertUtils: Utils, private getService: GetService, private appRate: AppRate, private appCtrl: App,private socialSharing: SocialSharing,public translate: TranslateService) {
 
 
   }
@@ -47,21 +49,7 @@ export class ContactPage {
         this.alertUtils.showLog(res);
         if (res.result == RES_SUCCESS) {
           if (res.data) {
-            if (res.data.user.stock) {
-              let emptyCansArray = [];
-              for (let i = 0; i < res.data.user.stock.length; i++) {
-                if (res.data.user.stock[i].avaliablecans != 0) {
-                  if (res.data.user.stock[i].avaliablecans < 0) {
-                    res.data.user.stock[i]["cancolor"] = "danger";
-                    var str = res.data.user.stock[i].avaliablecans.toString();
-                    res.data.user.stock[i].avaliablecans = str.replace("-", "");
-                  }
-                  emptyCansArray.push(res.data.user.stock[i]);
-                }
-
-              }
-              res.data.user["cansarray"] = emptyCansArray;
-            }
+            
             this.navCtrl.push('MyProfile', {
               items: res.data
             })
@@ -187,6 +175,24 @@ export class ContactPage {
     } catch (e) {
       this.alertUtils.showLog(e);
       this.alertUtils.showToast("Unable to logout please try again");
+    }
+  }
+
+  setLanguage() {
+    console.log(this.languageSelected)
+    let defaultLanguage = this.translate.getDefaultLang();
+    console.log("defaultLanguage : " + defaultLanguage);
+    if (this.languageSelected) {
+      this.translate.setDefaultLang(this.languageSelected);
+      this.translate.use(this.languageSelected);
+      this.alertUtils.setLang(this.languageSelected);
+      Utils.lang = this.languageSelected;
+    } else {
+      this.languageSelected = defaultLanguage;
+      this.translate.use(defaultLanguage);
+      this.alertUtils.setLang(defaultLanguage);
+      Utils.lang = defaultLanguage;
+
     }
   }
 }

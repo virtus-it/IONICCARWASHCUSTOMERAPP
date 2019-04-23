@@ -1,17 +1,7 @@
 <ion-header>
   <ion-navbar>
-      <ion-title><img src="assets/imgs/header_icon.png" class="header_icon"><span class="title-style"> SIGN UP</span></ion-title>
-
-    <ion-toolbar hidden>
-      <ion-segment [(ngModel)]="titleText" hidden>
-        <ion-segment-button value="SIGN UP" (ionSelect)="viewSignUp()">
-          <ion-label>SIGN UP</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="LOG IN" (ionSelect)="viewLogin()" hidden>
-          <ion-label>LOG IN</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-toolbar>
+    <ion-title><img src="assets/imgs/header_icon.png" class="header_icon"><span class="title-style"> {{
+        'SIGNUP_PAGE.PAGE_TITLE_SIGNUP' | translate }}</span></ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -25,12 +15,19 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <ion-item>
+        <ion-label>{{ 'SIGNUP_PAGE.LABELS.lb_country' | translate }}</ion-label>
+        <ion-select [(ngModel)]="country">
+          <ion-option value="IN">IN (+91)</ion-option>
+          <ion-option value="AED">AED (+971)</ion-option>
+        </ion-select>
+      </ion-item>
       <ion-row align-items-center>
         <ion-col>
           <ion-item>
             <ion-label floating>{{ 'SIGNUP_PAGE.LABELS.lb_mobile_no_hint' | translate }}</ion-label>
-            <ion-input type="tel" class="usr_namefeild" maxlength="10" minlength="10" [(ngModel)]="mobileNumber" (ionChange)="inputMobilecall()"
-              [disabled]="!disableMobileNo"></ion-input>
+            <ion-input type="tel" class="usr_namefeild" maxlength="10" minlength="10" [(ngModel)]="mobileNumber"
+              (ionChange)="inputMobilecall()" [disabled]="!disableMobileNo"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col col-1 *ngIf="!showButtonLogInForSignIn && showPasswordBoxMsg" (click)="editMobileNo()">
@@ -45,7 +42,8 @@
             </ion-label>
             <ion-label floating *ngIf="showPasswordBoxMsg">{{ 'SIGNUP_PAGE.LABELS.lb_pwd_hint' | translate }}
             </ion-label>
-            <ion-input (ionChange)="inputMobilecall()" [type]="type" class="usr_namefeild" [(ngModel)]="password" clearOnEdit="false"></ion-input>
+            <ion-input (ionChange)="inputMobilecall()" [type]="type" class="usr_namefeild" [(ngModel)]="password"
+              clearOnEdit="false"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -59,9 +57,10 @@
           </ion-item>
         </ion-col>
       </ion-row>
-      <p *ngIf="showPasswordBoxMsg" [ngStyle]="{'color': maxTime !==0 ? '#aaa' : '#222'}" (click)="resendOtp()">{{ 'SIGNUP_PAGE.LABELS.lb_resend_pwd' | translate }}
+      <p *ngIf="showPasswordBoxMsg" [ngStyle]="{'color': maxTime !==0 ? '#aaa' : '#222'}" (click)="resendOtp()">{{
+        'SIGNUP_PAGE.LABELS.lb_resend_pwd' | translate }}
         <span [ngStyle]="{'color': maxTime !==0 ? '#aaa' : '#408f98'}">
-        Resend OTP
+          Resend OTP
           <span class="danger" *ngIf="maxTime !==0">in {{maxTime}}</span>
         </span>
       </p>
@@ -78,19 +77,21 @@
 
       <div class="item item-text-wrap mgleft-5" *ngIf="showButtonRegistered">
         <ion-checkbox [(ngModel)]="cbTerms" (ionChange)="refreshUI()"></ion-checkbox>
-        <span class="fs-14"> &nbsp;I have read and agreed to the CarWash
-          <a href="http://www.virtus-it.com/legal/">terms & conditions</a> and
-          <a href="http://www.virtus-it.com/privacy-statement/">privacy policy</a>
+        <span class="fs-14"> &nbsp;{{ 'SIGNUP_PAGE.LABELS.lb_privacy_1' | translate }}
+          <a href="http://www.virtus-it.com/legal/">{{ 'SIGNUP_PAGE.LABELS.lb_privacy_2' | translate }}</a> and
+          <a href="http://www.virtus-it.com/privacy-statement/">{{ 'SIGNUP_PAGE.LABELS.lb_privacy_3' | translate }}</a>
         </span>
       </div>
       <ion-item item-right class="no_bg no_shadow btn_forgot mgleft-5" *ngIf="showButtonLogInForSignIn">
-        <span color="" class="btn_forgotpswd" (click)="forgotPwd()">{{ 'LOGIN_PAGE.LABELS.lb_forgot_pwd_title' | translate }}</span>
+        <span color="" class="btn_forgotpswd" (click)="forgotPwd()">{{ 'LOGIN_PAGE.LABELS.lb_forgot_pwd_title' |
+          translate }}</span>
       </ion-item>
     </ion-card>
   </ion-row>
   <ion-row *ngIf="showButtonRegistered" (click)="signUp()" class="mgleftright-20">
     <ion-col class="signup-col">
-      <button class="btn-lg  button button-md button-block-md" ion-button block padding="40">{{ 'SIGNUP_PAGE.BUTTONS.btn_sign_up' | translate }}
+      <button class="btn-lg  button button-md button-block-md" ion-button block padding="40">{{
+        'SIGNUP_PAGE.BUTTONS.btn_sign_up' | translate }}
       </button>
       <br>
 
@@ -98,7 +99,8 @@
   </ion-row>
   <ion-row *ngIf="showButtonLogInForSignUp" (click)="SignInAfterSignUp(password)">
     <ion-col class="signup-col">
-      <button class="btn-lg mgtop-20 button button-md button-block-md" ion-button block padding="40">{{ 'SIGNUP_PAGE.BUTTONS.btn_sign_in' | translate }}
+      <button class="btn-lg mgtop-20 button button-md button-block-md" ion-button block padding="40">{{
+        'SIGNUP_PAGE.BUTTONS.btn_sign_in' | translate }}
       </button>
       <br>
 

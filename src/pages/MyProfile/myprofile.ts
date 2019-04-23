@@ -26,15 +26,19 @@ export class MyProfile {
   private lng: any;
 
   constructor(private translateService: TranslateService, private ref: ChangeDetectorRef, private diagnostic: Diagnostic, private navCtrl: NavController, private navParam: NavParams, private alertUtils: Utils, private getService: GetService, private alertCtrl: AlertController) {
-    translateService.setDefaultLang('en');
-    translateService.use('en');
+    let lang = "en";
+    if (Utils.lang) {
+      lang = Utils.lang
+    }
+    console.log(lang);
+    translateService.use(lang);
     this.imgURl = getService.getImg();
     this.items = this.navParam.get("items");
     if (this.items) {
       this.alertUtils.showLog(this.items);
       this.imageUrl = this.imgURl + this.items.user.imageurl + this.defpng;
     }
-   
+
 
 
   }

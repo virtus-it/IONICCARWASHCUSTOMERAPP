@@ -60,8 +60,9 @@ export class SignUp {
   private timer;
   private maxTime = 30;
   private addrData: any;
+  country: string = "IN";
 
-  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, private apiService: GetService,private ref: ChangeDetectorRef) {
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef) {
 
   }
 
@@ -247,8 +248,15 @@ export class SignUp {
   }
 
   SignIn(password) {
+
+    let mobMin = 10;
+    let mobMax = 10;
+    if (this.country != 'IN') {
+      mobMin = 9;
+      mobMax = 9;
+    }
     try {
-      if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", 10, 10)) {
+      if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", mobMin, mobMax)) {
         if (!this.alertUtils.isValidMobile(this.mobileNumber)) {
           if (this.alertUtils.validateText(password, "Password", 3, 20)) {
             let input = {
@@ -271,59 +279,59 @@ export class SignUp {
             let data = JSON.stringify(input);
             this.alertUtils.showLog(data);
             this.alertUtils.showLoading();
-            this.apiService.postReq(this.apiService.login(), data).then(res => {
-              this.alertUtils.hideLoading();
-              this.alertUtils.showLog(res);
-              if (res.result == this.alertUtils.RESULT_SUCCESS) {
-                if (res.data && res.data.user) {
-                  let imageVer = "", dealerName = "", userName = "", dealerid = "", dealermobileno = "";
-                  this.info = res.data.user;
-                  if (this.info.imgversion)
-                    imageVer = this.info.imgversion;
-                  else
-                    imageVer = "0";
-                  if (this.info.dealers) {
-                    if (this.info.dealers.lastname && this.info.dealers.firstname)
-                      dealerName = this.info.dealers.firstname + " " + this.info.dealers.lastname;
-                    else {
-                      if (this.info.dealers.firstname) {
-                        dealerName = this.info.dealers.firstname;
-                      }
-                    }
-                  }
-                  if (this.info.superdealerid) {
-                    dealerid = this.info.superdealerid;
-                  }
-                  if (this.info.dealers && this.info.dealers.mobileno) {
-                    dealermobileno = this.info.dealers.mobileno;
-                  }
-                  if (this.info.last_name) {
-                    if (this.info.first_name)
-                      userName = this.info.first_name + " " + this.info.last_name;
-                  } else {
-                    if (this.info.first_name)
-                      userName = this.info.first_name;
-                  }
-                  if (!this.info.email)
-                    this.info.email = "";
+            // this.apiService.postReq(this.apiService.login(), data).then(res => {
+            //   this.alertUtils.hideLoading();
+            //   this.alertUtils.showLog(res);
+            //   if (res.result == this.alertUtils.RESULT_SUCCESS) {
+            //     if (res.data && res.data.user) {
+            //       let imageVer = "", dealerName = "", userName = "", dealerid = "", dealermobileno = "";
+            //       this.info = res.data.user;
+            //       if (this.info.imgversion)
+            //         imageVer = this.info.imgversion;
+            //       else
+            //         imageVer = "0";
+            //       if (this.info.dealers) {
+            //         if (this.info.dealers.lastname && this.info.dealers.firstname)
+            //           dealerName = this.info.dealers.firstname + " " + this.info.dealers.lastname;
+            //         else {
+            //           if (this.info.dealers.firstname) {
+            //             dealerName = this.info.dealers.firstname;
+            //           }
+            //         }
+            //       }
+            //       if (this.info.superdealerid) {
+            //         dealerid = this.info.superdealerid;
+            //       }
+            //       if (this.info.dealers && this.info.dealers.mobileno) {
+            //         dealermobileno = this.info.dealers.mobileno;
+            //       }
+            //       if (this.info.last_name) {
+            //         if (this.info.first_name)
+            //           userName = this.info.first_name + " " + this.info.last_name;
+            //       } else {
+            //         if (this.info.first_name)
+            //           userName = this.info.first_name;
+            //       }
+            //       if (!this.info.email)
+            //         this.info.email = "";
 
-                  if (!this.info.imagename)
-                    this.info.imagename = "";
+            //       if (!this.info.imagename)
+            //         this.info.imagename = "";
 
-                  this.alertUtils.setLoginState(true);
-                  this.alertUtils.cacheInfo(this.info.userid, password, this.mobileNumber, this.info.email, APP_USER_TYPE, userName, dealerid, dealermobileno, this.info.imagename, imageVer, this.info.address, this.info.city, this.info.state, this.info.pincode, dealerName, this.info.latitude, this.info.longitude);
-                  this.alertUtils.cacheUserInfo(res.data.user);
-                  this.showConfirmOrderDialog(false);
-                } else {
-                  this.alertUtils.showAlert("ERROR", JSON.stringify(res), "OK");
-                }
-              } else {
-                this.errorText = "Invalid Credentials";
-              }
-            }, err => {
-              this.alertUtils.hideLoading();
-              console.log(err);
-            });
+            //       this.alertUtils.setLoginState(true);
+            //       this.alertUtils.cacheInfo(this.info.userid, password, this.mobileNumber, this.info.email, APP_USER_TYPE, userName, dealerid, dealermobileno, this.info.imagename, imageVer, this.info.address, this.info.city, this.info.state, this.info.pincode, dealerName, this.info.latitude, this.info.longitude);
+            //       this.alertUtils.cacheUserInfo(res.data.user);
+            //       this.showConfirmOrderDialog(false);
+            //     } else {
+            //       this.alertUtils.showAlert("ERROR", JSON.stringify(res), "OK");
+            //     }
+            //   } else {
+            //     this.errorText = "Invalid Credentials";
+            //   }
+            // }, err => {
+            //   this.alertUtils.hideLoading();
+            //   console.log(err);
+            // });
           } else {
             this.alertUtils.showToast(this.alertUtils.ERROR_MES)
           }
@@ -394,7 +402,7 @@ export class SignUp {
     this.action = "Signup";
     this.refreshUI();
   }
-  refreshUI(){
+  refreshUI() {
     this.ref.detectChanges();
   }
   signUp() {
@@ -402,24 +410,30 @@ export class SignUp {
     this.alertUtils.showLog(this.mobileNumber);
     if (this.userName) {
       if (this.alertUtils.validateText(this.userName, "Name", 3, 100)) {
-        if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", 10, 10)) {
-          if (!this.alertUtils.isValidMobile(this.mobileNumber)) {
-            if (this.cbTerms) {
-              if (this.alertUtils.networkStatus()) {
-                // if (this.exUserInfo && this.exUserInfo.user_id) {
-                //   this.doRegisterExisting();
-                // } else {
-                  this.doRegisterNew();
-                // }
-              } else {
-                this.alertUtils.showAlert("INTERNET CONNECTION", INTERNET_ERR_MSG, "OK");
-              }
+        let mobMin = 10;
+        let mobMax = 10;
+        if (this.country != 'IN') {
+          mobMin = 9;
+          mobMax = 9;
+        }
+        if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", mobMin, mobMax)) {
+          // if (!this.alertUtils.isValidMobile(this.mobileNumber)) {
+          if (this.cbTerms) {
+            if (this.alertUtils.networkStatus()) {
+              // if (this.exUserInfo && this.exUserInfo.user_id) {
+              //   this.doRegisterExisting();
+              // } else {
+              this.doRegisterNew();
+              // }
             } else {
-              this.alertUtils.showToast("Please agree to terms");
+              this.alertUtils.showAlert("INTERNET CONNECTION", INTERNET_ERR_MSG, "OK");
             }
           } else {
-            this.alertUtils.showToast("Invalid mobile number");
+            this.alertUtils.showToast("Please agree to terms");
           }
+          // } else {
+          //   this.alertUtils.showToast("Invalid mobile number");
+          // }
         } else {
           this.alertUtils.showToast(this.alertUtils.ERROR_MES);
         }
@@ -681,6 +695,7 @@ export class SignUp {
         "longitude": this.userLatlng.lng,
         "assigned": "no",
         "mobiletype": MOBILE_TYPE,
+        "country": this.country,
         "framework": FRAMEWORK
       }
     };

@@ -3,9 +3,13 @@
     "PAGE_TITLE": "Enter mobile number to verify your identity during signup!",
     "BUTTONS": {
       "btn_continue": "Continue",
-      "btn_skip": "Skip"
+      "btn_skip": "Skip",
+      "btn_singup": "Signup",
+      "btn_cancel": "Cancel"
     },
     "LABELS": {
+      "lb_lng": "Select language",
+      "lb_welcome_text": "LET'S GET STARTED!",
       "lb_supp_code_title_1": "Got a code? ",
       "lb_supp_code_title_2": "Apply here",
       "lb_mobile_no_hint": "Mobile Number",
@@ -35,6 +39,10 @@
       "btn_login_in": "LOG IN"
     },
     "LABELS": {
+      "lb_country":"Select Country",
+      "lb_privacy_1": "I have read and agreed to the CarWash",
+      "lb_privacy_2": "terms & conditions",
+      "lb_privacy_3": "privacy policy",
       "lb_mobile_no_hint": "Mobile Number",
       "lb_pwd_hint": "OTP",
       "lb_name_hint": "Name",
@@ -95,6 +103,7 @@
       "btn_rate_us": "Rate Us",
       "btn_about_us": "About Us",
       "btn_customer_care": "Customer Care",
+      "btn_whatsapp": "WhatsApp Support",
       "btn_log_out": "Log Out"
     }
   },
@@ -152,12 +161,18 @@
   },
   "MY_FEEDBACK_PAGE": {
     "PAGE_TITLE": "My Feedbacks",
+    "PAGE_TITLE_2": "SEND FEEDBACK",
     "BUTTONS": {
+      "btn_submit": "Submit",
+      "btn_cancel": "Cancel",
       "btn_new": "New",
       "btn_Reply": "Reply"
     },
     "LABELS": {
-      "lb_no_record": "We'd love to get feedback from you on our app, please add more details as much as you can."
+      "lb_no_record": "We'd love to get feedback from you on our app, please add more details as much as you can.",
+      "lb_content": "We value your feedback and welcome any comments you may have to help improve our programs and services.",
+      "lb_subject": "Subject",
+      "lb_mesg": "Message"
     }
   },
   "PLACE_AN_ORDER_PAGE": {
@@ -189,7 +204,8 @@
   "MAP_PAGE": {
     "PAGE_TITLE": "Pick location",
     "BUTTONS": {
-      "btn_confirm_loc": "Confirm Location"
+      "btn_confirm_loc": "Confirm Location",
+      "btn_continue": "Continue"
     }
   },
   "MY_ORDERS_PAGE": {
@@ -200,7 +216,9 @@
       "btn_cancle_order": "Cancel Order",
       "btn_call_us": "Call Us",
       "btn_raise_complain": "Raise a Complaint",
-      "btn_reorder": "Re-Order"
+      "btn_reorder": "Re-Order",
+      "btn_track_order": "Track Orders",
+      "btn_show_comments": "Show Comments"
     },
     "LABELS": {
       "lb_empty_msg_1": "Seems like you haven't placed any order",
@@ -289,6 +307,7 @@
       "btn_cancel": "Cancel"
     },
     "LABELS": {
+      "lb_price": "Price",
       "lb_order_id": "Job Id",
       "lb_amt": "Amount",
       "lb_qty": "Quantity",
@@ -358,11 +377,38 @@
   "RAISE_COMPLAIN_PAGE": {
     "PAGE_TITLE": "Raise Complain",
     "BUTTONS": {
-      "btn_done": "Done"
+      "btn_done": "Done",
+      "btn_close": "Close",
+      "btn_send": "Send"
     },
     "LABELS": {
       "lb_msg_1": "Can you please put down your concern below:",
       "lb_after_send_msg": "Thank You for reaching out to this. We apologize to hear that you are facing issues with the delivery. We promise to get back to you on this soon."
+    }
+  },
+  "CANCEL_ORDER_PAGE": {
+    "PAGE_TITLE": "Cancel Order",
+    "BUTTONS": {
+      "btn_update": "UPDATE"
+    },
+    "LABELS": {
+      "lb_1": "I have got this order done by others",
+      "lb_2": "I have ordered this by mistake",
+      "lb_3": "I have changed my plans for the order",
+      "lb_4": "Other"
+    }
+  },
+  "MY_RIDES_PAGE": {
+    "PAGE_TITLE": "My Rides",
+    "BUTTONS": {
+      "btn_done": "Done"
+    },
+    "LABELS": {
+      "lb_year": "Year",
+      "lb_plate_info": "Plate Information:",
+      "lb_city": "City:",
+      "lb_plate_no": "Plate Number:",
+      "lb_plate_code": "Plate Code:"
     }
   }
 }

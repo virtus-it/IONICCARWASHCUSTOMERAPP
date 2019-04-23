@@ -23,47 +23,26 @@
     <ion-row>
 
       <ion-card col class="no_bg no_shadow login_fields">
-        <span class="justify welcome_text">LET'S GET STARTED!</span>
+        <span class="justify welcome_text">{{ 'WELCOME_PAGE.LABELS.lb_welcome_text' | translate }}</span>
 
-        <ion-item class="no_bg input_container" hidden>
-          <ion-label floating>{{ 'WELCOME_PAGE.LABELS.lb_mobile_no_hint' | translate }}</ion-label>
-          <ion-input class="usr_namefeild" pattern="[0-9]*" type="tel" maxlength="10" minlength="10" [(ngModel)]="mobileNumber"
-            required></ion-input>
-        </ion-item>
-        <ion-row *ngIf="!showSupplierCode" margin-top="10px" hidden>
-          <span (click)="showSupplier()">{{ 'WELCOME_PAGE.LABELS.lb_supp_code_title_1' | translate }}
-            <span class="primary">{{ 'WELCOME_PAGE.LABELS.lb_supp_code_title_2' | translate }}</span></span>
-        </ion-row>
-        <ion-item class="no_bg input_container" *ngIf="showSupplierCode">
-          <ion-label floating>{{ 'WELCOME_PAGE.LABELS.lb_supp_code_hint' | translate }}
-          </ion-label>
-          <ion-input class="usr_namefeild" type="text" [(ngModel)]="discountCode"></ion-input>
-
-        </ion-item>
-        <div padding class="mgtop-10" hidden>
-          <button *ngIf="!showProgress" ion-button class="btn-lg" color="primary" block (click)="verifyMobileNo(mobileNumber)">
-            {{ 'WELCOME_PAGE.BUTTONS.btn_continue' | translate }}
-          </button>
-          <button *ngIf="showProgress" ion-button class="btn-lg" color="primary" block>
-            <ion-spinner *ngIf="showProgress" block name="dots" color="white"></ion-spinner>
-          </button>
-        </div>
         <div padding class="mgtop-10">
           <button *ngIf="!showProgress" ion-button class="btn-lg" color="primary" block (click)="signup()">
-            Signup
+            {{ 'WELCOME_PAGE.BUTTONS.btn_singup' | translate }}
           </button>
         </div>
 
         <p class="fs-20 center">OR</p>
-        <div padding hidden>
-          <button class="btn-lg bg-basic" ion-button color="light" block (click)="skip()">
-            {{ 'WELCOME_PAGE.BUTTONS.btn_skip' | translate }}
-          </button>
-        </div>
         <ion-item class="btn_signinCntnr no_bg">
           <div (click)="signIn()"><span class="font-fam">{{ 'WELCOME_PAGE.LABELS.lb_register_title_1' | translate }}
             </span> <span class="primary font-fam"> {{ 'WELCOME_PAGE.LABELS.lb_register_title_2' | translate }} </span>
           </div>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{ 'WELCOME_PAGE.LABELS.lb_lng' | translate }}</ion-label>
+          <ion-select [(ngModel)]="languageSelected" (ionChange)='setLanguage()' [cancelText]="'WELCOME_PAGE.BUTTONS.btn_cancel' | translate">
+            <ion-option *ngFor="let item of languages" [value]="item.code">{{item.name}}</ion-option>
+          </ion-select>
         </ion-item>
 
         <p class="p-terms mgtop-10">

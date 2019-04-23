@@ -72,8 +72,8 @@
             </span>
           </ion-col>
           <!--<ion-col col-2 align-items-end>-->
-            <!--<ion-badge item-end class="greencircle-style center  qty_delivered" icon-right="">{{item.quantity}}-->
-            <!--</ion-badge>-->
+          <!--<ion-badge item-end class="greencircle-style center  qty_delivered" icon-right="">{{item.quantity}}-->
+          <!--</ion-badge>-->
           <!--</ion-col>-->
         </ion-row>
 
@@ -143,9 +143,11 @@
         </ion-row>
 
         <ion-row class="no_padding mgleftright-2x3">
-          <ion-col class="col" *ngIf="item.orderstatus == 'Order Placed' || item.orderstatus == 'Assigned to supplier'">
+          <ion-col class="col" *ngIf="item.orderstatus == 'Order Placed' || item.orderstatus == 'Assigned To Service Engineer'">
             <ion-buttons>
-              <button ion-button class="btn-lg bg-info" (click)="showComments(item,i)">{{item.commentstext}}</button>
+              <button ion-button class="btn-lg bg-info" (click)="showComments(item,i)">{{'MY_ORDERS_PAGE.BUTTONS.btn_show_comments'
+                | translate }}
+              </button>
             </ion-buttons>
           </ion-col>
           <ion-col class="col">
@@ -157,13 +159,14 @@
           </ion-col>
         </ion-row>
         <!-- *ngIf="item.orderstatus == 'orderstarted'" -->
-          <ion-row class="no_padding mgleftright-2x3" >
-            <ion-col class="col">
-              <ion-buttons>
-                <button ion-button class="btn-lg" (click)="trackOrder(item)"> Track Order
-                </button>
-              </ion-buttons>
-            </ion-col>
+        <ion-row class="no_padding mgleftright-2x3" *ngIf="item.orderstatus == 'SE-On The Way'">
+          <ion-col class="col">
+            <ion-buttons>
+              <button ion-button class="btn-lg" (click)="trackOrder(item)"> {{
+                'MY_ORDERS_PAGE.BUTTONS.btn_track_order' | translate }}
+              </button>
+            </ion-buttons>
+          </ion-col>
         </ion-row>
         <div class="message-wrap" *ngIf="item.messages && item.showcommentsbox">
           <div *ngFor="let mes of (item.messages | slice:(item.messages.length - 3):item.messages.length)" class="message"

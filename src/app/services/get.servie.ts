@@ -10,9 +10,11 @@ export class GetService {
 
   private static DEVELOPMENT_URL = "http://192.168.1.50:2250/";
   private static TESTING_URL = "http://104.211.247.42:2250/";
+  private static DEMO_URL = "http://52.138.217.177:2250/";
   private static PRODUCTION_URL = "http://moya.online/";
   private static PAYTM_PRODUCTION_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=";
   private static PAYTM_DEVELOPMENT_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=";
+  public static TRACKING_URL = "http://52.138.217.177:1900";
 
   http: any;
   private baseUrl: String;

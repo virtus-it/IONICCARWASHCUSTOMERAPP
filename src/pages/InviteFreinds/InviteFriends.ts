@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { APP_TYPE, APP_USER_TYPE, RES_SUCCESS, Utils } from "../../app/services/Utils";
+import { APP_TYPE, APP_USER_TYPE, RES_SUCCESS, Utils, IS_WEBSITE } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
 import { Contacts } from "@ionic-native/contacts";
 import { ModalController, IonicPage } from "ionic-angular";
@@ -28,32 +28,19 @@ export class InviteFriends {
 
 
   constructor(private translateService: TranslateService, private socialSharing: SocialSharing, private apiService: GetService, private modalCtrl: ModalController, private alertUtils: Utils, private getService: GetService, private contacts: Contacts) {
-    translateService.setDefaultLang('en');
-    translateService.use('en');
-    // this.getTempleteTask();
+    let lang = "en";
+    if (Utils.lang) {
+      lang = Utils.lang
+    }
+    console.log(lang);
+    translateService.use(lang);
 
-    try {
-      this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-    } catch (e) {
-      this.alertUtils.showLog(e);
+
+    if (IS_WEBSITE) {
+      this.getTempleteTask();
     }
 
-  }
 
-  ionViewWillEnter() {
-    try {
-      this.tabBarElement.style.display = 'none';
-    } catch (e) {
-      this.alertUtils.showLog(e);
-    }
-  }
-
-  ionViewWillLeave() {
-    try {
-      this.tabBarElement.style.display = 'flex';
-    } catch (e) {
-      this.alertUtils.showLog(e);
-    }
   }
 
   ngOnInit() {

@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {AlertController, NavController, Platform, ViewController} from "ionic-angular";
+import { Component } from "@angular/core";
+import { AlertController, NavController, Platform, ViewController } from "ionic-angular";
 import {
   APP_TYPE,
   APP_USER_TYPE,
@@ -9,12 +9,13 @@ import {
   RES_SUCCESS,
   Utils
 } from "../../app/services/Utils";
-import {GetService} from "../../app/services/get.servie";
-import {Login} from "../LoginIn/Login";
-import {MapView} from "../MapView/MapView";
-import {Diagnostic} from "@ionic-native/diagnostic";
-import {AppRate} from "@ionic-native/app-rate";
-import {SignUp} from "../SignUp/SignUp";
+import { GetService } from "../../app/services/get.servie";
+import { Login } from "../LoginIn/Login";
+import { MapView } from "../MapView/MapView";
+import { Diagnostic } from "@ionic-native/diagnostic";
+import { AppRate } from "@ionic-native/app-rate";
+import { SignUp } from "../SignUp/SignUp";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'page-welcome',
@@ -33,8 +34,10 @@ export class WelcomePage {
   private dealerID = "0";
   private verCode = "6";
   private deviceCode: string;
+  languages = [{ name: "English", code: "en" }, { name: "Arabic", code: "ar" }];
+  languageSelected: any;
 
-  constructor(private diagnostic: Diagnostic, private navCtrl: NavController, public alertUtils: Utils, private apiService: GetService, private alertCtrl: AlertController, private viewCtrl: ViewController, private platform: Platform, private appRate: AppRate) {
+  constructor(private diagnostic: Diagnostic, private navCtrl: NavController, public alertUtils: Utils, private apiService: GetService, private alertCtrl: AlertController, private viewCtrl: ViewController, private platform: Platform, private appRate: AppRate, public translate: TranslateService) {
     this.alertUtils.showLog("WELCOME PAGE CONSTRUCTOR");
     this.platform.ready().then(ready => {
       try {
@@ -62,14 +65,31 @@ export class WelcomePage {
           this.alertUtils.showLog(err);
           this.appFirstCall();
         });
+
       } catch (e) {
         this.showScreen = true;
         this.alertUtils.showLog(e);
       }
     });
-
+    console.log("getDLang : " + this.translate.getDefaultLang())
   }
+  setLanguage() {
+    console.log(this.languageSelected)
+    let defaultLanguage = this.translate.getDefaultLang();
+    console.log("defaultLanguage : " + defaultLanguage);
+    if (this.languageSelected) {
+      this.translate.setDefaultLang(this.languageSelected);
+      this.translate.use(this.languageSelected);
+      this.alertUtils.setLang(this.languageSelected);
+      Utils.lang = this.languageSelected;
+    } else {
+      this.languageSelected = defaultLanguage;
+      this.translate.use(defaultLanguage);
+      this.alertUtils.setLang(defaultLanguage);
+      Utils.lang = defaultLanguage;
 
+    }
+  }
   showSupplier() {
     if (this.showSupplierCode) {
       this.showSupplierCode = false;
@@ -99,17 +119,17 @@ export class WelcomePage {
         this.dealerID = "0"
       }
       let input =
-        {
-          "root": {
-            "userid": this.userID,
-            "dealerid": this.dealerID,
-            "usertype": APP_USER_TYPE,
-            "appusertype": APP_USER_TYPE,
-            "apptype": APP_TYPE,
-            "mobiletype": MOBILE_TYPE,
-            "framework": FRAMEWORK
-          }
-        };
+      {
+        "root": {
+          "userid": this.userID,
+          "dealerid": this.dealerID,
+          "usertype": APP_USER_TYPE,
+          "appusertype": APP_USER_TYPE,
+          "apptype": APP_TYPE,
+          "mobiletype": MOBILE_TYPE,
+          "framework": FRAMEWORK
+        }
+      };
       if (this.deviceCode) {
         input.root["versionnumber"] = this.deviceCode;
       }
@@ -267,7 +287,7 @@ export class WelcomePage {
 
   signIn() {
     try {
-      this.navCtrl.push(Login, {items: "welcomepage"});
+      this.navCtrl.push(Login, { items: "welcomepage" });
     } catch (e) {
       this.alertUtils.showLog(e);
     }
@@ -430,7 +450,7 @@ export class WelcomePage {
     }
     Utils.sLog(data);
     /* if (discountCode && discountCode.toUpperCase() == 'LITGEN18') {
-
+  
        this.navCtrl.push('SimpledialogPage', data).then(next => {
          this.showProgress = false;
        });

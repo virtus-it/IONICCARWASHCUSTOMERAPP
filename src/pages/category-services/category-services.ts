@@ -3,12 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { GetService } from '../../app/services/get.servie';
 import { Utils, APP_USER_TYPE, APP_TYPE, RES_SUCCESS } from '../../app/services/Utils';
 
-/**
- * Generated class for the CategoryServicesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({

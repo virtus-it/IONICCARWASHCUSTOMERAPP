@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { GetService } from '../../app/services/get.servie';
 import { Utils, APP_TYPE } from '../../app/services/Utils';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -26,7 +27,14 @@ export class AddupdateridesPage {
   searchTerm: string = "";
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef, private viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef, private viewCtrl: ViewController,private translateService: TranslateService) {
+    let lang = "en";
+    if (Utils.lang) {
+      lang = Utils.lang
+    }
+    console.log(lang);
+    translateService.use(lang);
+    
     this.calledFrom = this.navParams.get("from");
     this.updateItem = this.navParams.get("updateitem");
     console.log(this.updateItem);

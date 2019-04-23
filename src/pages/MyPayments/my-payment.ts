@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
 import { App, NavController, NavParams, IonicPage } from "ionic-angular";
-import { APP_TYPE, APP_USER_TYPE, RES_SUCCESS, Utils } from "../../app/services/Utils";
+import { APP_TYPE, APP_USER_TYPE, RES_SUCCESS, Utils, IS_WEBSITE } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
 import { TabsPage } from "../tabs/tabs";
 import { TranslateService } from "@ngx-translate/core";
@@ -20,8 +20,13 @@ export class MyPaymentPage {
   private callFrom = "";
 
   constructor(private translateService: TranslateService, private ref: ChangeDetectorRef, public appCtrl: App, public navCtrl: NavController, public navParams: NavParams, private alertUtils: Utils, private getService: GetService) {
-    translateService.setDefaultLang('en');
-    translateService.use('en');
+    let lang = "en";
+    if (Utils.lang) {
+      lang = Utils.lang
+    }
+    console.log(lang);
+    translateService.use(lang);
+    
     try {
       this.alertUtils.getUserInfo().then(info => {
         if (info) {
@@ -36,11 +41,11 @@ export class MyPaymentPage {
 
     this.callFrom = this.navParams.get("callfrom");
     this.alertUtils.showLog(this.items);
-    // this.userID = "1891";
-    // this.dealerID = "289";
-    // this.fetchPaymentAmt(true, false, "");
-
-
+    if (IS_WEBSITE) {
+      this.userID = Utils.USER_INFO_DATA.userid;
+      this.dealerID = Utils.USER_INFO_DATA.superdealerid;
+      this.fetchPaymentAmt(true, false, "");
+    }
   }
 
   close() {

@@ -19,9 +19,18 @@ export class ProductsPage {
   productList: any;
   totalamt: number;
 
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private alertUtils: Utils) { }
   continue() {
-    this.closeModal();
+    let isProductSel = false;
+    for (let i = 0; i < this.productList.length; i++) {
+      const element = this.productList[i];
+      if (element.ischecked) {
+        isProductSel = true;
+      }
+    }
+    if (isProductSel)
+      this.closeModal();
+    else this.alertUtils.showToast("Please select atleast one service");
   }
   add(item) {
     item.ischecked = !item.ischecked;
@@ -43,7 +52,7 @@ export class ProductsPage {
       }
     }
   }
-  changeImage(item){
+  changeImage(item) {
     item.imgurl = "http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png";
   }
   ngOnInit() {

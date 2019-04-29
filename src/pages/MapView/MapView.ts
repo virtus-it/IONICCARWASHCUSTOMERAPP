@@ -298,7 +298,7 @@ export class MapView {
     }
 
   }
-  changeImage(item){
+  changeImage(item) {
     item.imgurl = "http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png";
   }
 
@@ -506,11 +506,26 @@ export class MapView {
         this.userLatLng = new LatLng(0.0, 0.0);
       }
     }
+
+
+
     try {
       if (!Utils.productsList && Utils.productsList == undefined || Utils.productsList == null || Utils.productsList.length == 0) {
         this.alertUtils.showToast("Please select at least one service");
         return false;
       }
+      let isProductSel = false;
+      for (let i = 0; i < Utils.productsList.length; i++) {
+        const element = Utils.productsList[i];
+        if (element.ischecked) {
+          isProductSel = true;
+        }
+      }
+      if (!isProductSel){
+        this.alertUtils.showToast("Please select atleast one service");
+        return false;
+      }
+
       if (this.rides && this.rides.length > 0) {
         console.log("active ride index : " + this.slides.getActiveIndex());
         Utils.rideSelected = this.rides[this.slides.getActiveIndex()];

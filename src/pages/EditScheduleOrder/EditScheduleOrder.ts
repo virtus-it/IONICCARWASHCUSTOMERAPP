@@ -79,9 +79,9 @@ export class EditScheduleOrderPage {
     try {
       translateService.setDefaultLang('en');
       translateService.use('en');
-   //   this.userID = "1914";
-     // this.dealerID = "289";
-      //this.getData();
+     this.userID = "5";
+     this.dealerID = "289";
+      this.getData();
       this.calledfrom = this.param.get('from');
       if (this.calledfrom == "edit") {
         this.pageTitle = "Update Schedule";

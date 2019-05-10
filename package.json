@@ -28,7 +28,6 @@
     "@ionic-native/core": "4.4.0",
     "@ionic-native/device": "^4.6.0",
     "@ionic-native/diagnostic": "^4.4.2",
-    "@ionic-native/facebook": "^4.5.3",
     "@ionic-native/geolocation": "^4.4.2",
     "@ionic-native/google-maps": "^4.4.2",
     "@ionic-native/keyboard": "^4.10.0",
@@ -54,7 +53,6 @@
     "cordova-plugin-contacts": "^3.0.1",
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-dialogs": "^1.3.4",
-    "cordova-plugin-facebook4": "^1.9.1",
     "cordova-plugin-geolocation": "^3.0.0",
     "cordova-plugin-globalization": "^1.0.8",
     "cordova-plugin-googlemaps": "2.0.0",
@@ -63,7 +61,6 @@
     "cordova-plugin-nativegeocoder": "^2.0.4",
     "cordova-plugin-nativestorage": "^2.2.2",
     "cordova-plugin-network-information": "^1.3.4",
-    "cordova-plugin-paytm": "0.0.5",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.1",
     "cordova-plugin-whitelist": "^1.3.1",
@@ -75,6 +72,7 @@
     "ionicons": "3.0.0",
     "moment": "^2.19.2",
     "mx.ferreyra.callnumber": "~0.0.2",
+    "ng-socket-io": "^0.2.4",
     "phonegap-plugin-push": "^2.2.2",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
@@ -117,16 +115,7 @@
         "FCM_VERSION": "11.0.1",
         "SENDER_ID": "530358294125"
       },
-      "cordova-plugin-facebook4": {
-        "APP_ID": "1539281006192787",
-        "APP_NAME": "Moya - The Water Man"
-      },
-      "cordova-plugin-x-socialsharing": {},
-      "cordova-plugin-paytm": {
-        "MERCHANT_ID": "dummyS79577994716430",
-        "INDUSTRY_TYPE_ID": "Retail",
-        "WEBSITE": "APPSTAGING"
-      }
+      "cordova-plugin-x-socialsharing": {}
     },
     "platforms": [
       "android"

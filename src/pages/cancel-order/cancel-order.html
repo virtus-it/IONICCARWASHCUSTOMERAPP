@@ -7,7 +7,7 @@
     </ion-buttons>
     <ion-title>
       <img src="assets/imgs/header_icon.png" class="header_icon">
-      <span class="title-style"> Cancel Order</span>
+      <span class="title-style"> {{ 'CANCEL_ORDER_PAGE.PAGE_TITLE' | translate }}</span>
     </ion-title>
   </ion-navbar>
 
@@ -18,19 +18,19 @@
 
   <ion-list radio-group [(ngModel)]="cancelList">
     <ion-item>
-      <ion-label>I have got this order done by others</ion-label>
+      <ion-label>{{ 'CANCEL_ORDER_PAGE.LABELS.lb_1' | translate }}</ion-label>
       <ion-radio value="I have got this order done by others" checked></ion-radio>
     </ion-item>
     <ion-item>
-      <ion-label>I have ordered this by mistake</ion-label>
+      <ion-label>{{ 'CANCEL_ORDER_PAGE.LABELS.lb_2' | translate }}</ion-label>
       <ion-radio value="I have ordered this by mistake"></ion-radio>
     </ion-item>
     <ion-item>
-      <ion-label>I have changed my plans for the order</ion-label>
+      <ion-label>{{ 'CANCEL_ORDER_PAGE.LABELS.lb_3' | translate }}</ion-label>
       <ion-radio value="I have changed my plans for the order"></ion-radio>
     </ion-item>
     <ion-item>
-      <ion-label>Other</ion-label>
+      <ion-label>{{ 'CANCEL_ORDER_PAGE.LABELS.lb_4' | translate }}</ion-label>
       <ion-radio value="other"></ion-radio>
     </ion-item>
     <ion-item *ngIf="cancelList =='other'" class="mgtop-10">
@@ -41,7 +41,7 @@
 </ion-content>
 <ion-footer>
   <ion-buttons>
-    <button ion-button full (click)="update()">UPDATE</button>
+    <button ion-button full (click)="update()">{{ 'CANCEL_ORDER_PAGE.BUTTONS.btn_update' | translate }}</button>
   </ion-buttons>
 
 </ion-footer>

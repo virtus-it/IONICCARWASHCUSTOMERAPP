@@ -3,7 +3,9 @@ import {AlertController, App, NavController} from "ionic-angular";
 import {AppRate} from "@ionic-native/app-rate";
 import {APP_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, TRY_AGAIN_ERR_MSG, Utils} from "../../app/services/Utils";
 import {GetService} from "../../app/services/get.servie";
-import {WelcomePage} from "../WelcomePage/Welcome";
+import { WelcomePage } from "../WelcomePage/Welcome";
+import {SocialSharing} from "@ionic-native/social-sharing";
+import { TranslateService } from "@ngx-translate/core";
 
 
 @Component({
@@ -11,8 +13,9 @@ import {WelcomePage} from "../WelcomePage/Welcome";
   templateUrl: 'contact.html'
 })
 export class ContactPage {
-
-  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public alertUtils: Utils, private getService: GetService, private appRate: AppRate, private appCtrl: App) {
+  languages = [{ name: "English", code: "en" }, { name: "Arabic", code: "ar" }];
+  languageSelected: any;
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public alertUtils: Utils, private getService: GetService, private appRate: AppRate, private appCtrl: App,private socialSharing: SocialSharing,public translate: TranslateService) {
 
 
   }
@@ -37,7 +40,7 @@ export class ContactPage {
     this.getData();
   }
 
-  
+
   getData() {
     try {
       this.alertUtils.showLoading();
@@ -46,21 +49,7 @@ export class ContactPage {
         this.alertUtils.showLog(res);
         if (res.result == RES_SUCCESS) {
           if (res.data) {
-            if (res.data.user.stock) {
-              let emptyCansArray = [];
-              for (let i = 0; i < res.data.user.stock.length; i++) {
-                if (res.data.user.stock[i].avaliablecans != 0) {
-                  if (res.data.user.stock[i].avaliablecans < 0) {
-                    res.data.user.stock[i]["cancolor"] = "danger";
-                    var str = res.data.user.stock[i].avaliablecans.toString();
-                    res.data.user.stock[i].avaliablecans = str.replace("-", "");
-                  }
-                  emptyCansArray.push(res.data.user.stock[i]);
-                }
-
-              }
-              res.data.user["cansarray"] = emptyCansArray;
-            }
+            
             this.navCtrl.push('MyProfile', {
               items: res.data
             })
@@ -79,9 +68,10 @@ export class ContactPage {
   }
 
   myPoints() {
-    this.navCtrl.push('PointsPage', {
-      items: "myaccount"
-    })
+    // this.navCtrl.push('PointsPage', {
+    //   items: "myaccount"
+    // })
+    this.socialSharing.shareViaWhatsAppToReceiver("+919121642009","Hi");
   }
 
   mySchedules() {
@@ -108,7 +98,7 @@ export class ContactPage {
   customerCareDialog() {
     let alert = this.alertCtrl.create({
       title: "CUSTOMER CARE",
-      message: "Our Customer service offers a variety of customer care and customer support options to help you in every possible manner. \n Office timing : 09:30AM - 06:30PM IST \n\n Customer care number : 9863636314/15",
+      message: "Our Customer service offers a variety of customer care and customer support options to help you in every possible manner. \n Office timing : 09:30AM - 06:30PM IST \n\n Customer care number : 9121642009",
       buttons: [
         {
           text: "CLOSE",
@@ -118,7 +108,7 @@ export class ContactPage {
         {
           text: "CALL NOW",
           handler: () => {
-            this.alertUtils.callNumber("9863636315");
+            this.alertUtils.callNumber("9121642009");
           }
         }
       ]
@@ -185,6 +175,24 @@ export class ContactPage {
     } catch (e) {
       this.alertUtils.showLog(e);
       this.alertUtils.showToast("Unable to logout please try again");
+    }
+  }
+
+  setLanguage() {
+    console.log(this.languageSelected)
+    let defaultLanguage = this.translate.getDefaultLang();
+    console.log("defaultLanguage : " + defaultLanguage);
+    if (this.languageSelected) {
+      this.translate.setDefaultLang(this.languageSelected);
+      this.translate.use(this.languageSelected);
+      this.alertUtils.setLang(this.languageSelected);
+      Utils.lang = this.languageSelected;
+    } else {
+      this.languageSelected = defaultLanguage;
+      this.translate.use(defaultLanguage);
+      this.alertUtils.setLang(defaultLanguage);
+      Utils.lang = defaultLanguage;
+
     }
   }
 }

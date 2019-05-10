@@ -10,7 +10,6 @@ import {
   Utils
 } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
-import { TabsPage } from "../tabs/tabs";
 import { MapView } from "../MapView/MapView";
 
 
@@ -98,8 +97,8 @@ export class Login {
   logIn() {
     try {
       if (this.mobileNumber) {
-        if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", 10, 10)) {
-          if (!this.alertUtils.isValidMobile(this.mobileNumber)) {
+        if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", 9, 10)) {
+          // if (!this.alertUtils.isValidMobile(this.mobileNumber)) {
             if (this.password) {
               if (this.password.length > 4 && this.password.length <= 20) {
                 let input = {
@@ -206,9 +205,9 @@ export class Login {
                 this.alertUtils.showToast("min 4 max 20 characters allowed in password");
             } else
               this.alertUtils.showToast("Please enter password");
-          } else {
-            this.alertUtils.showToast("Invalid mobile number");
-          }
+          // } else {
+          //   this.alertUtils.showToast("Invalid mobile number");
+          // }
         } else {
           this.alertUtils.showToast(this.alertUtils.ERROR_MES);
         }
@@ -258,7 +257,7 @@ export class Login {
           name: 'mobileno',
           placeholder: 'Mobile number',
           type: 'tel',
-          min: 10,
+          min: 9,
           max: 10,
           value: this.mobileNumber
 

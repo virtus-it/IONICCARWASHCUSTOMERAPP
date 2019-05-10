@@ -40,7 +40,6 @@
         <ion-list *ngIf="item.reply">
           <ion-item *ngFor="let reply of item.reply ; let i = index">
             <ion-item *ngIf="reply.userid && reply.createdby.userid != userID" class="feed_admin_reply">
-              <!--<span><img src="assets/imgs/img_noproduct.png"></span>-->
               <div>
                 <p class=" primary" *ngIf="reply.createdby.lastname"> {{ reply.createdby.firstname +" "+
                   reply.createdby.lastname}} <span class="gray9 " float-right>{{reply.createddate | slice:0:10 }} </span></p>

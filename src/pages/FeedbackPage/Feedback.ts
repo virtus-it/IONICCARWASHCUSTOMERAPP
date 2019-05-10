@@ -1,8 +1,8 @@
-import {Component} from "@angular/core";
-import {APP_TYPE, APP_USER_TYPE, RES_SUCCESS, Utils, INTERNET_ERR_MSG} from "../../app/services/Utils";
-import {GetService} from "../../app/services/get.servie";
-import {AlertController, IonicPage, ModalController} from "ionic-angular";
-import {TranslateService} from "@ngx-translate/core";
+import { Component } from "@angular/core";
+import { APP_TYPE, APP_USER_TYPE, RES_SUCCESS, Utils, INTERNET_ERR_MSG, IS_WEBSITE } from "../../app/services/Utils";
+import { GetService } from "../../app/services/get.servie";
+import { AlertController, IonicPage, ModalController } from "ionic-angular";
+import { TranslateService } from "@ngx-translate/core";
 @IonicPage()
 @Component({
   templateUrl: 'Feedback.html',
@@ -19,13 +19,21 @@ export class Feedback {
   private noRecords = false;
 
   constructor(private translateService: TranslateService, private alertUtils: Utils, private getService: GetService, private alertCtrl: AlertController, public modalCtrl: ModalController) {
-    translateService.setDefaultLang('en');
-    translateService.use('en');
+    let lang = "en";
+    if (Utils.lang) {
+      lang = Utils.lang
+    }
+    console.log(lang);
+    translateService.use(lang);
 
-    // this.userID = "1891";
-    // this.dealerID = "289";
-    // this.feedback(true, false, "");
-    
+    if (IS_WEBSITE) {
+      this.userID = Utils.USER_INFO_DATA.userid;
+      this.dealerID = Utils.USER_INFO_DATA.superdealerid;
+      this.feedback(true, false, "");
+    }
+
+
+
   }
 
 
@@ -260,8 +268,8 @@ export class Feedback {
 
   createFeedback() {
     //var modalPage = this.modalCtrl.create('ModalPage');
-   // modalPage.present();
-   let  model = this.modalCtrl.create('ModalPage',[], {
+    // modalPage.present();
+    let model = this.modalCtrl.create('ModalPage', [], {
       showBackdrop: true,
       enableBackdropDismiss: true,
       cssClass: 'editFeedback'

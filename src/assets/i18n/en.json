@@ -3,9 +3,13 @@
     "PAGE_TITLE": "Enter mobile number to verify your identity during signup!",
     "BUTTONS": {
       "btn_continue": "Continue",
-      "btn_skip": "Skip"
+      "btn_skip": "Skip",
+      "btn_singup": "Signup",
+      "btn_cancel": "Cancel"
     },
     "LABELS": {
+      "lb_lng": "Select language",
+      "lb_welcome_text": "LET'S GET STARTED!",
       "lb_supp_code_title_1": "Got a code? ",
       "lb_supp_code_title_2": "Apply here",
       "lb_mobile_no_hint": "Mobile Number",
@@ -35,6 +39,10 @@
       "btn_login_in": "LOG IN"
     },
     "LABELS": {
+      "lb_country":"Select Country",
+      "lb_privacy_1": "I have read and agreed to the CarWash",
+      "lb_privacy_2": "terms & conditions",
+      "lb_privacy_3": "privacy policy",
       "lb_mobile_no_hint": "Mobile Number",
       "lb_pwd_hint": "OTP",
       "lb_name_hint": "Name",
@@ -53,10 +61,10 @@
     "LABELS": {
       "lb_build_version_title": "Build Version",
       "lb_about_title": "About",
-      "lb_about_content_1": "Moya - The water man is on demand drinking water delivery service that connects you to the distributor in your neighbourhood. Our aim is to provide a hassle free drinking water supply at your residences, offices, shops and parties. The app can be used to place an order by simple click of a button.",
-      "lb_about_content_2": "You can shop from different brands of drinking water. The app provides easy mode of payment - COD,Online payments or monthly payments. It allows you to schedule the time of delivery.It is hereby clarified that Moya-The Water Man doesn't sell products of their brand nor has their own deliverysystem. They just bring you in contact with the water distributor and take at most responsibility for delivery to happen at your doorstep.",
-      "lb_about_content_3": " Moya is powered by Virtus-IT, a UK based software company with company number 06810018, whose registered office is at Sterling House, 20 Station Road, Gerrards Cross, Bucks SL9 8EL, United Kingdom and any subsidiaries and affiliates of Virtus IT Limited, including but not limited to Virtus IT India Private Our business focuses on mobile based ERP solutions to enhance or rather technologies various businesses especially on the mobile platform,IoT, Bigdata, Salesforce and other latest technologies.",
-      "lb_about_content_4": " For business related queries or any other concern, please contact us at 9863636314/15 or write us  to sales@virtus-it.com",
+      "lb_about_content_1": "CarWash - The water man is on demand drinking water delivery service that connects you to the distributor in your neighbourhood. Our aim is to provide a hassle free drinking water supply at your residences, offices, shops and parties. The app can be used to place an order by simple click of a button.",
+      "lb_about_content_2": "You can shop from different brands of drinking water. The app provides easy mode of payment - COD,Online payments or monthly payments. It allows you to schedule the time of delivery.It is hereby clarified that CarWash-The Water Man doesn't sell products of their brand nor has their own deliverysystem. They just bring you in contact with the water distributor and take at most responsibility for delivery to happen at your doorstep.",
+      "lb_about_content_3": " CarWash is powered by Virtus-IT, a UK based software company with company number 06810018, whose registered office is at Sterling House, 20 Station Road, Gerrards Cross, Bucks SL9 8EL, United Kingdom and any subsidiaries and affiliates of Virtus IT Limited, including but not limited to Virtus IT India Private Our business focuses on mobile based ERP solutions to enhance or rather technologies various businesses especially on the mobile platform,IoT, Bigdata, Salesforce and other latest technologies.",
+      "lb_about_content_4": " For business related queries or any other concern, please contact us at 9121642009 or write us  to sales@virtus-it.com",
       "lb_terms": "terms and conditions",
       "lb_privacy": "privacy policy"
     }
@@ -78,7 +86,7 @@
       "lb_slot_3": "2PM-5PM",
       "lb_slot_4": "5PM-8PM",
       "lb_qty": "Qty",
-      "lb_product_name": "Product Name",
+      "lb_product_name": "Service Name",
       "lb_price": "Price",
       "lb_total_cost": "Total Amount: ",
       "lb_total_item": "Total Item: "
@@ -95,6 +103,7 @@
       "btn_rate_us": "Rate Us",
       "btn_about_us": "About Us",
       "btn_customer_care": "Customer Care",
+      "btn_whatsapp": "WhatsApp Support",
       "btn_log_out": "Log Out"
     }
   },
@@ -104,7 +113,7 @@
       "btn_confirm": "Confirm"
     },
     "LABELS": {
-      "lb_select_product": "Select Product *",
+      "lb_select_product": "Select Service *",
       "lb_qty": "Quantity *",
       "lb_schedule_type": "Schedule type *",
       "lb_weekdays": "Week Days",
@@ -152,12 +161,18 @@
   },
   "MY_FEEDBACK_PAGE": {
     "PAGE_TITLE": "My Feedbacks",
+    "PAGE_TITLE_2": "SEND FEEDBACK",
     "BUTTONS": {
+      "btn_submit": "Submit",
+      "btn_cancel": "Cancel",
       "btn_new": "New",
       "btn_Reply": "Reply"
     },
     "LABELS": {
-      "lb_no_record": "We'd love to get feedback from you on our app, please add more details as much as you can."
+      "lb_no_record": "We'd love to get feedback from you on our app, please add more details as much as you can.",
+      "lb_content": "We value your feedback and welcome any comments you may have to help improve our programs and services.",
+      "lb_subject": "Subject",
+      "lb_mesg": "Message"
     }
   },
   "PLACE_AN_ORDER_PAGE": {
@@ -189,7 +204,8 @@
   "MAP_PAGE": {
     "PAGE_TITLE": "Pick location",
     "BUTTONS": {
-      "btn_confirm_loc": "Confirm Location"
+      "btn_confirm_loc": "Confirm Location",
+      "btn_continue": "Continue"
     }
   },
   "MY_ORDERS_PAGE": {
@@ -200,7 +216,9 @@
       "btn_cancle_order": "Cancel Order",
       "btn_call_us": "Call Us",
       "btn_raise_complain": "Raise a Complaint",
-      "btn_reorder": "Re-Order"
+      "btn_reorder": "Re-Order",
+      "btn_track_order": "Track Orders",
+      "btn_show_comments": "Show Comments"
     },
     "LABELS": {
       "lb_empty_msg_1": "Seems like you haven't placed any order",
@@ -208,10 +226,10 @@
       "lb_previos_order": "Your previous order was",
       "lb_exptd_time": "Expected Time : ",
       "lb_card_id": "Cart Id",
-      "lb_order_id": "Order Id",
-      "lb_order_status": "Order Status",
+      "lb_order_id": "Job Id",
+      "lb_order_status": "Job Status",
       "lb_last_action": "Last Action",
-      "lb_order_placed": "ORDER PLACED",
+      "lb_order_placed": "Job PLACED",
       "lb_recv_order": "We have received your order",
       "lb_on_the_way": "ON THE WAY",
       "lb_order_dispatched": "Your order has been dispatched ",
@@ -258,7 +276,7 @@
       "lb_pen_amt": "Pending Amt",
       "lb_cans": "# of cans with you",
       "lb_no_cans": "# no cans with you",
-      "lb_prod_name": "Product Name",
+      "lb_prod_name": "Service Name",
       "lb_empty_cans": "Empty Cans"
     }
   },
@@ -276,33 +294,34 @@
       "lb_thanks_msg": "Thank you for your order!",
       "lb_delivery_address": "Delivery Address",
       "lb_qty": "Qty",
-      "lb_product_name": "Product Name",
+      "lb_product_name": "Service Name",
       "lb_price": "Price",
       "lb_total_item": "Total Item:",
       "lb_total_amt": "Total Amount:"
     }
   },
   "ORDER_DETAILS_PAGE": {
-    "PAGE_TITLE": "Order Details",
+    "PAGE_TITLE": "Job Details",
     "BUTTONS": {
       "btn_done": "Done",
       "btn_cancel": "Cancel"
     },
     "LABELS": {
-      "lb_order_id": "Order Id",
+      "lb_price": "Price",
+      "lb_order_id": "Job Id",
       "lb_amt": "Amount",
       "lb_qty": "Quantity",
-      "lb_product_name": "Product Name",
+      "lb_product_name": "Service Name",
       "lb_del_time": "Delivery Time",
-      "lb_order_staus_head": "ORDER STATUS",
+      "lb_order_staus_head": "JOB STATUS",
       "lb_created": "Created",
       "lb_assigned": "Assigned",
       "lb_completed": "Completed",
       "lb_ordered": "Ordered",
       "lb_delivered": "Delivered",
       "lb_return": "Return",
-      "lb_supplier_details": "SUPPLIER DETAILS",
-      "lb_dealer_details": " DEALER DETAILS",
+      "lb_supplier_details": "SERVICE ENGINEER DETAILS",
+      "lb_dealer_details": " VENDOR DETAILS",
       "lb_order_msg": "ORDER MESSAGES",
       "lb_send_msg": "Send Message"
     }
@@ -316,10 +335,10 @@
       "btn_apply": "Apply"
     },
     "LABELS": {
-      "lb_order_summary": "ORDER SUMMARY",
+      "lb_order_summary": "JOB SUMMARY",
       "lb_price_head": "Price",
       "lb_qty_head": "Qty",
-      "lb_product_name_head": "Product Name",
+      "lb_product_name_head": "Service Name",
       "lb_service_tax": "Service Tax",
       "lb_inc": "Inclusive",
       "lb_shipping_serice": "Shipping & Services",
@@ -358,11 +377,38 @@
   "RAISE_COMPLAIN_PAGE": {
     "PAGE_TITLE": "Raise Complain",
     "BUTTONS": {
-      "btn_done": "Done"
+      "btn_done": "Done",
+      "btn_close": "Close",
+      "btn_send": "Send"
     },
     "LABELS": {
       "lb_msg_1": "Can you please put down your concern below:",
       "lb_after_send_msg": "Thank You for reaching out to this. We apologize to hear that you are facing issues with the delivery. We promise to get back to you on this soon."
+    }
+  },
+  "CANCEL_ORDER_PAGE": {
+    "PAGE_TITLE": "Cancel Order",
+    "BUTTONS": {
+      "btn_update": "UPDATE"
+    },
+    "LABELS": {
+      "lb_1": "I have got this order done by others",
+      "lb_2": "I have ordered this by mistake",
+      "lb_3": "I have changed my plans for the order",
+      "lb_4": "Other"
+    }
+  },
+  "MY_RIDES_PAGE": {
+    "PAGE_TITLE": "My Rides",
+    "BUTTONS": {
+      "btn_done": "Done"
+    },
+    "LABELS": {
+      "lb_year": "Year",
+      "lb_plate_info": "Plate Information:",
+      "lb_city": "City:",
+      "lb_plate_no": "Plate Number:",
+      "lb_plate_code": "Plate Code:"
     }
   }
 }

@@ -1,8 +1,8 @@
-import {ChangeDetectorRef, Component, ElementRef, ViewChild} from "@angular/core";
-import {GetService} from "../../app/services/get.servie";
-import {ModalController, NavController, NavParams, Platform, Slides, ViewController} from "ionic-angular";
-import {Geolocation} from "@ionic-native/geolocation";
-import {GoogleMap, GoogleMaps, GoogleMapsEvent, ILatLng, LatLng, LatLngBounds} from "@ionic-native/google-maps";
+import { ChangeDetectorRef, Component, ElementRef, ViewChild } from "@angular/core";
+import { GetService } from "../../app/services/get.servie";
+import { ModalController, NavController, NavParams, Platform, Slides, ViewController } from "ionic-angular";
+import { Geolocation } from "@ionic-native/geolocation";
+import { GoogleMap, GoogleMaps, GoogleMapsEvent, ILatLng, LatLng, LatLngBounds } from "@ionic-native/google-maps";
 import {
   APP_TYPE,
   APP_USER_TYPE,
@@ -10,12 +10,13 @@ import {
   INTERNET_ERR_MSG,
   IS_WEBSITE,
   MOBILE_TYPE,
-  Utils
+  Utils,
+  RES_SUCCESS
 } from "../../app/services/Utils";
-import {ProductsPage} from "../ProductsPage/ProductsPage";
-import {Diagnostic} from "@ionic-native/diagnostic";
-import {SignUp} from "../SignUp/SignUp";
-import {ConfirmOrder} from "../ConfirmOrderPage/ConfirmOrderPage";
+import { Diagnostic } from "@ionic-native/diagnostic";
+import { SignUp } from "../SignUp/SignUp";
+import { ConfirmOrder } from "../ConfirmOrderPage/ConfirmOrderPage";
+import { DatePicker } from '@ionic-native/date-picker';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class MapView {
   referCode: string = "";
   @ViewChild('map') mapElement: ElementRef;
   map: GoogleMap;
-  userAddr: any;
+  userAddr: string = "";
   landMark: any;
   buildingname: any;
   latitude: number = 0;
@@ -48,16 +49,15 @@ export class MapView {
   private items: any;
   private calledFrom: string = "";
   private showMap: boolean = true;
+  list = [];
 
-  constructor(private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams) {
+  constructor(private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams, private datePicker: DatePicker) {
     platform.ready().then(() => {
       try {
 
 
         this.calledFrom = this.param.get("from");
         console.log("Page came from :" + this.calledFrom);
-
-
         this.isExisting = this.param.get("isExisting");
         this.exMobileno = this.param.get("exMobileno");
         this.referCode = this.param.get("referCode");
@@ -97,19 +97,17 @@ export class MapView {
       } catch (e) {
         this.alertUtils.showLog(e);
       }
-      if (this.calledFrom == "myprofile") {
-        this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-      }
+
 
       if (IS_WEBSITE) {
-        this.getCategoryTask();
+        this.getData();
         this.fetchRides();
       }
 
       this.alertUtils.getUserInfo().then(user => {
         if (user) {
           Utils.USER_INFO_DATA = user;
-          this.getCategoryTask();
+          this.getData();
           this.fetchRides();
         }
 
@@ -118,12 +116,34 @@ export class MapView {
       });
 
 
+
     });
 
   }
+  openDatePicker() {
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'datetime',
+      minDate: new Date().valueOf(),
+      maxDate: new Date('01-01-' + (new Date().getFullYear() + 1)).valueOf(),
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+    }).then(
+      date => {
+        console.log('Got date: ', date)
+        Utils.datePicked = Utils.formatDateToDDMMYYYYHHMMSS(date);
+      }
+      , err => console.log('Error occurred while getting date: ', err)
+    ).catch(error => {
+      console.log('error date: ', error)
+    });
+  }
+
+  search() {
+    this.showAddressModal();
+  }
 
   addNewRide() {
-    let model = this.modalCtrl.create('AddupdateridesPage', {"from": "create"});
+    let model = this.modalCtrl.create('AddupdateridesPage', { "from": "create" });
     model.present();
     model.onDidDismiss(data => {
       if (data) {
@@ -157,68 +177,139 @@ export class MapView {
 
   showServices(item) {
     console.log(item);
-    let input = {
-      "root": {
-        "userid": Utils.USER_INFO_DATA.userid,
-        "usertype": "dealer",
-        "category": item.category,
-        "categoryid": item.categoryid,
-        "apptype": APP_TYPE
-      }
+
+    let model = this.modalCtrl.create('ProductsPage', { "category": item })
+    model.onDidDismiss(data => {
+      console.log("MapView");
+      console.log(Utils.productsList);
+    });
+    model.present();
+  }
+  // showServices(item) {
+  //   console.log(item);
+  //   let input = {
+  //     "root": {
+  //       "userid": Utils.USER_INFO_DATA.userid,
+  //       "usertype": "dealer",
+  //       "category": item.category,
+  //       "categoryid": item.categoryid,
+  //       "apptype": APP_TYPE
+  //     }
+  //   }
+
+  //   this.apiService.postReq(GetService.getProductsByCategory(), input).then(res => {
+  //     console.log(res);
+  //     if (res && res.data) {
+  //       Utils.categoryList = new Map<string, any>();
+
+  //       for (let i = 0; i < res.data.length; i++) {
+  //         // res.data[i]["count"] = 0;
+  //         res.data[i]["ischecked"] = false;
+
+  //       }
+  //       Utils.productsList = res.data;
+
+  //       // var result = this.groupBy(res.data, function (item) {
+  //       //   return [item.brandname, item.brandname];
+  //       // });
+
+  //       // console.log(result);
+
+  //       // for (let i = 0; i < result.length; i++) {
+  //       //   const element = result[i];
+
+  //       //   Utils.categoryList.set(element[0].brandname, element);
+
+  //       // }
+  //       // console.log( Utils.categoryList.keys());
+  //       // console.log( Utils.categoryList);
+  //       let model = this.modalCtrl.create('ProductsPage', { "category": item })
+  //       model.onDidDismiss(data => {
+  //         console.log("MapView");
+  //         console.log(Utils.productsList);
+  //         if (data) {
+
+  //         }
+  //       });
+  //       model.present();
+
+
+  //     } else {
+  //       this.alertUtils.showToast("No services found in this category");
+  //     }
+  //   })
+  // }
+
+  getData() {
+    try {
+      let input = {
+        "root": {
+          "userid": Utils.USER_INFO_DATA.superdealerid,
+          "dealerid": Utils.USER_INFO_DATA.superdealerid,
+          "distributorid": Utils.USER_INFO_DATA.superdealerid,
+          "usertype": APP_USER_TYPE,
+          "loginid": Utils.USER_INFO_DATA.userid,
+          "apptype": APP_TYPE,
+          "transtype": "getcategories"
+        }
+      };
+      let data = JSON.stringify(input);
+
+      this.apiService.postReq(this.apiService.getProductsByDistributerId(), data).then(res => {
+        this.alertUtils.showLog(res);
+        if (res.result == RES_SUCCESS) {
+          if (res.data) {
+            for (let i = 0; i < res.data.length; i++) {
+              // res.data[i]["count"] = 0;
+              res.data[i]["ischecked"] = false;
+              res.data[i]["imgurl"] = this.apiService.getImg() + "product_" + res.data[i].productid + ".png";
+
+
+            }
+            var result = Utils.groupByBrandName(res.data, function (item) {
+              return [item.categoryid, item.categoryid];
+            });
+
+            console.log(result);
+            var map = new Map<string, any>();
+            this.list = [];
+            for (let i = 0; i < result.length; i++) {
+              const element = result[i];
+              map.set(element[0].category, element);
+              this.list.push({ "category": element[0].category, "categoryid": element[0].categoryid, "imgurl": this.apiService.getImg() + "category_" + element[0].categoryid + ".png" })
+            }
+            Utils.categoryList = map;
+            console.log(Utils.categoryList.keys());
+            console.log(Utils.categoryList);
+            //this.list = Array.from(Utils.categoryList.keys());
+
+            console.log(this.list);
+            // this.item = this.list[0];
+            // console.log(this.item);
+
+          } else {
+            this.alertUtils.showToast("Found no products, please try again");
+          }
+        }
+      });
+    }
+    catch (e) {
+      this.alertUtils.showLog(e);
     }
 
-    this.apiService.postReq(GetService.getProductsByCategory(), input).then(res => {
-      console.log(res);
-      if (res && res.data) {
-        Utils.categoryList = new Map<string, any>();
-
-        for (let i = 0; i < res.data.length; i++) {
-          // res.data[i]["count"] = 0;
-          res.data[i]["ischecked"] = false;
-
-        }
-        Utils.productsList = res.data;
-
-        // var result = this.groupBy(res.data, function (item) {
-        //   return [item.brandname, item.brandname];
-        // });
-
-        // console.log(result);
-
-        // for (let i = 0; i < result.length; i++) {
-        //   const element = result[i];
-
-        //   Utils.categoryList.set(element[0].brandname, element);
-
-        // }
-        // console.log( Utils.categoryList.keys());
-        // console.log( Utils.categoryList);
-        let model = this.modalCtrl.create('ProductsPage', {"category": item})
-        model.onDidDismiss(data => {
-          console.log("MapView");
-          console.log(Utils.productsList);
-          if (data) {
-
-          }
-        });
-        model.present();
-
-
-      } else {
-        this.alertUtils.showToast("No services found in this category");
-      }
-    })
+  }
+  changeImage(item) {
+    item.imgurl = "http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png";
   }
 
-
-  getCategoryTask() {
-    this.apiService.getReq(GetService.getCategory(Utils.USER_INFO_DATA.superdealerid)).subscribe(res => {
-      console.log(res);
-      if (res && res.data) {
-        this.categoryData = res.data;
-      }
-    });
-  }
+  // getCategoryTask() {
+  //   this.apiService.getReq(GetService.getCategory(Utils.USER_INFO_DATA.superdealerid)).subscribe(res => {
+  //     console.log(res);
+  //     if (res && res.data) {
+  //       this.categoryData = res.data;
+  //     }
+  //   });
+  // }
 
   fetchRides() {
     let input = {
@@ -236,11 +327,7 @@ export class MapView {
     })
   }
 
-  ionViewWillEnter() {
-    if (this.calledFrom == "myprofile") {
-      this.tabBarElement.style.display = 'none';
-    }
-  }
+
 
 
   showAddressModal() {
@@ -260,13 +347,13 @@ export class MapView {
   geoCode(address: any) {
     try {
       let geocoder = new google.maps.Geocoder();
-      geocoder.geocode({'address': address}, (results, status) => {
+      geocoder.geocode({ 'address': address }, (results, status) => {
         this.latitude = results[0].geometry.location.lat();
         this.longitude = results[0].geometry.location.lng();
         if (this.latitude != 0 && this.longitude != 0) {
           let loc: LatLng;
           loc = new LatLng(this.latitude, this.longitude);
-          this.map.animateCamera({
+          this.map.moveCamera({
             target: loc,
             zoom: 17,
             tilt: 10,
@@ -288,7 +375,7 @@ export class MapView {
       this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
         this.geoLocation().then(res => {
           loc = new LatLng(res.coords.latitude, res.coords.longitude);
-          this.map.animateCamera({
+          this.map.moveCamera({
             target: loc,
             zoom: 17,
             tilt: 10,
@@ -313,32 +400,32 @@ export class MapView {
             lat: sub[0].target.lat,
             lng: sub[0].target.lng
           };
-          if (MapView.bounds.contains(pickLatLng)) {
-            this.showMap = true;
-            this.ref.detectChanges();
-            Utils.sLog("Inside the area");
-            loc = new LatLng(sub[0].target.lat, sub[0].target.lng);
-            this.userLatLng = loc;
-            this.alertUtils.showLog(JSON.stringify(this.userLatLng));
-            const url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + loc.lat + ',' + loc.lng + '&key=AIzaSyDoS0Blw09XR34phjQ4BGF6v8mpQ5E8aSM';
-            this.alertUtils.showLog(url);
-            this.getService.getReqForMap(url).subscribe(res => {
-              this.showProgress = false;
-              if (res.results && res.results[0] && res.results[0].formatted_address) {
-                this.alertUtils.showLog(JSON.stringify(res.results[0].formatted_address));
-                this.userAddr = res.results[0].formatted_address;
-                this.alertUtils.showLog(this.userAddr);
-                this.ref.detectChanges();
-              }
-            }, err => {
-              this.showProgress = false;
-              this.alertUtils.showToast(err);
-            });
-          } else {
-            Utils.sLog("Outside the area");
-            this.showMap = false;
-            this.ref.detectChanges();
-          }
+          // if (MapView.bounds.contains(pickLatLng)) {
+          this.showMap = true;
+          this.ref.detectChanges();
+          Utils.sLog("Inside the area");
+          loc = new LatLng(sub[0].target.lat, sub[0].target.lng);
+          this.userLatLng = loc;
+          this.alertUtils.showLog(JSON.stringify(this.userLatLng));
+          const url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + loc.lat + ',' + loc.lng + '&key=AIzaSyDoS0Blw09XR34phjQ4BGF6v8mpQ5E8aSM';
+          this.alertUtils.showLog(url);
+          this.getService.getReqForMap(url).subscribe(res => {
+            this.showProgress = false;
+            if (res.results && res.results[0] && res.results[0].formatted_address) {
+              this.alertUtils.showLog(JSON.stringify(res.results[0].formatted_address));
+              this.userAddr = res.results[0].formatted_address;
+              this.alertUtils.showLog(this.userAddr);
+              this.ref.detectChanges();
+            }
+          }, err => {
+            this.showProgress = false;
+            this.alertUtils.showToast(err);
+          });
+          // } else {
+          //   Utils.sLog("Outside the area");
+          //   this.showMap = false;
+          //   this.ref.detectChanges();
+          // }
         } else {
           Utils.sLog('LATLNG not found');
         }
@@ -374,7 +461,7 @@ export class MapView {
           let loc: LatLng;
           this.geoLocation().then(res => {
             loc = new LatLng(res.coords.latitude, res.coords.longitude);
-            this.map.animateCamera({
+            this.map.moveCamera({
               target: loc,
               zoom: 17,
               tilt: 10,
@@ -412,20 +499,40 @@ export class MapView {
   }
 
   confirmLocation() {
-    console.log(this.calledFrom);
+    console.log(Utils.categoryList);
+    if (IS_WEBSITE) {
+      this.userAddr = "Tolichowki";
+      if (!this.userLatLng) {
+        this.userLatLng = new LatLng(0.0, 0.0);
+      }
+    }
 
-    // this.userAddr = "Tolichowki"
+
+
     try {
-      if (Utils.categoryList == undefined || Utils.categoryList == null) {
-        this.alertUtils.showToast("Please select alteast one service");
+      if (!Utils.productsList && Utils.productsList == undefined || Utils.productsList == null || Utils.productsList.length == 0) {
+        this.alertUtils.showToast("Please select at least one service");
         return false;
       }
+      let isProductSel = false;
+      for (let i = 0; i < Utils.productsList.length; i++) {
+        const element = Utils.productsList[i];
+        if (element.ischecked) {
+          isProductSel = true;
+        }
+      }
+      if (!isProductSel){
+        this.alertUtils.showToast("Please select atleast one service");
+        return false;
+      }
+
       if (this.rides && this.rides.length > 0) {
         console.log("active ride index : " + this.slides.getActiveIndex());
         Utils.rideSelected = this.rides[this.slides.getActiveIndex()];
         console.log(Utils.rideSelected);
       } else {
-        this.alertUtils.showToast("Please add alteast one ride");
+        this.alertUtils.showToast("Please add at least one ride");
+        return false;
       }
 
       if (this.userAddr) {
@@ -462,7 +569,6 @@ export class MapView {
             buildingname: this.buildingname
           };
           this.viewCtrl.dismiss(addrData);
-          ``
         } else if (this.calledFrom == "login") {
           this.doUpdateUser();
         } else if (!this.calledFrom) {

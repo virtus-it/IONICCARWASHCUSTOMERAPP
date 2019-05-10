@@ -34,6 +34,8 @@ const KEY_USER_LOGIN_STATUS = 'secure_storage_user_login_status';
 const KEY_USER_PROMO_CODE = 'secure_storage_user_prome_code';
 const KEY_USER_INFO = 'secure_storage_user_user_info';
 const KEY_APP_FIRST_CALL_INFO = 'secure_storage_user_app_first_info';
+const KEY_USER_LANG = 'secure_storage_user_lang';
+
 export const APP_TYPE: string = "carwash";
 export const APP_USER_TYPE: string = "customer";
 export const MOBILE_TYPE: string = "android";
@@ -50,7 +52,6 @@ export class Utils {
   static categoryList: Map<string, any>;
   // for ride
   static rideSelected: any;
-
   static USER_INFO_DATA: any;
   static productsList: any;
   static UPDATE_ORDER_LIST: boolean = false;
@@ -64,12 +65,18 @@ export class Utils {
   private GCM_ID = "";
   private START_STR = "Please enter ";
   private pd;
+  static datePicked: any;
+  static lang: string = "en";
 
   constructor(private appRate: AppRate, private diagnostic: Diagnostic, private net: Network, public toast: ToastController, public loadingCtrl: LoadingController, private appVersion: AppVersion, private nativeStorage: NativeStorage, public alertCtrl: AlertController, private cNumber: CallNumber, private tToast: Toast, private nSetting: OpenNativeSettings, private device: Device) {
+
+    // if (this.getLang()) {
+    //   Utils.lang = this.getLang();
+    // }
     if (IS_WEBSITE) {
       Utils.USER_INFO_DATA = {
         "Result": 1,
-        "userid": 5,
+        "userid": 7,
         "username": null,
         "email": "ali@test.com",
         "mobileno": "0000000073",
@@ -104,6 +111,7 @@ export class Utils {
         "superdealerid": 289,
         "acceptonlinepayment": 1,
         "promocodestatus": 1,
+        "lang": "en",
         "dealers": {
           "dealerid": 289,
           "firstname": "Dev Super",
@@ -197,6 +205,11 @@ export class Utils {
     let d = new Date(date);
     return moment(d).format('DD-MM-YYYY');
   }
+  static formatDateToDDMMYYYYHHMMSS(date) {
+    let d = new Date(date);
+    return moment(d).format('DD-MM-YYYY HH:MM:SS');
+  }
+
 
   static formatDateToYYYYMMDD(date) {
     let d = new Date(date);
@@ -442,7 +455,15 @@ export class Utils {
 
     return this.nativeStorage.getItem(KEY_USER_INFO);
   }
+  setLang(data) {
+    this.nativeStorage.setItem(KEY_USER_LANG, data)
+      .then(() => console.log('Stored  USER_INFO'), error => console.error('Error storing data', error));
+  }
 
+  getLang(): string {
+
+    return "" + this.nativeStorage.getItem(KEY_USER_LANG);
+  }
   cacheAppFirstInfo(data) {
     this.nativeStorage.setItem(KEY_APP_FIRST_CALL_INFO, data)
       .then(() => console.log('Stored  USER_INFO'), error => console.error('Error storing data', error));

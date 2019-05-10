@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Utils } from '../../app/services/Utils';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,13 @@ export class CancelOrderPage {
   private orderItem: any;
   private cancelList: "";
   private msg: any;
-  constructor(public alertUtils: Utils, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private translateService: TranslateService,public alertUtils: Utils, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+    let lang = "en";
+    if (Utils.lang) {
+      lang = Utils.lang
+    }
+    // translateService.setDefaultLang(lang);
+    translateService.use(lang);
   }
   private dismiss() {
     this.viewCtrl.dismiss();

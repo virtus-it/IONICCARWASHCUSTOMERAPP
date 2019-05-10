@@ -7,8 +7,8 @@
     </ion-buttons>
     <ion-title>
       <img src="assets/imgs/header_icon.png" class="header_icon_addrs">
-      <span class="title-style"> Raise Complain
-    </span>
+      <span class="title-style"> {{ 'RAISE_COMPLAIN_PAGE.PAGE_TITLE' | translate }}
+      </span>
     </ion-title>
     <ion-spinner *ngIf="showProgress" block padding="40" name="dots" color="light" end></ion-spinner>
   </ion-navbar>
@@ -18,31 +18,28 @@
 <ion-content padding>
 
   <p class="mgtopbottom-0x10" *ngIf="!showSuccess">
-    Can you please put down your concern below:
+    {{ 'RAISE_COMPLAIN_PAGE.LABELS.lb_msg_1' | translate }}
   </p>
 
   <ion-item *ngIf="!showSuccess">
-    <ion-textarea placeholder="Leave a comment" type="text" class="min-h100 add_textarea text_output"
-                  [(ngModel)]="userComment"
-                  clearInput></ion-textarea>
+    <ion-textarea placeholder="Leave a comment" type="text" class="min-h100 add_textarea text_output" [(ngModel)]="userComment"
+      clearInput></ion-textarea>
   </ion-item>
   <p class="success fs-15 " *ngIf="showSuccess">
-    Thank You for reaching out to us. We apologize to hear that you are facing issues with the delivery. We promise to
-    get back to you on this soon.
+    {{ 'RAISE_COMPLAIN_PAGE.LABELS.lb_after_send_msg' | translate }}
   </p>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <ion-row class="no_padding mgleftright-2x3">
-      <ion-col class="col" >
-          <button ion-button class="  bg-basic wd-100pc" (click)="closeModal()">CLOSE
-          </button>
+      <ion-col class="col">
+        <button ion-button class="  bg-basic wd-100pc" (click)="closeModal()">{{ 'RAISE_COMPLAIN_PAGE.BUTTONS.btn_close' | translate }}
+        </button>
       </ion-col>
       <ion-col class="col" *ngIf="!showProgress && !showClose">
-          <button ion-button class=" bg-logo wd-100pc"
-                (click)="sendComplain()">Send
-          </button>
+        <button ion-button class=" bg-logo wd-100pc" (click)="sendComplain()">{{ 'RAISE_COMPLAIN_PAGE.BUTTONS.btn_send' | translate }}
+        </button>
       </ion-col>
     </ion-row>
   </ion-toolbar>

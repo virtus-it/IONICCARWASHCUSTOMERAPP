@@ -30,23 +30,27 @@ export class OrderDetails {
   orderProductList = [];
   order: any;
 
-  constructor(private modalCtrl: ModalController, private translateService: TranslateService, private ref: ChangeDetectorRef, public appCtrl: App, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, public alertCtrl: AlertController, private apiService: GetService) {
-
-    translateService.setDefaultLang('en');
-    translateService.use('en');
+  constructor(private modalCtrl: ModalController, private translateService: TranslateService, private ref: ChangeDetectorRef, public appCtrl: App, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, public alertCtrl: AlertController, private apiService: GetService, public translate: TranslateService) {
+ 
+    let lang = "en";
+    if (Utils.lang) {
+      lang = Utils.lang
+    }
+    // translateService.setDefaultLang(lang);
+    translateService.use(lang);
 
     this.callFrom = this.param.get("callfrom");
     this.order = this.param.get("order");
-    // if (IS_WEBSITE) {
-    //   this.userID = Utils.USER_INFO_DATA.userid;
-    //   this.dealerID = Utils.USER_INFO_DATA.superdealerid;
-    //   if (this.order && this.order.order_id) {
-    //     this.fetchOrderDetails();
-    //     this.fetchOrderProducts();
-    //   }
-    //   else
-    //     Utils.sLog("order id not found");
-    // }
+    if (IS_WEBSITE) {
+      this.userID = Utils.USER_INFO_DATA.userid;
+      this.dealerID = Utils.USER_INFO_DATA.superdealerid;
+      if (this.order && this.order.order_id) {
+        this.fetchOrderDetails();
+        this.fetchOrderProducts();
+      }
+      else
+        Utils.sLog("order id not found");
+    }
   }
 
 

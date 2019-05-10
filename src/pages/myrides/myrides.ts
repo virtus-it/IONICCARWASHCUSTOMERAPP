@@ -2,13 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { GetService } from '../../app/services/get.servie';
 import { Utils, INTERNET_ERR_MSG, APP_TYPE } from '../../app/services/Utils';
-
-/**
- * Generated class for the MyridesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -18,7 +12,13 @@ import { Utils, INTERNET_ERR_MSG, APP_TYPE } from '../../app/services/Utils';
 export class MyridesPage {
   items: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private modalCtrl: ModalController, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private modalCtrl: ModalController, private alertCtrl: AlertController,private translateService: TranslateService) {
+    let lang = "en";
+    if (Utils.lang) {
+      lang = Utils.lang
+    }
+    console.log(lang);
+    translateService.use(lang);
   }
 
   ionViewDidLoad() {

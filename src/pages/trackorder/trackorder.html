@@ -1,0 +1,19 @@
+<ion-content>
+    <ion-fab top left (click)="goBack()">
+        <button ion-fab>
+          <ion-icon name="arrow-round-back"></ion-icon>
+        </button>
+      </ion-fab>
+  
+      <ion-fab right top (click)="openSocket()">
+        <button ion-fab>
+          <ion-icon name="md-refresh-circle"></ion-icon>
+        </button>
+      </ion-fab>
+  
+      <!-- <ion-fab center middle class="mgleft-ng16">
+        <img src="assets/imgs/marker_pin.png" item-center>
+      </ion-fab> -->
+  <div #map id="map"> 
+  </div>
+</ion-content>

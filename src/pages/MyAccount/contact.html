@@ -19,20 +19,16 @@
         {{ 'MY_ACCOUNT_PAGE.BUTTONS.btn_my_profile' | translate }}
       </button>
 
-      <button ion-item (click)="myPoints()" padding class="menu">
-        <ion-icon name="trophy" item-start></ion-icon>
-        My Rewards
-      </button>
 
       <button ion-item (click)="fetchPaymentInfo()" padding class="menu">
         <ion-icon name="cash" item-start></ion-icon>
         {{ 'MY_ACCOUNT_PAGE.BUTTONS.btn_my_payments' | translate }}
       </button>
 
-      <button ion-item (click)="mySchedules()" padding class="menu">
+      <!-- <button ion-item (click)="mySchedules()" padding class="menu">
         <ion-icon name="calendar" item-start></ion-icon>
         {{ 'MY_ACCOUNT_PAGE.BUTTONS.btn_my_schedule' | translate }}
-      </button>
+      </button> -->
 
       <button ion-item (click)="feedback()" padding class="menu">
         <ion-icon name="chatbubbles" item-start></ion-icon>
@@ -54,16 +50,26 @@
         {{ 'MY_ACCOUNT_PAGE.BUTTONS.btn_about_us' | translate }}
       </button>
 
+      <button ion-item (click)="myPoints()" padding class="menu">
+        <ion-icon name="logo-whatsapp" color="success" item-start></ion-icon>
+        {{ 'MY_ACCOUNT_PAGE.BUTTONS.btn_whatsapp' | translate }}
+      </button>
+
       <button ion-item (click)="customerCareDialog()" padding class="menu">
         <ion-icon name="headset" item-start></ion-icon>
         {{ 'MY_ACCOUNT_PAGE.BUTTONS.btn_customer_care' | translate }}
       </button>
+
       <button ion-item (click)="logOut()" padding class="menu">
         <ion-icon name="log-out" item-start></ion-icon>
         {{ 'MY_ACCOUNT_PAGE.BUTTONS.btn_log_out' | translate }}
       </button>
-
-
+      <button ion-item (click)="logOut()" padding class="menu">
+        <ion-label>{{ 'WELCOME_PAGE.LABELS.lb_lng' | translate }}</ion-label>
+        <ion-select [(ngModel)]="languageSelected" (ionChange)='setLanguage()' [cancelText]="'WELCOME_PAGE.BUTTONS.btn_cancel' | translate">
+          <ion-option *ngFor="let item of languages" [value]="item.code">{{item.name}}</ion-option>
+        </ion-select>
+      </button>
     </ion-list>
   </ion-card>
 </ion-content>

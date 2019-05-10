@@ -1,0 +1,414 @@
+{
+  "WELCOME_PAGE": {
+    "PAGE_TITLE": "Enter mobile number to verify your identity during signup!",
+    "BUTTONS": {
+      "btn_continue": "Continue",
+      "btn_skip": "Skip",
+      "btn_singup": "سجل",
+      "btn_cancel": "إلغاء"
+    },
+    "LABELS": {
+      "lb_lng": "اختار اللغة",
+      "lb_welcome_text": "هيا بنا نبدأ!",
+      "lb_supp_code_title_1": "Got a code? ",
+      "lb_supp_code_title_2": "Apply here",
+      "lb_mobile_no_hint": "Mobile Number",
+      "lb_supp_code_hint": "Code (optional)",
+      "lb_register_title_1": "مسجل بالفعل؟",
+      "lb_register_title_2": "تسجيل الدخول"
+    }
+  },
+  "LOGIN_PAGE": {
+    "PAGE_TITLE": "تسجيل الدخول",
+    "BUTTONS": {
+      "btn_sign_in": "تسجيل الدخول"
+    },
+    "LABELS": {
+      "lb_mobile_no_hint": "رقم الهاتف المحمول",
+      "lb_pwd_hint": "كلمه السر",
+      "lb_forgot_pwd_title": "هل نسيت كلمة المرور؟",
+      "lb_show_password": "عرض كلمة المرور"
+    }
+  },
+  "SIGNUP_PAGE": {
+    "PAGE_TITLE_SIGNUP": "سجل",
+    "PAGE_TITLE_LOGIN": "تسجيل الدخول",
+    "BUTTONS": {
+      "btn_sign_in": "تسجيل الدخول",
+      "btn_sign_up": "سجل",
+      "btn_login_in": "تسجيل الدخول"
+    },
+    "LABELS": {
+      "lb_country": "حدد الدولة",
+      "lb_privacy_1": "لقد قرأت ووافقت على WashOnClick",
+      "lb_privacy_2": "البنود و الظروف",
+      "lb_privacy_3": "سياسة خاصة",
+      "lb_mobile_no_hint": "رقم الهاتف المحمول",
+      "lb_pwd_hint": "مكتب المدعي العام",
+      "lb_name_hint": "اسم",
+      "lb_pwd_sent": "أرسلنا OTP الخاص بك من خلال الرسائل القصيرة. يرجى التحقق من البريد الوارد الخاص بك",
+      "lb_pwd_sent_2": "سوف تحصل على OTP عبر الرسائل القصيرة في 15 ثانية",
+      "lb_resend_pwd": "لم تتلقى مكتب المدعي العام؟",
+      "lb_usage_type_head": "(نوع الاستخدام (اختياري",
+      "lb_usage_type_1": "سكني",
+      "lb_usage_type_2": "تجاري",
+      "lb_usage_type_3": "الشركات",
+      "lb_show_otp": "عرض مكتب المدعي العام"
+    }
+  },
+  "ABOUT_US_PAGE": {
+    "PAGE_TITLE": " معلومات عنا",
+    "LABELS": {
+      "lb_build_version_title": "بناء الإصدار",
+      "lb_about_title": "حول",
+      "lb_about_content_1": "CarWash - The water man is on demand drinking water delivery service that connects you to the distributor in your neighbourhood. Our aim is to provide a hassle free drinking water supply at your residences, offices, shops and parties. The app can be used to place an order by simple click of a button.",
+      "lb_about_content_2": "You can shop from different brands of drinking water. The app provides easy mode of payment - COD,Online payments or monthly payments. It allows you to schedule the time of delivery.It is hereby clarified that CarWash-The Water Man doesn't sell products of their brand nor has their own deliverysystem. They just bring you in contact with the water distributor and take at most responsibility for delivery to happen at your doorstep.",
+      "lb_about_content_3": " CarWash is powered by Virtus-IT, a UK based software company with company number 06810018, whose registered office is at Sterling House, 20 Station Road, Gerrards Cross, Bucks SL9 8EL, United Kingdom and any subsidiaries and affiliates of Virtus IT Limited, including but not limited to Virtus IT India Private Our business focuses on mobile based ERP solutions to enhance or rather technologies various businesses especially on the mobile platform,IoT, Bigdata, Salesforce and other latest technologies.",
+      "lb_about_content_4": " For business related queries or any other concern, please contact us at 9121642009 or write us  to sales@virtus-it.com",
+      "lb_terms": "الأحكام والشروط",
+      "lb_privacy": "سياسة خاصة"
+    }
+  },
+  "CONFIRM_ORDER_PAGE": {
+    "PAGE_TITLE": "أكد الطلب",
+    "BUTTONS": {
+      "btn_cancel": "إلغاء",
+      "btn_confirm": "تؤكد"
+    },
+    "LABELS": {
+      "lb_proceed_order_price_might_vary": "* The final price might vary depending upon the assigned distributor and the delivery location.",
+      "lb_proceed_water_can_text": "* INR 150(Refundable amount) per water can will be collected, if no empty can to return.",
+      "lb_proceed_order_content": "هل تريد المتابعة في هذا الطلب؟",
+      "lb_delivery_time": "موعد التسليم",
+      "lb_avail_time": "فتحات متاحة",
+      "lb_slot_1": "8AM-11AM",
+      "lb_slot_2": "11AM-2PM",
+      "lb_slot_3": "2PM-5PM",
+      "lb_slot_4": "5PM-8PM",
+      "lb_qty": "الكمية",
+      "lb_product_name": "اسم الخدمة",
+      "lb_price": "السعر",
+      "lb_total_cost": "المبلغ الإجمالي:",
+      "lb_total_item": "مجموع البند:"
+    }
+  },
+  "MY_ACCOUNT_PAGE": {
+    "PAGE_TITLE": "حسابي",
+    "BUTTONS": {
+      "btn_my_profile": "ملفي",
+      "btn_my_payments": "المدفوعات بلدي",
+      "btn_my_schedule": "أوامر جدولي",
+      "btn_my_feedback": "تعليقاتي",
+      "btn_my_invite_firends": "ادعو أصدقاء",
+      "btn_rate_us": "قيمنا",
+      "btn_about_us": "معلومات عنا",
+      "btn_customer_care": "رعاية العميل",
+      "btn_whatsapp": "WhatsApp دعم",
+      "btn_log_out": "الخروج"
+    }
+  },
+  "EDIT_SCHEDULE_PAGE": {
+    "PAGE_TITLE": "ORDER CONFIRMATION",
+    "BUTTONS": {
+      "btn_confirm": "Confirm"
+    },
+    "LABELS": {
+      "lb_select_product": "Select Service *",
+      "lb_qty": "Quantity *",
+      "lb_schedule_type": "Schedule type *",
+      "lb_weekdays": "Week Days",
+      "lb_days": "Days",
+      "lb_all_week": "All Week",
+      "lb_all_days": "All Days",
+      "lb_sunday": "Sunday",
+      "lb_monday": "Monday",
+      "lb_tuesday": "Tuesday",
+      "lb_wednesday": "Wednesday",
+      "lb_thursday": "Thursday",
+      "lb_friday": "Friday",
+      "lb_saturday": "Saturday",
+      "lb_01": "01",
+      "lb_02": "02",
+      "lb_03": "03",
+      "lb_04": "04",
+      "lb_05": "05",
+      "lb_06": "06",
+      "lb_07": "07",
+      "lb_08": "08",
+      "lb_09": "09",
+      "lb_10": "10",
+      "lb_11": "11",
+      "lb_12": "12",
+      "lb_13": "13",
+      "lb_14": "14",
+      "lb_15": "15",
+      "lb_16": "16",
+      "lb_17": "17",
+      "lb_18": "18",
+      "lb_19": "19",
+      "lb_20": "20",
+      "lb_21": "21",
+      "lb_22": "22",
+      "lb_23": "23",
+      "lb_24": "24",
+      "lb_25": "25",
+      "lb_26": "26",
+      "lb_27": "27",
+      "lb_28": "28",
+      "lb_29": "29",
+      "lb_30": "30"
+    }
+  },
+  "MY_FEEDBACK_PAGE": {
+    "PAGE_TITLE": "التقيمات بلدي",
+    "PAGE_TITLE_2": "ارسل رأيك",
+    "BUTTONS": {
+      "btn_submit": "خضع",
+      "btn_cancel": "إلغاء",
+      "btn_new": "الجديد",
+      "btn_Reply": "الرد"
+    },
+    "LABELS": {
+      "lb_no_record": "نود الحصول على تعليقات منك على تطبيقنا ، يرجى إضافة المزيد من التفاصيل قدر الإمكان.",
+      "lb_content": "نحن نقدر ملاحظاتك ونرحب بأي تعليقات قد تحتاج إليها للمساعدة في تحسين برامجنا وخدماتنا.",
+      "lb_subject": "موضوع",
+      "lb_mesg": "رسالة"
+    }
+  },
+  "PLACE_AN_ORDER_PAGE": {
+    "PAGE_TITLE": "Place An Order",
+    "BUTTONS": {
+      "btn_next": "Next"
+    },
+    "LABELS": {
+      "lb_min_qty": "Min Qty :",
+      "lb_price_per_unit": "Price Per Unit :",
+      "lb_soldout": "SOLDOUT"
+    }
+  },
+  "INTIVE_FRIENDS_PAGE": {
+    "PAGE_TITLE": "ادعو أصدقاء",
+    "BUTTONS": {
+      "btn_import": "دعوة متعددة",
+      "btn_send_invite": "ارسل دعوة"
+    },
+    "LABELS": {
+      "lb_sub_title": "أخبر أصدقاءك وعائلتك",
+      "lb_sub_title_2": "ومساعدتنا على تنمية مجتمعنا!",
+      "lb_name": "اسم",
+      "lb_mobile_no": "رقم الهاتف المحمول",
+      "lb_custom_msg": "إرسال رسالة مخصصة",
+      "lb_req_msg": "إرسال رسالة طلب دعوة"
+    }
+  },
+  "MAP_PAGE": {
+    "PAGE_TITLE": "Pick location",
+    "BUTTONS": {
+      "btn_confirm_loc": "Confirm Location",
+      "btn_continue": "استمر"
+    }
+  },
+  "MY_ORDERS_PAGE": {
+    "PAGE_TITLE": "طلباتي",
+    "BUTTONS": {
+      "btn_done": "فعله",
+      "btn_view_details": "عرض التفاصيل",
+      "btn_cancle_order": "الغاء الطلب",
+      "btn_call_us": "اتصل بنا",
+      "btn_raise_complain": "رفع شكوى",
+      "btn_reorder": "إعادة ترتيب",
+      "btn_track_order": "طلباتي",
+      "btn_show_comments": "عرض التعليقات"
+    },
+    "LABELS": {
+      "lb_empty_msg_1": "Seems like you haven't placed any order",
+      "lb_empty_msg_2": " page to enjoy hassle-free delivery.",
+      "lb_previos_order": "Your previous order was",
+      "lb_exptd_time": "الوقت المتوقع : ",
+      "lb_card_id": "معرف السلة",
+      "lb_order_id": "معرف الوظيفة",
+      "lb_order_status": "حالة الوظيفة",
+      "lb_last_action": "أخر فعل",
+      "lb_order_placed": "الوظيفة المحددة",
+      "lb_recv_order": "لقد تلقينا طلبك",
+      "lb_on_the_way": "فى الطريق",
+      "lb_order_dispatched": "لقد تم إرسال طلبك ",
+      "lb_completed": "منجز"
+    }
+  },
+  "MY_PAYMENTS_PAGE": {
+    "PAGE_TITLE": "مدفوعاتى",
+    "BUTTONS": {
+      "btn_done": "فعله",
+      "btn_send_invite": "ارسل دعوة"
+    },
+    "LABELS": {
+      "lb_pending_inr": "المبلغ المعلق.",
+      "lb_amount": "كمية",
+      "lb_paid_inr": "المبلغ المدفوع.",
+      "lb_cycle_bill": "فاتورة الدورة الحالية لـ",
+      "lb_bill": "مشروع قانون",
+      "lb_cycle_bill_2": "فاتورة للدورة الحالية",
+      "lb_due_date": "تاريخ الاستحقاق:",
+      "lb_date": "تاريخ",
+      "lb_head_date": "تاريخ",
+      "lb_head_amt": "كمية",
+      "lb_head_status": "الحالة"
+    }
+  },
+  "MY_PROFILE_PAGE": {
+    "BUTTONS": {
+      "btn_done": "فعله",
+      "btn_send_invite": "ارسل دعوة"
+    },
+    "LABELS": {
+      "lb_firstname": "الاسم الاول",
+      "lb_lastname": "الكنية",
+      "lb_password": "كلمه السر",
+      "lb_edit": "تصحيح",
+      "lb_address": "عنوان",
+      "lb_locality": "معلم معروف",
+      "lb_buildingname": "رقم مسطح",
+      "lb_pick_loc": "اختيار الموقع",
+      "lb_mobile": "التليفون المحمول",
+      "lb_email": "البريد الإلكتروني",
+      "lb_adv_amt": "المبلغ مقدما",
+      "lb_pen_amt": "المبلغ المعلق",
+      "lb_cans": "# of cans with you",
+      "lb_no_cans": "# no cans with you",
+      "lb_prod_name": "اسم الخدمة",
+      "lb_empty_cans": "Empty Cans"
+    }
+  },
+  "NOTIFICATION_PAGE": {
+    "BUTTONS": {
+      "btn_skip": "تخطى"
+    }
+  },
+  "CONFIRMATION_PAGE": {
+    "PAGE_TITLE": "تأكيد الطلب",
+    "BUTTONS": {
+      "btn_done": "فعله"
+    },
+    "LABELS": {
+      "lb_thanks_msg": "شكرا لطلبك!",
+      "lb_delivery_address": "عنوان التسليم",
+      "lb_qty": "الكمية",
+      "lb_product_name": "اسم الخدمة",
+      "lb_price": "السعر",
+      "lb_total_item": "مجموع البند:",
+      "lb_total_amt": "المبلغ الإجمالي:"
+    }
+  },
+  "ORDER_DETAILS_PAGE": {
+    "PAGE_TITLE": "تفاصيل الوظيفة",
+    "BUTTONS": {
+      "btn_done": "فعله",
+      "btn_cancel": "إلغاء"
+    },
+    "LABELS": {
+      "lb_price": "السعر",
+      "lb_order_id": "معرف الوظيفة",
+      "lb_amt": "كمية",
+      "lb_qty": "كمية",
+      "lb_product_name": "اسم الخدمة",
+      "lb_del_time": "موعد التسليم",
+      "lb_order_staus_head": "الوضع الوظيفي",
+      "lb_created": "خلقت",
+      "lb_assigned": "تعيين",
+      "lb_completed": "منجز",
+      "lb_ordered": "أمر",
+      "lb_delivered": "تم التوصيل",
+      "lb_return": "إرجاع",
+      "lb_supplier_details": "تفاصيل مهندس الخدمة",
+      "lb_dealer_details": " تفاصيل البائع",
+      "lb_order_msg": "رسائل النظام",
+      "lb_send_msg": "إرسال رسالة"
+    }
+  },
+  "PREVIEW_PAGE": {
+    "PAGE_TITLE": "Preview",
+    "BUTTONS": {
+      "btn_place_order": "Place Order",
+      "btn_pick_loc": "Pick Location",
+      "btn_current_loc": "Pick Current Location",
+      "btn_apply": "Apply"
+    },
+    "LABELS": {
+      "lb_order_summary": "JOB SUMMARY",
+      "lb_price_head": "Price",
+      "lb_qty_head": "Qty",
+      "lb_product_name_head": "Service Name",
+      "lb_service_tax": "Service Tax",
+      "lb_inc": "Inclusive",
+      "lb_shipping_serice": "Shipping & Services",
+      "lb_service_applicable": "Service charge will be levied on all gated communities- (as applicable)",
+      "lb_exp_delivery": "EXPRESS DELIVERY",
+      "lb_total_amt": "Total Amount",
+      "lb_inr": "INR.",
+      "lb_delivery_time_head": "DELIVERY TIME",
+      "lb_date": "Date",
+      "lb_change": "Change",
+      "lb_delivery_addr_head": "DELIVERY ADDRESS",
+      "lb_del_time": "Delivery Time",
+      "lb_discount_code_head": " DISCOUNT CODE"
+    }
+  },
+  "PRODUCT_PAGE": {
+    "PAGE_TITLE": "Select products",
+    "BUTTONS": {
+      "btn_next": "Next"
+    }
+  },
+  "SCHEDULE_PAGE": {
+    "PAGE_TITLE": " Schedule Order",
+    "BUTTONS": {
+      "btn_new": "New"
+    },
+    "LABELS": {
+      "lb_empty_msg_1": "Would you like to automate your order ? just click on ",
+      "lb_empty_msg_2": "button on top-right to schedule your order everyday.",
+      "lb_exp_time": "Expected Time",
+      "lb_qty": "Quantity",
+      "lb_every_week": "Every Week on",
+      "lb_every_month": "Every Month on"
+    }
+  },
+  "RAISE_COMPLAIN_PAGE": {
+    "PAGE_TITLE": "رفع الشكوى",
+    "BUTTONS": {
+      "btn_done": "فعله",
+      "btn_close": "قريب",
+      "btn_send": "إرسال"
+    },
+    "LABELS": {
+      "lb_msg_1": "هل يمكنك إخماد مخاوفك أدناه:",
+      "lb_after_send_msg": "شكرا لتواصلك مع هذا. نعتذر لسماع أنك تواجه مشكلات في عملية التسليم. نحن نعدك بالرد عليك قريبًا."
+    }
+  },
+  "CANCEL_ORDER_PAGE": {
+    "PAGE_TITLE": "الغاء الطلب",
+    "BUTTONS": {
+      "btn_update": "تحديث"
+    },
+    "LABELS": {
+      "lb_1": "لقد حصلت على هذا الترتيب من قبل الآخرين",
+      "lb_2": "لقد طلبت هذا عن طريق الخطأ",
+      "lb_3": "لقد غيرت خططي للنظام",
+      "lb_4": "آخر"
+    }
+  },
+  "MY_RIDES_PAGE": {
+    "PAGE_TITLE": "بلدي ركوب الخيل",
+    "BUTTONS": {
+      "btn_done": "فعله"
+    },
+    "LABELS": {
+      "lb_year": "عام",
+      "lb_plate_info": "معلومات اللوحة:",
+      "lb_city": "مدينة:",
+      "lb_plate_no": "رقم لوحة:",
+      "lb_plate_code": "كود اللوحة:"
+    }
+  }
+}

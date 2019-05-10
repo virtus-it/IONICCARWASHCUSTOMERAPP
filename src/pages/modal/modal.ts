@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {IonicPage, ModalController, NavController, NavParams, ViewController} from "ionic-angular";
 import {GetService} from "../../app/services/get.servie";
 import {APP_TYPE, APP_USER_TYPE, RES_SUCCESS, Utils} from "../../app/services/Utils";
+import { TranslateService } from "@ngx-translate/core";
 
 
 @IonicPage()
@@ -14,8 +15,13 @@ export class ModalPage {
   validationError = "";
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public modalCtrl: ModalController, public getService: GetService, private alertUtils: Utils) {
-
+  constructor(private translateService: TranslateService,public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public modalCtrl: ModalController, public getService: GetService, private alertUtils: Utils) {
+    let lang = "en";
+    if (Utils.lang) {
+      lang = Utils.lang
+    }
+    console.log(lang);
+    translateService.use(lang);
 
   }
 

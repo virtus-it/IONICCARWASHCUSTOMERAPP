@@ -4,14 +4,15 @@ import {
   APP_TYPE,
   APP_USER_TYPE,
   INTERNET_ERR_MSG,
+  IS_WEBSITE,
   RES_SUCCESS,
   TRY_AGAIN_ERR_MSG,
-  Utils,
-  IS_WEBSITE
+  Utils
 } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
 import { TabsPage } from "../tabs/tabs";
 import { ProductsPage } from "../ProductsPage/ProductsPage";
+
 
 @Component({
   selector: 'page-about',
@@ -57,6 +58,13 @@ export class AboutPage {
     //   this.model.dismiss();
     // }
   }
+
+  trackOrder(item) {
+
+
+    this.navCtrl.push('TrackorderPage', { "from": "myorder", "order": item });
+  }
+
 
   editAddr(item) {
     this.model = this.modalCtrl.create('EditAddressPage', {
@@ -145,7 +153,7 @@ export class AboutPage {
   }
 
   callUs() {
-    this.alertUtils.callNumber("9863636314");
+    this.alertUtils.callNumber("9121642009");
   }
 
 
@@ -270,16 +278,32 @@ export class AboutPage {
               res.data[i]["completedcolor"] = "danger";
               if (res.data[i].supplierdetails)
                 res.data[i]["defindimg"] = this.apiService.getImg() + "supplier_" + res.data[i].supplierdetails.userid;
-            } else if (res.data[i].status == "assigned") {
+            } else if (res.data[i].status.toLowerCase() == "jobstarted") {
               res.data[i]["statusColor"] = "warning";
-              res.data[i]["orderstatus"] = "Assigned to supplier";
+              res.data[i]["orderstatus"] = "Service Started";
+              res.data[i]["trackingmessage"] = "Delivered";
+              res.data[i]["assigncolor"] = "success";
+              res.data[i]["completedcolor"] = "";
+              if (res.data[i].supplierdetails)
+                res.data[i]["defindimg"] = this.apiService.getImg() + "supplier_" + res.data[i].supplierdetails.userid;
+            } else if (res.data[i].status.toLowerCase() == "orderstarted") {
+              res.data[i]["statusColor"] = "warning";
+              res.data[i]["orderstatus"] = "SE-On The Way";
+              res.data[i]["trackingmessage"] = "Delivered";
+              res.data[i]["assigncolor"] = "success";
+              res.data[i]["completedcolor"] = "";
+              if (res.data[i].supplierdetails)
+                res.data[i]["defindimg"] = this.apiService.getImg() + "supplier_" + res.data[i].supplierdetails.userid;
+            } else if (res.data[i].status.toLowerCase() == "accept") {
+              res.data[i]["statusColor"] = "warning";
+              res.data[i]["orderstatus"] = "Assigned To Service Engineer";
               res.data[i]["trackingmessage"] = "Delivered";
               res.data[i]["assigncolor"] = "success";
               res.data[i]["completedcolor"] = "";
               if (res.data[i].supplierdetails)
                 res.data[i]["defindimg"] = this.apiService.getImg() + "supplier_" + res.data[i].supplierdetails.userid;
             } else if (res.data[i].status == "delivered" || res.data[i].status == "Delivered") {
-              res.data[i]["orderstatus"] = "Delivered";
+              res.data[i]["orderstatus"] = "Completed";
               res.data[i]["statusColor"] = "success";
               res.data[i]["trackingmessage"] = "Delivered";
               res.data[i]["assigncolor"] = "success";
@@ -317,7 +341,7 @@ export class AboutPage {
               res.data[i]["trackingmessage"] = "Delivered";
               if (res.data[i].supplierdetails)
                 res.data[i]["defindimg"] = this.apiService.getImg() + "supplier_" + res.data[i].supplierdetails.userid;
-            } else if (res.data[i].status == "ordered" || res.data[i].status == "backtodealer" || res.data[i].status.toLowerCase() == "accept") {
+            } else if (res.data[i].status == "ordered" || res.data[i].status == "backtodealer" || res.data[i].status == "assigned") {
               res.data[i]["orderstatus"] = "Order Placed";
               res.data[i]["statusColor"] = "warning";
               res.data[i]["trackingmessage"] = "Delivered";

@@ -2,13 +2,38 @@
 map-page {
 
 .search_box{
-      background: #e8e8e8;
+      background: #fff;
       font-size: 17px;
       border-radius: 25px;
-      border: 2px solid #797b76;
-      height: 10%
+      border: 1px solid #eee;
+      height: 10%;
+  width: 62%;
+  left: 74px;
+  font-size: 14px;
+  color: #bbb;
+  padding: 10px;
 }
-
+  .slidertop {
+  }
+  .category_container {
+    border: 1px dashed #ccc;
+    border-left: 0;
+    border-right: 0;
+    padding: 10px 0;
+  }
+  .sliderncatry {
+    padding: 10px;
+    .silerleft{float: left;
+      width: 6%;font-size: 15px;
+      color: #408f98;
+      text-align: left;
+      /*! display: inline-table; */
+      height: 12px;}
+    .silercenter{float:left;width: 82%;}
+    .veh_name{font-size: 13px; margin:0;}
+    .addride{color:#3a74ec;
+    font-size: 30px;}
+  }
   .center {
     margin: auto;
     width: 50%;
@@ -198,6 +223,13 @@ map-page {
       margin-right: 10px;
       text-align: center;
       padding: 6px;
+      img {
+
+        background: #d0d0d0;
+        padding: 10px;
+        border-radius: 28px;
+
+      }
     }
     label {
       width: 70px;
@@ -211,20 +243,7 @@ map-page {
 
 
 
-  .list_container{border-bottom: 1px solid #ccc; display:block;
-    .list_img {
-      width: 20%;
-      display: inline-block;
-    }
-    .list_decs {
-      width: 59%;
-      display: inline-block;
-    }
-    .list_chkbtn {
-      width: 19%;
-      display: inline-block;
-    }
-  }
+
 
 .calender_icon:before{font-size:35px;    margin: 5px 0 0 7px;}
 .scroll-content._gmaps_cdv_ {

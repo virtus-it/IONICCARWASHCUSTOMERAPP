@@ -26,16 +26,33 @@ COMMAND TO REALEASE BUILD:
 9.2 config /preview page/MAP Page/index.ts Map key
 10.version code/ DATE / package name
 11.change version code in header
+12.litgen18 phone number
+
+Command for keystore file generation
+keytool -genkey -v -keystore washonclick.keystore -alias washonclick -keyalg RSA -keysize 2048 -validity 10000
+
+Car Wash
+1.ionic cordova build android --prod --release
+2.jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore washonclick.keystore android-release-unsigned.apk "washonclick"
+---jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore washonclick.keystore android-release-unsigned.apk "washonclick"
+2.1 zipalign -v 4 android-release-unsigned.apk Ionic_PROD_WOC_Customer_Android_v1_10_05_2019.apk
+
 
 https://www.youtube.com/watch?v=LPd4T7NTxzM
 =======================================================================
+
+ionic cordova plugin add cordova-plugin-datepicker
+npm install --save @ionic-native/date-picker@4
+
+socket plugin
+npm install ng-socket-io --save
+
+Paytm
+ionic cordova plugin add cordova-plugin-paytm --variable MERCHANT_ID=dummyS79577994716430 --variable INDUSTRY_TYPE_ID=Retail --variable WEBSITE=APPSTAGING --save
+
 keyboard
 $ ionic cordova plugin add ionic-plugin-keyboard
 $ npm install --save @ionic-native/keyboard
-
-Share on social media
-$ ionic cordova plugin add cordova-plugin-x-socialsharing
-$ npm install --save @ionic-native/social-sharing
 
 UUID
 $ ionic cordova plugin add cordova-plugin-device
@@ -46,24 +63,24 @@ $ ionic cordova plugin add cordova-plugin-geolocation --variable GEOLOCATION_USA
 $ npm install --save @ionic-native/geolocation
 
 Reversgeocode
-$ ionic cordova plugin add cordova-plugin-nativegeocoder
-$ npm install --save @ionic-native/native-geocoder
+$ ionic cordova plugin remove cordova-plugin-nativegeocoder
+$ npm uninstall --save @ionic-native/native-geocoder
 
 native storage
 ionic cordova plugin add cordova-plugin-nativestorage
-$ npm install --save @ionic-native/native-storage
+npm install --save @ionic-native/native-storage
 
 App Version
 
-ionic cordova plugin add cordova-plugin-app-version
-$ npm install --save @ionic-native/app-version
+ionic cordova plugin remove cordova-plugin-app-version
+$ npm uninstall --save @ionic-native/app-version
 
 Moment
 npm install moment --save
 
 App rate
-ionic cordova plugin add cordova-plugin-apprate
-npm install --save @ionic-native/app-rate
+ionic cordova plugin remove cordova-plugin-apprate
+npm uninstall --save @ionic-native/app-rate
 
 PhotoViewer *REMOVED
 ionic cordova plugin remove com-sarriaroman-photoviewer
@@ -75,17 +92,20 @@ ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROI
 npm install --save @ionic-native/google-maps
 
 Call Phone number
-ionic cordova plugin add call-number
-npm install --save @ionic-native/call-number
+ionic cordova plugin remove call-number
+npm uninstall --save @ionic-native/call-number
 
 Toast Message
 ionic cordova plugin add cordova-plugin-x-toast
 npm install --save @ionic-native/toast
 
+$ ionic cordova plugin remove cordova-plugin-x-socialsharing
+$ npm uninstall --save @ionic-native/social-sharing
+
 Import Contact
 
-ionic cordova plugin add cordova-plugin-contacts
-npm install --save @ionic-native/contacts
+ionic cordova plugin remove cordova-plugin-contacts
+npm uninstall --save @ionic-native/contacts
 
 Check location enable or wifi
 ionic cordova plugin add cordova.plugins.diagnostic
@@ -110,8 +130,8 @@ npm install --save @ionic-native/status-bar
 
 ...................................................
 PUSH notifications(USING)
-ionic cordova plugin add phonegap-plugin-push
-npm install --save @ionic-native/push
+ionic cordova plugin remove phonegap-plugin-push
+npm uninstall --save @ionic-native/push
 
 ONE signal push notification
 ionic cordova plugin add onesignal-cordova-plugin
@@ -125,7 +145,7 @@ FCM PUSH NOTIFICATION
 .......................................................
 places search
 https://ampersandacademy.com/tutorials/ionic-framework-version-2/google-map-places-search-api-example
-npm install @types/googlemaps --save-dev
+npm uninstall @types/googlemaps --save-dev
 ------------------------------------------------------
 Sim and mobile info
 ionic cordova plugin remove cordova-plugin-sim
@@ -151,7 +171,7 @@ File Path
 ionic cordova plugin add cordova-plugin-filepath
 npm install --save @ionic-native/file-path
 -----------------------------------------
-ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="181656469267841" --variable APP_NAME="Moya - TheWaterman"
+ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="1539281006192787" --variable APP_NAME="Moya - The Water Man"
 
 npm install --save @ionic-native/facebook
 -------------------------------------------
@@ -290,53 +310,3 @@ C:\Users\Muheeth Ali\AppData\Local\Android\Sdk\tools\bin\sdkmanager --licenses
     //     "foreground": false
     //   }
     // };
-
-
-    if (IS_WEBSITE) {
-        //   Utils.USER_INFO_DATA = {
-        //     "Result": 1,
-        //     "userid": 1914,
-        //     "username": null,
-        //     "email": "ali@test.com",
-        //     "mobileno": "0000000073",
-        //     "USERTYPE": "customer",
-        //     "first_name": "Ali Abbas",
-        //     "last_name": "Abbas",
-        //     "gcm_regid": "",
-        //     "gcm_mailid": "ali@test.com",
-        //     "imagename": null,
-        //     "imageurl": null,
-        //     "locality": null,
-        //     "buildingname": null,
-        //     "imgversion": 0,
-        //     "address": "8-1-5, Old Mumbai Hwy, Surya Nagar, Toli Chowki, Hyderabad, Telangana 500008, India",
-        //     "city": null,
-        //     "state": null,
-        //     "isuserassigned": "1",
-        //     "areaid": null,
-        //     "areaname": "",
-        //     "pincode": null,
-        //     "country": null,
-        //     "theme": null,
-        //     "latitude": "17.399035047363547",
-        //     "longitude": "78.41531831771135",
-        //     "companylogo": null,
-        //     "companylogo_version": null,
-        //     "viewplaceorder": null,
-        //     "apptype": "moya",
-        //     "usertypes": null,
-        //     "issuperdealer": "false",
-        //     "issuppersupplier": "false",
-        //     "superdealerid": 289,
-        //     "promocodestatus": 1,
-        //     "dealers": {
-        //       "dealerid": 289,
-        //       "firstname": "Dev Super",
-        //       "lastname": "Dealer",
-        //       "mobileno": "8897078671",
-        //       "theme": null,
-        //       "issuperdealer": true
-        //     },
-        //     "sdealers": null
-        //   };
-        // }

@@ -29,17 +29,17 @@ import { Login } from "../pages/LoginIn/Login";
 import { OrderConfirmation } from "../pages/OrderConfirmationDialog/orderconfirmation";
 import { MapView } from "../pages/MapView/MapView";
 import { WelcomePage } from "../pages/WelcomePage/Welcome";
-import { ProductsPage } from "../pages/ProductsPage/ProductsPage";
+// import { ProductsPage } from "../pages/ProductsPage/ProductsPage";
 import { ConfirmOrder } from "../pages/ConfirmOrderPage/ConfirmOrderPage";
 import { NotificationPage } from "../pages/NotificationTemplate/NotificationPage";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { SelectProductViewComponent } from "../components/select-product-view/select-product-view";
+// import { SelectProductViewComponent } from "../components/select-product-view/select-product-view";
 import { AboutPage } from "../pages/MyOrders/about";
 import { ContactPage } from "../pages/MyAccount/contact";
-import { HomePage } from "../pages/PlaceAnOrder/home";
-import { TabsPage } from "../pages/tabs/tabs";
+// import { HomePage } from "../pages/PlaceAnOrder/home";
+// import { TabsPage } from "../pages/tabs/tabs";
 import { GetService } from "./services/get.servie";
 import { Utils } from "./services/Utils";
 import { ModalController } from 'ionic-angular';
@@ -58,18 +58,18 @@ const config: SocketIoConfig = { url: GetService.TRACKING_URL, options: {} };
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage,
+    // HomePage,
     UtcDatePipe,
     SignUp,
     Login,
     OrderConfirmation,
     MapView,
     WelcomePage,
-    ProductsPage,
+    // ProductsPage,
     ConfirmOrder,
     NotificationPage,
-    SelectProductViewComponent,
-    TabsPage,
+    // SelectProductViewComponent,
+    // TabsPage,
     // ModalPage
   ],
   imports: [
@@ -92,16 +92,16 @@ const config: SocketIoConfig = { url: GetService.TRACKING_URL, options: {} };
     AboutPage,
     ContactPage,
     SignUp,
-    HomePage,
+    // HomePage,
     Login,
     OrderConfirmation,
     MapView,
-    SelectProductViewComponent,
+    // SelectProductViewComponent,
     WelcomePage,
-    ProductsPage,
+    // ProductsPage,
     ConfirmOrder,
     NotificationPage,
-    TabsPage,
+    // TabsPage,
   ],
   providers: [
     // SMS,

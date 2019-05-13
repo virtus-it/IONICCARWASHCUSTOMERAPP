@@ -1,9 +1,10 @@
 import { Component } from "@angular/core";
 import { App, NavController, NavParams, ViewController } from "ionic-angular";
-import { TabsPage } from "../tabs/tabs";
+// import { TabsPage } from "../tabs/tabs";
 import { Utils, APP_TYPE, APP_USER_TYPE, RES_SUCCESS, TRY_AGAIN_ERR_MSG } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
 import { AboutPage } from "../MyOrders/about";
+import { MapView } from "../MapView/MapView";
 
 @Component({
   templateUrl: 'orderconfirmation.html'
@@ -186,7 +187,7 @@ export class OrderConfirmation {
       Utils.UPDATE_ORDER_LIST = true;
       this.isCloseClicked = true;
       // this.appCtrl.getRootNav().setRoot(TabsPage,{from:"orderconfirmation"});
-      this.navCtrl.push(TabsPage, { from: "orderconfirmation" }).then(ready => {
+      this.navCtrl.push(MapView, { from: "orderconfirmation" }).then(ready => {
         // this.navCtrl.pop();
         const index = this.viewCtrl.index;
         // then we remove it from the navigation stack

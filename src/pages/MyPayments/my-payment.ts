@@ -2,8 +2,9 @@ import { ChangeDetectorRef, Component } from "@angular/core";
 import { App, NavController, NavParams, IonicPage } from "ionic-angular";
 import { APP_TYPE, APP_USER_TYPE, RES_SUCCESS, Utils, IS_WEBSITE } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
-import { TabsPage } from "../tabs/tabs";
+// import { TabsPage } from "../tabs/tabs";
 import { TranslateService } from "@ngx-translate/core";
+import { MapView } from "../MapView/MapView";
 
 @IonicPage()
 @Component({
@@ -49,7 +50,7 @@ export class MyPaymentPage {
   }
 
   close() {
-    this.appCtrl.getRootNav().setRoot(TabsPage, { from: "pushnotification" });
+    this.appCtrl.getRootNav().setRoot(MapView, { from: "pushnotification" });
   }
 
 

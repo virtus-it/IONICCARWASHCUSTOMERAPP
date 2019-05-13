@@ -24,35 +24,9 @@
   </div>
 
   <div *ngIf="page2">
-    <ion-item>
-      <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_year' | translate }}</ion-label>
-      <ion-input pattern="[0-9]*" type="tel" maxlength="4" minlength="4" [(ngModel)]="year"></ion-input>
-    </ion-item>
-  
-    <h4>Pick Color <b [ngClass]="pColor" style="border: 2px solid #ccc;border-radius: 7px;padding: 3px;padding-left: 50px;"></b></h4>
-    <ion-grid>
-      <ion-row>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:red' (click)="pickColor('red')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:gray' (click)="pickColor('gray')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:white' (click)="pickColor('white')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:black;color: snow' (click)="pickColor('black')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:brown' (click)="pickColor('brown')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:bisque' (click)="pickColor('bisque')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:chocolate' (click)="pickColor('chocolate')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:yellow' (click)="pickColor('yellow')"></ion-col>
-        <ion-col class="pd-20" style='                          flex: 0 0 30px;background-color:orange' (click)="pickColor('orange')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:green' (click)="pickColor('green')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:palevioletred' (click)="pickColor('palevioletred')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:steelblue' (click)="pickColor('steelblue')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:teal' (click)="pickColor('teal')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:slategray' (click)="pickColor('slategray')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:blue' (click)="pickColor('blue')"></ion-col>
-
-      </ion-row>
-    </ion-grid>
 
     <ion-card>
-      <img src="https://img.appx4fun.com/a7/8d/9d/a06cbe6a-05a4-4e71-970e-98325530e591-logo.jpg" />
+      <img src="https://img.appx4fun.com/a7/8d/9d/a06cbe6a-05a4-4e71-970e-98325530e591-logo.jpg"/>
       <ion-card-content>
         <ion-card-title>
           {{ itemSelected.manufacturer }} {{ " - " + itemSelected.model }}
@@ -60,7 +34,43 @@
       </ion-card-content>
     </ion-card>
     <h4>{{ 'MY_RIDES_PAGE.LABELS.lb_plate_info' | translate }}</h4>
+
+    <h4>Pick Color <b [ngClass]="pColor"
+                      style="border: 2px solid #ccc;border-radius: 7px;padding: 3px;padding-left: 50px;"></b></h4>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:red' (click)="pickColor('red')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:gray' (click)="pickColor('gray')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:white' (click)="pickColor('white')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:black;color: snow'
+                 (click)="pickColor('black')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:brown' (click)="pickColor('brown')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:bisque' (click)="pickColor('bisque')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:chocolate'
+                 (click)="pickColor('chocolate')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:yellow' (click)="pickColor('yellow')"></ion-col>
+        <ion-col class="pd-20" style='                          flex: 0 0 30px;background-color:orange'
+                 (click)="pickColor('orange')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:green' (click)="pickColor('green')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:palevioletred'
+                 (click)="pickColor('palevioletred')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:steelblue'
+                 (click)="pickColor('steelblue')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:teal' (click)="pickColor('teal')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:slategray'
+                 (click)="pickColor('slategray')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:blue' (click)="pickColor('blue')"></ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+
     <ion-list inset>
+
+      <ion-item>
+        <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_year' | translate }}</ion-label>
+        <ion-input pattern="[0-9]*" type="tel" maxlength="4" minlength="4" [(ngModel)]="year"></ion-input>
+      </ion-item>
 
       <ion-item>
         <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_city' | translate }}</ion-label>
@@ -77,7 +87,8 @@
         <ion-input type="text" [(ngModel)]="plateCode"></ion-input>
       </ion-item>
 
-      <button type="button" ion-button full (click)="continue()" class="btn ">{{ 'MY_RIDES_PAGE.BUTTONS.btn_done' | translate }}
+      <button type="button" ion-button full (click)="continue()" class="btn ">{{ 'MY_RIDES_PAGE.BUTTONS.btn_done' |
+        translate }}
 
       </button>
     </ion-list>

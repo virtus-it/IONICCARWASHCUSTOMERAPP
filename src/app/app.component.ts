@@ -7,7 +7,7 @@ import {APP_TYPE, APP_USER_TYPE, Utils} from "./services/Utils";
 import {Push, PushObject, PushOptions} from "@ionic-native/push";
 import {AboutPage} from "../pages/MyOrders/about";
 import {NotificationPage} from "../pages/NotificationTemplate/NotificationPage";
-import {HomePage} from "../pages/PlaceAnOrder/home";
+// import {HomePage} from "../pages/PlaceAnOrder/home";
 import {ContactPage} from "../pages/MyAccount/contact";
 import {TranslateService} from "@ngx-translate/core";
 import {GetService} from "./services/get.servie";
@@ -42,7 +42,7 @@ export class MyApp {
       {title: 'Home', component: MapView, icon: "md-home"},
       {title: 'My Orders', component: AboutPage, icon: 'md-reorder'},
       {title: 'My Rides', component: 'MyridesPage', icon: 'md-albums'},
-      {title: 'Packages', component: 'CategoryServicesPage', icon: 'md-calendar'},
+      // {title: 'Packages', component: 'CategoryServicesPage', icon: 'md-calendar'},
       {title: 'My Account', component: ContactPage, icon: 'md-contact'}
 
     ];
@@ -180,7 +180,7 @@ export class MyApp {
                       this.updateNotificationStatus(notification);
                     });
                   } else if (notification.additionalData.redirectpage == "HomePage") {
-                    this.nav.push(HomePage, {callfrom: "pushnotification"}).then(res => {
+                    this.nav.push(MapView, {callfrom: "pushnotification"}).then(res => {
                       this.updateNotificationStatus(notification);
                     });
                   } else if (notification.additionalData.redirectpage == "ContactPage") {

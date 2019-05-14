@@ -300,7 +300,7 @@ export class Login {
     try {
       if (this.alertUtils.networkStatus()) {
         this.alertUtils.showLoading();
-        this.apiService.getReq(this.apiService.forgotPwd() + data.mobileno).subscribe(res => {
+        this.apiService.getReq(this.apiService.forgotPwd() + data.mobileno).then(res => {
           this.alertUtils.showLog(res);
           this.alertUtils.hideLoading();
           if (res.result == RES_SUCCESS) {

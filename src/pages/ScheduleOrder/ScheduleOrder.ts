@@ -26,7 +26,7 @@ export class ScheduleOrderPage {
     // this.userID = "1914";
     // this.dealerID = "289";
     // this.fetchScheduleOrderTask(true, false, "");
-   
+
 
   }
 
@@ -94,7 +94,7 @@ export class ScheduleOrderPage {
     try {
       if (isFirst)
         this.showProgress = true;
-      this.getService.getReq(this.getService.getSchedules() + this.userID + "/" + APP_TYPE + "/" + APP_USER_TYPE + "/" + this.dealerID).subscribe(res => {
+      this.getService.getReq(this.getService.getSchedules() + this.userID + "/" + APP_TYPE + "/" + APP_USER_TYPE + "/" + this.dealerID).then(res => {
           this.alertUtils.showLog(res);
           this.hideProgress(isFirst, isRefresh, refresh);
           if (res.result == RES_SUCCESS) {

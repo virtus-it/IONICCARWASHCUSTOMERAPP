@@ -53,7 +53,7 @@ export class SignUp {
   private userLatlng: any;
   private userAddr: any;
   private referCode: string = "";
-  private verCode: string;
+  private verCode: any;
   private selectProducts = [];
   private tgPwd: boolean = false;
   private cbTerms: boolean = false;
@@ -484,7 +484,7 @@ export class SignUp {
     try {
       if (this.alertUtils.networkStatus()) {
         this.alertUtils.showLoading();
-        this.apiService.getReq(this.apiService.forgotPwd() + data.mobileno).subscribe(res => {
+        this.apiService.getReq(this.apiService.forgotPwd() + data.mobileno).then(res => {
           this.alertUtils.showLog(res);
           this.alertUtils.hideLoading();
           if (res.result == RES_SUCCESS) {

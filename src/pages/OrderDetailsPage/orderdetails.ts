@@ -31,7 +31,7 @@ export class OrderDetails {
   order: any;
 
   constructor(private modalCtrl: ModalController, private translateService: TranslateService, private ref: ChangeDetectorRef, public appCtrl: App, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, public alertCtrl: AlertController, private apiService: GetService, public translate: TranslateService) {
- 
+
     let lang = "en";
     if (Utils.lang) {
       lang = Utils.lang
@@ -97,7 +97,7 @@ export class OrderDetails {
 
   fetchOrderDetails() {
     try {
-      this.apiService.getReq(this.apiService.getOrderDetails() + this.order.order_id + "/" + this.userID).subscribe(res => {
+      this.apiService.getReq(this.apiService.getOrderDetails() + this.order.order_id + "/" + this.userID).then(res => {
         this.showProgress = false;
         if (res.result == this.alertUtils.RESULT_SUCCESS) {
           this.alertUtils.showLog(res.data[0]);

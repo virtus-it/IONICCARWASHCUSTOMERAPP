@@ -44,12 +44,12 @@ export class ContactPage {
   getData() {
     try {
       this.alertUtils.showLoading();
-      this.getService.getReq(this.getService.fetchUserInfo() + Utils.USER_INFO_DATA.userid + "/" + APP_TYPE).subscribe(res => {
+      this.getService.getReq(this.getService.fetchUserInfo() + Utils.USER_INFO_DATA.userid + "/" + APP_TYPE).then(res => {
         this.alertUtils.hideLoading();
         this.alertUtils.showLog(res);
         if (res.result == RES_SUCCESS) {
           if (res.data) {
-            
+
             this.navCtrl.push('MyProfile', {
               items: res.data
             })

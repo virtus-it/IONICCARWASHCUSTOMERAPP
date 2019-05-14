@@ -823,7 +823,7 @@ export class HomePage {
         model.present();
       } else {
         if (this.lastOrderData) {
-          this.getService.getReq(GetService.getProductDetailsById() + this.userID + "/" + this.lastOrderData.prod_id + "/" + APP_TYPE).subscribe(res => {
+          this.getService.getReq(GetService.getProductDetailsById() + this.userID + "/" + this.lastOrderData.prod_id + "/" + APP_TYPE).then(res => {
             this.showProgressReorder = false;
             if (res.result == this.alertUtils.RESULT_SUCCESS) {
               this.alertUtils.showLog(res);

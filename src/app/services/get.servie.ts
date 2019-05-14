@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http, RequestOptions } from "@angular/http";
 import "rxjs/add/operator/map";
-import { APP_TYPE, APP_USER_TYPE, IS_WEBSITE, Utils } from "./Utils";
+import {APP_TYPE, APP_USER_TYPE, IS_WEBSITE, MOBILE_TYPE, Utils} from "./Utils";
+import {HTTP} from "@ionic-native/http";
 
 export const APP_VER_CODE: string = "138";
 
@@ -19,9 +20,9 @@ export class GetService {
   http: any;
   private baseUrl: String;
 
-  constructor(http: Http, private alertUtils: Utils) {
+  constructor(http: Http, private Nativehttp: HTTP,private alertUtils: Utils) {
     this.http = http;
-    this.baseUrl = GetService.DEVELOPMENT_URL;
+    this.baseUrl = GetService.DEMO_URL;
   }
 
 
@@ -71,77 +72,317 @@ export class GetService {
   static payTmCallBackUrl() {
     return this.PAYTM_DEVELOPMENT_URL;
   }
+  //
+  // getReq(url) {
+  //   this.alertUtils.showLog("/" + this.baseUrl + url);
+  //   let headers;
+  //   if (IS_WEBSITE) {
+  //     headers = new Headers({ 'Content-Type': 'application/json' });
+  //   } else {
+  //     headers = new Headers();
+  //     headers.append("Content-Type", "application/json");
+  //     headers.append("module", "moyacustomer");
+  //     headers.append("framework", "moyaioniccustomer");
+  //     headers.append("devicetype", "android");
+  //     headers.append("apptype", APP_TYPE);
+  //     headers.append("usertype", APP_USER_TYPE);
+  //     headers.append("moyaversioncode", APP_VER_CODE);
+  //   }
+  //
+  //   this.alertUtils.showLog(JSON.stringify(headers));
+  //   let options = new RequestOptions({ headers: headers });
+  //   return this.http.get(this.baseUrl + url, options).map(res => res.json());
+  // }
+  //
+  // getReqForMap(url) {
+  //   this.alertUtils.showLog("/" + url);
+  //   return this.http.get(url).map(res => res.json());
+  // }
+  //
+  // postReq(url: string, input) {
+  //
+  //   let headers;
+  //   if (IS_WEBSITE) {
+  //     headers = new Headers({ 'Content-Type': 'application/json' });
+  //   } else {
+  //     headers = new Headers();
+  //     headers.append("Content-Type", "application/json");
+  //     headers.append("module", "moyacustomer");
+  //     headers.append("framework", "moyaioniccustomer");
+  //     headers.append("devicetype", "android");
+  //     headers.append("apptype", APP_TYPE);
+  //     headers.append("usertype", APP_USER_TYPE);
+  //     headers.append("moyaversioncode", APP_VER_CODE);
+  //
+  //   }
+  //   this.alertUtils.showLog(JSON.stringify(headers));
+  //   let options = new RequestOptions({ headers: headers });
+  //   this.alertUtils.showLog("/" + this.baseUrl + url);
+  //   this.alertUtils.showLog(input);
+  //   return this.http.post(this.baseUrl + url, input, options).map(res => res.json()).toPromise();
+  // }
+  //
+  // putReq(url: string, input) {
+  //   let headers;
+  //   if (IS_WEBSITE) {
+  //     headers = new Headers({ 'Content-Type': 'application/json' });
+  //   } else {
+  //     headers = new Headers();
+  //     headers.append("Content-Type", "application/json");
+  //     headers.append("module", "moyacustomer");
+  //     headers.append("framework", "moyaioniccustomer");
+  //     headers.append("devicetype", "android");
+  //     headers.append("apptype", APP_TYPE);
+  //     headers.append("usertype", APP_USER_TYPE);
+  //     headers.append("moyaversioncode", APP_VER_CODE);
+  //
+  //   }
+  //   this.alertUtils.showLog(JSON.stringify(headers));
+  //   let options = new RequestOptions({ headers: headers });
+  //   this.alertUtils.showLog("/" + this.baseUrl + url);
+  //   this.alertUtils.showLog(input);
+  //   return this.http.put(this.baseUrl + url, input, options).map(res => res.json())
+  //     .toPromise();
+  // }
 
   getReq(url) {
-    this.alertUtils.showLog("/" + this.baseUrl + url);
-    let headers;
-    if (IS_WEBSITE) {
-      headers = new Headers({ 'Content-Type': 'application/json' });
-    } else {
-      headers = new Headers();
-      headers.append("Content-Type", "application/json");
-      headers.append("module", "moyacustomer");
-      headers.append("framework", "moyaioniccustomer");
-      headers.append("devicetype", "android");
-      headers.append("apptype", APP_TYPE);
-      headers.append("usertype", APP_USER_TYPE);
-      headers.append("moyaversioncode", APP_VER_CODE);
-    }
+    Utils.sLog("URL : "+ this.baseUrl+url);
 
-    this.alertUtils.showLog(JSON.stringify(headers));
-    let options = new RequestOptions({ headers: headers });
-    return this.http.get(this.baseUrl + url, options).map(res => res.json());
+    if (IS_WEBSITE) {
+      this.alertUtils.showLog("/" + url);
+      let headers;
+      if (IS_WEBSITE) {
+        headers = new Headers({'Content-Type': 'application/json'});
+      } else {
+        headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        headers.append("module", "moyacustomer");
+        headers.append("framework", "moyaioniccustomer");
+        headers.append("devicetype", MOBILE_TYPE);
+        headers.append("apptype", APP_TYPE);
+        headers.append("usertype", APP_USER_TYPE);
+        headers.append("moyaversioncode", APP_VER_CODE);
+      }
+
+      this.alertUtils.showLog(JSON.stringify(headers));
+      let options = new RequestOptions({headers: headers});
+      return this.http.get(this.baseUrl + url, options).map(res => res.json());
+    } else {
+      return this.callGetReq(url);
+    }
+  }
+
+  async callGetReq(url) {
+    let data = await this.nativeGetReg(url).then(res => {
+      console.log("Api call result");
+      console.log(res);
+      if (res && res.data)
+        return JSON.parse(res.data);
+      else {
+        let err = {
+          result: "failed"
+        };
+        return err;
+      }
+    }).catch(err => {
+      console.log("Api call failed");
+      let failed = {
+        result: "failed"
+      };
+      return failed;
+    });
+    console.log("modified result");
+    console.log(data);
+    return data
+
+
+  }
+
+  nativeGetReg(url) {
+    let headers = {
+      'Content-Type': 'application/json',
+      'module': 'moyacustomer',
+      'framework': 'moyaioniccustomer',
+      'devicetype': MOBILE_TYPE,
+      'apptype': APP_TYPE,
+      'usertype': APP_USER_TYPE,
+      'moyaversioncode': APP_VER_CODE
+
+    };
+
+    return this.Nativehttp.get(this.baseUrl + url, {}, headers);
+
   }
 
   getReqForMap(url) {
-    this.alertUtils.showLog("/" + url);
-    return this.http.get(url).map(res => res.json());
+    if (IS_WEBSITE) {
+      this.alertUtils.showLog("/" + url);
+      return this.http.get(url).map(res => res.json());
+    } else {
+      let headers = new Headers({'Content-Type': 'application/json'});
+      let options = new RequestOptions({headers: headers});
+      return this.nativeGetMapReq(url);
+    }
+
+
+  }
+
+  async nativeGetMapReq(url) {
+    let data = await this.Nativehttp.get(url, {}, {}).then(res => {
+      if (res) {
+        return JSON.parse(res.data);
+      } else {
+        return "";
+      }
+    }).catch(() => {
+      return "";
+    });
+    return data;
   }
 
   postReq(url: string, input) {
+    Utils.sLog("URL : "+ this.baseUrl+url);
 
-    let headers;
     if (IS_WEBSITE) {
-      headers = new Headers({ 'Content-Type': 'application/json' });
-    } else {
-      headers = new Headers();
-      headers.append("Content-Type", "application/json");
-      headers.append("module", "moyacustomer");
-      headers.append("framework", "moyaioniccustomer");
-      headers.append("devicetype", "android");
-      headers.append("apptype", APP_TYPE);
-      headers.append("usertype", APP_USER_TYPE);
-      headers.append("moyaversioncode", APP_VER_CODE);
 
+      let headers;
+      if (IS_WEBSITE) {
+        headers = new Headers({'Content-Type': 'application/json'});
+      } else {
+        headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        headers.append("module", "moyacustomer");
+        headers.append("framework", "moyaioniccustomer");
+        headers.append("devicetype", MOBILE_TYPE);
+        headers.append("apptype", APP_TYPE);
+        headers.append("usertype", APP_USER_TYPE);
+        headers.append("moyaversioncode", APP_VER_CODE);
+
+      }
+      this.alertUtils.showLog(JSON.stringify(headers));
+      let options = new RequestOptions({headers: headers});
+      this.alertUtils.showLog("/" + url);
+      this.alertUtils.showLog(input);
+      return this.http.post(this.baseUrl + url, input, options).map(res => res.json())
+        .toPromise();
+    } else {
+      return this.callPostReq(url, input);
     }
-    this.alertUtils.showLog(JSON.stringify(headers));
-    let options = new RequestOptions({ headers: headers });
-    this.alertUtils.showLog("/" + this.baseUrl + url);
-    this.alertUtils.showLog(input);
-    return this.http.post(this.baseUrl + url, input, options).map(res => res.json()).toPromise();
+
   }
 
+  async callPostReq(url, input) {
+    let data = await this.nativePostReq(url, input).then(res => {
+      this.alertUtils.showLog("Api call result");
+      this.alertUtils.showLog(res);
+      if (res && res.data)
+        return JSON.parse(res.data);
+      else {
+        let err = {
+          result: "error"
+        };
+        return err;
+      }
+    }).catch(() => {
+      this.alertUtils.showLog("Api call failed");
+      let failed = {
+        result: "failed"
+      };
+      return failed;
+    });
+    this.alertUtils.showLog("modified result");
+    this.alertUtils.showLog(data);
+    return data
+  }
+
+  nativePostReq(url, input) {
+    this.alertUtils.showLog(input);
+    let data = JSON.parse(input);
+    let headers = {
+      'Content-Type': 'application/json',
+      'module': 'moyacustomer',
+      'framework': 'moyaioniccustomer',
+      'devicetype': MOBILE_TYPE,
+      'apptype': APP_TYPE,
+      'usertype': APP_USER_TYPE,
+      'moyaversioncode': APP_VER_CODE
+
+    };
+    this.Nativehttp.setDataSerializer('json');
+    return this.Nativehttp.post(this.baseUrl + url, data, headers);
+  }
+
+
   putReq(url: string, input) {
-    let headers;
+    Utils.sLog("URL : "+ this.baseUrl+url);
+
     if (IS_WEBSITE) {
-      headers = new Headers({ 'Content-Type': 'application/json' });
+
+      let headers;
+      if (IS_WEBSITE) {
+        headers = new Headers({'Content-Type': 'application/json'});
+      } else {
+        headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        headers.append("module", "moyacustomer");
+        headers.append("framework", "moyaioniccustomer");
+        headers.append("devicetype", MOBILE_TYPE);
+        headers.append("apptype", APP_TYPE);
+        headers.append("usertype", APP_USER_TYPE);
+        headers.append("moyaversioncode", APP_VER_CODE);
+
+      }
+      this.alertUtils.showLog(JSON.stringify(headers));
+      let options = new RequestOptions({headers: headers});
+      this.alertUtils.showLog("/" + url);
+      this.alertUtils.showLog(input);
+      return this.http.put(this.baseUrl + url, input, options).map(res => res.json())
+        .toPromise();
     } else {
-      headers = new Headers();
-      headers.append("Content-Type", "application/json");
-      headers.append("module", "moyacustomer");
-      headers.append("framework", "moyaioniccustomer");
-      headers.append("devicetype", "android");
-      headers.append("apptype", APP_TYPE);
-      headers.append("usertype", APP_USER_TYPE);
-      headers.append("moyaversioncode", APP_VER_CODE);
+      return this.callPutReq(url, input);
 
     }
-    this.alertUtils.showLog(JSON.stringify(headers));
-    let options = new RequestOptions({ headers: headers });
-    this.alertUtils.showLog("/" + this.baseUrl + url);
+  }
+
+  async callPutReq(url, input) {
+    let data = await this.nativePutReq(url, input).then(res => {
+      this.alertUtils.showLog("Api call result");
+      this.alertUtils.showLog(res);
+      if (res && res.data)
+        return JSON.parse(res.data);
+      else {
+        let err = {
+          result: "error"
+        };
+        return err;
+      }
+    }).catch(() => {
+      this.alertUtils.showLog("Api call failed");
+      let failed = {
+        result: "failed"
+      };
+      return failed;
+    });
+    this.alertUtils.showLog("modified result");
+    this.alertUtils.showLog(data);
+    return data
+  }
+
+  nativePutReq(url, input) {
     this.alertUtils.showLog(input);
-    return this.http.put(this.baseUrl + url, input, options).map(res => res.json())
-      .toPromise();
+    let data = JSON.parse(input);
+    let headers = {
+      'Content-Type': 'application/json',
+      'module': 'moyacustomer',
+      'framework': 'moyaioniccustomer',
+      'devicetype': MOBILE_TYPE,
+      'apptype': APP_TYPE,
+      'usertype': APP_USER_TYPE,
+      'moyaversioncode': APP_VER_CODE
+
+    };
+    this.Nativehttp.setDataSerializer('json');
+    return this.Nativehttp.put(this.baseUrl + url, data, headers);
   }
 
   getImg() {

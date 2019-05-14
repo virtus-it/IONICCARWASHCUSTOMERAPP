@@ -116,4 +116,6 @@
         <variable name="SENDER_ID" value="530358294125" />
     </plugin>
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.2" />
+    <plugin name="cordova-plugin-datepicker" spec="^0.9.3" />
+    <plugin name="cordova-plugin-advanced-http" spec="^2.0.9" />
 </widget>

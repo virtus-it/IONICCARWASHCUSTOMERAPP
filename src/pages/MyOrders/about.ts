@@ -389,7 +389,7 @@ export class AboutPage {
   fetchOrderDetails(item, pos) {
     try {
       this.alertUtils.showLoading();
-      this.apiService.getReq(this.apiService.getOrderDetails() + item.order_id + "/" + this.userID).subscribe(res => {
+      this.apiService.getReq(this.apiService.getOrderDetails() + item.order_id + "/" + this.userID).then(res => {
         this.alertUtils.hideLoading();
         this.alertUtils.showLog(res);
         if (res.result == this.alertUtils.RESULT_SUCCESS) {

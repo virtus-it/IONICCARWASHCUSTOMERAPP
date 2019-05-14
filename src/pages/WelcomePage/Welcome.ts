@@ -32,8 +32,8 @@ export class WelcomePage {
   private showLoading: boolean = true;
   private userID = "0";
   private dealerID = "0";
-  private verCode = "6";
-  private deviceCode: string;
+  private verCode:any = "6";
+  private deviceCode: any;
   languages = [{ name: "English", code: "en" }, { name: "Arabic", code: "ar" }];
   languageSelected: any;
 

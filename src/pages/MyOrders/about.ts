@@ -10,8 +10,9 @@ import {
   Utils
 } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
-import { TabsPage } from "../tabs/tabs";
-import { ProductsPage } from "../ProductsPage/ProductsPage";
+// import { TabsPage } from "../tabs/tabs";
+// import { ProductsPage } from "../ProductsPage/ProductsPage";
+import { MapView } from "../MapView/MapView";
 
 
 @Component({
@@ -50,7 +51,7 @@ export class AboutPage {
   }
 
   close() {
-    this.appCtrl.getRootNav().setRoot(TabsPage, { from: "pushnotification" });
+    this.appCtrl.getRootNav().setRoot(MapView, { from: "pushnotification" });
   }
 
   closeEmptyDialog() {
@@ -128,16 +129,16 @@ export class AboutPage {
 
   editOrder(item) {
 
-    let model = this.modalCtrl.create(ProductsPage, {
-      calledfrom: "myorders",
-      orderitem: item
-    });
-    model.present();
-    model.onDidDismiss(res => {
-      if (res) {
-        this.fetchOrders(false, false, true, "", "");
-      }
-    });
+    // let model = this.modalCtrl.create(ProductsPage, {
+    //   calledfrom: "myorders",
+    //   orderitem: item
+    // });
+    // model.present();
+    // model.onDidDismiss(res => {
+    //   if (res) {
+    //     this.fetchOrders(false, false, true, "", "");
+    //   }
+    // });
 
   }
 

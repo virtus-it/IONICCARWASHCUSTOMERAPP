@@ -98,7 +98,7 @@ export class AddupdateridesPage {
       return false;
     }
 
-    let input = { "User": { "id": this.itemSelected.entityid, "manufacturer": this.itemSelected.manufacturer, "model": this.itemSelected.model, "code": this.plateCode, "number": this.plateNumber, "intensity": this.pColor, "year": this.year, "TransType": "extrainformation", "apptype": APP_TYPE, "city": this.city, "userid": Utils.USER_INFO_DATA.userid } };
+    let input = { "User": { "id": this.updateItem.entityid, "manufacturer": this.itemSelected.manufacturer, "model": this.itemSelected.model, "code": this.plateCode, "number": this.plateNumber, "intensity": this.pColor, "year": this.year, "TransType": "extrainformation", "apptype": APP_TYPE, "city": this.city, "userid": Utils.USER_INFO_DATA.userid } };
     if (this.calledFrom == "update") {
       input.User.TransType = "updateextrainformation";
     }

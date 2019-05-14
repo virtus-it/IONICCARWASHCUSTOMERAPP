@@ -2,8 +2,9 @@ import { ChangeDetectorRef, Component, ViewChild } from "@angular/core";
 import { AlertController, App, Content, IonicPage, ModalController, NavController, NavParams } from "ionic-angular";
 import { APP_TYPE, APP_USER_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, Utils, IS_WEBSITE } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
-import { TabsPage } from "../tabs/tabs";
+// import { TabsPage } from "../tabs/tabs";
 import { TranslateService } from "@ngx-translate/core";
+import { MapView } from "../MapView/MapView";
 
 @IonicPage()
 @Component({
@@ -57,7 +58,7 @@ export class OrderDetails {
 
 
   close() {
-    this.appCtrl.getRootNav().setRoot(TabsPage, { from: "pushnotification" });
+    this.appCtrl.getRootNav().setRoot(MapView, { from: "pushnotification" });
   }
 
   ngOnInit() {

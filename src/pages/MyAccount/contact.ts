@@ -88,10 +88,14 @@ export class ContactPage {
 
   rateUs() {
 
-    this.appRate.preferences.storeAppURL = {
-      android: 'market://details?id=com.moya'
-    };
-    this.appRate.promptForRating(true);
+    try {
+      this.appRate.preferences.storeAppURL = {
+        android: 'market://details?id=com.moya'
+      };
+      this.appRate.promptForRating(true);
+    } catch (e) {
+      Utils.sLog(e);
+    }
   }
 
 
@@ -179,7 +183,7 @@ export class ContactPage {
   }
 
   setLanguage() {
-    console.log(this.languageSelected)
+    console.log(this.languageSelected);
     let defaultLanguage = this.translate.getDefaultLang();
     console.log("defaultLanguage : " + defaultLanguage);
     if (this.languageSelected) {

@@ -1,7 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 import { ModalController, NavController, NavParams, Platform, ViewController } from "ionic-angular";
 import { APP_TYPE, APP_USER_TYPE, FRAMEWORK, MOBILE_TYPE, RES_SUCCESS, Utils } from "../../app/services/Utils";
-import { TabsPage } from "../tabs/tabs";
 import { GetService } from "../../app/services/get.servie";
 import { OrderConfirmation } from "../OrderConfirmationDialog/orderconfirmation";
 
@@ -781,12 +780,12 @@ export class ConfirmOrder {
     if (!this.calledfrom || this.calledfrom == "reorder") {
       this.viewCtrl.dismiss();
     } else {
-      this.navCtrl.push(TabsPage, { from: "confirmorder" }).then(res => {
-        const index = this.viewCtrl.index;
-        // then we remove it from the navigation stack
-        this.navCtrl.remove(index);
-        this.navCtrl.remove(index - 1);
-      });
+      // this.navCtrl.push(TabsPage, { from: "confirmorder" }).then(res => {
+      //   const index = this.viewCtrl.index;
+      //   // then we remove it from the navigation stack
+      //   this.navCtrl.remove(index);
+      //   this.navCtrl.remove(index - 1);
+      // });
     }
   }
 

@@ -1,5 +1,10 @@
 confirm-pg-styles {
+  .loc_card {
 
+    box-shadow: none;
+    background-color: #fcfbfb;
+
+  }
     .footer .toolbar-background-md {
       background: #ffffff !important;
     }
@@ -100,10 +105,9 @@ confirm-pg-styles {
   }
 
   .add_textarea {
-    background: #f2f2f2;
     border-radius: 3px;
     padding: 5px !important;
-    margin: 3px !important;
+    margin:3px !important;
   }
 }
 

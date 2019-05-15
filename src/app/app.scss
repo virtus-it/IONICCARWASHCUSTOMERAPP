@@ -28,3 +28,18 @@
   background-color: map-get($map: $colors, $key: gray)
 }
 
+
+.list button.item.item-block {
+  padding: 6px 10px;
+  background: #fcfcfc;
+  color: #25a0ae;
+  border-bottom: 1px solid #ddd;
+}
+.list button.item.item-block .item-inner {
+  border-bottom: none !important;
+}
+
+.list button.item.item-block .item-inner{margin-left: 0 !important;}
+.list button.item.item-block .item-icon {
+  margin-right: 10px !important;
+}

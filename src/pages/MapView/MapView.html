@@ -1,22 +1,21 @@
 <ion-content>
-  <div #map id="map" style="height: 75%">
-
-
-    <ion-icon *ngIf="calledFrom" color="primary" name="arrow-round-back" class="ion-style" (click)="goBack()"></ion-icon>
-    <button *ngIf="!calledFrom" ion-button menuToggle>
+  <div #map id="map" style="height: 45%">
+    <ion-fab center middle class="mgleft-ng16">
+      <img src="assets/imgs/marker_pin.png" item-center height="50px">
+    </ion-fab>
+  </div>
+  <div style="position: fixed;top: 0px;width: 100%;" class="mapnsrch">
+    <button *ngIf="!calledFrom" ion-button menuToggle style="margin-top: 12px;">
       <ion-icon name="menu"></ion-icon>
     </button>
 
-     <ion-fab justify-content-center align-items-center top center (click)="search()" class="search_box mgleft-ng16">
-
+    <ion-fab justify-content-center align-items-center top center (click)="search()" class="search_box mgleft-ng16">
         <span>
           <ion-icon name="md-search"></ion-icon> Search
         </span>
-
-
-          <h6 *ngIf="userAddr">{{userAddr}}</h6>
-
+      <h6 *ngIf="userAddr">{{userAddr}}</h6>
     </ion-fab>
+    <ion-icon *ngIf="calledFrom" color="primary" name="arrow-round-back" class="ion-style" (click)="goBack()"></ion-icon>
 
     <ion-fab right top >
       <button ion-fab (click)="getMyLocation()">
@@ -25,16 +24,14 @@
       <!-- <button ion-fab (click)="search()" style="background: #fff; border-radius: 45px; width: 100%;">
            <ion-icon name="md-search"></ion-icon>
          </button> -->
-     </ion-fab>
+    </ion-fab>
 
-     <ion-fab center middle class="mgleft-ng16">
-       <img src="assets/imgs/marker_pin.png" item-center height="50px">
-     </ion-fab>
 
-   </div>
+  </div>
 
 
 
+<ion-footer>
    <div class="sliderncatry">
      <p>Select vehicle for service</p>
      <!-- sliders rides -->
@@ -109,4 +106,6 @@
       <p class="warning fs-15">Sorry! currently we are not serving in selected location</p>
     </div>
   </div>
+</ion-footer>
+
 </ion-content>

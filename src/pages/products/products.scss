@@ -1,12 +1,12 @@
 page-products {
-  .list_container{border-bottom: 1px solid #ccc; display:block;
+  .list_container{border-bottom: 1px solid #ccc;
     .list_img {
-      width: 20%;
-      display: inline-block;
+      width: 15%;
+      display: inline-table;
     }
     .list_decs {
-      width: 59%;
-      display: inline-block;
+      width:74%;
+      display: inline-table;
       h2{font-size: 15px; margin: 0;}
       p{
         margin:5px 0 0 0;font-size: 13px;
@@ -14,8 +14,8 @@ page-products {
         color: #808080;}
     }
     .list_chkbtn {
-      width: 13%;
-      display: inline-block;padding: 0;
+      width: 11%;
+      display: inline-table;padding: 0;
       .item.item-md .checkbox-md{margin: 0;}
     }
   }

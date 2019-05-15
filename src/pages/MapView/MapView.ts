@@ -129,7 +129,7 @@ export class MapView {
 
 
     this.geocoder = new google.maps.Geocoder;
-    let elem = document.createElement("div")
+    let elem = document.createElement("div");
     this.GooglePlaces = new google.maps.places.PlacesService(elem);
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.autocomplete = {
@@ -139,9 +139,12 @@ export class MapView {
   }
 
   selectSearchResult(item) {
+    console.log("place selected");
+    console.log(item);
+    this.address.place = item.description;
+    this.geoCode(item.description);
     this.autocompleteItems = [];
-    this.address.place = item;
-    this.geoCode(item);
+
   }
   updateSearchResults() {
     if (this.autocomplete.input == '') {

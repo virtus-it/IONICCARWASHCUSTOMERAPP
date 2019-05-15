@@ -1,8 +1,8 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { GetService } from '../../app/services/get.servie';
-import { Utils, APP_TYPE } from '../../app/services/Utils';
-import { TranslateService } from '@ngx-translate/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {GetService} from '../../app/services/get.servie';
+import {APP_TYPE, Utils} from '../../app/services/Utils';
+import {TranslateService} from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -27,14 +27,14 @@ export class AddupdateridesPage {
   searchTerm: string = "";
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef, private viewCtrl: ViewController,private translateService: TranslateService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef, private viewCtrl: ViewController, private translateService: TranslateService) {
     let lang = "en";
     if (Utils.lang) {
       lang = Utils.lang
     }
     console.log(lang);
     translateService.use(lang);
-    
+
     this.calledFrom = this.navParams.get("from");
     this.updateItem = this.navParams.get("updateitem");
     console.log(this.updateItem);
@@ -58,12 +58,15 @@ export class AddupdateridesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddupdateridesPage');
   }
+
   filterItem() {
     this.filterItems = this.items.filter(item => item.manufacturer.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1 || item.model.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1);
   }
+
   pickColor(color) {
     this.pColor = color;
   }
+
   continue() {
     if (!this.alertUtils.validateText(this.year, "year", 4, 4)) {
       this.alertUtils.showToast(this.alertUtils.ERROR_MES);
@@ -98,9 +101,25 @@ export class AddupdateridesPage {
       return false;
     }
 
-    let input = { "User": { "id": this.updateItem.entityid, "manufacturer": this.itemSelected.manufacturer, "model": this.itemSelected.model, "code": this.plateCode, "number": this.plateNumber, "intensity": this.pColor, "year": this.year, "TransType": "extrainformation", "apptype": APP_TYPE, "city": this.city, "userid": Utils.USER_INFO_DATA.userid } };
+    let input = {
+      "User": {
+        "manufacturer": this.itemSelected.manufacturer,
+        "model": this.itemSelected.model,
+        "code": this.plateCode,
+        "number": this.plateNumber,
+        "intensity": this.pColor,
+        "year": this.year,
+        "TransType": "extrainformation",
+        "apptype": APP_TYPE,
+        "city": this.city,
+        "userid": Utils.USER_INFO_DATA.userid
+      }
+    };
     if (this.calledFrom == "update") {
       input.User.TransType = "updateextrainformation";
+      if (this.updateItem && this.updateItem.entityid) {
+        input.User["id"] = this.updateItem.entityid;
+      }
     }
     console.log(JSON.stringify(input));
     this.apiService.postReq(GetService.ride(), input).then(res => {
@@ -127,6 +146,7 @@ export class AddupdateridesPage {
   ngOnInit() {
     this.fetchRides();
   }
+
   onChange(c) {
     if (c.checked) {
       c.checked = false;
@@ -135,8 +155,9 @@ export class AddupdateridesPage {
     }
     this.ref.detectChanges();
   }
+
   fetchRides() {
-    let input = { "root": { "usertype": "customer" } };
+    let input = {"root": {"usertype": "customer"}};
     this.apiService.postReq(GetService.entities(), input).then(res => {
       console.log(res)
       if (res && res.data) {

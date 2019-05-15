@@ -17,26 +17,30 @@
 </ion-header>
 
 <ion-content>
+  <ion-label >Location <span (click)="editAddr()">
+        <ion-icon name="create" color="primary"></ion-icon></span></ion-label>
+  <ion-card *ngIf="!showEditProduct" class="page_bg loc_card">
+
+    <ion-row>
+      <ion-col col-sm-12 col-md-12 col-lg-12 col-xl-12>
+        <div class="textarea add_textarea" type="text" placeholder="Type your address">
+          <div *ngIf="landmark">
+            <b>Landmark: </b>{{landmark}}
+            <br>
+          </div>
+          <div *ngIf="buildingName">
+            <b>Flat No: </b>{{buildingName}}
+            <br>
+          </div>
+          <b>Address:</b> {{deliveryAddr}}
+        </div>
+      </ion-col>
+      <ion-col col-1 align-self-center >
+      </ion-col>
+    </ion-row>
+  </ion-card>
   <ion-card *ngIf="!showEditProduct" class="page_bg">
     <ion-card-content class=" prdct_main_container">
-      <ion-row>
-        <ion-col col-sm-12 col-md-12 col-lg-12 col-xl-12>
-          <div class="textarea add_textarea" type="text" placeholder="Type your address">
-            <div *ngIf="landmark">
-              <b>Landmark: </b>{{landmark}}
-              <br>
-            </div>
-            <div *ngIf="buildingName">
-              <b>Flat No: </b>{{buildingName}}
-              <br>
-            </div>
-            <b>Address:</b> {{deliveryAddr}}
-          </div>
-        </ion-col>
-        <ion-col col-1 align-self-center (click)="editAddr()">
-          <ion-icon name="create" color="primary"></ion-icon>
-        </ion-col>
-      </ion-row>
       <!-- <div class="mgleft-10">
         <label item-start>Date</label>
         <ion-item text-right style="width: 60%; float: right;">

@@ -3,16 +3,16 @@ import { Headers, Http, RequestOptions } from "@angular/http";
 import "rxjs/add/operator/map";
 import { APP_TYPE, APP_USER_TYPE, IS_WEBSITE, Utils } from "./Utils";
 
-export const APP_VER_CODE: string = "138";
+export const APP_VER_CODE: string = "3";
 
 @Injectable()
 export class GetService {
 
-  private static DEVELOPMENT_URL = "http://192.168.1.50:2250/";
-  private static TESTING_URL = "http://104.211.247.42:2250/";
+  // private static DEVELOPMENT_URL = "http://192.168.1.50:2250/";
+  // private static TESTING_URL = "http://104.211.247.42:2250/";
   private static DEMO_URL = "http://52.138.217.177:2250/";
-  private static PRODUCTION_URL = "http://moya.online/";
-  private static PAYTM_PRODUCTION_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=";
+  // private static PRODUCTION_URL = "http://moya.online/";
+  // private static PAYTM_PRODUCTION_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=";
   private static PAYTM_DEVELOPMENT_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=";
   public static TRACKING_URL = "http://52.138.217.177:1900";
 
@@ -80,8 +80,8 @@ export class GetService {
     } else {
       headers = new Headers();
       headers.append("Content-Type", "application/json");
-      headers.append("module", "moyacustomer");
-      headers.append("framework", "moyaioniccustomer");
+      headers.append("module", "woccustomer");
+      headers.append("framework", "wocioniccustomer");
       headers.append("devicetype", "android");
       headers.append("apptype", APP_TYPE);
       headers.append("usertype", APP_USER_TYPE);
@@ -106,8 +106,8 @@ export class GetService {
     } else {
       headers = new Headers();
       headers.append("Content-Type", "application/json");
-      headers.append("module", "moyacustomer");
-      headers.append("framework", "moyaioniccustomer");
+      headers.append("module", "woccustomer");
+      headers.append("framework", "wocioniccustomer");
       headers.append("devicetype", "android");
       headers.append("apptype", APP_TYPE);
       headers.append("usertype", APP_USER_TYPE);
@@ -128,8 +128,8 @@ export class GetService {
     } else {
       headers = new Headers();
       headers.append("Content-Type", "application/json");
-      headers.append("module", "moyacustomer");
-      headers.append("framework", "moyaioniccustomer");
+      headers.append("module", "woccustomer");
+      headers.append("framework", "wocioniccustomer");
       headers.append("devicetype", "android");
       headers.append("apptype", APP_TYPE);
       headers.append("usertype", APP_USER_TYPE);

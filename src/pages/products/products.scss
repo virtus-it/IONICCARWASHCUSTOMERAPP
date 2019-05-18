@@ -2,11 +2,12 @@ page-products {
   .list_container{border-bottom: 1px solid #ccc;
     .list_img {
       width: 15%;
-      display: inline-table;
+      float: left;
+      margin-right:8px;
     }
     .list_decs {
-      width:74%;
-      display: inline-table;
+      width:70%;
+      float: left;
       h2{font-size: 15px; margin: 0;}
       p{
         margin:5px 0 0 0;font-size: 13px;
@@ -15,7 +16,7 @@ page-products {
     }
     .list_chkbtn {
       width: 11%;
-      display: inline-table;padding: 0;
+      float: left;
       .item.item-md .checkbox-md{margin: 0;}
     }
   }

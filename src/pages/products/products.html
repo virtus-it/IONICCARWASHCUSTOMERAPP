@@ -15,20 +15,28 @@
 
   <div *ngFor="let data of productList">
     <ion-row class="list_container" (click)="add(data)">
-      <ion-col col="2" class="list_img">
-        <ion-avatar slot="start">
-          <img src="{{data.imgurl}}" (error)="changeImage(data)"/>
-        </ion-avatar>
+      <ion-col style="    display: inline-block;    float: left;">
+        <div class="list_img ">
+          <ion-avatar slot="start">
+            <img src="{{data.imgurl}}" (error)="changeImage(data)"/>
+          </ion-avatar>
+        </div>
+
+        <div class="list_decs ">
+          <h2>{{data.pname}}</h2>
+          <p>{{data.pcost}}</p>
+        </div>
+
+        <div class="list_chkbtn ">
+
+          <ion-item class="schedule_radiobtn">
+            <ion-checkbox (ionChange)="onChange(data)" [(ngModel)]="data.ischecked" value="data.ischecked"></ion-checkbox>
+          </ion-item>
+
+        </div>
+
       </ion-col>
-      <ion-col col="4" class="list_decs">
-        <h2>{{data.pname}}</h2>
-        <p>{{data.pcost}}</p>
-      </ion-col>
-      <ion-col col="6" class="list_chkbtn">
-        <ion-item class="schedule_radiobtn">
-          <ion-checkbox (ionChange)="onChange(data)" [(ngModel)]="data.ischecked" value="data.ischecked"></ion-checkbox>
-        </ion-item>
-      </ion-col>
+
     </ion-row>
   </div>
 </ion-content>

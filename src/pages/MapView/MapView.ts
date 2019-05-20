@@ -577,7 +577,7 @@ export class MapView {
         Utils.rideSelected = this.rides[this.slides.getActiveIndex()];
         console.log(Utils.rideSelected);
       } else {
-        this.alertUtils.showToast("Please add at least one ride");
+        this.alertUtils.showToast("Please add at least one vehicle");
         return false;
       }
 

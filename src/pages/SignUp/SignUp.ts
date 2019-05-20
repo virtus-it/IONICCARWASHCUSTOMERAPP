@@ -60,7 +60,7 @@ export class SignUp {
   private timer;
   private maxTime = 30;
   private addrData: any;
-  country: string = "IN";
+  country: string = "AED";
 
   constructor(private alertCtrl: AlertController, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef) {
 

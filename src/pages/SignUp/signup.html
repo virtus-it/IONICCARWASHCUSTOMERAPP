@@ -15,14 +15,17 @@
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-item>
+      <!-- <ion-item>
         <ion-label>{{ 'SIGNUP_PAGE.LABELS.lb_country' | translate }}</ion-label>
         <ion-select [(ngModel)]="country">
           <ion-option value="IN">IN (+91)</ion-option>
           <ion-option value="AED">AED (+971)</ion-option>
         </ion-select>
-      </ion-item>
+      </ion-item> -->
       <ion-row align-items-center>
+        <ion-col col-2>
+          <span>AED (+971)</span>
+        </ion-col>
         <ion-col>
           <ion-item>
             <ion-label floating>{{ 'SIGNUP_PAGE.LABELS.lb_mobile_no_hint' | translate }}</ion-label>
@@ -115,8 +118,8 @@
     </ion-col>
   </ion-row>
   <!--<ion-row>-->
-    <!--<ion-col col-8 align-self-center offset-2 class="poweredBy">-->
-      <!--<img src="assets/imgs/powerby.png" class="" width="70%">-->
-    <!--</ion-col>-->
+  <!--<ion-col col-8 align-self-center offset-2 class="poweredBy">-->
+  <!--<img src="assets/imgs/powerby.png" class="" width="70%">-->
+  <!--</ion-col>-->
   <!--</ion-row>-->
 </ion-content>

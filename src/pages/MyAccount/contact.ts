@@ -90,7 +90,7 @@ export class ContactPage {
 
     try {
       this.appRate.preferences.storeAppURL = {
-        android: 'market://details?id=com.moya'
+        android: 'market://details?id=com.washonclick'
       };
       this.appRate.promptForRating(true);
     } catch (e) {

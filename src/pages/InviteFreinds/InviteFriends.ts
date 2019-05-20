@@ -168,7 +168,7 @@ export class InviteFriends {
             "referto_name": this.contactList[i].name,
             "referto_mobileno": this.contactList[i].phonenumber,
             "message_type": "predefined",
-            "message": this.customMessage + " \n https://play.google.com/store/apps/details?id=com.moya&hl=en",
+            "message": this.customMessage + " \n https://play.google.com/store/apps/details?id=com.washonclick&hl=en",
             "loginid": Utils.USER_INFO_DATA.userid,
             "apptype": APP_TYPE
           }
@@ -206,7 +206,7 @@ export class InviteFriends {
         "referto_name": this.name,
         "referto_mobileno": this.mobileNumber,
         "message_type": "predefined",
-        "message": this.customMessage + " \n https://play.google.com/store/apps/details?id=com.moya&hl=en",
+        "message": this.customMessage + " \n https://play.google.com/store/apps/details?id=com.washonclick&hl=en",
         "loginid": Utils.USER_INFO_DATA.userid,
         "apptype": APP_TYPE
       }

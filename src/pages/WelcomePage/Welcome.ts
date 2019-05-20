@@ -263,7 +263,7 @@ export class WelcomePage {
 
   forceUpdate() {
     this.appRate.preferences.storeAppURL = {
-      android: 'market://details?id=com.moya'
+      android: 'market://details?id=com.washonclick'
     };
     this.appRate.navigateToAppStore();
   }

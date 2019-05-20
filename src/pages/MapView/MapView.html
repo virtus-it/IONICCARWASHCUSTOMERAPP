@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-fab left top mini>
+  <ion-fab left top mini class="left_menu">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -11,7 +11,7 @@
       </span>
     <h6 *ngIf="userAddr">{{userAddr}}</h6>
   </ion-fab> -->
-  <ion-fab  justify-content-center align-items-center center top style="  left: 25%;    width: 65%;">
+  <ion-fab   justify-content-center align-items-center center top style="  left: 25%;    width: 65%;">
     <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" placeholder="{{userAddr}}"></ion-searchbar>
     <!--<h6 *ngIf="userAddr">{{userAddr}}</h6>-->
     <ion-list [hidden]="autocompleteItems.length == 0">

@@ -1,3 +1,10 @@
+.platform-ios  .searchbar-ios{
+  background: #fff;
+  border-radius: 19px;
+  border: 1px solid #ddd;
+  margin-top: 2px;
+}
+.platform-ios ion-fab.left_menu .button-ios{height: 2.3em; padding: 0 .7em;}
 
 map-page {
    ion-app._gmaps_cdv_ .nav-decor{
@@ -26,7 +33,7 @@ map-page {
           /*! display: inline-table; */
           height: 12px;}
         .silercenter{float:left;width: 82%;}
-        .veh_name{font-size: 13px; margin:0;}
+        .veh_name{font-size: 13px; margin:0;color:#333;}
         .addride{color:#3a74ec;
         font-size: 30px;}
   }

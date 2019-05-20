@@ -20,27 +20,48 @@
   <ion-card *ngIf="!showEditProduct" class="page_bg">
     <ion-card-content class=" prdct_main_container">
       <ion-row>
-        <ion-col col-sm-12 col-md-12 col-lg-12 col-xl-12>
-          <div class="textarea add_textarea" type="text" placeholder="Type your address">
-            <div *ngIf="landmark">
-              <b>Landmark: </b>{{landmark}}
-              <br>
-            </div>
-            <div *ngIf="buildingName">
-              <b>Flat No: </b>{{buildingName}}
-              <br>
-            </div>
-            <b>Address:</b> {{deliveryAddr}}
+        <ion-col col-2 class="loc_iconlft">
+          <ion-icon name="pin" ></ion-icon>
+        </ion-col>
+        <ion-col col-10 class="loc_dtlsrht">
+          <h5 class="apptop_lbl">Address
+          <a (click)="editAddr()">      EDIT  </a>
+          </h5>
+          <div class="apptop_val textarea add_textareaview" type="text" placeholder="Type your address">
+            <span *ngIf="buildingName">
+             {{buildingName}},
+
+            </span>
+            <span *ngIf="landmark">
+             {{landmark}},
+
+            </span>
+
+           {{deliveryAddr}}
           </div>
         </ion-col>
-        <ion-col col-1 align-self-center (click)="editAddr()">
-          <ion-icon name="create" color="primary"></ion-icon>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class=" prdct_main_container">
+      <ion-row>
+        <ion-col col-2 class="loc_iconlft">
+          <ion-icon name="alarm"></ion-icon>
+        </ion-col>
+        <ion-col col-10 class="loc_dtlsrht">
+          <h5 class="apptop_lbl">Service Time </h5>
+          <div class="apptop_val textarea add_textareaview">
+            <span *ngIf="pickedDate">{{pickedDate}}</span>
+            <span *ngIf="!pickedDate">{{dateOfevent.slice(0, 10)}}</span>
+          </div>
         </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
   <ion-card *ngIf="!showEditProduct" class="page_bg">
-    <ion-card-content class=" prdct_main_container">
+    <ion-card-content class=" prdct_main_container" style="padding: 0 !important;">
       <!-- <div class="mgleft-10">
         <label item-start>Date</label>
         <ion-item text-right style="width: 60%; float: right;">
@@ -51,14 +72,15 @@
             <ion-icon name="create" color="primary"></ion-icon>
           </ion-label>
         </ion-item>
-      </div> -->
+      </div>
       <div class="mgleft-10">
           <label item-start>Service Time</label>
           <ion-item text-right style="width: 60%; float: right;">
             <p *ngIf="pickedDate">{{pickedDate}}</p>
             <p *ngIf="!pickedDate">{{dateOfevent.slice(0, 10)}}</p>
           </ion-item>
-        </div>
+        </div>-->
+
       <p class="mgtop-5 mgleft-10" hidden>
         <ion-label>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_avail_time' | translate }}</ion-label>
       </p>
@@ -102,7 +124,7 @@
           </span>
         </ion-col>
       </ion-row>
-      <div *ngFor="let item of items" class="mgleftright-10">
+      <div *ngFor="let item of items" class="mgleftright-10" style="border-bottom: 1px solid #eee;">
         <ion-row>
           <!--<ion-col col-2>-->
           <!--<span item-left>{{item.count}} </span>-->

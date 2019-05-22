@@ -69,9 +69,9 @@
       </ion-row>
 
       <div class="center" *ngIf="rides.length == 0">
-        <button ion-button (click)="addNewRide()">
-          <ion-icon slot="icon-only" name="md-add-circle"></ion-icon>
-        </button>
+        <span (click)="addNewRide()">
+          <ion-icon slot="icon-only" name="md-add-circle" class="addride"></ion-icon>
+        </span>
         <ion-label style="color: #000000;">Add a vehicle</ion-label>
       </div>
 
@@ -90,7 +90,7 @@
     </div>
 
     <ion-row>
-      <ion-col>
+      <ion-col col-9>
         <button ion-button col color="primary" class="fs-12" block (click)="next()">
           {{ 'MAP_PAGE.BUTTONS.btn_continue' | translate }}
         </button>

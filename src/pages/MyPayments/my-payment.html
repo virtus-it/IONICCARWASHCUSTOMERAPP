@@ -23,16 +23,16 @@
         <p class=" payment_seprater">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_paid_inr' | translate }}<br>
           <small>{{ 'MY_PAYMENTS_PAGE.LABELS.lb_amount' | translate }}</small>
           <span item-end float-right class=" paid_amount">{{items?.amount_payed}}</span></p>
-        <p *ngIf="items?.customer?.lastname" class="payment_seprater output_lbl" text-capitalize>{{
-          'MY_PAYMENTS_PAGE.LABELS.lb_cycle_bill' | translate }}<br>
-          <small>{{ 'MY_PAYMENTS_PAGE.LABELS.lb_bill' | translate }}</small>
-          <span item-end float-right class="">{{items?.customer?.firstname +" "+ items?.customer?.lastname}}</span></p>
-        <p *ngIf="!items?.customer?.lastname" class="payment_seprater" text-capitalize>
-          {{items?.customer?.firstname}}<span
-          item-end float-right class="no_margin">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_cycle_bill_2' | translate }}</span></p>
-        <p class="payment_seprater output_lbl">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_due_date' | translate }}<br>
-          <small>{{ 'MY_PAYMENTS_PAGE.LABELS.lb_date' | translate }}</small>
-          <span item-end float-right class=""> {{items?.duedate | normalDate}}</span></p>
+        <!--<p *ngIf="items?.customer?.lastname" class="payment_seprater output_lbl" text-capitalize>{{-->
+          <!--'MY_PAYMENTS_PAGE.LABELS.lb_cycle_bill' | translate }}<br>-->
+          <!--<small>{{ 'MY_PAYMENTS_PAGE.LABELS.lb_bill' | translate }}</small>-->
+          <!--<span item-end float-right class="">{{items?.customer?.firstname +" "+ items?.customer?.lastname}}</span></p>-->
+        <!--<p *ngIf="!items?.customer?.lastname" class="payment_seprater" text-capitalize>-->
+          <!--{{items?.customer?.firstname}}<span-->
+          <!--item-end float-right class="no_margin">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_cycle_bill_2' | translate }}</span></p>-->
+        <!--<p class="payment_seprater output_lbl">{{ 'MY_PAYMENTS_PAGE.LABELS.lb_due_date' | translate }}<br>-->
+          <!--<small>{{ 'MY_PAYMENTS_PAGE.LABELS.lb_date' | translate }}</small>-->
+          <!--<span item-end float-right class=""> {{items?.duedate | normalDate}}</span></p>-->
 
         <ion-item padding *ngIf="historyItems" class="no_padding mypayment">
           <div class="row h eader">

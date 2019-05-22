@@ -12,7 +12,6 @@
 
 <ion-content>
   <ion-card class="no_padding">
-
     <ion-list class="no_margin no_padding">
       <button ion-item (click)="fetchUserInfo()" padding class="menu">
         <ion-icon name="person" item-start></ion-icon>
@@ -24,11 +23,6 @@
         <ion-icon name="cash" item-start></ion-icon>
         {{ 'MY_ACCOUNT_PAGE.BUTTONS.btn_my_payments' | translate }}
       </button>
-
-      <!-- <button ion-item (click)="mySchedules()" padding class="menu">
-        <ion-icon name="calendar" item-start></ion-icon>
-        {{ 'MY_ACCOUNT_PAGE.BUTTONS.btn_my_schedule' | translate }}
-      </button> -->
 
       <button ion-item (click)="feedback()" padding class="menu">
         <ion-icon name="chatbubbles" item-start></ion-icon>
@@ -66,7 +60,7 @@
       </button>
       <button ion-item (click)="logOut()" padding class="menu">
         <ion-label>{{ 'WELCOME_PAGE.LABELS.lb_lng' | translate }}</ion-label>
-        <ion-select [(ngModel)]="languageSelected" (ionChange)='setLanguage()' [cancelText]="'WELCOME_PAGE.BUTTONS.btn_cancel' | translate">
+        <ion-select [(ngModel)]="languageSelected" (ionChange)='setLanguage()' style="text-transform: none;" [cancelText]="'WELCOME_PAGE.BUTTONS.btn_cancel' | translate">
           <ion-option *ngFor="let item of languages" [value]="item.code">{{item.name}}</ion-option>
         </ion-select>
       </button>

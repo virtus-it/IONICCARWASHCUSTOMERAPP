@@ -107,7 +107,7 @@ export class InviteFriends {
   }
 
   checkClick() {
-    this.customMessage = "Hi " + this.name + " , I d like to invite you to install CARWASH app !\n\nThanks";
+    this.customMessage = "Hi " + this.name + " , I d like to invite you to install WashOnClick app !\n\nThanks";
   }
 
   pickContact(contact) {

@@ -6,6 +6,10 @@ page-addupdaterides {
   .pd-20 {
     border-radius: 60px;margin: 5px;border: 2px solid #ddd;
   }
+
+  .item-block {
+    min-height: 4.5rem !important;
+    text-align: center !important;
 }
 h4 .red{background: red}
 h4 .gray{background: gray}
@@ -22,3 +26,5 @@ h4 .steelblue{background: steelblue}
 h4 .teal{background: teal}
 h4 .slategray{background: slategray}
 h4 .blue{background: blue}
+}
+

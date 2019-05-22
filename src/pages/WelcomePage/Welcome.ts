@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {AlertController, NavController, Platform, ViewController} from "ionic-angular";
+import { Component } from "@angular/core";
+import { AlertController, NavController, Platform, ViewController } from "ionic-angular";
 import {
   APP_TYPE,
   APP_USER_TYPE,
@@ -9,20 +9,20 @@ import {
   RES_SUCCESS,
   Utils
 } from "../../app/services/Utils";
-import {GetService} from "../../app/services/get.servie";
-import {Login} from "../LoginIn/Login";
-import {MapView} from "../MapView/MapView";
-import {Diagnostic} from "@ionic-native/diagnostic";
-import {AppRate} from "@ionic-native/app-rate";
-import {SignUp} from "../SignUp/SignUp";
-import {TranslateService} from "@ngx-translate/core";
+import { GetService } from "../../app/services/get.servie";
+import { Login } from "../LoginIn/Login";
+import { MapView } from "../MapView/MapView";
+import { Diagnostic } from "@ionic-native/diagnostic";
+import { AppRate } from "@ionic-native/app-rate";
+import { SignUp } from "../SignUp/SignUp";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'page-welcome',
   templateUrl: 'Welcome.html'
 })
 export class WelcomePage {
-  languages = [{name: "English", code: "en"}, {name: "Arabic", code: "ar"}];
+  languages = [{ name: "English", code: "en" }, { name: "Arabic", code: "ar" }];
   languageSelected: any;
   private mobileNumber: string;
   private showProgress = false;
@@ -46,6 +46,7 @@ export class WelcomePage {
         }).catch(reason => {
           this.alertUtils.showLog(reason);
         });
+
         this.alertUtils.getUserInfo().then(info => {
           if (info) {
             Utils.USER_INFO_DATA = info;
@@ -53,6 +54,17 @@ export class WelcomePage {
         }, err => {
           Utils.sLog(err);
         });
+
+        this.alertUtils.getLang().then(lang => {
+          if (lang) {
+            this.languageSelected = lang;
+          } else {
+            this.languageSelected = 'en';
+          }
+        }, err => {
+          Utils.sLog(err);
+        })
+
         this.alertUtils.getUserId().then(userId => {
           this.alertUtils.showLog("userId");
           this.alertUtils.showLog(userId);
@@ -128,17 +140,17 @@ export class WelcomePage {
         this.dealerID = "0"
       }
       let input =
-        {
-          "root": {
-            "userid": this.userID,
-            "dealerid": this.dealerID,
-            "usertype": APP_USER_TYPE,
-            "appusertype": APP_USER_TYPE,
-            "apptype": APP_TYPE,
-            "mobiletype": MOBILE_TYPE,
-            "framework": FRAMEWORK
-          }
-        };
+      {
+        "root": {
+          "userid": this.userID,
+          "dealerid": this.dealerID,
+          "usertype": APP_USER_TYPE,
+          "appusertype": APP_USER_TYPE,
+          "apptype": APP_TYPE,
+          "mobiletype": MOBILE_TYPE,
+          "framework": FRAMEWORK
+        }
+      };
       if (this.deviceCode) {
         input.root["versionnumber"] = this.deviceCode;
       }
@@ -299,7 +311,7 @@ export class WelcomePage {
 
   signIn() {
     try {
-      this.navCtrl.push(Login, {items: "welcomepage"});
+      this.navCtrl.push(Login, { items: "welcomepage" });
     } catch (e) {
       this.alertUtils.showLog(e);
     }

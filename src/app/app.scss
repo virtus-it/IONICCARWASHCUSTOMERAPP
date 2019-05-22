@@ -32,7 +32,7 @@
 .list button.item.item-block {
   padding: 6px 10px;
   background: #fcfcfc;
-  color: #25a0ae;
+  color: #38b7fe;
   border-bottom: 1px solid #ddd;
 }
 .list button.item.item-block .item-inner {
@@ -42,4 +42,39 @@
 .list button.item.item-block .item-inner{margin-left: 0 !important;}
 .list button.item.item-block .item-icon {
   margin-right: 10px !important;
+}
+.round {
+  border-radius: 50%;
+}
+
+// Material Design Sidemenu
+#menu-material {
+  .menu-header {
+    padding: 5px 15px;
+    background-image: url('../assets/imgs/material-design-background.jpg');
+    background-size: cover;
+    color: white;
+    .name {
+      font-weight: 500;
+      margin-bottom: 3px;
+      font-size: 1.5rem;
+    }
+    .e-mail {
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+  }
+  .user-avatar {
+    padding: .5em;
+    height: 12vh;
+  }
+  h3,
+  .label,
+  {
+    color: #38b7fe;
+    font-weight: 400;
+  }
+  ion-icon {
+    color: #38b7fe;
+  }
 }

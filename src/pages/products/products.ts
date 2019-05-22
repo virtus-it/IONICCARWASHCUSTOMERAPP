@@ -17,7 +17,7 @@ import { Utils } from '../../app/services/Utils';
 export class ProductsPage {
   pageDetails: any;
   productList: any;
-  totalamt: number;
+  totalamt: number = 0;
 
   constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private alertUtils: Utils) { }
   continue() {

@@ -1,4 +1,4 @@
-<ion-menu [content]="content" >
+<!-- <ion-menu [content]="content" >
     <ion-header>
         <ion-toolbar>
             <ion-title>Menu</ion-title>
@@ -13,6 +13,30 @@
         </ion-list>
     </ion-content>
 
+</ion-menu> -->
+
+<!--Material Design Menu-->
+<ion-menu [content]="content" id="menu-material">
+    <ion-content>
+        <div class="menu-header">
+            <img class="user-avatar round" src='assets/imgs/img_user.png' />
+            <p class="name">{{name}}</p>
+        </div>
+        <ion-list no-lines>
+            <button menuClose [class.activeHighlight]="checkActive(p)" ion-item detail-none *ngFor="let p of pages"
+                (click)="openPage(p)">
+                <ion-icon [name]="p.icon" item-left></ion-icon>
+                {{p.title}}
+            </button>
+        </ion-list>
+    </ion-content>
+    <ion-footer>
+        <ion-item>
+            <ion-label>
+                Version: {{buildVersion}}
+            </ion-label>
+        </ion-item>
+    </ion-footer>
 </ion-menu>
 
 <!-- <ion-nav [root]="rootPage"></ion-nav> -->

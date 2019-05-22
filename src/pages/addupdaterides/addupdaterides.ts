@@ -88,7 +88,7 @@ export class AddupdateridesPage {
       this.alertUtils.showToast("Pick color");
       return false;
     }
-    if (!this.alertUtils.validateText(this.city, "plate number", 2, 100)) {
+    if (!this.alertUtils.validateText(this.city, "city", 2, 100)) {
       this.alertUtils.showToast(this.alertUtils.ERROR_MES);
       return false;
     }

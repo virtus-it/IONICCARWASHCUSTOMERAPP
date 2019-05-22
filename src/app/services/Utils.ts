@@ -460,9 +460,9 @@ export class Utils {
       .then(() => console.log('Stored  USER_INFO'), error => console.error('Error storing data', error));
   }
 
-  getLang(): string {
+  getLang() {
 
-    return "" + this.nativeStorage.getItem(KEY_USER_LANG);
+    return this.nativeStorage.getItem(KEY_USER_LANG);
   }
   cacheAppFirstInfo(data) {
     this.nativeStorage.setItem(KEY_APP_FIRST_CALL_INFO, data)

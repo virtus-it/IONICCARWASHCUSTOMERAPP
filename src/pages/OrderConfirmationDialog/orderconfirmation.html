@@ -41,14 +41,19 @@
           </span>
         </ion-col>
       </ion-row>
-      <div *ngFor="let item of items">
+      <ion-row *ngIf="items && items.length > 0">
+        <ion-col>
+          <span item-right><b>{{items[0].category}}</b></span>
+        </ion-col>
+      </ion-row>
+      <div *ngFor="let item of items;let i = index">
         <ion-row>
           <ion-col col-9>
-            <span item-right>{{item.brandname}}</span>
+            <span item-right><b>{{i+1}}. </b>{{item.brandname}}</span>
           </ion-col>
 
           <ion-col col-3 class="right">
-            <span item-right>{{(item.pcost)}}
+            <span item-right>{{(item.pcost)}} AED
             </span>
           </ion-col>
         </ion-row>
@@ -113,7 +118,7 @@
     <ion-row>
       <ion-col>
         <button *ngIf="!showProgressPayNow" [disabled]="isPaytmDisabled" class="cancel_order" color="secondary"
-                ion-button full (click)="paynow()">
+          ion-button full (click)="paynow()">
           Pay Now
         </button>
         <button class="cancel_order" color="secondary" *ngIf="showProgressPayNow" ion-button full>

@@ -4,7 +4,7 @@
       <img src="assets/imgs/header_icon.png" class="header_icon"><span class="title-style"> {{ 'MY_FEEDBACK_PAGE.PAGE_TITLE' | translate }}</span>
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="primary" class="btn-header" (click)="createFeedback()">{{ 'MY_FEEDBACK_PAGE.BUTTONS.btn_new' | translate }}
+      <button ion-button icon-only color="primary" (click)="createFeedback()">{{ 'MY_FEEDBACK_PAGE.BUTTONS.btn_new' | translate }}
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -42,7 +42,7 @@
             <ion-item *ngIf="reply.userid && reply.createdby.userid != userID" class="feed_admin_reply">
               <div>
                 <p class=" primary" *ngIf="reply.createdby.lastname"> {{ reply.createdby.firstname +" "+
-                  reply.createdby.lastname}} <span class="gray9 " float-right>{{reply.createddate | slice:0:10 }} </span></p>
+                  reply.createdby.lastname}}</p>
                 <!-- <p class="mgleft-10 primary" *ngIf="!reply.createdby.lastname">{{ reply.createdby.firstname
                   }}{{reply.createddate
                   | slice:0:10 }} </p> -->
@@ -57,7 +57,7 @@
 
               <div>
                 <p class="mgleft-10" *ngIf="!reply.createdby.lastname">{{ reply.createdby.firstname
-                  }}{{reply.createddate | slice:0:10 }} </p>
+                  }} </p>
               </div>
               <div *ngIf="reply.userid && reply.createdby.userid == userID">
                 <p class="primary "> You Replied <span class="gray9 " float-right> {{reply.createddate | slice:0:10 }}</span></p>

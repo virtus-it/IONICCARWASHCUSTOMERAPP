@@ -64,9 +64,6 @@
       </ion-row>
     </ion-grid>
 
-
-    <ion-list inset>
-
       <ion-item>
         <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_year' | translate }}</ion-label>
         <ion-input pattern="[0-9]*" type="tel" maxlength="4" minlength="4" [(ngModel)]="year"></ion-input>
@@ -74,24 +71,23 @@
 
       <ion-item>
         <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_city' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="city"></ion-input>
+        <ion-input type="text" [(ngModel)]="city" maxlength="100"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_plate_no' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="plateNumber"></ion-input>
+        <ion-input type="tel" [(ngModel)]="plateNumber" maxlength="5"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_plate_code' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="plateCode"></ion-input>
+        <ion-input type="text" maxlength="3"  [(ngModel)]="plateCode" (ngModelChange)="plateCode = $event.toLocaleUpperCase()"></ion-input>
       </ion-item>
 
       <button type="button" ion-button full (click)="continue()" class="btn ">{{ 'MY_RIDES_PAGE.BUTTONS.btn_done' |
         translate }}
 
       </button>
-    </ion-list>
 
   </div>
 

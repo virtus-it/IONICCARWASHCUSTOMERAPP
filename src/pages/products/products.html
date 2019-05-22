@@ -18,13 +18,14 @@
       <ion-col style="    display: inline-block;    float: left;">
         <div class="list_img ">
           <ion-avatar slot="start">
-            <img src="{{data.imgurl}}" (error)="changeImage(data)"/>
+            <img src="{{data.imgurl}}" (error)="changeImage(data)" />
           </ion-avatar>
         </div>
 
         <div class="list_decs ">
           <h2>{{data.pname}}</h2>
-          <p>{{data.pcost}}</p>
+          <p>{{data.pcost}} AED</p>
+          <p *ngIf="data.ptype" style="color: coral">{{data.ptype}}</p>
         </div>
 
         <div class="list_chkbtn ">
@@ -41,19 +42,18 @@
   </div>
 </ion-content>
 
-<ion-footer >
-    <ion-toolbar>
-      <ion-row justify-content-between>
-        <ion-col col align-self-center class="left">
-          <strong class="">Total :
-            {{totalamt}}
-          </strong>
-        </ion-col>
-        <ion-col col-4 class="right">
-          <button type="button" ion-button small (click)="continue()" class="btn contibtn">Continue &nbsp;
-            <ion-icon name="arrow-forward"></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-toolbar>
-  </ion-footer>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row justify-content-between>
+      <ion-col col align-self-center class="left">
+        <strong class="">Total :
+          {{totalamt}} AED
+        </strong>
+      </ion-col>
+      <ion-col col-4 class="right">
+        <button type="button" ion-button full (click)="continue()" class="btn contibtn">Continue 
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

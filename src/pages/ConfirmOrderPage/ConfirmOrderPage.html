@@ -21,23 +21,23 @@
     <ion-card-content class=" prdct_main_container">
       <ion-row>
         <ion-col col-2 class="loc_iconlft">
-          <ion-icon name="pin" ></ion-icon>
+          <ion-icon name="pin"></ion-icon>
         </ion-col>
         <ion-col col-10 class="loc_dtlsrht">
           <h5 class="apptop_lbl">Address
-          <a (click)="editAddr()">      EDIT  </a>
+            <a (click)="editAddr()"> EDIT </a>
           </h5>
           <div class="apptop_val textarea add_textareaview" type="text" placeholder="Type your address">
             <span *ngIf="buildingName">
-             {{buildingName}},
+              {{buildingName}},
 
             </span>
             <span *ngIf="landmark">
-             {{landmark}},
+              {{landmark}},
 
             </span>
 
-           {{deliveryAddr}}
+            {{deliveryAddr}}
           </div>
         </ion-col>
       </ion-row>
@@ -88,22 +88,26 @@
         <ion-list radio-group [(ngModel)]="deliverySlot" item-right>
           <ion-item class="schedule_radiobtn">
             <ion-radio item-left class="radio_btn" value="8AM-11AM" [disabled]="slot1"></ion-radio>
-            <ion-label item-right="" style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_1' | translate }}
+            <ion-label item-right="" style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_1'
+              | translate }}
             </ion-label>
           </ion-item>
           <ion-item class="schedule_radiobtn">
             <ion-radio item-left class="radio_btn" value="11AM-2PM" [disabled]="slot2"></ion-radio>
-            <ion-label item-right style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_2' | translate }}
+            <ion-label item-right style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_2' |
+              translate }}
             </ion-label>
           </ion-item>
           <ion-item class="schedule_radiobtn">
             <ion-radio item-left class="radio_btn" value="2PM-5PM" [disabled]="slot3"></ion-radio>
-            <ion-label item-right style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_3' | translate }}
+            <ion-label item-right style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_3' |
+              translate }}
             </ion-label>
           </ion-item>
           <ion-item class="schedule_radiobtn">
             <ion-radio item-left class="radio_btn" value="5PM-8PM" [disabled]="slot4"></ion-radio>
-            <ion-label item-right style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_4' | translate }}
+            <ion-label item-right style="padding: 5px; border-radius: 3px;">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_slot_4' |
+              translate }}
             </ion-label>
           </ion-item>
         </ion-list>
@@ -118,51 +122,31 @@
             <b>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_product_name' | translate }}</b>
           </span>
         </ion-col>
-        <ion-col  col-3 class="right">
+        <ion-col col-3 class="right">
           <span item-right>
             <b>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_price' | translate }}</b>
           </span>
         </ion-col>
       </ion-row>
-      <div *ngFor="let item of items" class="mgleftright-10" style="border-bottom: 1px solid #eee;">
-        <ion-row>
-          <!--<ion-col col-2>-->
-          <!--<span item-left>{{item.count}} </span>-->
-          <!--</ion-col>-->
-          <ion-col>
-            <span item-right>{{item.brandname}}
 
-            </span>
+      <ion-row *ngIf="items && items.length > 0" class="mgleftright-10">
+        <ion-col>
+          <span item-right><b>{{items[0].category}}</b></span>
+        </ion-col>
+      </ion-row>
+
+      <div *ngFor="let item of items;let i = index" class="mgleftright-10" style="border-bottom: 1px solid #eee;">
+        <ion-row>
+
+          <ion-col>
+            <span item-right><b>{{i+1}}. </b>{{item.brandname}}</span>
+            <p  item-right style="color: coral;padding-left: 13px;">{{item.ptype}}</p>
           </ion-col>
           <ion-col col-3 class="right">
-            <span item-right>{{item.pcost}}
+            <span item-right>{{item.pcost}} AED
             </span>
           </ion-col>
         </ion-row>
-        <!-- <ion-row class="pdleftright-5 mgbtm-5" *ngIf="item.servicecharge && item.servicecharge > 0">
-
-          <ion-col align-self-start>
-            Service charge
-            <small>{{item.count}} x
-              <img class="img-rupee" src="assets/imgs/img_rupee_black.png">{{item.servicecharge}}
-            </small>
-          </ion-col>
-          <ion-col col-2 align-self-end class="right">
-            {{item.servicecharge * item.count}}
-          </ion-col>
-        </ion-row>
-        <ion-row justify-content-between *ngIf="item.mdemptycount" class="pdleftright-5">
-          <ion-col>
-            <span item-right> Advance Amt (refundable)
-              <small>{{item.mdemptycount}} x
-                <img class="img-rupee" src="assets/imgs/img_rupee_black.png"> 150</small>
-            </span>
-          </ion-col>
-          <ion-col col-2 class="right">
-            <span item-right>{{(item.mdemptycount * 150)}}
-            </span>
-          </ion-col>
-        </ion-row> -->
       </div>
       <ion-row justify-content-between class="mgleftright-10" hidden>
         <ion-col col-sm-3 col-xs-3 col-md-3 col-lg-3 col-xl-3>
@@ -187,7 +171,7 @@
         </ion-col>
       </ion-row>
 
-      <div  hidden center class="note-style">NOTE:
+      <div hidden center class="note-style">NOTE:
         <br>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_proceed_order_price_might_vary' | translate}}
       </div>
 
@@ -208,12 +192,13 @@
       </ion-col>
       <ion-col col-sm-4 col-md-4 col-lg-4 col-xl-4 class="right">
         <span item-right>{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_total_cost' | translate }}
-          <b> {{tAmount}} </b>
+          <b> {{tAmount}} AED</b>
         </span>
 
       </ion-col>
     </ion-row>
-    <div center class="confirm-style" *ngIf="!showEditProduct">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_proceed_order_content' | translate }}
+    <div center class="confirm-style" *ngIf="!showEditProduct">{{ 'CONFIRM_ORDER_PAGE.LABELS.lb_proceed_order_content'
+      | translate }}
     </div>
     <ion-row *ngIf="!showEditProduct">
       <ion-col>

@@ -260,7 +260,7 @@ export class AboutPage {
             if (res.data[i].status == "onhold") {
               res.data[i]["orderstatus"] = "Onhold";
               res.data[i]["statusColor"] = "warning";
-              res.data[i]["trackingmessage"] = "We have put your order on-hold as our supplier can't deliver, sorry for the inconvenience caused";
+              res.data[i]["trackingmessage"] = "We have put your order on-hold as our service engineer can't deliver, sorry for the inconvenience caused";
               if (res.data[i].supplierdetails)
                 res.data[i]["defindimg"] = this.apiService.getImg() + "supplier_" + res.data[i].supplierdetails.userid;
             } else if (res.data[i].status == "Cancelled" || res.data[i].status == "cancelled") {
@@ -323,7 +323,7 @@ export class AboutPage {
             } else if (res.data[i].status == "cannot_deliver" || res.data[i].status == "Cant Deliver") {
               res.data[i]["orderstatus"] = "Cant Deliver";
               res.data[i]["statusColor"] = "warning";
-              res.data[i]["trackingmessage"] = "We have put your order on-hold as our supplier can't deliver, sorry for the inconvenience caused";
+              res.data[i]["trackingmessage"] = "We have put your order on-hold as our service engineer can't deliver, sorry for the inconvenience caused";
               res.data[i]["assigncolor"] = "warning";
               res.data[i]["completedcolor"] = "warning";
               if (res.data[i].supplierdetails)

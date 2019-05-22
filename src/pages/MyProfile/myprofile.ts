@@ -120,7 +120,7 @@ export class MyProfile {
 
   showPromptForPwd() {
     let prompt = this.alertCtrl.create({
-      title: 'UPDATE PASSWORD',
+      title: 'Update Password',
       inputs: [
         {
           name: 'currentPwd',

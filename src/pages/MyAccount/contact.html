@@ -58,7 +58,7 @@
         <ion-icon name="log-out" item-start></ion-icon>
         {{ 'MY_ACCOUNT_PAGE.BUTTONS.btn_log_out' | translate }}
       </button>
-      <button ion-item (click)="logOut()" padding class="menu">
+      <button ion-item padding class="menu">
         <ion-label>{{ 'WELCOME_PAGE.LABELS.lb_lng' | translate }}</ion-label>
         <ion-select [(ngModel)]="languageSelected" (ionChange)='setLanguage()' style="text-transform: none;" [cancelText]="'WELCOME_PAGE.BUTTONS.btn_cancel' | translate">
           <ion-option *ngFor="let item of languages" [value]="item.code">{{item.name}}</ion-option>

@@ -67,6 +67,7 @@ export class Utils {
   private pd;
   static datePicked: any;
   static lang: string = "en";
+  sliderName: string = "Hi User";
 
   constructor(private appRate: AppRate, private diagnostic: Diagnostic, private net: Network, public toast: ToastController, public loadingCtrl: LoadingController, private appVersion: AppVersion, private nativeStorage: NativeStorage, public alertCtrl: AlertController, private cNumber: CallNumber, private tToast: Toast, private nSetting: OpenNativeSettings, private device: Device) {
 

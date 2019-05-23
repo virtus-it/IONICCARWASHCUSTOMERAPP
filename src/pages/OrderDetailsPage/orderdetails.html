@@ -178,7 +178,8 @@
                 <h5 [ngClass]="item.assigncolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_assign' | translate }}</h5>
                 <p [ngClass]="item.assigncolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_order_assigned' | translate }}</p>
                 <br>
-                <label *ngIf="item?.status == 'accept' || item?.status == 'jobstarted' || item?.status == 'delivered' || item?.status == 'orderstarted'" class="text_output">
+                <label *ngIf="item?.status == 'accept' || item?.status == 'jobstarted' || item?.status == 'delivered' || item?.status == 'orderstarted'"
+                  class="text_output">
                   {{item?.order_assigneddate | utcDate }}</label>
               </li>
               <!-- Assigned -->
@@ -187,7 +188,8 @@
                 <h5 [ngClass]="item.onthewaycolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_on_the_way' | translate }}</h5>
                 <p [ngClass]="item.onthewaycolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_order_dispatched' | translate }}</p>
                 <br>
-                <label *ngIf="item?.status == 'orderstarted' || item?.status == 'jobstarted' || item?.status == 'delivered'" class="text_output">
+                <label *ngIf="item?.status == 'orderstarted' || item?.status == 'jobstarted' || item?.status == 'delivered'"
+                  class="text_output">
                   {{item?.modifieddate | utcDate }}</label>
               </li>
               <!-- on the way -->
@@ -196,7 +198,8 @@
                 <h5 [ngClass]="item.jobstartedcolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_job_started' | translate }}</h5>
                 <p [ngClass]="item.jobstartedcolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_order_jobstarted' | translate }}</p>
                 <br>
-                <label *ngIf="item?.status == 'jobstarted' || item?.status == 'delivered' || item?.status == 'orderstarted'" class="text_output">
+                <label *ngIf="item?.status == 'jobstarted' || item?.status == 'delivered' || item?.status == 'orderstarted'"
+                  class="text_output">
                   {{item?.modifieddate | utcDate }}</label>
               </li>
               <!-- job started -->
@@ -219,14 +222,12 @@
     <ion-card *ngIf="item?.showassignstatus == true " class="no_padding">
       <ion-card-content>
         <ion-row>
-          <ion-col col-sm-5 col-md-5 col-lg-5 col-xl-5 class="fs-15">
+          <ion-col>
             {{ 'ORDER_DETAILS_PAGE.LABELS.lb_supplier_details' | translate }}
-          </ion-col>
-          <ion-col col-sm-7 col-md-7 col-lg-7 col-xl-7 class="right">
           </ion-col>
         </ion-row>
         <ion-item class="no_margin no_padding">
-          <ion-icon name="person" item-left small class="no_margin no_padding"></ion-icon>
+          <ion-icon name="person" small class="no_margin no_padding"></ion-icon>
           <span *ngIf="item?.suppliername" class="text_output no_margin pdleft12-nopadding">{{item?.suppliername }}</span>
         </ion-item>
         <ion-item class="no_margin no_padding logo-color" (click)="callNow(item?.supplierdetails.mobileno)" *ngIf="item?.supplierdetails">
@@ -246,7 +247,7 @@
           </ion-col>
         </ion-row>
         <ion-item class="no_margin no_padding">
-          <ion-icon name="person" item-left small class="no_margin no_padding"></ion-icon>
+          <ion-icon name="person" small class="no_margin no_padding"></ion-icon>
           <span class="text_output no_margin pdleft12-nopadding">{{item?.dealerdetails.firstname + "
             "+item?.dealerdetails.lastname }}</span>
         </ion-item>

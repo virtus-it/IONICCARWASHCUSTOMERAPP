@@ -288,7 +288,27 @@ export class OrderDetails {
 
 
   callNow(number) {
-    this.alertUtils.callNumber(number);
+
+    let alert = this.alertCtrl.create({
+      title: 'Alert',
+      message: 'Are you sure you want to call this number?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.alertUtils.callNumber(number);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 

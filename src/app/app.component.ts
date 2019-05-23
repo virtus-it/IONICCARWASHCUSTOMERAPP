@@ -13,6 +13,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { GetService } from "./services/get.servie";
 import { Login } from "../pages/LoginIn/Login";
 import { MapView } from "../pages/MapView/MapView";
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +25,7 @@ export class MyApp {
   pages: Array<{ title: string, component: any, icon: string }>;
   activePage: any;
   private isNotification: boolean = false;
-  name: string = 'Hi User';
+  sliderName: string = 'Hi User';
   buildVersion: string = "v1";
 
   constructor(private apiService: GetService, private translateService: TranslateService,
@@ -39,8 +40,8 @@ export class MyApp {
       this.alertUtils.getUserInfo().then(info => {
         if (info) {
           Utils.USER_INFO_DATA = info;
-          this.name = Utils.USER_INFO_DATA.first_name;
-
+          this.alertUtils.sliderName = Utils.USER_INFO_DATA.first_name;
+          this.sliderName = this.alertUtils.sliderName;
         }
       }, err => {
         Utils.sLog(err);
@@ -59,9 +60,8 @@ export class MyApp {
       this.initPushNotification();
 
       if (IS_WEBSITE) {
-        this.name = Utils.USER_INFO_DATA.first_name;
+        this.sliderName = Utils.USER_INFO_DATA.first_name;
       }
-
 
     });
     // used for an example of ngFor and navigation

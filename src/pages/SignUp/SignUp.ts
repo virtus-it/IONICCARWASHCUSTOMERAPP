@@ -221,6 +221,7 @@ export class SignUp {
 
             this.alertUtils.cacheInfo(this.info.userid, password, this.mobileNumber, this.info.email, APP_USER_TYPE, userName, dealerid, dealermobileno, this.info.imagename, imageVer, this.info.address, this.info.city, this.info.state, this.info.pincode, dealerName, this.info.latitude, this.info.longitude);
             this.alertUtils.setLoginState(true);
+            this.alertUtils.sliderName = res.data.user.first_name;
             this.alertUtils.getLoginState().then(res => {
               this.alertUtils.showLog(res);
             }, err => {

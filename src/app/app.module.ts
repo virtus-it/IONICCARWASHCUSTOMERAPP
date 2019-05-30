@@ -22,6 +22,8 @@ import { Push } from "@ionic-native/push";
 import { Device } from "@ionic-native/device";
 import { SocialSharing } from "@ionic-native/social-sharing";
 import { Keyboard } from "@ionic-native/keyboard";
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 // import { SMS } from '@ionic-native/sms';
 
 import { SignUp } from "../pages/SignUp/SignUp";
@@ -125,6 +127,7 @@ const config: SocketIoConfig = { url: GetService.TRACKING_URL, options: {} };
     SocialSharing,
     Device,
     Push,
+    PhotoViewer,
     SplashScreen,
     ModalController,
     { provide: ErrorHandler, useClass: IonicErrorHandler }

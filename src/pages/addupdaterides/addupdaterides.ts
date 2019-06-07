@@ -117,8 +117,8 @@ export class AddupdateridesPage {
     };
     if (this.calledFrom == "update") {
       input.User.TransType = "updateextrainformation";
-      if (this.updateItem && this.updateItem.entityid) {
-        input.User["id"] = this.updateItem.entityid;
+      if (this.updateItem && this.updateItem.id) {
+        input.User["id"] = this.updateItem.id;
       }
     }
     console.log(JSON.stringify(input));

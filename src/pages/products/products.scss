@@ -1,12 +1,14 @@
 page-products {
-  .list_container{border-bottom: 1px solid #ccc; display:block;
+  .list_chkbtn .item-ios{padding-left:0}
+  .list_container{border-bottom: 1px solid #ccc;
     .list_img {
-      width: 20%;
-      display: inline-block;
+      width: 15%;
+      float: left;
+      margin-right:8px;
     }
     .list_decs {
-      width: 59%;
-      display: inline-block;
+      width:70%;
+      float: left;
       h2{font-size: 15px; margin: 0;}
       p{
         margin:5px 0 0 0;font-size: 13px;
@@ -14,10 +16,13 @@ page-products {
         color: #808080;}
     }
     .list_chkbtn {
-      width: 13%;
-      display: inline-block;padding: 0;
+      width: 11%;
+      float: left;
       .item.item-md .checkbox-md{margin: 0;}
     }
+  }
+  .contibtn.button-ios {
+    padding: 0 5px;
   }
   .contibtn{padding: 0;}
 }

@@ -16,176 +16,123 @@
   <div class="no_padding prdct_main_container order_details_pg" *ngIf="!showProgress">
     <ion-card class="no_padding">
       <ion-card-content>
-     <ion-row>
-        <ion-col>
-        <div class="corner-ribbon" *ngIf="item.promocodeapplied && item.promocodeapplied=='true'">Promocode Applied</div>
-</ion-col>
-     </ion-row>
-              <ion-row>
-                <ion-col>
-                    <label >
-                      <b>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_order_id' | translate }}</b>
-                    </label>
-                    <span class="no_padding no_margin  text_highlight"> #{{item?.order_id}}</span>
-                  </ion-col>
-                  <ion-col class="right">
-                    <span class="gray8" item-start>{{item?.modifieddate | utcDate}}</span></ion-col>
-                </ion-row>
-            <ion-row class="table-header" style=" border-bottom: 1px solid #ccc">
-              <ion-col class=" col-7">
-                <span item-right>
-                  <b>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_product_name' | translate }}</b>
-                </span>
-              </ion-col>
-
-              <ion-col col-2 class="right" align-self-end>
-                <span item-right>
-                  <b>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_price' | translate }}</b>
-                </span>
-              </ion-col>
-            </ion-row>
-
-              <ion-row *ngFor="let prod of orderProductList">
-                <ion-col align-self-end>
-                  <span item-right>
-                    <b *ngIf="prod.category">{{prod.brandname }}</b>  {{prod.ptype}}</span>
-                </ion-col>
-                <ion-col col-2 align-self-end class="right">
-                    <span item-right>{{(prod.quantity * prod.product_cost)}}
-                  </span>
-                </ion-col>
-              </ion-row>
-
-              <ion-row justify-content-between *ngIf="item.servicecharges && item.servicecharges > 0">
-                <ion-col align-self-end>
-                  <span item-right class="smry_brand_typ">
-                    Service charge
-                    <span>{{item.ordered_qty }} x
-                      <img class="img-rupee" src="assets/imgs/img_rupee_black.png">{{item.servicecharges / item.ordered_qty}}</span>
-                  </span>
-                </ion-col>
-                <ion-col col-2 align-self-end class="right">
-                  <span item-right class="smry_brand_typ ">
-                    {{item.servicecharges}}
-                  </span>
-                </ion-col>
-
-              </ion-row>
-              <ion-row *ngIf="item.expressdeliverycharges && item.expressdeliverycharges > 0">
-                  <ion-col col align-self-start >
-                      <span class="smry_item_typ">
-                        Express delivery charge
-                      </span>
-                    </ion-col>
-                    <ion-col class="right">
-<span> {{item.expressdeliverycharges}}</span>
-                    </ion-col>
-              </ion-row>
-
-              <ion-row justify-content-between *ngIf="item.empty_cans">
-                <ion-col>
-                  <span > Advance Amt (refundable)
-                    <span>{{item.empty_cans}} x
-                      <img class="img-rupee" src="assets/imgs/img_rupee_black.png">150</span>
-                  </span>
-                </ion-col>
-                <ion-col col-2 align-self-end class="right">
-                    <span >{{(item.ordered_qty) * 150}}
-                  </span>
-                </ion-col>
-              </ion-row>
-
-            <ion-row justify-content-between hidden>
-              <ion-col>
-                <span item-right> Service Tax</span>
-              </ion-col>
-              <ion-col  align-self-end class="right">
-                  <span item-right>Inclusive
-                </span>
-              </ion-col>
-            </ion-row>
-
-            <!--<ion-row *ngIf="expressdeliverycharges && expressdeliverycharges > 0" class="nopdtop-col ">-->
-              <!--<ion-col>-->
-                <!--<ion-item>-->
-                  <!--<ion-label class="fs-12">EXPRESS DELIVERY</ion-label>-->
-                <!--</ion-item>-->
-              <!--</ion-col>-->
-              <!--<ion-col col-3 class="right">-->
-                <!--<span item-right>{{item.expressdeliverycharges}}-->
-                <!--</span>-->
-              <!--</ion-col>-->
-            <!--</ion-row>-->
-            <ion-row justify-content-between class="total_amt_red_color border-top">
-              <ion-col col-sm-7 col-xs-7 col-md-7 col-lg-7 col-xl-7>
-                <span item-right>Total Amount <span item-right class="text_small">({{item?.orderby_paymenttype}})</span> </span>
-              </ion-col>
-              <ion-col col-sm-3 col-md-3 col-lg-3 col-xl-3 class="right">
-                <h2> INR. {{item.orderamt | number : '1.2-2'}}
-                </h2>
-              </ion-col>
-            </ion-row>
-
-          <!-- old code -->
-          <!-- <ion-row>
-            <ion-col col-2 align-items-center>
-              <div>
-                <ion-icon name="basket" style="float:left !important;" class="primary"></ion-icon>
-              </div>
-            </ion-col>
-            <ion-col col-4>
-              <div>
-                <label class="text_label">
-                  <b>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_order_id' | translate }}</b>
-                </label>
-                <p class="no_padding no_margin  text_highlight"> #{{item?.order_id}}</p>
-                <span class="text_small" item-start>{{item?.modifieddate | utcDate}}</span>
-              </div>
-            </ion-col>
-            <ion-col col-3 align-items-right>
-              <div>
-                <ion-icon name="cash" style="float:right !important;" class="primary mgleft-5"></ion-icon>
-              </div>
-            </ion-col>
-            <ion-col col-3>
-              <div>
-                <label class="text_label">
-                  <b>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_amt' | translate }}</b>
-                </label>
-                <br>
-
-                <p class="no_padding no_margin  ">
-                  <b> INR. {{item?.bill_amount}} </b>
-                </p>
-                <span item-right class="text_small">{{item?.orderby_paymenttype}}</span>
-              </div>
-            </ion-col>
-          </ion-row> -->
-        <!-- <ion-row class="sumry_lbl_dtls">
-          <ion-col col-9 class="left">
-            <label class="text_label">
-              <b>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_product_name' | translate }} </b>
+        <ion-row>
+          <ion-col>
+            <div class="corner-ribbon" *ngIf="item.promocodeapplied && item.promocodeapplied=='true'">Promocode Applied</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <label>
+              <b>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_order_id' | translate }}</b>
             </label>
-            <p class="text_output" *ngIf="item.brandname">
-              <b *ngIf="item.category">{{item.category}}</b>{{item?.brandname}}
-            </p>
+            <span class="no_padding no_margin  text_highlight"> #{{item?.order_id}}</span>
+          </ion-col>
+          <ion-col class="right">
+            <span class="gray8" item-start>{{item?.modifieddate | utcDate}}</span></ion-col>
+        </ion-row>
+        <ion-row class="table-header" style=" border-bottom: 1px solid #ccc">
+          <ion-col class=" col-7">
+            <span item-right>
+              <b>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_product_name' | translate }}</b>
+            </span>
           </ion-col>
 
-          <ion-col col-3 class="right">
-            <label class="text_label">{{ 'ORDER_DETAILS_PAGE.LABELS.lb_qty' | translate }}</label>
-
-            <p class="text_output center">{{item?.ordered_qty}}</p>
+          <ion-col col-2 class="right" align-self-end>
+            <span item-right>
+              <b>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_price' | translate }}</b>
+            </span>
           </ion-col>
-        </ion-row> -->
+        </ion-row>
+        <ion-row *ngIf="orderProductList && orderProductList.length > 0">
+          <ion-col align-self-end>
+            <span item-right><b>{{orderProductList[0].category}}</b></span>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let prod of orderProductList;let i = index">
+          <ion-col align-self-end>
+            <span item-right>
+              <b>{{i+1}}. </b> {{prod.brandname }}</span>
+            <p item-right style="color: coral;padding-left: 13px;">{{item.ptype}}</p>
+
+          </ion-col>
+          <ion-col col-3 align-self-end class="right">
+            <span item-right>{{(prod.quantity * prod.product_cost)}} AED
+            </span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row justify-content-between *ngIf="item.servicecharges && item.servicecharges > 0">
+          <ion-col align-self-end>
+            <span item-right class="smry_brand_typ">
+              Service charge
+              <span>{{item.ordered_qty }} x
+                <img class="img-rupee" src="assets/imgs/img_rupee_black.png">{{item.servicecharges / item.ordered_qty}}</span>
+            </span>
+          </ion-col>
+          <ion-col col-2 align-self-end class="right">
+            <span item-right class="smry_brand_typ ">
+              {{item.servicecharges}}
+            </span>
+          </ion-col>
+
+        </ion-row>
+        <ion-row *ngIf="item.expressdeliverycharges && item.expressdeliverycharges > 0">
+          <ion-col col align-self-start>
+            <span class="smry_item_typ">
+              Express delivery charge
+            </span>
+          </ion-col>
+          <ion-col class="right">
+            <span> {{item.expressdeliverycharges}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row justify-content-between *ngIf="item.empty_cans">
+          <ion-col>
+            <span> Advance Amt (refundable)
+              <span>{{item.empty_cans}} x
+                <img class="img-rupee" src="assets/imgs/img_rupee_black.png">150</span>
+            </span>
+          </ion-col>
+          <ion-col col-2 align-self-end class="right">
+            <span>{{(item.ordered_qty) * 150}}
+            </span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row justify-content-between hidden>
+          <ion-col>
+            <span item-right> Service Tax</span>
+          </ion-col>
+          <ion-col align-self-end class="right">
+            <span item-right>Inclusive
+            </span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row justify-content-between class="total_amt_red_color border-top">
+          <ion-col col-sm-7 col-xs-7 col-md-7 col-lg-7 col-xl-7>
+            <span item-right>Total Amount <span item-right class="text_small">({{item?.orderby_paymenttype}})</span>
+            </span>
+          </ion-col>
+          <ion-col col-sm-3 col-md-3 col-lg-3 col-xl-3 class="right">
+            <h2>{{item.orderamt | number : '1.2-2'}} AED
+            </h2>
+          </ion-col>
+        </ion-row>
+
+
         <ion-row *ngIf="item.promocodeapplied && item.promocodeapplied=='true'">
-            <ion-col>
+          <ion-col>
             <p class="success">Points will be added to account when the order is delivered successfully</p>
             <div *ngIf="item.promocodeapplied && item.promocodeapplied =='true'">
               <span item-right class="warning">offer applied
                 <b class="success">CODE: {{item.appliedpromocode}}</b>
               </span>
-            </div></ion-col>
-          </ion-row>
+            </div>
+          </ion-col>
+        </ion-row>
         <ion-row class="sumry_lbl_dtls">
 
           <ion-col col-sm-6 col-md-6 col-lg-6 col-xl-6 col-8 class="left">
@@ -197,7 +144,8 @@
           </ion-col>
           <ion-col col-sm-3 col-md-2 col-lg-2 col-xl-2 col-4 class="right">
             <label item-right *ngIf="item?.status == 'not_broadcasted' || item?.status == 'backtodealer' || item?.status == 'accept'">
-              <span item-right (click)="cancelOrder(item)" float-right class="cancel_btn_summary">{{ 'ORDER_DETAILS_PAGE.BUTTONS.btn_cancel' | translate }}</span>
+              <span item-right (click)="cancelOrder(item)" float-right class="cancel_btn_summary">{{
+                'ORDER_DETAILS_PAGE.BUTTONS.btn_cancel' | translate }}</span>
             </label>
           </ion-col>
         </ion-row>
@@ -209,8 +157,8 @@
         </ion-row>
       </ion-card-content>
     </ion-card>
-    <ion-card>
-      <ion-card-content class="no_margin no_padding">
+    <ion-card class="no_padding">
+      <ion-card-content>
         <ion-row>
           <ion-col col-sm-5 col-md-5 col-lg-5 col-xl-5>
             {{ 'ORDER_DETAILS_PAGE.LABELS.lb_order_staus_head' | translate }}
@@ -225,91 +173,61 @@
                 <br>
                 <label class="text_output">{{item?.ordered_date | utcDate }}</label>
               </li>
-              <li class="event" *ngIf="item?.status != 'Cancelled'">
-                <h5 [ngClass]="item.assigncolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_on_the_way' | translate }}</h5>
-                <p [ngClass]="item.assigncolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_order_dispatched' | translate }}</p>
+              <!-- Assigned -->
+              <li class="event">
+                <h5 [ngClass]="item.assigncolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_assign' | translate }}</h5>
+                <p [ngClass]="item.assigncolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_order_assigned' | translate }}</p>
                 <br>
-                <label *ngIf="item?.status != 'not_broadcasted' || item?.status != 'backtodealer' && item?.showassignstatus == true" class="text_output">
+                <label *ngIf="item?.status == 'accept' || item?.status == 'jobstarted' || item?.status == 'delivered' || item?.status == 'orderstarted'"
+                  class="text_output">
                   {{item?.order_assigneddate | utcDate }}</label>
               </li>
+              <!-- Assigned -->
+              <!-- on the way -->
+              <li class="event">
+                <h5 [ngClass]="item.onthewaycolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_on_the_way' | translate }}</h5>
+                <p [ngClass]="item.onthewaycolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_order_dispatched' | translate }}</p>
+                <br>
+                <label *ngIf="item?.status == 'orderstarted' || item?.status == 'jobstarted' || item?.status == 'delivered'"
+                  class="text_output">
+                  {{item?.modifieddate | utcDate }}</label>
+              </li>
+              <!-- on the way -->
+              <!-- job started -->
+              <li class="event">
+                <h5 [ngClass]="item.jobstartedcolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_job_started' | translate }}</h5>
+                <p [ngClass]="item.jobstartedcolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_order_jobstarted' | translate }}</p>
+                <br>
+                <label *ngIf="item?.status == 'jobstarted' || item?.status == 'delivered' || item?.status == 'orderstarted'"
+                  class="text_output">
+                  {{item?.modifieddate | utcDate }}</label>
+              </li>
+              <!-- job started -->
+
               <li class="event">
                 <h5 [ngClass]="item.completedcolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_completed' | translate }}</h5>
                 <p [ngClass]="item.completedcolor">{{item.trackingmessage}} </p>
                 <br>
-                <label *ngIf="item?.status == 'delivered' " class="text_output">{{item?.order_delivereddate | utcDate }}
+                <label *ngIf="item?.status == 'delivered' " class="text_output">{{item?.order_delivereddate | utcDate
+                  }}
                 </label>
               </li>
 
             </ul>
           </ion-col>
         </ion-row>
-        <ion-row hidden>
-          <ion-col col-sm-12 col-md-12 col-lg-12 col-xl-12>
-            <label item-right class="text_label">{{ 'ORDER_DETAILS_PAGE.LABELS.lb_created' | translate }}</label>
-            <br>
-            <label class="text_output">{{item?.orderby_aliasname}}</label>
-            <br>
-            <label class="text_output">{{item?.ordered_date | utcDate }}</label>
-          </ion-col>
-        </ion-row>
-        <ion-row hidden>
-          <ion-col col-sm-12 col-md-12 col-lg-12 col-xl-12 class="left">
-            <label item-right class="text_label">{{ 'ORDER_DETAILS_PAGE.LABELS.lb_assigned' | translate }}</label>
-            <br>
-            <label *ngIf="item?.status != 'not_broadcasted' || item?.status != 'backtodealer' && item?.showassignstatus == true" class="text_output">{{item?.suppliername}}</label>
-            <label *ngIf="item?.status == 'delivered' && item?.showassignstatus == false" class="text_output">{{item?.dealerdetails.firstname + " "+item?.dealerdetails.lastname }}</label>
-            <br>
-            <label *ngIf="item?.status != 'not_broadcasted' || item?.status != 'backtodealer' && item?.showassignstatus == true" class="text_output">
-              {{item?.order_assigneddate | utcDate }}</label>
-          </ion-col>
-        </ion-row>
-        <ion-row hidden>
-          <ion-col col-sm-12 col-md-12 col-lg-12 col-xl-12 class="left">
-            <label item-right class="text_label">{{ 'ORDER_DETAILS_PAGE.LABELS.lb_completed' | translate }}</label>
-            <br>
-            <label *ngIf="item?.status == 'delivered' && item?.showassignstatus == true " class="text_output">{{item?.suppliername}}</label>
-            <label *ngIf="item?.status == 'delivered' && item?.showassignstatus == false" class="text_output">{{item?.dealerdetails.firstname + " "+item?.dealerdetails.lastname }}</label>
-            <br>
-            <label *ngIf="item?.status == 'delivered' " class="text_output">{{item?.order_delivereddate | utcDate }}
-            </label>
-          </ion-col>
-        </ion-row>
-        <!--<ion-row class="border-top pdtop-5">-->
-          <!--<ion-col col-sm-4 col-md-4 col-lg-4 col-xl-4>-->
-            <!--<label item-right class="Ordstatus-style">{{item?.ordered_qty}}</label>{{'ORDER_DETAILS_PAGE.LABELS.lb_ordered' | translate }}-->
-          <!--</ion-col>-->
-          <!--<ion-col col-sm-4 col-md-4 col-lg-4 col-xl-4 class="center">-->
-            <!--<div *ngIf="item?.status == 'delivered' ">-->
-              <!--<label item-right class="Delstatus-style">{{item?.delivered_quantity}}</label>-->
-              <!--{{'ORDER_DETAILS_PAGE.LABELS.lb_delivered' | translate }}-->
-            <!--</div>-->
-            <!--<div *ngIf="item?.status != 'delivered' ">-->
-              <!--<label item-right class="Delstatus-style">0</label>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_delivered' | translate }}-->
-            <!--</div>-->
 
-          <!--</ion-col>-->
-          <!--<ion-col col-sm-3 col-md-4 col-lg-4 col-xl-4 class="right">-->
-            <!--<div *ngIf="item?.status == 'delivered' ">-->
-              <!--<label item-right class="Retstatus-style">{{item?.return_cans}}</label>{{'ORDER_DETAILS_PAGE.LABELS.lb_return' | translate }}-->
-            <!--</div>-->
-            <!--<div *ngIf="item?.status != 'delivered' ">-->
-              <!--<label item-right class="Retstatus-style">0</label>{{ 'ORDER_DETAILS_PAGE.LABELS.lb_return' | translate }}-->
-            <!--</div>-->
-          <!--</ion-col>-->
-        <!--</ion-row>-->
       </ion-card-content>
     </ion-card>
-    <ion-card *ngIf="item?.showassignstatus == true " class="dealer_contnr">
-      <ion-card-content class="no_margin no_padding">
+    <ion-card *ngIf="item?.showassignstatus == true " class="no_padding">
+      <ion-card-content>
         <ion-row>
-          <ion-col col-sm-5 col-md-5 col-lg-5 col-xl-5 class="fs-15">
+          <ion-col>
             {{ 'ORDER_DETAILS_PAGE.LABELS.lb_supplier_details' | translate }}
-          </ion-col>
-          <ion-col col-sm-7 col-md-7 col-lg-7 col-xl-7 class="right">
           </ion-col>
         </ion-row>
         <ion-item class="no_margin no_padding">
-          <ion-icon name="person" item-left small class="no_margin no_padding"></ion-icon>
+          <ion-icon name="person" small class="no_margin no_padding"></ion-icon>
           <span *ngIf="item?.suppliername" class="text_output no_margin pdleft12-nopadding">{{item?.suppliername }}</span>
         </ion-item>
         <ion-item class="no_margin no_padding logo-color" (click)="callNow(item?.supplierdetails.mobileno)" *ngIf="item?.supplierdetails">
@@ -319,8 +237,8 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card class="dealer_contnr">
-      <ion-card-content class="no_margin no_padding">
+    <ion-card class="no_padding">
+      <ion-card-content>
         <ion-row>
           <ion-col col-sm-5 col-md-5 col-lg-5 col-xl-5 class="fs-15">
             {{ 'ORDER_DETAILS_PAGE.LABELS.lb_dealer_details' | translate }}
@@ -329,13 +247,15 @@
           </ion-col>
         </ion-row>
         <ion-item class="no_margin no_padding">
-          <ion-icon name="person" item-left small class="no_margin no_padding"></ion-icon>
-          <span class="text_output no_margin pdleft12-nopadding">{{item?.dealerdetails.firstname + " "+item?.dealerdetails.lastname }}</span>
+          <ion-icon name="person" small class="no_margin no_padding"></ion-icon>
+          <span class="text_output no_margin pdleft12-nopadding">{{item?.dealerdetails.firstname + "
+            "+item?.dealerdetails.lastname }}</span>
         </ion-item>
         <ion-row class="no_margin no_padding" hidden>
           <ion-icon col-1 name="pin" item-left small class="no_margin no_padding"></ion-icon>
           <ion-card-content col class="text_output no_margin pdleft20-nopadding">
-            <span>{{item?.dealerdetails.address+", "+item?.dealerdetails.city+", "+item?.dealerdetails.state + "," + item?.dealerdetails.pincode}}</span>
+            <span>{{item?.dealerdetails.address+", "+item?.dealerdetails.city+", "+item?.dealerdetails.state + "," +
+              item?.dealerdetails.pincode}}</span>
           </ion-card-content>
         </ion-row>
         <ion-item (click)="callNow(item?.dealerdetails.mobileno)" class=" no_padding no_margin logo-color">
@@ -344,15 +264,16 @@
         </ion-item>
       </ion-card-content>
     </ion-card>
-    <ion-card>
-      <ion-card-content class="no_padding no_margin">
+    <ion-card class="no_padding">
+      <ion-card-content>
         <ion-row>
           <ion-col col-sm-5 col-md-5 col-lg-5 col-xl-5 class="fs-15">
             {{ 'ORDER_DETAILS_PAGE.LABELS.lb_order_msg' | translate }}
           </ion-col>
         </ion-row>
         <div class="message-wrap">
-          <div *ngFor="let mes of item?.messages" class="message" [class.left]=" mes.user.userid != userID " [class.right]=" mes.user.userid == userID ">
+          <div *ngFor="let mes of item?.messages" class="message" [class.left]=" mes.user.userid != userID "
+            [class.right]=" mes.user.userid == userID ">
             <img class="user-img" src="assets/imgs/img_user.png" alt="" *ngIf="mes.user.userid != userID">
             <div class="msg-detail">
               <div class="msg-info">
@@ -376,7 +297,8 @@
   <ion-grid class="input-wrap">
     <ion-row>
       <ion-col col-10>
-        <ion-textarea #chat_input placeholder="Type a message here" (focusin)="onFocus()" [(ngModel)]="editorMsg" (keyup.enter)="sendMessage(item)">
+        <ion-textarea #chat_input placeholder="Type a message here" (focusin)="onFocus()" [(ngModel)]="editorMsg"
+          (keyup.enter)="sendMessage(item)">
         </ion-textarea>
       </ion-col>
       <ion-col col-2>

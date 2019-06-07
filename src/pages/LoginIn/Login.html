@@ -10,12 +10,12 @@
   <ion-row>
     <ion-card class="no_bg login_fields ">
       <ion-row>
-        <ion-icon name="md-arrow-round-back" class="pdtop-5" item-start (click)="goBack()"></ion-icon>
+        <ion-icon name="md-arrow-round-back" large class="pdtop-5 primary fs-25" item-start (click)="goBack()"></ion-icon>
         <ion-label center class="sign_toplabel">{{ 'LOGIN_PAGE.PAGE_TITLE' | translate }}</ion-label>
       </ion-row>
       <ion-item class="no_bg no_shadow input_container ">
         <ion-label floating>{{ 'LOGIN_PAGE.LABELS.lb_mobile_no_hint' | translate }}</ion-label>
-        <ion-input class="usr_namefeild" type="tel" maxlength="10" minlength="10" [(ngModel)]="mobileNumber" required
+        <ion-input class="usr_namefeild" type="tel" maxlength="10" minlength="9" [(ngModel)]="mobileNumber" required
                    (ionChange)="inputMobilecall()"></ion-input>
       </ion-item>
       <ion-item class="no_bg no_shadow input_container">
@@ -39,8 +39,11 @@
       <button class="btn-lg mgtop-20 button button-md button-block-md"  ion-button  color="primary" block *ngIf="showLogin" (click)="logIn()">
         {{ 'LOGIN_PAGE.BUTTONS.btn_sign_in' | translate}}
       </button>
-      <ion-spinner block padding="40" name="dots" color="light" *ngIf="showProgress" end
-                   class="btn_signin"></ion-spinner>
+
+      <button class="btn-lg mgtop-20 button button-md button-block-md"  ion-button  color="primary" block *ngIf="showProgress">
+        <ion-spinner name="dots" color="light"></ion-spinner>
+      </button>
+     
     </ion-card>
   </ion-row>
   <!--<ion-row>-->

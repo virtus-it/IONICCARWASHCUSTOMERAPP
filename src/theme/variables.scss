@@ -28,7 +28,7 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary: #408f98,
+  primary: #38b7fe,
   secondary: #4cae4c,
   danger: #f53d3d,
   light: #f4f4f4,
@@ -91,6 +91,11 @@ $color-white: #fff;
   font-size: 20px;
 }
 
+.fs-25 {
+  font-size: 25px;
+}
+
+
 .right {
   text-align: right;
 }
@@ -126,7 +131,7 @@ $color-white: #fff;
 }
 
 .primary {
-  color: #408f98 !important;
+  color: #38b7fe !important;
 }
 
 .success {
@@ -266,7 +271,7 @@ $color-white: #fff;
   z-index: 1000;
   padding: 15px;
   font-size: 40px;
-  color: #408f98;
+  color: #38b7fe;
 }
 
 .fs-14 {
@@ -290,24 +295,24 @@ b {
 }
 
 .logo-color {
-  color: #408f98 !important;
+  color: #38b7fe !important;
 }
 
 .logo-bg {
-  background: #408f98 !important;
+  background: #38b7fe !important;
 }
 
 .alert-md .alert-button {
   padding: 7px;
-  border: 0.5px solid #408f98 !important;
-  background-color: #408f98 !important;
+  border: 0.5px solid #38b7fe !important;
+  background-color: #38b7fe !important;
   line-height: 1.4;
 }
 
 .alert-md .alert-head {
   text-align: left;
   text-align: start;
-  background: #408f98 !important;
+  background: #38b7fe !important;
   padding: 15px 20px 10px !important;
   color: #fff !important;
   margin-bottom: 15px !important;
@@ -404,9 +409,9 @@ b {
 }
 
 .circle-button {
-  border: 1px solid #408f98 !important;
+  border: 1px solid #38b7fe !important;
   border-radius: 50% !important;
-  color: #408f98 !important;
+  color: #38b7fe !important;
 }
 
 .mg-15 {
@@ -442,7 +447,7 @@ b {
 }
 
 .bg-logo {
-  background: #408f98 !important;
+  background: #38b7fe !important;
   color: #ffffff !important;
 }
 
@@ -595,7 +600,7 @@ ion-spinner * {
 
 .toolbar-background-md {
   border-color: #fff !important;
-  background: #408f98 !important;
+  background: #38b7fe !important;
 }
 
 .toolbar-content-md {
@@ -729,7 +734,7 @@ ion-label {
 }
 
 .primary.text_label {
-  color: #408f98 !important;
+  color: #38b7fe !important;
   font-weight: normal;
 }
 
@@ -806,14 +811,14 @@ ion-footer span {
   margin-top: 20%;
   margin-left: 5%;
   width: 89%;
-  border: 1px solid #408f98;
+  border: 1px solid #38b7fe;
 }
 .editFeedback {
   height: 65%;
   margin-top: 20%;
   margin-left: 5%;
   width: 89%;
-  border: 1px solid #408f98;
+  border: 1px solid #38b7fe;
 }
 
 .editemptycan {
@@ -821,7 +826,7 @@ ion-footer span {
   margin-top: 50%;
   margin-left: 10%;
   width: 80%;
-  border: 1px solid #408f98;
+  border: 1px solid #38b7fe;
 }
 
 .raiserequestdialog {
@@ -829,7 +834,7 @@ ion-footer span {
   margin-top: 40%;
   margin-left: 10%;
   width: 80%;
-  border: 1px solid #408f98;
+  border: 1px solid #38b7fe;
 }
 
 .img-rupee {

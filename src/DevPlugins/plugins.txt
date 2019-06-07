@@ -273,7 +273,7 @@ C:\Users\Muheeth Ali\AppData\Local\Android\Sdk\tools\bin\sdkmanager --licenses
     //       "user_type": "dealer",
     //       "name": "",
     //       "type": "checkbox",
-    //       "redirecturl": "https://play.google.com/store/apps/details?id=com.moya&hl=en",
+    //       "redirecturl": "https://play.google.com/store/apps/details?id=com.washonclick&hl=en",
     //       "showcomment": "true",
     //       "body": "To make your Holidays more special, here is an offer to save more  at PushEngage.Now get  30% Off our Annual plans using the coupon NEWYEAR2018.  You can also use it for Monthly plan and get 18% off on first month.",
     //       "title": "Happy New Year",

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, ElementRef, ViewChild, NgZone } from "@angular/core";
 import { GetService } from "../../app/services/get.servie";
 import { ModalController, NavController, NavParams, Platform, Slides, ViewController } from "ionic-angular";
 import { Geolocation } from "@ionic-native/geolocation";
@@ -51,7 +51,14 @@ export class MapView {
   private showMap: boolean = true;
   list = [];
 
-  constructor(private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams, private datePicker: DatePicker) {
+  markers: any;
+  GoogleAutocomplete: any;
+  GooglePlaces: any;
+  geocoder: any
+  autocompleteItems: any;
+  loading: any;
+
+  constructor(public zone: NgZone, private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams, private datePicker: DatePicker) {
     platform.ready().then(() => {
       try {
 
@@ -119,7 +126,46 @@ export class MapView {
 
     });
 
+
+
+    this.geocoder = new google.maps.Geocoder;
+    let elem = document.createElement("div");
+    this.GooglePlaces = new google.maps.places.PlacesService(elem);
+    this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+    this.autocomplete = {
+      input: ''
+    };
+    this.autocompleteItems = [];
   }
+
+  selectSearchResult(item) {
+    console.log("place selected");
+    console.log(item);
+    this.address.place = item.description;
+    this.geoCode(item.description);
+    this.autocompleteItems = [];
+
+  }
+  updateSearchResults() {
+    if (this.autocomplete.input == '') {
+      this.autocompleteItems = [];
+      return;
+    }
+
+    this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input, componentRestrictions: { country: ["AE", "IN"] } },
+      (predictions, status) => {
+        this.autocompleteItems = [];
+        if (predictions) {
+          this.zone.run(() => {
+            predictions.forEach((prediction) => {
+              this.autocompleteItems.push(prediction);
+            });
+          });
+        }
+      });
+  }
+
+
   openDatePicker() {
     this.datePicker.show({
       date: new Date(),
@@ -521,7 +567,7 @@ export class MapView {
           isProductSel = true;
         }
       }
-      if (!isProductSel){
+      if (!isProductSel) {
         this.alertUtils.showToast("Please select atleast one service");
         return false;
       }
@@ -531,7 +577,7 @@ export class MapView {
         Utils.rideSelected = this.rides[this.slides.getActiveIndex()];
         console.log(Utils.rideSelected);
       } else {
-        this.alertUtils.showToast("Please add at least one ride");
+        this.alertUtils.showToast("Please add at least one vehicle");
         return false;
       }
 

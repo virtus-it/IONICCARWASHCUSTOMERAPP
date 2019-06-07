@@ -1,18 +1,5 @@
-.warning {
-  color: #eea236
-}
 
-.danger {
-  color: #d43f3a
-}
-
-.primary {
-  color: #408f98
-}
-
-.success {
-  color: #4cae4c
-}
+profile-page{
 
 .card-md {
   padding: 10px;
@@ -106,7 +93,7 @@ ion-avatar.profile_avatar, .item-md ion-avatar.profile_avatar {
 }
 
 .change_pswd {
-  background: #408f98;
+  background: #38b7fe;
   border-radius: 3px;
   font-size: 14px;
   position: absolute;
@@ -119,7 +106,7 @@ ion-avatar.profile_avatar, .item-md ion-avatar.profile_avatar {
 
 .edt_profile {
   border-radius: 50px;
-  background: #408f98;
+  background: #38b7fe;
   color: #fff;
   float: right;
   padding: 4px 6px;
@@ -165,4 +152,5 @@ profile-page{
 
   }
 
+}
 }

@@ -1,10 +1,10 @@
-import {Component} from "@angular/core";
-import {AlertController, App, NavController} from "ionic-angular";
-import {AppRate} from "@ionic-native/app-rate";
-import {APP_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, TRY_AGAIN_ERR_MSG, Utils} from "../../app/services/Utils";
-import {GetService} from "../../app/services/get.servie";
+import { Component } from "@angular/core";
+import { AlertController, App, NavController } from "ionic-angular";
+import { AppRate } from "@ionic-native/app-rate";
+import { APP_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, TRY_AGAIN_ERR_MSG, Utils } from "../../app/services/Utils";
+import { GetService } from "../../app/services/get.servie";
 import { WelcomePage } from "../WelcomePage/Welcome";
-import {SocialSharing} from "@ionic-native/social-sharing";
+import { SocialSharing } from "@ionic-native/social-sharing";
 import { TranslateService } from "@ngx-translate/core";
 
 
@@ -15,10 +15,7 @@ import { TranslateService } from "@ngx-translate/core";
 export class ContactPage {
   languages = [{ name: "English", code: "en" }, { name: "Arabic", code: "ar" }];
   languageSelected: any;
-  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public alertUtils: Utils, private getService: GetService, private appRate: AppRate, private appCtrl: App,private socialSharing: SocialSharing,public translate: TranslateService) {
-
-
-  }
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public alertUtils: Utils, private getService: GetService, private appRate: AppRate, private appCtrl: App, private socialSharing: SocialSharing, public translate: TranslateService) {}
 
   ngOnInit() {
 
@@ -27,6 +24,14 @@ export class ContactPage {
       this.alertUtils.getUserInfo().then(info => {
         if (info) {
           Utils.USER_INFO_DATA = info;
+        }
+      }, err => {
+        Utils.sLog(err);
+      })
+
+      this.alertUtils.getLang().then(lang => {
+        if (lang) {
+          this.languageSelected = lang;
         }
       }, err => {
         Utils.sLog(err);
@@ -68,10 +73,7 @@ export class ContactPage {
   }
 
   myPoints() {
-    // this.navCtrl.push('PointsPage', {
-    //   items: "myaccount"
-    // })
-    this.socialSharing.shareViaWhatsAppToReceiver("+919121642009","Hi");
+    this.socialSharing.shareViaWhatsAppToReceiver("+919121642009", "Hi");
   }
 
   mySchedules() {
@@ -90,7 +92,7 @@ export class ContactPage {
 
     try {
       this.appRate.preferences.storeAppURL = {
-        android: 'market://details?id=com.moya'
+        android: 'market://details?id=com.washonclick'
       };
       this.appRate.promptForRating(true);
     } catch (e) {
@@ -101,16 +103,16 @@ export class ContactPage {
 
   customerCareDialog() {
     let alert = this.alertCtrl.create({
-      title: "CUSTOMER CARE",
-      message: "Our Customer service offers a variety of customer care and customer support options to help you in every possible manner. \n Office timing : 09:30AM - 06:30PM IST \n\n Customer care number : 9121642009",
+      title: "Customer Care",
+      message: "Our Customer service offers a variety of customer care and customer support options to help you in every possible manner. \n Office timing : 09:00AM - 05:00PM GST \n\n Customer care number : 9121642009",
       buttons: [
         {
-          text: "CLOSE",
+          text: "Close",
           handler: () => {
           }
         },
         {
-          text: "CALL NOW",
+          text: "Call Now",
           handler: () => {
             this.alertUtils.callNumber("9121642009");
           }
@@ -145,17 +147,17 @@ export class ContactPage {
 
   showLogOutAlert() {
     let alert = this.alertCtrl.create({
-      title: 'LOGOUT',
+      title: 'Logout',
       message: 'Are you sure you want to logout?',
       buttons: [
         {
-          text: 'NO',
+          text: 'No',
           role: 'cancel',
           handler: () => {
           }
         },
         {
-          text: 'YES',
+          text: 'Yes',
           handler: () => {
             if (this.alertUtils.networkStatus()) {
               this.logOutTask();
@@ -174,7 +176,7 @@ export class ContactPage {
       this.alertUtils.setLoginState(false);
       this.alertUtils.cacheInfo("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
       this.alertUtils.cacheUserInfo("");
-      this.alertUtils.showToast("You have successfully logout");
+      // this.alertUtils.showToast("You have successfully logout");
       this.appCtrl.getRootNav().setRoot(WelcomePage);
     } catch (e) {
       this.alertUtils.showLog(e);

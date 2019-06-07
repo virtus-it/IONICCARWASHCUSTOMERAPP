@@ -201,7 +201,7 @@ export class Feedback {
 
   showReplyPrompt(value) {
     let prompt = this.alertCtrl.create({
-      title: 'SEND REPLY',
+      title: 'Send Reply',
       message: "Please write your reply.",
       inputs: [
         {

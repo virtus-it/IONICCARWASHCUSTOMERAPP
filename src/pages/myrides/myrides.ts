@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class MyridesPage {
   items: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private modalCtrl: ModalController, private alertCtrl: AlertController,private translateService: TranslateService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private modalCtrl: ModalController, private alertCtrl: AlertController, private translateService: TranslateService) {
     let lang = "en";
     if (Utils.lang) {
       lang = Utils.lang
@@ -48,18 +48,18 @@ export class MyridesPage {
     console.log(item);
 
     let alert = this.alertCtrl.create({
-      title: 'WARNING',
-      message: 'Are you sure you want to delete ?',
+      title: 'Warning',
+      message: 'Are you sure you want to delete?',
       buttons: [
         {
-          text: 'NO',
+          text: 'No',
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
           }
         },
         {
-          text: 'YES',
+          text: 'Yes',
           handler: () => {
             if (this.alertUtils.networkStatus()) {
 
@@ -103,6 +103,7 @@ export class MyridesPage {
 
 
   fetchRides() {
+    this.items = null;
     let input = { "User": { "userid": Utils.USER_INFO_DATA.userid, "apptype": APP_TYPE, "TransType": "getextrainformation" } };
     this.apiService.postReq(GetService.ride(), input).then(res => {
       console.log(res)

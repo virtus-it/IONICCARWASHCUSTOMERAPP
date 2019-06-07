@@ -12,7 +12,7 @@
 
     <ion-card col class="no_bg no_shadow login_fields">
       <ion-row>
-        <ion-icon name="md-arrow-round-back" item-start (click)="goBack()" start style="margin: 5px 0 0 12px"></ion-icon>
+        <ion-icon class="fs-25 primary" name="md-arrow-round-back" item-start (click)="goBack()" start style="margin: 5px 0 0 12px"></ion-icon>
         <ion-label center class="sign_toplabel">{{isEdit ? "My Profile" :"Update Profile"}}
         </ion-label>
         <label class="no_margin" item-end>
@@ -85,19 +85,6 @@
         </ion-label>
         <ion-textarea type="text" class="textarea" [(ngModel)]="items.user.address" ></ion-textarea>
       </ion-item>
-
-
-      <!-- <ion-item class="profile_fields_container" *ngIf="isEdit">
-        <ion-icon name="cash" item-left small class="profile_avatar"></ion-icon>
-        <ion-col color="" class="adv_amount col-sm-6 success">
-          <span class="amount" *ngIf="items.user.payment.advance_amount && items.user.payment.advance_amount">{{ 'MY_PROFILE_PAGE.LABELS.lb_adv_amt' | translate }}</span>
-          {{items.user.payment.advance_amount}}
-        </ion-col>
-        <ion-col class="pnd_amount col-sm-6 ">
-          <span class="amount">{{ 'MY_PROFILE_PAGE.LABELS.lb_pen_amt' | translate }}</span>{{items.user.payment.amount_pending}}
-        </ion-col>
-      </ion-item> -->
-
     </ion-card>
   </ion-row>
 </ion-content>

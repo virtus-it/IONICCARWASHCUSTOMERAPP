@@ -67,6 +67,7 @@ export class Utils {
   private pd;
   static datePicked: any;
   static lang: string = "en";
+  sliderName: string = "Hi User";
 
   constructor(private appRate: AppRate, private diagnostic: Diagnostic, private net: Network, public toast: ToastController, public loadingCtrl: LoadingController, private appVersion: AppVersion, private nativeStorage: NativeStorage, public alertCtrl: AlertController, private cNumber: CallNumber, private tToast: Toast, private nSetting: OpenNativeSettings, private device: Device) {
 
@@ -323,7 +324,7 @@ export class Utils {
   rateUs() {
 
     this.appRate.preferences.storeAppURL = {
-      android: 'market://details?id=com.moya'
+      android: 'market://details?id=com.washonclick'
     };
     this.appRate.navigateToAppStore();
 
@@ -460,9 +461,9 @@ export class Utils {
       .then(() => console.log('Stored  USER_INFO'), error => console.error('Error storing data', error));
   }
 
-  getLang(): string {
+  getLang() {
 
-    return "" + this.nativeStorage.getItem(KEY_USER_LANG);
+    return this.nativeStorage.getItem(KEY_USER_LANG);
   }
   cacheAppFirstInfo(data) {
     this.nativeStorage.setItem(KEY_APP_FIRST_CALL_INFO, data)

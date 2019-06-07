@@ -134,17 +134,35 @@ export class OrderDetails {
             this.item["assigncolor"] = "warning";
             this.item["completedcolor"] = "danger";
           }
-          else if (this.item.status == "assigned") {
+          else if (this.item.status == "accept") {
             this.item["statusColor"] = "warning";
-            this.item["orderstatus"] = "Assigned to supplier";
+            this.item["orderstatus"] = "Assigned to service engineer";
             this.item["trackingmessage"] = "Delivered";
             this.item["assigncolor"] = "success";
+            this.item["completedcolor"] = "";
+          } else if (this.item.status == "orderstarted") {
+            this.item["statusColor"] = "warning";
+            this.item["orderstatus"] = "Service engineer on the way";
+            this.item["trackingmessage"] = "Delivered";
+            this.item["assigncolor"] = "success";
+            this.item["onthewaycolor"] = "success";            
+            this.item["completedcolor"] = "";
+          }else if (this.item.status == "jobstarted") {
+            this.item["statusColor"] = "warning";
+            this.item["orderstatus"] = "Service engineer on the way";
+            this.item["trackingmessage"] = "Delivered";
+            this.item["assigncolor"] = "success";
+            this.item["onthewaycolor"] = "success";   
+            this.item["jobstartedcolor"] = "success";                     
             this.item["completedcolor"] = "";
           } else if (this.item.status == "delivered" || this.item.status == "Delivered") {
             this.item["orderstatus"] = "Delivered";
             this.item["statusColor"] = "success";
             this.item["trackingmessage"] = "Delivered";
             this.item["assigncolor"] = "success";
+            this.item["assigncolor"] = "success";
+            this.item["onthewaycolor"] = "success";   
+            this.item["jobstartedcolor"] = "success";      
             this.item["completedcolor"] = "success";
           } else if (this.item.status == "doorlock" || this.item.status == "Door Locked") {
             this.item["orderstatus"] = "Door Locked";
@@ -168,7 +186,7 @@ export class OrderDetails {
             this.item["orderstatus"] = "Pending";
             this.item["statusColor"] = "primary";
             this.item["trackingmessage"] = "Delivered";
-          } else if (this.item.status == "ordered" || this.item.status == "backtodealer" || this.item.status.toLowerCase() == "accept") {
+          } else if (this.item.status == "ordered" || this.item.status == "backtodealer") {
             this.item["orderstatus"] = "Order Placed";
             this.item["statusColor"] = "warning";
             this.item["trackingmessage"] = "Delivered";
@@ -270,7 +288,27 @@ export class OrderDetails {
 
 
   callNow(number) {
-    this.alertUtils.callNumber(number);
+
+    let alert = this.alertCtrl.create({
+      title: 'Alert',
+      message: 'Are you sure you want to call this number?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.alertUtils.callNumber(number);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 

@@ -1,7 +1,36 @@
 page-myrides {
+  .ridesdetails_rght .card-title-ios {
+    margin: 0;
+    padding: 2px 0;
+  }
+  .ridesdetails_rght ion-card-title {
+    margin: 0; font-size: 18px;
+    padding: 2px 0;
+  }
+  .plate_number{    font-size: 14px;
+    color: #444;
+    margin: 7px 0;
+    display: block}
+  .no-padding{padding:0; margin:7px 0;}
+  .crd_fulwidth{width:100%}
+
 .left_imag{
   float:left;
-  width:35%;}
-  .ridesdetails_rght{float: right;width:60%;}
+  width:30%;}
+  .ridesdetails_rght{float: right;width:70%;
+  .edit_vehicel{
+    background: #468c94;
+    padding: 5px 15px;
+    color: #fff;
+     b {
+      margin: 0 5px;
+    }
+  }
+    .delete_vehicel{    background: #686868;
+      padding: 5px 15px;
+      color: #fff; b {
+      margin: 0 5px;
+    }}
+  }
 
 }

@@ -12,7 +12,7 @@ import * as moment from "moment";
 import { Device } from "@ionic-native/device";
 
 export const SHOW_ALL = false;
-export const IS_WEBSITE: boolean = true;
+export const IS_WEBSITE: boolean = false;
 
 const KEY_USER_ID = 'secure_storage_userid';
 const KEY_DEALER_ID = 'secure_storage_dealerid';

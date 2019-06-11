@@ -25,6 +25,9 @@ import { Keyboard } from "@ionic-native/keyboard";
 import { DatePicker } from '@ionic-native/date-picker';
 import { HTTP } from '@ionic-native/http';
 
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+
+// import { SMS } from '@ionic-native/sms';
 
 import { SignUp } from "../pages/SignUp/SignUp";
 import { Login } from "../pages/LoginIn/Login";
@@ -92,7 +95,7 @@ const config: SocketIoConfig = { url: GetService.TRACKING_URL, options: {} };
     NotificationPage,
   ],
   providers: [
-    
+
     StatusBar,
     GetService,
     Utils,
@@ -114,6 +117,7 @@ const config: SocketIoConfig = { url: GetService.TRACKING_URL, options: {} };
     Device,
     Push,
     HTTP,
+    PhotoViewer,
     SplashScreen,
     ModalController,
     { provide: ErrorHandler, useClass: IonicErrorHandler }

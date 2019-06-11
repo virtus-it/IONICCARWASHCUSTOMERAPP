@@ -33,8 +33,4 @@ export class AboutUs {
     });
   }
 
-  ngOnInit() {
-
-  }
-
 }

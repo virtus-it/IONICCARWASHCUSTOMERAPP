@@ -5,6 +5,8 @@ import { GetService } from "../../app/services/get.servie";
 // import { TabsPage } from "../tabs/tabs";
 import { TranslateService } from "@ngx-translate/core";
 import { MapView } from "../MapView/MapView";
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 
 @IonicPage()
 @Component({
@@ -29,9 +31,13 @@ export class OrderDetails {
   private orderId = "";
   categoryid = "";
   orderProductList = [];
+  preImg: string = '';
+  postImg: string = '';
   order: any;
 
   constructor(private modalCtrl: ModalController, private translateService: TranslateService, private ref: ChangeDetectorRef, public appCtrl: App, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, public alertCtrl: AlertController, private apiService: GetService, public translate: TranslateService) {
+
+  constructor(private photoViewer: PhotoViewer, private modalCtrl: ModalController, private translateService: TranslateService, private ref: ChangeDetectorRef, public appCtrl: App, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, public alertCtrl: AlertController, private apiService: GetService, public translate: TranslateService) {
 
     let lang = "en";
     if (Utils.lang) {
@@ -52,9 +58,34 @@ export class OrderDetails {
       else
         Utils.sLog("order id not found");
     }
+    if (this.order && this.order.order_id) {
+      this.preImg = this.apiService.getImg() + "pre_" + this.order.order_id+".png";
+      this.postImg = this.apiService.getImg() + "post_" + this.order.order_id+".png";
+      console.log(this.preImg);
+      console.log(this.postImg);
+
+    }
   }
+  changeImage(type) {
+    if (type == 1) {
+      this.preImg = "http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png";
+    } else
+      this.postImg = "http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png";
 
 
+  }
+  getImage(type) {
+    try {
+      if (type == 1)
+        this.photoViewer.show(this.preImg, 'Before');
+      else
+        this.photoViewer.show(this.postImg, 'After');
+
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
 
 
   close() {
@@ -145,15 +176,15 @@ export class OrderDetails {
             this.item["orderstatus"] = "Service engineer on the way";
             this.item["trackingmessage"] = "Delivered";
             this.item["assigncolor"] = "success";
-            this.item["onthewaycolor"] = "success";            
+            this.item["onthewaycolor"] = "success";
             this.item["completedcolor"] = "";
-          }else if (this.item.status == "jobstarted") {
+          } else if (this.item.status == "jobstarted") {
             this.item["statusColor"] = "warning";
             this.item["orderstatus"] = "Service engineer on the way";
             this.item["trackingmessage"] = "Delivered";
             this.item["assigncolor"] = "success";
-            this.item["onthewaycolor"] = "success";   
-            this.item["jobstartedcolor"] = "success";                     
+            this.item["onthewaycolor"] = "success";
+            this.item["jobstartedcolor"] = "success";
             this.item["completedcolor"] = "";
           } else if (this.item.status == "delivered" || this.item.status == "Delivered") {
             this.item["orderstatus"] = "Delivered";
@@ -161,8 +192,8 @@ export class OrderDetails {
             this.item["trackingmessage"] = "Delivered";
             this.item["assigncolor"] = "success";
             this.item["assigncolor"] = "success";
-            this.item["onthewaycolor"] = "success";   
-            this.item["jobstartedcolor"] = "success";      
+            this.item["onthewaycolor"] = "success";
+            this.item["jobstartedcolor"] = "success";
             this.item["completedcolor"] = "success";
           } else if (this.item.status == "doorlock" || this.item.status == "Door Locked") {
             this.item["orderstatus"] = "Door Locked";

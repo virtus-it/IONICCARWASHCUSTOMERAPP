@@ -12,13 +12,16 @@
 </ion-header>
 
 <ion-content class="page_bg">
+
   <ion-spinner block name="crescent" class="spinner_center" color="primary" *ngIf="showProgress" item-center></ion-spinner>
   <div class="no_padding prdct_main_container order_details_pg" *ngIf="!showProgress">
     <ion-card class="no_padding">
       <ion-card-content>
         <ion-row>
           <ion-col>
-            <div class="corner-ribbon" *ngIf="item.promocodeapplied && item.promocodeapplied=='true'">Promocode Applied</div>
+            <div class="corner-ribbon" *ngIf="item.promocodeapplied && item.promocodeapplied=='true'">Promocode
+              Applied
+            </div>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -183,6 +186,7 @@
                   {{item?.order_assigneddate | utcDate }}</label>
               </li>
               <!-- Assigned -->
+
               <!-- on the way -->
               <li class="event">
                 <h5 [ngClass]="item.onthewaycolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_on_the_way' | translate }}</h5>
@@ -193,14 +197,26 @@
                   {{item?.modifieddate | utcDate }}</label>
               </li>
               <!-- on the way -->
+
               <!-- job started -->
               <li class="event">
+                <!--<ion-row>-->
+                <!--<ion-col>-->
                 <h5 [ngClass]="item.jobstartedcolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_job_started' | translate }}</h5>
-                <p [ngClass]="item.jobstartedcolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_order_jobstarted' | translate }}</p>
+                <p [ngClass]="item.jobstartedcolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_order_jobstarted' | translate
+                  }}</p>
                 <br>
                 <label *ngIf="item?.status == 'jobstarted' || item?.status == 'delivered' || item?.status == 'orderstarted'"
-                  class="text_output">
-                  {{item?.modifieddate | utcDate }}</label>
+                  class="text_output">{{item?.modifieddate | utcDate }}</label>
+                <!--</ion-col>-->
+                <!--<ion-col col-4>-->
+                <!--<ion-avatar>-->
+                <!--<img class="profile-photo" (click)="getImage(1)" src="{{preImg}}" (error)="changeImage(1)">-->
+                <!--</ion-avatar>-->
+                <!--</ion-col>-->
+
+                <!--</ion-row>-->
+
               </li>
               <!-- job started -->
 
@@ -208,16 +224,36 @@
                 <h5 [ngClass]="item.completedcolor">{{ 'MY_ORDERS_PAGE.LABELS.lb_completed' | translate }}</h5>
                 <p [ngClass]="item.completedcolor">{{item.trackingmessage}} </p>
                 <br>
-                <label *ngIf="item?.status == 'delivered' " class="text_output">{{item?.order_delivereddate | utcDate
-                  }}
+                <label *ngIf="item?.status == 'delivered' " class="text_output">{{item?.order_delivereddate | utcDate}}
                 </label>
               </li>
-
             </ul>
           </ion-col>
         </ion-row>
 
       </ion-card-content>
+    </ion-card>
+    <ion-card *ngIf="item?.status == 'delivered'">
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-sm-5 col-md-5 col-lg-5 col-xl-5>
+            JOB STATUS - IMAGES
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-avatar>
+              <img class="profile-photo" (click)="getImage(1)" src="{{preImg}}" (error)="changeImage(1)">
+            </ion-avatar>
+          </ion-col>
+          <ion-col>
+            <ion-avatar>
+              <img class="profile-photo" (click)="getImage(2)" src="{{postImg}}" (error)="changeImage(2)">
+            </ion-avatar>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+
     </ion-card>
     <ion-card *ngIf="item?.showassignstatus == true " class="no_padding">
       <ion-card-content>

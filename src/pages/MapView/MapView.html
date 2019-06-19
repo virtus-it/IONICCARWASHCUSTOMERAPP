@@ -11,7 +11,7 @@
       </span>
     <h6 *ngIf="userAddr">{{userAddr}}</h6>
   </ion-fab> -->
-  <ion-fab justify-content-center align-items-center center top style="  left: 25%;    width: 65%;">
+  <ion-fab justify-content-center align-items-center center top class="srchloct" style="  left: 25%;    width: 65%;">
     <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" placeholder="{{userAddr}}"></ion-searchbar>
     <!--<h6 *ngIf="userAddr">{{userAddr}}</h6>-->
     <ion-list [hidden]="autocompleteItems.length == 0">
@@ -39,7 +39,7 @@
 </ion-content>
 
 <ion-footer>
-  <ion-card>
+  <ion-card class="homefulbutton">
     <div class="sliderncatry">
       <ion-row class="slidertop" justify-content-center align-items-center *ngIf="rides.length > 0">
         <ion-col col-10>
@@ -88,7 +88,7 @@
     </div>
 
     <ion-row>
-      <ion-col col-9>
+      <ion-col col-10>
         <button ion-button col color="primary" class="fs-12" block (click)="next()">
           {{ 'MAP_PAGE.BUTTONS.btn_continue' | translate }}
         </button>

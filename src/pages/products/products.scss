@@ -10,15 +10,14 @@ page-products {
       width:70%;
       float: left;
       h2{font-size: 15px; margin: 0;}
-      p{
-        margin:5px 0 0 0;font-size: 13px;
+      p{        margin:5px 0 0 0;font-size: 13px;     color: #808080;}
 
-        color: #808080;}
     }
     .list_chkbtn {
       width: 11%;
       float: left;
       .item.item-md .checkbox-md{margin: 0;}
+      .item-inner {        display: none;      }
     }
   }
   .contibtn.button-ios {

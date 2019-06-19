@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import {ChangeDetectorRef, Component} from "@angular/core";
 import { APP_TYPE, APP_USER_TYPE, RES_SUCCESS, Utils, INTERNET_ERR_MSG, IS_WEBSITE } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
 import { AlertController, IonicPage, ModalController } from "ionic-angular";
@@ -18,7 +18,7 @@ export class Feedback {
   private showProgress = false;
   private noRecords = false;
 
-  constructor(private translateService: TranslateService, private alertUtils: Utils, private getService: GetService, private alertCtrl: AlertController, public modalCtrl: ModalController) {
+  constructor(private translateService: TranslateService, private alertUtils: Utils, private getService: GetService, private alertCtrl: AlertController, public modalCtrl: ModalController,private ref:ChangeDetectorRef) {
     let lang = "en";
     if (Utils.lang) {
       lang = Utils.lang
@@ -98,6 +98,7 @@ export class Feedback {
             }
           }
         }
+        this.ref.detectChanges();
       } else {
         this.noRecords = true;
       }
@@ -189,6 +190,7 @@ export class Feedback {
       } else {
         this.alertUtils.showToast("Message failed ");
       }
+      this.ref.detectChanges();
     }).catch(error => {
       this.alertUtils.showLog(error)
     });
@@ -258,8 +260,8 @@ export class Feedback {
         if (res.data) {
           this.feedback(true, false, "");
         }
-      } else {
       }
+
     }, err => {
       this.alertUtils.hideLoading();
       this.alertUtils.showLog(err);

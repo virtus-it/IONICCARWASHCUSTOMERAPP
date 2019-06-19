@@ -653,6 +653,7 @@ export class SignUp {
         this.showButtonLogInForSignUp = true;
         this.showPasswordBoxMsg = true;
         this.getCounter();
+        this.ref.detectChanges();
       } else {
         this.alertUtils.showToast(this.alertUtils.GEN_ERR_MSG);
       }
@@ -734,6 +735,7 @@ export class SignUp {
           this.showButtonLogInForSignUp = true;
           this.showPasswordBoxMsg = true;
           this.getCounter();
+          this.ref.detectChanges();
         }
       } else {
         this.alertUtils.showAlert("ERROR", JSON.stringify(res), "OK");

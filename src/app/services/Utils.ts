@@ -77,7 +77,7 @@ export class Utils {
     if (IS_WEBSITE) {
       Utils.USER_INFO_DATA = {
         "Result": 1,
-        "userid": 7,
+        "userid": 6,
         "username": null,
         "email": "ali@test.com",
         "mobileno": "0000000073",
@@ -109,12 +109,12 @@ export class Utils {
         "usertypes": null,
         "issuperdealer": "false",
         "issuppersupplier": "false",
-        "superdealerid": 289,
+        "superdealerid": 1,
         "acceptonlinepayment": 1,
         "promocodestatus": 1,
         "lang": "en",
         "dealers": {
-          "dealerid": 289,
+          "dealerid": 1,
           "firstname": "Dev Super",
           "lastname": "Dealer",
           "mobileno": "8897078671",

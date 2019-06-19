@@ -35,8 +35,6 @@ export class OrderDetails {
   postImg: string = '';
   order: any;
 
-  constructor(private modalCtrl: ModalController, private translateService: TranslateService, private ref: ChangeDetectorRef, public appCtrl: App, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, public alertCtrl: AlertController, private apiService: GetService, public translate: TranslateService) {
-
   constructor(private photoViewer: PhotoViewer, private modalCtrl: ModalController, private translateService: TranslateService, private ref: ChangeDetectorRef, public appCtrl: App, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, public alertCtrl: AlertController, private apiService: GetService, public translate: TranslateService) {
 
     let lang = "en";
@@ -44,7 +42,7 @@ export class OrderDetails {
       lang = Utils.lang
     }
     // translateService.setDefaultLang(lang);
-    translateService.use(lang);
+    this.translateService.use(lang);
 
     this.callFrom = this.param.get("callfrom");
     this.order = this.param.get("order");
@@ -53,17 +51,15 @@ export class OrderDetails {
       this.dealerID = Utils.USER_INFO_DATA.superdealerid;
       if (this.order && this.order.order_id) {
         this.fetchOrderDetails();
-        this.fetchOrderProducts();
       }
       else
         Utils.sLog("order id not found");
     }
     if (this.order && this.order.order_id) {
-      this.preImg = this.apiService.getImg() + "pre_" + this.order.order_id+".png";
-      this.postImg = this.apiService.getImg() + "post_" + this.order.order_id+".png";
+      this.preImg = this.apiService.getImg() + "pre_" + this.order.order_id + ".png";
+      this.postImg = this.apiService.getImg() + "post_" + this.order.order_id + ".png";
       console.log(this.preImg);
       console.log(this.postImg);
-
     }
   }
   changeImage(type) {
@@ -104,7 +100,6 @@ export class OrderDetails {
               if (res) {
                 this.userID = res;
                 this.fetchOrderDetails();
-                this.fetchOrderProducts();
               }
             })
           }
@@ -117,22 +112,29 @@ export class OrderDetails {
   }
 
   fetchOrderProducts() {
-    let input = { "root": { "userid": Utils.USER_INFO_DATA.userid, "usertype": APP_USER_TYPE, "orderid": this.order.order_id, "categoryid": this.order.category.categoryid, "apptype": APP_TYPE } }
+    try {
+      let input = { "root": { "userid": Utils.USER_INFO_DATA.userid, "usertype": APP_USER_TYPE, "orderid": this.order.order_id, "categoryid": this.order.category.categoryid, "apptype": APP_TYPE } }
 
-    this.apiService.postReq(GetService.getProductsByOrderid(), input).then(res => {
-      console.log(res);
-      if (res && res.data) {
-        this.orderProductList = res.data;
-      }
-    })
+      this.apiService.postReq(GetService.getProductsByOrderid(), JSON.stringify(input)).then(res => {
+        console.log(res);
+        if (res && res.data) {
+          this.orderProductList = res.data;
+        }
+      }, err => {
+        Utils.sLog(err);
+      })
+    } catch (error) {
+      Utils.sLog(error);
+    }
   }
 
   fetchOrderDetails() {
     try {
       this.apiService.getReq(this.apiService.getOrderDetails() + this.order.order_id + "/" + this.userID).then(res => {
         this.showProgress = false;
-        if (res.result == this.alertUtils.RESULT_SUCCESS) {
-          this.alertUtils.showLog(res.data[0]);
+        this.fetchOrderProducts();
+        if (res.result == this.alertUtils.RESULT_SUCCESS && res.data) {
+          this.alertUtils.showLog(res);
           this.item = res.data[0];
           if (this.item.status == "assigned" || this.item.status == "delivered") {
             if (this.item.supplierdetails) {
@@ -234,7 +236,6 @@ export class OrderDetails {
             }
             this.item.messages = arr;
           }
-          this.ref.detectChanges();
           this.alertUtils.showLog(this.item);
         }
       }, err => {

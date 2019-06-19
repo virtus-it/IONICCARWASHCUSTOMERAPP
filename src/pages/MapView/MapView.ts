@@ -54,88 +54,94 @@ export class MapView {
   markers: any;
   GoogleAutocomplete: any;
   GooglePlaces: any;
-  geocoder: any
+  geocoder: any;
   autocompleteItems: any;
   loading: any;
 
   constructor(public zone: NgZone, private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams, private datePicker: DatePicker) {
-    platform.ready().then(() => {
-      try {
+    try {
+      platform.ready().then(() => {
+        try {
 
 
-        this.calledFrom = this.param.get("from");
-        console.log("Page came from :" + this.calledFrom);
-        this.isExisting = this.param.get("isExisting");
-        this.exMobileno = this.param.get("exMobileno");
-        this.referCode = this.param.get("referCode");
-        this.exUserInfo = this.param.get("exUserInfo");
-        this.alertUtils.showLog(this.exMobileno);
-        this.items = this.param.get("items");
-        this.address = {
-          place: ''
-        };
+          this.calledFrom = this.param.get("from");
+          console.log("Page came from :" + this.calledFrom);
+          this.isExisting = this.param.get("isExisting");
+          this.exMobileno = this.param.get("exMobileno");
+          this.referCode = this.param.get("referCode");
+          this.exUserInfo = this.param.get("exUserInfo");
+          this.alertUtils.showLog(this.exMobileno);
+          this.items = this.param.get("items");
+          this.address = {
+            place: ''
+          };
 
-        MapView.bounds = new LatLngBounds([
-          {
-            "lat": 17.539296557855938,
-            "lng": 78.23303103077819
-          },
-          {
-            "lat": 17.199834236282776,
-            "lng": 78.32504152882507
-          },
-          {
-            "lat": 17.188026972484295,
-            "lng": 78.73016237843444
-          },
-          {
-            "lat": 17.493460110609615,
-            "lng": 78.74252199757507
-          },
-          {
-            "lat": 17.624390628973813,
-            "lng": 78.59420656788757
-          },
-          {
-            "lat": 17.624390628973813,
-            "lng": 78.32916140187194
-          }
-        ]);
-      } catch (e) {
-        this.alertUtils.showLog(e);
-      }
+          MapView.bounds = new LatLngBounds([
+            {
+              "lat": 17.539296557855938,
+              "lng": 78.23303103077819
+            },
+            {
+              "lat": 17.199834236282776,
+              "lng": 78.32504152882507
+            },
+            {
+              "lat": 17.188026972484295,
+              "lng": 78.73016237843444
+            },
+            {
+              "lat": 17.493460110609615,
+              "lng": 78.74252199757507
+            },
+            {
+              "lat": 17.624390628973813,
+              "lng": 78.59420656788757
+            },
+            {
+              "lat": 17.624390628973813,
+              "lng": 78.32916140187194
+            }
+          ]);
+        } catch (e) {
+          this.alertUtils.showLog(e);
+        }
 
 
-      if (IS_WEBSITE) {
-        this.getData();
-        this.fetchRides();
-      }
-
-      this.alertUtils.getUserInfo().then(user => {
-        if (user) {
-          Utils.USER_INFO_DATA = user;
+        if (IS_WEBSITE) {
           this.getData();
           this.fetchRides();
         }
 
-      }).catch(err => {
-        this.alertUtils.showLog(err);
+        this.alertUtils.getUserInfo().then(user => {
+          if (user) {
+            Utils.USER_INFO_DATA = user;
+            Utils.sLog("User info in map page");
+            Utils.sLog(Utils.USER_INFO_DATA);
+            this.getData();
+          }
+
+        }).catch(err => {
+          this.alertUtils.showLog("err in user info " + err);
+
+        });
+
+
       });
 
 
+      this.geocoder = new google.maps.Geocoder;
+      let elem = document.createElement("div");
+      this.GooglePlaces = new google.maps.places.PlacesService(elem);
+      this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+      this.autocomplete = {
+        input: ''
+      };
+      this.autocompleteItems = [];
+    } catch (e) {
+      console.log(e);
+    }
 
-    });
 
-
-
-    this.geocoder = new google.maps.Geocoder;
-    let elem = document.createElement("div");
-    this.GooglePlaces = new google.maps.places.PlacesService(elem);
-    this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
-    this.autocomplete = {
-      input: ''
-    };
-    this.autocompleteItems = [];
   }
 
   selectSearchResult(item) {
@@ -167,21 +173,26 @@ export class MapView {
 
 
   openDatePicker() {
-    this.datePicker.show({
-      date: new Date(),
-      mode: 'datetime',
-      minDate: new Date().valueOf(),
-      maxDate: new Date('01-01-' + (new Date().getFullYear() + 1)).valueOf(),
-      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
-    }).then(
-      date => {
-        console.log('Got date: ', date)
-        Utils.datePicked = Utils.formatDateToDDMMYYYYHHMMSS(date);
-      }
-      , err => console.log('Error occurred while getting date: ', err)
-    ).catch(error => {
-      console.log('error date: ', error)
-    });
+
+    try {
+      this.datePicker.show({
+        date: new Date(),
+        mode: 'datetime',
+        minDate: new Date().valueOf(),
+        maxDate: new Date('01-01-' + (new Date().getFullYear() + 1)).valueOf(),
+        androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+      }).then(
+        date => {
+          console.log('Got date: ', date)
+          Utils.datePicked = Utils.formatDateToDDMMYYYYHHMMSS(date);
+        }
+        , err => console.log('Error occurred while getting date: ', err)
+      ).catch(error => {
+        console.log('error date: ', error)
+      });
+    } catch (e) {
+      Utils.sLog(e);
+    }
   }
 
   search() {
@@ -190,17 +201,20 @@ export class MapView {
 
   addNewRide() {
     let model = this.modalCtrl.create('AddupdateridesPage', { "from": "create" });
-    model.present();
     model.onDidDismiss(data => {
       if (data) {
         this.alertUtils.showLog(data);
         if (this.alertUtils.networkStatus()) {
           this.fetchRides();
+
         } else {
           this.alertUtils.showAlert("INTERNET CONNECTION", INTERNET_ERR_MSG, "OK");
         }
       }
     });
+    model.present();
+    this.ref.detectChanges();
+
   }
 
 
@@ -224,12 +238,15 @@ export class MapView {
   showServices(item) {
     console.log(item);
 
-    let model = this.modalCtrl.create('ProductsPage', { "category": item })
+    let model = this.modalCtrl.create('ProductsPage', { "category": item });
     model.onDidDismiss(data => {
       console.log("MapView");
       console.log(Utils.productsList);
+      this.ref.detectChanges();
     });
     model.present();
+    this.ref.detectChanges();
+
   }
   // showServices(item) {
   //   console.log(item);
@@ -287,6 +304,9 @@ export class MapView {
   // }
 
   getData() {
+    Utils.sLog("fetching products");
+    Utils.sLog(Utils.USER_INFO_DATA);
+
     try {
       let input = {
         "root": {
@@ -302,6 +322,8 @@ export class MapView {
       let data = JSON.stringify(input);
 
       this.apiService.postReq(this.apiService.getProductsByDistributerId(), data).then(res => {
+        this.fetchRides();
+        this.alertUtils.showLog("got result for category");
         this.alertUtils.showLog(res);
         if (res.result == RES_SUCCESS) {
           if (res.data) {
@@ -337,9 +359,13 @@ export class MapView {
             this.alertUtils.showToast("Found no products, please try again");
           }
         }
+      },err =>{
+        this.fetchRides();
+        Utils.sLog(err);
       });
     }
     catch (e) {
+      this.fetchRides();
       this.alertUtils.showLog(e);
     }
 
@@ -358,19 +384,33 @@ export class MapView {
   // }
 
   fetchRides() {
-    let input = {
-      "User": {
-        "userid": Utils.USER_INFO_DATA.userid,
-        "apptype": APP_TYPE,
-        "TransType": "getextrainformation"
-      }
-    };
-    this.apiService.postReq(GetService.ride(), input).then(res => {
-      console.log(res)
-      if (res && res.data) {
-        this.rides = res.data;
-      }
-    })
+    Utils.sLog("fetching rides");
+    try {
+      let input = {
+        "User": {
+          "userid": Utils.USER_INFO_DATA.userid,
+          "apptype": APP_TYPE,
+          "TransType": "getextrainformation"
+        }
+      };
+      let data = JSON.stringify(input);
+
+      this.apiService.postReq(GetService.ride(), data).then(res => {
+        console.log(res);
+        if (res && res.data) {
+          this.rides = res.data;
+        }
+        this.ref.detectChanges();
+
+      }, err => {
+        Utils.sLog(err);
+        this.ref.detectChanges();
+
+      });
+
+    } catch (e) {
+      Utils.sLog(e);
+    }
   }
 
 
@@ -429,6 +469,7 @@ export class MapView {
           }).catch(reason => {
             this.alertUtils.showLog(reason);
           });
+          this.ref.detectChanges();
         }, err => {
           console.log(err);
         })
@@ -455,7 +496,7 @@ export class MapView {
           this.alertUtils.showLog(JSON.stringify(this.userLatLng));
           const url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + loc.lat + ',' + loc.lng + '&key=AIzaSyDoS0Blw09XR34phjQ4BGF6v8mpQ5E8aSM';
           this.alertUtils.showLog(url);
-          this.getService.getReqForMap(url).subscribe(res => {
+          this.getService.getReqForMap(url).then(res => {
             this.showProgress = false;
             if (res.results && res.results[0] && res.results[0].formatted_address) {
               this.alertUtils.showLog(JSON.stringify(res.results[0].formatted_address));
@@ -515,6 +556,7 @@ export class MapView {
             }).catch(reason => {
               this.alertUtils.showLog(reason);
             });
+            this.ref.detectChanges();
             this.alertUtils.hideLoading();
           }).catch(reason => {
             this.alertUtils.showLog(reason);

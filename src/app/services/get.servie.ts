@@ -10,19 +10,20 @@ export const APP_VER_CODE: string = "138";
 export class GetService {
 
   private static DEVELOPMENT_URL = "http://192.168.1.50:2250/";
+  private static PROD_URL = "http://13.68.223.203:2250/";
   private static TESTING_URL = "http://104.211.247.42:2250/";
   private static DEMO_URL = "http://52.138.217.177:2250/";
-  private static PRODUCTION_URL = "http://moya.online/";
   private static PAYTM_PRODUCTION_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=";
   private static PAYTM_DEVELOPMENT_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=";
-  public static TRACKING_URL = "http://52.138.217.177:1900";
+  //public static TRACKING_URL = "http://52.138.217.177:1900";
+  public static TRACKING_URL = "http://13.68.223.203:2252";
 
   http: any;
   private baseUrl: String;
 
   constructor(http: Http, private Nativehttp: HTTP,private alertUtils: Utils) {
     this.http = http;
-    this.baseUrl = GetService.DEMO_URL;
+    this.baseUrl = GetService.PROD_URL;
   }
 
 
@@ -156,12 +157,12 @@ export class GetService {
       } else {
         headers = new Headers();
         headers.append("Content-Type", "application/json");
-        headers.append("module", "moyacustomer");
-        headers.append("framework", "moyaioniccustomer");
+        headers.append("module", "woccustomer");
+        headers.append("framework", "wocioniccustomer");
         headers.append("devicetype", MOBILE_TYPE);
         headers.append("apptype", APP_TYPE);
         headers.append("usertype", APP_USER_TYPE);
-        headers.append("moyaversioncode", APP_VER_CODE);
+        headers.append("versioncode", APP_VER_CODE);
       }
 
       this.alertUtils.showLog(JSON.stringify(headers));
@@ -201,12 +202,12 @@ export class GetService {
   nativeGetReg(url) {
     let headers = {
       'Content-Type': 'application/json',
-      'module': 'moyacustomer',
-      'framework': 'moyaioniccustomer',
+      'module': 'woccustomer',
+      'framework': 'wocioniccustomer',
       'devicetype': MOBILE_TYPE,
       'apptype': APP_TYPE,
       'usertype': APP_USER_TYPE,
-      'moyaversioncode': APP_VER_CODE
+      'versioncode': APP_VER_CODE
 
     };
 
@@ -251,13 +252,12 @@ export class GetService {
       } else {
         headers = new Headers();
         headers.append("Content-Type", "application/json");
-        headers.append("module", "moyacustomer");
-        headers.append("framework", "moyaioniccustomer");
+        headers.append("module", "woccustomer");
+        headers.append("framework", "wocioniccustomer");
         headers.append("devicetype", MOBILE_TYPE);
         headers.append("apptype", APP_TYPE);
         headers.append("usertype", APP_USER_TYPE);
-        headers.append("moyaversioncode", APP_VER_CODE);
-
+        headers.append("versioncode", APP_VER_CODE);
       }
       this.alertUtils.showLog(JSON.stringify(headers));
       let options = new RequestOptions({headers: headers});
@@ -300,12 +300,12 @@ export class GetService {
     let data = JSON.parse(input);
     let headers = {
       'Content-Type': 'application/json',
-      'module': 'moyacustomer',
-      'framework': 'moyaioniccustomer',
+      'module': 'woccustomer',
+      'framework': 'wocioniccustomer',
       'devicetype': MOBILE_TYPE,
       'apptype': APP_TYPE,
       'usertype': APP_USER_TYPE,
-      'moyaversioncode': APP_VER_CODE
+      'versioncode': APP_VER_CODE
 
     };
     this.Nativehttp.setDataSerializer('json');
@@ -324,13 +324,12 @@ export class GetService {
       } else {
         headers = new Headers();
         headers.append("Content-Type", "application/json");
-        headers.append("module", "moyacustomer");
-        headers.append("framework", "moyaioniccustomer");
+        headers.append("module", "woccustomer");
+        headers.append("framework", "wocioniccustomer");
         headers.append("devicetype", MOBILE_TYPE);
         headers.append("apptype", APP_TYPE);
         headers.append("usertype", APP_USER_TYPE);
-        headers.append("moyaversioncode", APP_VER_CODE);
-
+        headers.append("versioncode", APP_VER_CODE);
       }
       this.alertUtils.showLog(JSON.stringify(headers));
       let options = new RequestOptions({headers: headers});
@@ -373,12 +372,12 @@ export class GetService {
     let data = JSON.parse(input);
     let headers = {
       'Content-Type': 'application/json',
-      'module': 'moyacustomer',
-      'framework': 'moyaioniccustomer',
+      'module': 'woccustomer',
+      'framework': 'wocioniccustomer',
       'devicetype': MOBILE_TYPE,
       'apptype': APP_TYPE,
       'usertype': APP_USER_TYPE,
-      'moyaversioncode': APP_VER_CODE
+      'versioncode': APP_VER_CODE
 
     };
     this.Nativehttp.setDataSerializer('json');

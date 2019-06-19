@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import {ChangeDetectorRef, Component, ViewChild} from "@angular/core";
 import { ModalController, NavController, NavParams, Platform, ViewController } from "ionic-angular";
 import { APP_TYPE, APP_USER_TYPE, FRAMEWORK, MOBILE_TYPE, RES_SUCCESS, Utils } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
@@ -55,7 +55,7 @@ export class ConfirmOrder {
   private isModelActive: boolean = false;
   pickedDate: any;
 
-  constructor(platform: Platform, private navCtrl: NavController, private modalCtrl: ModalController, private param: NavParams, private getService: GetService, private alertUtils: Utils, private viewCtrl: ViewController) {
+  constructor(platform: Platform, private navCtrl: NavController, private modalCtrl: ModalController, private param: NavParams, private getService: GetService, private alertUtils: Utils, private viewCtrl: ViewController,private ref:ChangeDetectorRef) {
 
     platform.ready().then(() => {
       platform.registerBackButtonAction(() => this.alertUtils.showLog('backbutton'));
@@ -308,6 +308,8 @@ export class ConfirmOrder {
         this.buildingName = this.addrData.buildingname;
       }
     }
+
+    this.ref.detectChanges();
 
 
   }

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import {ChangeDetectorRef, Component, ViewChild} from "@angular/core";
 import {
   AlertController,
   IonicPage,
@@ -80,7 +80,7 @@ export class PreviewPage {
 
 
 
-  constructor(private translateService: TranslateService, private viewCtrl: ViewController, private diagnostic: Diagnostic, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, private getService: GetService, private alertCtrl: AlertController, private modalCtrl: ModalController, private geolocation: Geolocation, public platform: Platform) {
+  constructor(private translateService: TranslateService, private viewCtrl: ViewController, private diagnostic: Diagnostic, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, private getService: GetService, private alertCtrl: AlertController, private modalCtrl: ModalController, private geolocation: Geolocation, public platform: Platform,private ref:ChangeDetectorRef) {
     try {
       translateService.setDefaultLang('en');
       translateService.use('en');
@@ -264,12 +264,12 @@ export class PreviewPage {
               this.loc = new LatLng(resp.coords.latitude, resp.coords.longitude);
               this.userUpdateLatLng = this.loc;
               let url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.loc.lat + ',' + this.loc.lng + '&key=AIzaSyDoS0Blw09XR34phjQ4BGF6v8mpQ5E8aSM';
-              this.getService.getReqForMap(url).subscribe(res => {
+              this.getService.getReqForMap(url).then(res => {
                 this.showAddrProgress = false;
                 if (res.results[0].formatted_address) {
                   this.deliveryAddr = res.results[0].formatted_address;
                   this.deliveryAddr = this.deliveryAddr.replace(new RegExp("'", 'g'), '');
-                  // this.ref.detectChanges();
+                  this.ref.detectChanges();
                   this.isLatLngCheck = true;
                   this.showUpdateAddressAlert();
                 }
@@ -394,6 +394,7 @@ export class PreviewPage {
       }).catch(reason => {
         this.alertUtils.showLog(reason);
       });
+      this.ref.detectChanges();
     } catch (e) {
       this.alertUtils.showLog(e);
     }

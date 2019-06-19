@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { GetService } from '../../app/services/get.servie';
 import { Utils, INTERNET_ERR_MSG, APP_TYPE } from '../../app/services/Utils';
@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class MyridesPage {
   items: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private modalCtrl: ModalController, private alertCtrl: AlertController, private translateService: TranslateService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private modalCtrl: ModalController, private alertCtrl: AlertController, private translateService: TranslateService,private ref:ChangeDetectorRef) {
     let lang = "en";
     if (Utils.lang) {
       lang = Utils.lang
@@ -32,7 +32,6 @@ export class MyridesPage {
 
   update(item) {
     let model = this.modalCtrl.create('AddupdateridesPage', { "from": "update", "updateitem": item });
-    model.present();
     model.onDidDismiss(data => {
       if (data) {
         this.alertUtils.showLog(data);
@@ -43,6 +42,8 @@ export class MyridesPage {
         }
       }
     });
+    model.present();
+    this.ref.detectChanges();
   }
   delete(item) {
     console.log(item);
@@ -77,18 +78,19 @@ export class MyridesPage {
 
   deleteTask(item) {
     let input = { "User": { "id": item.id, "userid": Utils.USER_INFO_DATA.userid, "apptype": APP_TYPE, "TransType": "deleteextrainformation" } };
-    this.apiService.postReq(GetService.ride(), input).then(res => {
-      console.log(res)
+    this.apiService.postReq(GetService.ride(), JSON.stringify(input)).then(res => {
+      console.log(res);
       if (res && res.data) {
         this.fetchRides();
 
       }
+    },err =>{
+      console.log(err);
     })
   }
 
   addNewRide() {
     let model = this.modalCtrl.create('AddupdateridesPage', { "from": "create" });
-    model.present();
     model.onDidDismiss(data => {
       if (data) {
         this.alertUtils.showLog(data);
@@ -99,17 +101,25 @@ export class MyridesPage {
         }
       }
     });
+    model.present();
+
+    this.ref.detectChanges();
+
   }
 
 
   fetchRides() {
     this.items = null;
     let input = { "User": { "userid": Utils.USER_INFO_DATA.userid, "apptype": APP_TYPE, "TransType": "getextrainformation" } };
-    this.apiService.postReq(GetService.ride(), input).then(res => {
-      console.log(res)
+    let data = JSON.stringify(input);
+    this.apiService.postReq(GetService.ride(), data).then(res => {
+      console.log(res);
       if (res && res.data) {
         this.items = res.data;
       }
+      this.ref.detectChanges();
+    },err =>{
+      console.log(err);
     })
   }
 

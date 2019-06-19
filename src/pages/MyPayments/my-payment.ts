@@ -27,7 +27,7 @@ export class MyPaymentPage {
     }
     console.log(lang);
     translateService.use(lang);
-    
+
     try {
       this.alertUtils.getUserInfo().then(info => {
         if (info) {
@@ -148,7 +148,7 @@ export class MyPaymentPage {
           for (let i = 0; i < res.data.length; i++) {
             if (res.data[i].status == 'received') {
               res.data[i]["statuscolor"] = "warning";
-              res.data[i].status = "Dealer confirmation pending";
+              res.data[i].status = "Confirmation pending";
             } else if (res.data[i].status == 'confirm') {
               res.data[i].status = "Confirmed";
               res.data[i]["statuscolor"] = "success";
@@ -158,6 +158,7 @@ export class MyPaymentPage {
             if (isPaging) {
               this.historyItems.push(res.data[i]);
             }
+            this.ref.detectChanges();
           }
         }
       } else {

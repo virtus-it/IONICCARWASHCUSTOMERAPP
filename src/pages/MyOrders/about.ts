@@ -411,7 +411,7 @@ export class AboutPage {
               // }
             }
             this.alertUtils.showLog(this.response[pos].messages);
-            this.ref.detectChanges();
+            // this.ref.detectChanges();
           }
           item.showcommentsbox = true;
         }
@@ -489,8 +489,8 @@ export class AboutPage {
   viewOrderDetails(item) {
     try {
       this.navCtrl.push('OrderDetails', {
-        callfrom: "myorders",
-        order: item
+        'callfrom': "myorders",
+        'order': item
       });
     } catch (e) {
       this.alertUtils.showLog(e);

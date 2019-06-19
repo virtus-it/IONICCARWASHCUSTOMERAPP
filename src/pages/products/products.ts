@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Utils } from '../../app/services/Utils';
 
@@ -19,7 +19,7 @@ export class ProductsPage {
   productList: any;
   totalamt: number = 0;
 
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private alertUtils: Utils) { }
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private alertUtils: Utils,private ref:ChangeDetectorRef) { }
   continue() {
     let isProductSel = false;
     for (let i = 0; i < this.productList.length; i++) {
@@ -60,7 +60,7 @@ export class ProductsPage {
     this.pageDetails = this.navParams.get("category");
     this.productList = Utils.categoryList.get(this.pageDetails);
     Utils.productsList = this.productList;
-
+    this.ref.detectChanges();
   }
 
 }

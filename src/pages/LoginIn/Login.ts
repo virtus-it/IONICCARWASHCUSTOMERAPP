@@ -123,7 +123,7 @@ export class Login {
                 this.showLogin = false;
                 this.showProgress = true;
                 this.apiService.postReq(this.apiService.login(), data).then(res => {
-                  this.alertUtils.showLog(JSON.stringify(res.data.user));
+                  this.alertUtils.showLog(JSON.stringify(res));
                   if (res.result == this.alertUtils.RESULT_SUCCESS) {
                     if (res.data && res.data.user) {
                       if (res.data.user.USERTYPE == APP_USER_TYPE) {

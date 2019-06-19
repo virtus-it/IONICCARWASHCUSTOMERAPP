@@ -27,7 +27,7 @@ export class ContactPage {
         }
       }, err => {
         Utils.sLog(err);
-      })
+      });
 
       this.alertUtils.getLang().then(lang => {
         if (lang) {

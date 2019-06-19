@@ -108,6 +108,7 @@ export class TrackorderPage {
           }).catch(reason => {
             this.alertUtils.showLog(reason);
           });
+          this.ref.detectChanges();
         }
       });
     } catch (e) {
@@ -257,6 +258,7 @@ export class TrackorderPage {
     var center = new google.maps.LatLng(lat, lng);
     // using global variable:
     this.map.panTo(center);
+    this.ref.detectChanges();
   }
 
   addInfoWindow(marker, content) {

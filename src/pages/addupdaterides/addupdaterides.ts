@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {GetService} from '../../app/services/get.servie';
-import {APP_TYPE, Utils} from '../../app/services/Utils';
+import {APP_TYPE, APP_USER_TYPE, Utils, IS_WEBSITE} from '../../app/services/Utils';
 import {TranslateService} from '@ngx-translate/core';
 
 @IonicPage()
@@ -33,7 +33,7 @@ export class AddupdateridesPage {
       lang = Utils.lang
     }
     console.log(lang);
-    translateService.use(lang);
+    this.translateService.use(lang);
 
     this.calledFrom = this.navParams.get("from");
     this.updateItem = this.navParams.get("updateitem");
@@ -55,12 +55,12 @@ export class AddupdateridesPage {
     }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddupdateridesPage');
-  }
-
+  
   filterItem() {
     this.filterItems = this.items.filter(item => item.manufacturer.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1 || item.model.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1);
+
+    this.ref.detectChanges();
+
   }
 
   pickColor(color) {
@@ -77,7 +77,7 @@ export class AddupdateridesPage {
       return false;
     }
     if (this.year) {
-      console.log("YEAR : " + new Date().getFullYear())
+      console.log("YEAR : " + new Date().getFullYear());
       if (parseInt(this.year) > new Date().getFullYear()) {
         this.alertUtils.showToast("Invalid year");
         return false;
@@ -122,13 +122,15 @@ export class AddupdateridesPage {
       }
     }
     console.log(JSON.stringify(input));
-    this.apiService.postReq(GetService.ride(), input).then(res => {
+    this.apiService.postReq(GetService.ride(), JSON.stringify(input)).then(res => {
       console.log(res);
       if (res && res.data) {
         this.alertUtils.showToast("Ride created successfully");
         this.viewCtrl.dismiss('success');
 
       }
+      this.ref.detectChanges();
+
     })
   }
 
@@ -141,10 +143,28 @@ export class AddupdateridesPage {
       this.title = "Enter details below"
 
     }
+    this.ref.detectChanges();
+
   }
 
   ngOnInit() {
-    this.fetchRides();
+
+    if(IS_WEBSITE){
+      this.fetchRides();
+    }
+
+    this.alertUtils.getUserInfo().then(user => {
+      if (user) {
+        Utils.USER_INFO_DATA = user;
+        Utils.sLog("User info in map page");
+        Utils.sLog(Utils.USER_INFO_DATA);
+        this.fetchRides();
+      }
+
+    }).catch(err => {
+      this.alertUtils.showLog("err in user info " + err);
+
+    });
   }
 
   onChange(c) {
@@ -157,23 +177,31 @@ export class AddupdateridesPage {
   }
 
   fetchRides() {
-    let input = {"root": {"usertype": "customer"}};
-    this.apiService.postReq(GetService.entities(), input).then(res => {
-      console.log(res)
-      if (res && res.data) {
-        this.items = res.data;
-        this.filterItems = res.data;
-        if (this.calledFrom == "update") {
-          for (let i = 0; i < this.items.length; i++) {
-            const element = this.items[i];
-            if (element.manufacturer && element.manufacturer.toLowerCase() == this.updateItem.manufacturer && element.model && element.model.toLowerCase() == this.updateItem.model) {
-              this.itemSelected = element;
-            }
 
+    try {
+      let input = {"root": {"loginid":Utils.USER_INFO_DATA.userid,"usertype": APP_USER_TYPE}};
+      let data = JSON.stringify(input);
+      this.apiService.postReq(GetService.entities(), data).then(res => {
+        console.log(res);
+        if (res && res.data) {
+          this.items = res.data;
+          this.filterItems = res.data;
+          if (this.calledFrom == "update") {
+            for (let i = 0; i < this.items.length; i++) {
+              const element = this.items[i];
+              if (element.manufacturer && element.manufacturer.toLowerCase() == this.updateItem.manufacturer && element.model && element.model.toLowerCase() == this.updateItem.model) {
+                this.itemSelected = element;
+              }
+
+            }
           }
         }
-      }
-    })
+        this.ref.detectChanges();
+
+      })
+    } catch (e) {
+      Utils.sLog(e);
+    }
   }
 
 }

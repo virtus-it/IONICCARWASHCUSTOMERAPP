@@ -49,7 +49,11 @@ export class MapView {
   private items: any;
   private calledFrom: string = "";
   private showMap: boolean = true;
+  private minDate: any = new Date().toISOString();
+
   list = [];
+  myDate = '';
+  myTime = '';
 
   markers: any;
   GoogleAutocomplete: any;
@@ -57,6 +61,7 @@ export class MapView {
   geocoder: any;
   autocompleteItems: any;
   loading: any;
+  showCalender: boolean = false;
 
   constructor(public zone: NgZone, private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams, private datePicker: DatePicker) {
     try {
@@ -141,6 +146,8 @@ export class MapView {
       console.log(e);
     }
 
+    let date = new Date();
+    this.minDate = date.toISOString();
 
   }
 
@@ -175,21 +182,28 @@ export class MapView {
   openDatePicker() {
 
     try {
-      this.datePicker.show({
-        date: new Date(),
-        mode: 'datetime',
-        minDate: new Date().valueOf(),
-        maxDate: new Date('01-01-' + (new Date().getFullYear() + 1)).valueOf(),
-        androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
-      }).then(
-        date => {
-          console.log('Got date: ', date)
-          Utils.datePicked = Utils.formatDateToDDMMYYYYHHMMSS(date);
-        }
-        , err => console.log('Error occurred while getting date: ', err)
-      ).catch(error => {
-        console.log('error date: ', error)
-      });
+      console.log('method called')
+
+      if (this.platform.is('android')) {
+        this.datePicker.show({
+          date: new Date(),
+          mode: 'datetime',
+          minDate: new Date().valueOf(),
+          maxDate: new Date('01-01-' + (new Date().getFullYear() + 1)).valueOf(),
+          androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+        }).then(
+          date => {
+            console.log('Got date: ', date)
+            Utils.datePicked = Utils.formatDateToDDMMYYYYHHMMSS(date);
+          }
+          , err => console.log('Error occurred while getting date: ', err)
+        ).catch(error => {
+          console.log('error date: ', error)
+        });
+      } else {
+        this.showCalender = !this.showCalender;
+      }
+
     } catch (e) {
       Utils.sLog(e);
     }
@@ -248,60 +262,6 @@ export class MapView {
     this.ref.detectChanges();
 
   }
-  // showServices(item) {
-  //   console.log(item);
-  //   let input = {
-  //     "root": {
-  //       "userid": Utils.USER_INFO_DATA.userid,
-  //       "usertype": "dealer",
-  //       "category": item.category,
-  //       "categoryid": item.categoryid,
-  //       "apptype": APP_TYPE
-  //     }
-  //   }
-
-  //   this.apiService.postReq(GetService.getProductsByCategory(), input).then(res => {
-  //     console.log(res);
-  //     if (res && res.data) {
-  //       Utils.categoryList = new Map<string, any>();
-
-  //       for (let i = 0; i < res.data.length; i++) {
-  //         // res.data[i]["count"] = 0;
-  //         res.data[i]["ischecked"] = false;
-
-  //       }
-  //       Utils.productsList = res.data;
-
-  //       // var result = this.groupBy(res.data, function (item) {
-  //       //   return [item.brandname, item.brandname];
-  //       // });
-
-  //       // console.log(result);
-
-  //       // for (let i = 0; i < result.length; i++) {
-  //       //   const element = result[i];
-
-  //       //   Utils.categoryList.set(element[0].brandname, element);
-
-  //       // }
-  //       // console.log( Utils.categoryList.keys());
-  //       // console.log( Utils.categoryList);
-  //       let model = this.modalCtrl.create('ProductsPage', { "category": item })
-  //       model.onDidDismiss(data => {
-  //         console.log("MapView");
-  //         console.log(Utils.productsList);
-  //         if (data) {
-
-  //         }
-  //       });
-  //       model.present();
-
-
-  //     } else {
-  //       this.alertUtils.showToast("No services found in this category");
-  //     }
-  //   })
-  // }
 
   getData() {
     Utils.sLog("fetching products");
@@ -359,7 +319,7 @@ export class MapView {
             this.alertUtils.showToast("Found no products, please try again");
           }
         }
-      },err =>{
+      }, err => {
         this.fetchRides();
         Utils.sLog(err);
       });
@@ -587,7 +547,9 @@ export class MapView {
   }
 
   confirmLocation() {
+
     console.log(Utils.categoryList);
+
     if (IS_WEBSITE) {
       this.userAddr = "Tolichowki";
       if (!this.userLatLng) {
@@ -598,6 +560,23 @@ export class MapView {
 
 
     try {
+      if (this.showCalender) {
+        console.log(this.myDate);
+        if (!this.myDate) {
+          this.alertUtils.showToast('Please select date');
+          return;
+        }
+        console.log(this.myTime);
+        if (!this.myTime) {
+          this.alertUtils.showToast('Please select time');
+          return;
+        }
+        Utils.datePicked = Utils.formatDateToDDMMYYYY(this.myDate) + " " + this.myTime;
+      } else {
+        Utils.datePicked = '';
+      }
+
+
       if (!Utils.productsList && Utils.productsList == undefined || Utils.productsList == null || Utils.productsList.length == 0) {
         this.alertUtils.showToast("Please select at least one service");
         return false;

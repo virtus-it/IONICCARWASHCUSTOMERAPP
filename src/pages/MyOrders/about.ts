@@ -166,7 +166,7 @@ export class AboutPage {
 
     if (Utils.UPDATE_ORDER_LIST) {
       this.fetchData();
-      Utils.UPDATE_ORDER_LIST = true;
+      Utils.UPDATE_ORDER_LIST = false;
 
     }
   }
@@ -383,7 +383,9 @@ export class AboutPage {
       this.fetchOrderDetails(item, pos)
     } else {
       item.showcommentsbox = false;
-      item.commentstext = "Show Comments"
+      item.commentstext = "Show Comments";
+      this.ref.detectChanges();
+
     }
   }
 
@@ -411,7 +413,7 @@ export class AboutPage {
               // }
             }
             this.alertUtils.showLog(this.response[pos].messages);
-            // this.ref.detectChanges();
+            this.ref.detectChanges();
           }
           item.showcommentsbox = true;
         }

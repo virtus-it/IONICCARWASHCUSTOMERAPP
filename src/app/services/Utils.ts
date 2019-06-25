@@ -74,56 +74,56 @@ export class Utils {
     // if (this.getLang()) {
     //   Utils.lang = this.getLang();
     // }
-    if (IS_WEBSITE) {
-      Utils.USER_INFO_DATA = {
-        "Result": 1,
-        "userid": 6,
-        "username": null,
-        "email": "ali@test.com",
-        "mobileno": "0000000073",
-        "USERTYPE": "customer",
-        "first_name": "Ali Abbas",
-        "last_name": "Abbas",
-        "gcm_regid": "",
-        "gcm_mailid": "ali@test.com",
-        "imagename": null,
-        "imageurl": null,
-        "locality": null,
-        "buildingname": null,
-        "imgversion": 0,
-        "address": "8-1-5, Old Mumbai Hwy, Surya Nagar, Toli Chowki, Hyderabad, Telangana 500008, India",
-        "city": null,
-        "state": null,
-        "isuserassigned": "1",
-        "areaid": null,
-        "areaname": "",
-        "pincode": null,
-        "country": null,
-        "theme": null,
-        "latitude": "17.399035047363547",
-        "longitude": "78.41531831771135",
-        "companylogo": null,
-        "companylogo_version": null,
-        "viewplaceorder": null,
-        "apptype": "moya",
-        "usertypes": null,
-        "issuperdealer": "false",
-        "issuppersupplier": "false",
-        "superdealerid": 1,
-        "acceptonlinepayment": 1,
-        "promocodestatus": 1,
-        "lang": "en",
-        "dealers": {
-          "dealerid": 1,
-          "firstname": "Dev Super",
-          "lastname": "Dealer",
-          "mobileno": "8897078671",
-          "theme": null,
-          "issuperdealer": true
-        },
-        "sdealers": null
-      };
-    }
+    // if (IS_WEBSITE) {
+    //   Utils.USER_INFO_DATA = {
+    //     "Result": 1,
+    //     "userid": 6,
+    //     "username": null,
+    //     "email": "ali@test.com",
+    //     "mobileno": "0000000073",
+    //     "USERTYPE": "customer",
+    //     "first_name": "Ali Abbas",
+    //     "last_name": "Abbas",
+    //     "gcm_regid": "",
+    //     "gcm_mailid": "ali@test.com",
+    //     "imagename": null,
+    //     "imageurl": null,
+    //     "locality": null,
+    //     "buildingname": null,
+    //     "imgversion": 0,
+    //     "address": "8-1-5, Old Mumbai Hwy, Surya Nagar, Toli Chowki, Hyderabad, Telangana 500008, India",
+    //     "city": null,
+    //     "state": null,
+    //     "isuserassigned": "1",
+    //     "areaid": null,
+    //     "areaname": "",
+    //     "pincode": null,
+    //     "country": null,
+    //     "theme": null,
+    //     "latitude": "17.399035047363547",
+    //     "longitude": "78.41531831771135",
+    //     "companylogo": null,
+    //     "companylogo_version": null,
+    //     "viewplaceorder": null,
+    //     "apptype": "moya",
+    //     "usertypes": null,
+    //     "issuperdealer": "false",
+    //     "issuppersupplier": "false",
+    //     "superdealerid": 1,
+    //     "acceptonlinepayment": 1,
+    //     "promocodestatus": 1,
+    //     "lang": "en",
+    //     "dealers": {
+    //       "dealerid": 1,
+    //       "firstname": "Dev Super",
+    //       "lastname": "Dealer",
+    //       "mobileno": "8897078671",
+    //       "theme": null,
+    //       "issuperdealer": true
+    //     },
+    //     "sdealers": null
+    //   };
+    // }
   }
 
   private static _APP_PAYTM_MID = "dummyS79577994716430";
@@ -186,11 +186,11 @@ export class Utils {
   }
 
   static sLog(val, lineNumber?, pageName?) {
-    console.log(val);
-    if (lineNumber)
-      console.log(lineNumber);
-    if (pageName)
-      console.log(pageName);
+    // console.log(val);
+    // if (lineNumber)
+    //   console.log(lineNumber);
+    // if (pageName)
+    //   console.log(pageName);
   }
 
   static getRandomRolor() {
@@ -210,6 +210,8 @@ export class Utils {
     let d = new Date(date);
     return moment(d).format('DD-MM-YYYY HH:MM:SS');
   }
+  
+
 
 
   static formatDateToYYYYMMDD(date) {
@@ -218,11 +220,11 @@ export class Utils {
   }
 
   showLog(val, lineNumber?, pageName?) {
-    console.log(val);
-    if (lineNumber)
-      console.log(lineNumber);
-    if (pageName)
-      console.log(pageName);
+    // console.log(val);
+    // if (lineNumber)
+    //   console.log(lineNumber);
+    // if (pageName)
+    //   console.log(pageName);
   }
   static groupByBrandName(array, f) {
     var groups = {};

@@ -42,7 +42,7 @@
   <ion-card class="homefulbutton">
     <div class="sliderncatry">
       <ion-row class="slidertop" justify-content-center align-items-center *ngIf="rides.length > 0">
-        <ion-col col-10>
+        <ion-col>
           <span class="silerleft">
             <ion-icon *ngIf="currentIndex > 0" (click)="previousSlide()" name="arrow-back"></ion-icon>
           </span>
@@ -87,19 +87,32 @@
       </ion-row>
     </div>
 
+    <div *ngIf="showCalender">
+      <ion-item>
+        <ion-label>Date <small>dd/mm/yyyy</small></ion-label>
+        <ion-datetime [min]="minDate" displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"></ion-datetime>
+      </ion-item>   
+      <ion-item>
+        <ion-label>Time</ion-label>
+        <ion-datetime displayFormat="h:mm a" pickerFormat="h:mm:A" [(ngModel)]="myTime"></ion-datetime>
+      </ion-item>   
+    </div>
+
     <ion-row>
-      <ion-col col-10>
+      <ion-col>
         <button ion-button col color="primary" class="fs-12" block (click)="next()">
           {{ 'MAP_PAGE.BUTTONS.btn_continue' | translate }}
         </button>
       </ion-col>
       <ion-col col-2>
-
         <button ion-button icon-only (click)="openDatePicker()">
           <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
         </button>
-
       </ion-col>
     </ion-row>
+
+    
+
+
   </ion-card>
 </ion-footer>

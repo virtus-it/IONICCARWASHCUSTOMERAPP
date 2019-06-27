@@ -69,7 +69,7 @@
     height: 12vh;
   }
   h3,
-  .label,
+  .label
   {
     color: #38b7fe;
     font-weight: 400;
@@ -78,3 +78,21 @@
     color: #38b7fe;
   }
 }
+
+
+@media only screen and (device-width: 768px){
+  .srchloct {
+    width: 84% !important;
+    left: 11% !important;
+  }}
+@media only screen and (device-width: 800px){
+  .srchloct {
+    width: 86% !important;
+    left: 10% !important;
+  }}
+@media only screen and (device-width: 1024px){
+  .srchloct {
+    width: 86% !important;
+    left: 10% !important;
+  }}
+

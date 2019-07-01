@@ -36,6 +36,7 @@
     "@ionic-native/native-storage": "^4.4.2",
     "@ionic-native/network": "^4.4.2",
     "@ionic-native/open-native-settings": "^4.4.2",
+    "@ionic-native/photo-viewer": "^4.20.0",
     "@ionic-native/push": "^4.5.0",
     "@ionic-native/social-sharing": "^4.10.0",
     "@ionic-native/splash-screen": "^4.4.2",
@@ -45,6 +46,7 @@
     "@ngx-translate/core": "^9.1.1",
     "@ngx-translate/http-loader": "^2.0.1",
     "call-number": "^1.0.1",
+    "com-sarriaroman-photoviewer": "^1.2.2",
     "cordova-android": "6.3.0",
     "cordova-ios": "4.5.4",
     "cordova-open-native-settings": "^1.5.0",
@@ -118,7 +120,8 @@
         "SENDER_ID": "530358294125"
       },
       "cordova-plugin-x-socialsharing": {},
-      "cordova-plugin-datepicker": {}
+      "cordova-plugin-datepicker": {},
+      "com-sarriaroman-photoviewer": {}
     },
     "platforms": [
       "android"

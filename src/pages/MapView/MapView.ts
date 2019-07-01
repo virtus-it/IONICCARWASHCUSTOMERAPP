@@ -77,30 +77,62 @@ export class MapView {
 
         MapView.bounds = new LatLngBounds([
           {
-            "lat": 17.539296557855938,
-            "lng": 78.23303103077819
+            "lat": 25.225021421700475,
+            "lng": 55.28615459192213
           },
           {
-            "lat": 17.199834236282776,
-            "lng": 78.32504152882507
+            "lat": 25.062166768158566,
+            "lng": 55.1309727071565
           },
           {
-            "lat": 17.188026972484295,
-            "lng": 78.73016237843444
+            "lat": 24.988749161198257,
+            "lng": 55.09114726770338
           },
           {
-            "lat": 17.493460110609615,
-            "lng": 78.74252199757507
+            "lat": 24.953891550481544,
+            "lng": 55.23122295129713
           },
           {
-            "lat": 17.624390628973813,
-            "lng": 78.59420656788757
+            "lat": 24.999951295254636,
+            "lng": 55.466055714969
           },
           {
-            "lat": 17.624390628973813,
-            "lng": 78.32916140187194
+            "lat": 25.207627482773205,
+            "lng": 55.64870342004713
+          },
+          {
+            "lat": 25.326850217993883,
+            "lng": 55.3946445821565
           }
         ]);
+
+
+        var array = [
+          {
+            "lat": 24.801660372582777,
+            "lng": 54.8638275736231
+          },
+          {
+            "lat": 24.592050700484208,
+            "lng": 54.70315252479497
+          },
+          {
+            "lat": 24.360823911484054,
+            "lng": 54.56445013221685
+          },
+          {
+            "lat": 24.245677671122813,
+            "lng": 54.82949529823247
+          },
+          {
+            "lat": 24.678183055194744,
+            "lng": 55.14672552284185
+          }
+        ];
+        array.forEach(element => {
+          MapView.bounds.extend({ lat: element.lat, lng: element.lng });
+        });
+
       } catch (e) {
         this.alertUtils.showLog(e);
       }
@@ -231,61 +263,6 @@ export class MapView {
     });
     model.present();
   }
-  // showServices(item) {
-  //   console.log(item);
-  //   let input = {
-  //     "root": {
-  //       "userid": Utils.USER_INFO_DATA.userid,
-  //       "usertype": "dealer",
-  //       "category": item.category,
-  //       "categoryid": item.categoryid,
-  //       "apptype": APP_TYPE
-  //     }
-  //   }
-
-  //   this.apiService.postReq(GetService.getProductsByCategory(), input).then(res => {
-  //     console.log(res);
-  //     if (res && res.data) {
-  //       Utils.categoryList = new Map<string, any>();
-
-  //       for (let i = 0; i < res.data.length; i++) {
-  //         // res.data[i]["count"] = 0;
-  //         res.data[i]["ischecked"] = false;
-
-  //       }
-  //       Utils.productsList = res.data;
-
-  //       // var result = this.groupBy(res.data, function (item) {
-  //       //   return [item.brandname, item.brandname];
-  //       // });
-
-  //       // console.log(result);
-
-  //       // for (let i = 0; i < result.length; i++) {
-  //       //   const element = result[i];
-
-  //       //   Utils.categoryList.set(element[0].brandname, element);
-
-  //       // }
-  //       // console.log( Utils.categoryList.keys());
-  //       // console.log( Utils.categoryList);
-  //       let model = this.modalCtrl.create('ProductsPage', { "category": item })
-  //       model.onDidDismiss(data => {
-  //         console.log("MapView");
-  //         console.log(Utils.productsList);
-  //         if (data) {
-
-  //         }
-  //       });
-  //       model.present();
-
-
-  //     } else {
-  //       this.alertUtils.showToast("No services found in this category");
-  //     }
-  //   })
-  // }
-
   getData() {
     try {
       let input = {
@@ -446,32 +423,33 @@ export class MapView {
             lat: sub[0].target.lat,
             lng: sub[0].target.lng
           };
-          // if (MapView.bounds.contains(pickLatLng)) {
-          this.showMap = true;
-          this.ref.detectChanges();
-          Utils.sLog("Inside the area");
-          loc = new LatLng(sub[0].target.lat, sub[0].target.lng);
-          this.userLatLng = loc;
-          this.alertUtils.showLog(JSON.stringify(this.userLatLng));
-          const url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + loc.lat + ',' + loc.lng + '&key=AIzaSyDoS0Blw09XR34phjQ4BGF6v8mpQ5E8aSM';
-          this.alertUtils.showLog(url);
-          this.getService.getReqForMap(url).subscribe(res => {
-            this.showProgress = false;
-            if (res.results && res.results[0] && res.results[0].formatted_address) {
-              this.alertUtils.showLog(JSON.stringify(res.results[0].formatted_address));
-              this.userAddr = res.results[0].formatted_address;
-              this.alertUtils.showLog(this.userAddr);
-              this.ref.detectChanges();
-            }
-          }, err => {
-            this.showProgress = false;
-            this.alertUtils.showToast(err);
-          });
-          // } else {
-          //   Utils.sLog("Outside the area");
-          //   this.showMap = false;
-          //   this.ref.detectChanges();
-          // }
+          if (MapView.bounds.contains(pickLatLng)) {
+            this.showMap = true;
+            this.ref.detectChanges();
+            Utils.sLog("Inside the area");
+            loc = new LatLng(sub[0].target.lat, sub[0].target.lng);
+            this.userLatLng = loc;
+            this.alertUtils.showLog(JSON.stringify(this.userLatLng));
+            const url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + loc.lat + ',' + loc.lng + '&key=AIzaSyDoS0Blw09XR34phjQ4BGF6v8mpQ5E8aSM';
+            this.alertUtils.showLog(url);
+            this.getService.getReqForMap(url).subscribe(res => {
+              this.showProgress = false;
+              if (res.results && res.results[0] && res.results[0].formatted_address) {
+                this.alertUtils.showLog(JSON.stringify(res.results[0].formatted_address));
+                this.userAddr = res.results[0].formatted_address;
+                this.alertUtils.showLog(this.userAddr);
+                this.ref.detectChanges();
+              }
+            }, err => {
+              this.showProgress = false;
+              this.alertUtils.showToast(err);
+            });
+          } else {
+            console.log("Outside the area");
+            this.showMap = false;
+            this.userAddr = "";
+            this.ref.detectChanges();
+          }
         } else {
           Utils.sLog('LATLNG not found');
         }

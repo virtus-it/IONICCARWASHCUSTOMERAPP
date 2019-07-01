@@ -117,12 +117,10 @@ export class TrackorderPage {
 
   openSocket() {
     try {
-
-
-      this.calculateAndDisplayRoute();
+      // this.calculateAndDisplayRoute();
       if (IS_WEBSITE) {
         this.items = {};
-        this.items['useruniqueid'] = 'd63bc4c3f2c63b65';
+        this.items['useruniqueid'] = '6ed19a9014324ef4';
       }
       console.log("DB DeviceUUID : " + this.items.useruniqueid);
       console.log("DeviceUUID : " + this.alertUtils.getDeviceUUID())
@@ -158,14 +156,13 @@ export class TrackorderPage {
       } else
         if (this.alertUtils.getDeviceUUID()) {
           this.getMessages(this.alertUtils.getDeviceUUID()).subscribe(data => {
-            console.error("******* tracking started ********");
+            console.log("******* tracking started ********");
             console.log(data);
             if (data) {
               let item: any = data;
               if (item && item.order && item.order.lat && item.order.lng) {
                 console.log(item.order.lat);
                 console.log(item.order.lng);
-
                 this.addMarker(item.order.lat, item.order.lng);
 
               }
@@ -180,13 +177,20 @@ export class TrackorderPage {
   }
 
   getMessages(key: string) {
-    console.log("trackorder 3");
-    let observable = new Observable(observer => {
-      this.socket.on(key, (data: any) => {
-        observer.next(data);
+    try {
+
+
+      console.log("trackorder 3");
+      let observable = new Observable(observer => {
+        this.socket.on(key, (data: any) => {
+          observer.next(data);
+        });
       });
-    });
-    return observable;
+      return observable;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 
   calculateAndDisplayRoute() {
@@ -195,14 +199,14 @@ export class TrackorderPage {
 
       let destionation: LatLng;
       if (this.items && this.items.orderby_latitude && this.items.orderby_longitude) {
-        destionation = new LatLng(this.items.orderby_latitude, this.items.orderby_longitude);
+        destionation = new LatLng(parseFloat(this.items.orderby_latitude), parseFloat(this.items.orderby_longitude));
       } else {
         destionation = new LatLng(17.407190, 78.402064);
       }
       let origin: LatLng;
 
       if (this.items && this.items.delivery_latitude && this.items.delivery_longitude) {
-        origin = new LatLng(this.items.delivery_latitude, this.items.delivery_longitude);
+        origin = new LatLng(parseFloat(this.items.delivery_latitude), parseFloat(this.items.delivery_longitude));
       } else {
         origin = new LatLng(17.394264, 78.441137);
       }
@@ -339,8 +343,5 @@ export class TrackorderPage {
     }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TrackorderPage');
-  }
 
 }

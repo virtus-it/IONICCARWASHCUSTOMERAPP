@@ -12,7 +12,7 @@ import * as moment from "moment";
 import { Device } from "@ionic-native/device";
 
 export const SHOW_ALL = false;
-export const IS_WEBSITE: boolean = false;
+export const IS_WEBSITE: boolean = true;
 
 const KEY_USER_ID = 'secure_storage_userid';
 const KEY_DEALER_ID = 'secure_storage_dealerid';
@@ -70,14 +70,11 @@ export class Utils {
   sliderName: string = "Hi User";
 
   constructor(private appRate: AppRate, private diagnostic: Diagnostic, private net: Network, public toast: ToastController, public loadingCtrl: LoadingController, private appVersion: AppVersion, private nativeStorage: NativeStorage, public alertCtrl: AlertController, private cNumber: CallNumber, private tToast: Toast, private nSetting: OpenNativeSettings, private device: Device) {
-
-    // if (this.getLang()) {
-    //   Utils.lang = this.getLang();
-    // }
+    //
     if (IS_WEBSITE) {
       Utils.USER_INFO_DATA = {
         "Result": 1,
-        "userid": 7,
+        "userid": 6,
         "username": null,
         "email": "ali@test.com",
         "mobileno": "0000000073",
@@ -109,7 +106,7 @@ export class Utils {
         "usertypes": null,
         "issuperdealer": "false",
         "issuppersupplier": "false",
-        "superdealerid": 289,
+        "superdealerid": 1,
         "acceptonlinepayment": 1,
         "promocodestatus": 1,
         "lang": "en",

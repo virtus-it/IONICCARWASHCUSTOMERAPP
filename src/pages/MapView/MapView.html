@@ -22,82 +22,85 @@
   </ion-fab>
 
 
+  <div class="wrapper">
 
-  <div #map id="map">
-    <ion-fab center middle style="top:50%">
-      <img src="assets/imgs/marker_pin.png" item-center height="50px">
-    </ion-fab>
-  </div>
-  <ion-fab right top>
-    <button ion-fab mini (click)="getMyLocation()">
-      <ion-icon name="locate"></ion-icon>
-    </button>
-  </ion-fab>
-  <!--<ion-fab style="width: 100%" bottom>-->
-  <!--</ion-fab>-->
-
-</ion-content>
-
-<ion-footer>
-  <ion-card>
-    <div class="sliderncatry">
-      <ion-row class="slidertop" justify-content-center align-items-center *ngIf="rides.length > 0">
-        <ion-col col-10>
-          <span class="silerleft">
-            <ion-icon *ngIf="currentIndex > 0" (click)="previousSlide()" name="arrow-back"></ion-icon>
-          </span>
-          <ion-slides class="silercenter" (ionSlideDidChange)="onSlideChanged()">
-            <ion-slide *ngFor="let slide of rides; let i = index">
-              <h5 class="veh_name">{{slide.manufacturer}} {{slide.model}} {{slide.modelcode}}</h5>
-
-
-            </ion-slide>
-          </ion-slides>
-          <span class="silerleft">
-            <ion-icon *ngIf="currentIndex < (rides.length-1)" class=" silerleft" (click)="nextSlide()" name="arrow-forward"></ion-icon>
-          </span>
-
-        </ion-col>
-
-        <ion-col col-2>
-          <button ion-button (click)="addNewRide()">
-            <ion-icon slot="icon-only" name="md-add-circle"></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
-
-      <div class="center" *ngIf="rides.length == 0">
-        <span (click)="addNewRide()">
-          <ion-icon slot="icon-only" name="md-add-circle" class="addride"></ion-icon>
-        </span>
-        <ion-label style="color: #000000;">Add a vehicle</ion-label>
-      </div>
-
-      <ion-row>
-        <ion-item no-lines>
-          <div class="category_container">
-            <span *ngFor="let item of list">
-              <img src="{{item.imgurl}}" (error)="changeImage(item)" class="scroll-item" (click)="showServices(item.category)" />
-            </span>
-            <div>
-              <label class="scroll-item" *ngFor="let item of list"> {{item.category}} </label>
-            </div>
-          </div>
-        </ion-item>
-      </ion-row>
+    <div #map id="map">
+      <ion-fab center middle style="top:50%">
+        <img src="assets/imgs/marker_pin.png" item-center height="50px">
+      </ion-fab>
     </div>
+    <ion-fab right top>
+      <button ion-fab mini (click)="getMyLocation()">
+        <ion-icon name="locate"></ion-icon>
+      </button>
+    </ion-fab>
+    <!--<ion-fab style="width: 100%" bottom>-->
+    <!--</ion-fab>-->
+    <ion-card class="bottom request-controls">
+      <div class="sliderncatry" *ngIf="showMap">
+        <ion-row class="slidertop" justify-content-center align-items-center *ngIf="rides.length > 0">
+          <ion-col col-10>
+            <span class="silerleft">
+              <ion-icon *ngIf="currentIndex > 0" (click)="previousSlide()" name="arrow-back"></ion-icon>
+            </span>
+            <ion-slides class="silercenter" (ionSlideDidChange)="onSlideChanged()">
+              <ion-slide *ngFor="let slide of rides; let i = index">
+                <h5 class="veh_name">{{slide.manufacturer}} {{slide.model}} {{slide.modelcode}}</h5>
 
-    <ion-row>
-      <ion-col col-9>
-        <button ion-button col color="primary" class="fs-12" block (click)="next()">
-          {{ 'MAP_PAGE.BUTTONS.btn_continue' | translate }}
-        </button>
-      </ion-col>
-      <ion-col col-2>
-        <button ion-button icon-only (click)="openDatePicker()">
-          <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-</ion-footer>
+
+              </ion-slide>
+            </ion-slides>
+            <span class="silerleft">
+              <ion-icon *ngIf="currentIndex < (rides.length-1)" class=" silerleft" (click)="nextSlide()" name="arrow-forward"></ion-icon>
+            </span>
+
+          </ion-col>
+
+          <ion-col col-2>
+            <button ion-button (click)="addNewRide()">
+              <ion-icon slot="icon-only" name="md-add-circle"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <div class="center" *ngIf="rides.length == 0">
+          <span (click)="addNewRide()">
+            <ion-icon slot="icon-only" name="md-add-circle" class="addride"></ion-icon>
+          </span>
+          <ion-label style="color: #000000;">Add a vehicle</ion-label>
+        </div>
+
+        <ion-row>
+          <ion-item no-lines>
+            <div class="category_container">
+              <span *ngFor="let item of list">
+                <img src="{{item.imgurl}}" (error)="changeImage(item)" class="scroll-item" (click)="showServices(item.category)" />
+              </span>
+              <div>
+                <label class="scroll-item" *ngFor="let item of list"> {{item.category}} </label>
+              </div>
+            </div>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <button ion-button col color="primary" class="fs-12" block (click)="next()">
+              {{ 'MAP_PAGE.BUTTONS.btn_continue' | translate }}
+            </button>
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button icon-only (click)="openDatePicker()">
+              <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </div>
+      <p *ngIf="!showMap">Service not avaiable in this area </p>
+    </ion-card>
+  </div>
+</ion-content>
+<!-- 
+<ion-footer>
+  
+</ion-footer> -->

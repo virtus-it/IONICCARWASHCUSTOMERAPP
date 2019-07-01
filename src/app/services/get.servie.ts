@@ -3,25 +3,27 @@ import { Headers, Http, RequestOptions } from "@angular/http";
 import "rxjs/add/operator/map";
 import { APP_TYPE, APP_USER_TYPE, IS_WEBSITE, Utils } from "./Utils";
 
-export const APP_VER_CODE: string = "7";
+export const APP_VER_CODE: string = "8";
 
 @Injectable()
 export class GetService {
 
+  private static PROD_URL = "http://washonclick.ae/";
   // private static DEVELOPMENT_URL = "http://192.168.1.50:2250/";
   // private static TESTING_URL = "http://104.211.247.42:2250/";
-  private static DEMO_URL = "http://52.138.217.177:2250/";
+  // private static DEMO_URL = "http://52.138.217.177:2250/";
   // private static PRODUCTION_URL = "http://moya.online/";
   // private static PAYTM_PRODUCTION_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=";
   private static PAYTM_DEVELOPMENT_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=";
-  public static TRACKING_URL = "http://52.138.217.177:1900";
+  //public static TRACKING_URL = "http://52.138.217.177:1900";
+  public static TRACKING_URL = "http://washonclick.ae:2252";
 
   http: any;
   private baseUrl: String;
 
   constructor(http: Http, private alertUtils: Utils) {
     this.http = http;
-    this.baseUrl = GetService.DEMO_URL;
+    this.baseUrl = GetService.PROD_URL;
   }
 
 
@@ -85,7 +87,7 @@ export class GetService {
       headers.append("devicetype", "android");
       headers.append("apptype", APP_TYPE);
       headers.append("usertype", APP_USER_TYPE);
-      headers.append("moyaversioncode", APP_VER_CODE);
+      headers.append("versioncode", APP_VER_CODE);
     }
 
     this.alertUtils.showLog(JSON.stringify(headers));
@@ -111,7 +113,7 @@ export class GetService {
       headers.append("devicetype", "android");
       headers.append("apptype", APP_TYPE);
       headers.append("usertype", APP_USER_TYPE);
-      headers.append("moyaversioncode", APP_VER_CODE);
+      headers.append("versioncode", APP_VER_CODE);
 
     }
     this.alertUtils.showLog(JSON.stringify(headers));
@@ -133,7 +135,7 @@ export class GetService {
       headers.append("devicetype", "android");
       headers.append("apptype", APP_TYPE);
       headers.append("usertype", APP_USER_TYPE);
-      headers.append("moyaversioncode", APP_VER_CODE);
+      headers.append("versioncode", APP_VER_CODE);
 
     }
     this.alertUtils.showLog(JSON.stringify(headers));

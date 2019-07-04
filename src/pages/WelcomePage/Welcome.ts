@@ -16,6 +16,7 @@ import { Diagnostic } from "@ionic-native/diagnostic";
 import { AppRate } from "@ionic-native/app-rate";
 import { SignUp } from "../SignUp/SignUp";
 import { TranslateService } from "@ngx-translate/core";
+import { ServiceArea } from "../../app/services/servicearea";
 
 @Component({
   selector: 'page-welcome',
@@ -37,7 +38,7 @@ export class WelcomePage {
   private verCode = "6";
   private deviceCode: string;
 
-  constructor(private diagnostic: Diagnostic, private navCtrl: NavController, public alertUtils: Utils, private apiService: GetService, private alertCtrl: AlertController, private viewCtrl: ViewController, private platform: Platform, private appRate: AppRate, public translate: TranslateService) {
+  constructor(private diagnostic: Diagnostic, private navCtrl: NavController, public alertUtils: Utils, private apiService: GetService, private alertCtrl: AlertController, private viewCtrl: ViewController, private platform: Platform, private appRate: AppRate, private serviceArea: ServiceArea, public translate: TranslateService) {
     this.alertUtils.showLog("WELCOME PAGE CONSTRUCTOR");
     this.platform.ready().then(ready => {
       try {
@@ -90,13 +91,13 @@ export class WelcomePage {
         this.alertUtils.showLog(e);
       }
     });
-    console.log("getDLang : " + this.translate.getDefaultLang())
+    Utils.sLog("getDLang : " + this.translate.getDefaultLang())
   }
 
   setLanguage() {
-    console.log(this.languageSelected)
+    Utils.sLog(this.languageSelected)
     let defaultLanguage = this.translate.getDefaultLang();
-    console.log("defaultLanguage : " + defaultLanguage);
+    Utils.sLog("defaultLanguage : " + defaultLanguage);
     if (this.languageSelected) {
       this.translate.setDefaultLang(this.languageSelected);
       this.translate.use(this.languageSelected);
@@ -199,19 +200,11 @@ export class WelcomePage {
                   });
 
                 }
-
-                if (res.data.userdetails.promodetails) {
-                  if (res.data.userdetails.promodetails.promo_code) {
-                    const promoDta = {
-                      "promocode": res.data.userdetails.promodetails.promo_code,
-                      "promostatus": res.data.userdetails.promodetails.promocodestatus,
-                      "type": res.data.userdetails.promodetails.type,
-                      "typevalue": res.data.userdetails.promodetails.typevalue
-                    };
-                    this.alertUtils.showLog(promoDta);
-                    this.alertUtils.setPromoCode(promoDta);
-                  }
+                if (res.data.userdetails.POLYGON && res.data.userdetails.POLYGON[0] && res.data.userdetails.POLYGON[0].polygonjson) {
+                  this.serviceArea.saveServiceAreas(res.data.userdetails.POLYGON[0].polygonjson);
                 }
+
+
                 if (res.data.userdetails) {
                   this.alertUtils.cacheAppFirstInfo(res.data.userdetails);
                 }
@@ -474,7 +467,7 @@ export class WelcomePage {
     }
     Utils.sLog(data);
     /* if (discountCode && discountCode.toUpperCase() == 'LITGEN18') {
-
+  
        this.navCtrl.push('SimpledialogPage', data).then(next => {
          this.showProgress = false;
        });
@@ -521,7 +514,7 @@ export class WelcomePage {
           text: 'RE-ENTER',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            Utils.sLog('Cancel clicked');
           }
         },
         {

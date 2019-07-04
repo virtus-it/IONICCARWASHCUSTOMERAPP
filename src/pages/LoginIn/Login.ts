@@ -11,6 +11,7 @@ import {
 } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
 import { MapView } from "../MapView/MapView";
+import { ServiceArea } from "../../app/services/servicearea";
 
 
 @Component({
@@ -32,7 +33,7 @@ export class Login {
   errorText: string = "";
   private verCode: any;
 
-  constructor(private navCtrl: NavController, private param: NavParams, public alertUtils: Utils, private apiService: GetService, private alertCtrl: AlertController, private viewCtrl: ViewController) {
+  constructor(private navCtrl: NavController, private param: NavParams, public alertUtils: Utils, private apiService: GetService, private alertCtrl: AlertController, private viewCtrl: ViewController, private serviceArea: ServiceArea) {
     this.cameFrom = this.param.get("items");
 
 
@@ -72,9 +73,9 @@ export class Login {
   }
 
   ionViewWillLeave() {
-    console.log('login view will leave');
+    Utils.sLog('login view will leave');
     if (this.cameFrom) {
-      console.log(this.cameFrom);
+      Utils.sLog(this.cameFrom);
       if (this.cameFrom == "orderspage") {
         if (this.successLogin) {
           this.navCtrl.getPrevious().data.myDataKey = "fetchData";
@@ -123,10 +124,18 @@ export class Login {
                 this.showLogin = false;
                 this.showProgress = true;
                 this.apiService.postReq(this.apiService.login(), data).then(res => {
-                  this.alertUtils.showLog(JSON.stringify(res.data.user));
+                  this.alertUtils.showLog(res);
                   if (res.result == this.alertUtils.RESULT_SUCCESS) {
                     if (res.data && res.data.user) {
                       if (res.data.user.USERTYPE == APP_USER_TYPE) {
+                        // try {
+                        //   Utils.USER_INFO_DATA['userid'] = res.data.user.userid;
+                        //   Utils.USER_INFO_DATA['superdealerid'] = res.data.user.superdealerid;
+                        //   this.serviceArea.fetchServiceAreas();
+                        // } catch (error) {
+                        //   Utils.sLog(error);
+                        // }
+
                         let imageVer = "", dealerName = "", userName = "", dealerid = "", dealermobileno = "";
                         this.info = res.data.user;
                         if (this.info.imgversion)
@@ -168,17 +177,8 @@ export class Login {
                         this.alertUtils.cacheInfo(this.info.userid, this.password, this.mobileNumber, this.info.email, APP_USER_TYPE, userName, dealerid, dealermobileno, this.info.imagename, imageVer, this.info.address, this.info.city, this.info.state, this.info.pincode, dealerName, this.info.latitude, this.info.longitude);
                         this.alertUtils.cacheUserInfo(res.data.user);
                         this.alertUtils.sliderName = res.data.user.first_name;
+
                         this.navCtrl.setRoot(MapView).then(next => {
-                          //const index = this.viewCtrl.index;
-                          // then we remove it from the navigation stack
-                          //this.navCtrl.remove(index);
-                          //this.navCtrl.remove(index - 1);
-                          // if (!this.info.latitude && this.info.latitude == "") {
-                          //   this.alertUtils.showToast("Please wait");
-                          //   this.navCtrl.push(MapView, {
-                          //     from: "login"
-                          //   });
-                          // }
                           this.setGCMDetails();
                         });
                       } else {
@@ -206,9 +206,6 @@ export class Login {
               this.alertUtils.showToast("min 4 max 20 characters allowed in password");
           } else
             this.alertUtils.showToast("Please enter password");
-          // } else {
-          //   this.alertUtils.showToast("Invalid mobile number");
-          // }
         } else {
           this.alertUtils.showToast(this.alertUtils.ERROR_MES);
         }
@@ -238,6 +235,8 @@ export class Login {
     };
     let gcmData = JSON.stringify(input);
     this.apiService.postReq(this.apiService.setGCMRegister(), gcmData).then(gcm => {
+      Utils.sLog("GCM result");
+      Utils.sLog(gcm);
       if (gcm.result == this.alertUtils.RESULT_SUCCESS) {
         this.alertUtils.showToast("You have successfully logged in");
 
@@ -275,7 +274,7 @@ export class Login {
           text: 'Submit',
           handler: data => {
 
-            if (this.alertUtils.validateNumber(data.mobileno, "Mobile Number", 10, 10)) {
+            if (this.alertUtils.validateNumber(data.mobileno, "Mobile Number", 9, 10)) {
               if (!this.alertUtils.isValidMobile(data.mobileno)) {
                 this.forgotPwdTask(data);
 

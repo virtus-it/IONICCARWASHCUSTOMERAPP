@@ -17,12 +17,12 @@ export class MyridesPage {
     if (Utils.lang) {
       lang = Utils.lang
     }
-    console.log(lang);
+    Utils.sLog(lang);
     translateService.use(lang);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MyridesPage');
+    Utils.sLog('ionViewDidLoad MyridesPage');
   }
 
 
@@ -45,7 +45,7 @@ export class MyridesPage {
     });
   }
   delete(item) {
-    console.log(item);
+    Utils.sLog(item);
 
     let alert = this.alertCtrl.create({
       title: 'Warning',
@@ -55,7 +55,7 @@ export class MyridesPage {
           text: 'No',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            Utils.sLog('Cancel clicked');
           }
         },
         {
@@ -78,7 +78,7 @@ export class MyridesPage {
   deleteTask(item) {
     let input = { "User": { "id": item.id, "userid": Utils.USER_INFO_DATA.userid, "apptype": APP_TYPE, "TransType": "deleteextrainformation" } };
     this.apiService.postReq(GetService.ride(), input).then(res => {
-      console.log(res)
+      Utils.sLog(res)
       if (res && res.data) {
         this.fetchRides();
 
@@ -106,7 +106,7 @@ export class MyridesPage {
     this.items = null;
     let input = { "User": { "userid": Utils.USER_INFO_DATA.userid, "apptype": APP_TYPE, "TransType": "getextrainformation" } };
     this.apiService.postReq(GetService.ride(), input).then(res => {
-      console.log(res)
+      Utils.sLog(res)
       if (res && res.data) {
         this.items = res.data;
       }

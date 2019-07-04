@@ -32,12 +32,12 @@ export class AddupdateridesPage {
     if (Utils.lang) {
       lang = Utils.lang
     }
-    console.log(lang);
+    Utils.sLog(lang);
     translateService.use(lang);
 
     this.calledFrom = this.navParams.get("from");
     this.updateItem = this.navParams.get("updateitem");
-    console.log(this.updateItem);
+    Utils.sLog(this.updateItem);
 
     if (this.calledFrom == "update") {
       if (this.updateItem.intensity)
@@ -56,7 +56,7 @@ export class AddupdateridesPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddupdateridesPage');
+    Utils.sLog('ionViewDidLoad AddupdateridesPage');
   }
 
   filterItem() {
@@ -77,7 +77,7 @@ export class AddupdateridesPage {
       return false;
     }
     if (this.year) {
-      console.log("YEAR : " + new Date().getFullYear())
+      Utils.sLog("YEAR : " + new Date().getFullYear())
       if (parseInt(this.year) > new Date().getFullYear()) {
         this.alertUtils.showToast("Invalid year");
         return false;
@@ -121,9 +121,9 @@ export class AddupdateridesPage {
         input.User["id"] = this.updateItem.id;
       }
     }
-    console.log(JSON.stringify(input));
+    Utils.sLog(JSON.stringify(input));
     this.apiService.postReq(GetService.ride(), input).then(res => {
-      console.log(res);
+      Utils.sLog(res);
       if (res && res.data) {
         this.alertUtils.showToast("Ride created successfully");
         this.viewCtrl.dismiss('success');
@@ -133,7 +133,7 @@ export class AddupdateridesPage {
   }
 
   pickedItem(item) {
-    console.log(item);
+    Utils.sLog(item);
     if (item) {
       this.itemSelected = item;
       this.page1 = false;
@@ -159,7 +159,7 @@ export class AddupdateridesPage {
   fetchRides() {
     let input = {"root": {"usertype": "customer"}};
     this.apiService.postReq(GetService.entities(), input).then(res => {
-      console.log(res)
+      Utils.sLog(res)
       if (res && res.data) {
         this.items = res.data;
         this.filterItems = res.data;

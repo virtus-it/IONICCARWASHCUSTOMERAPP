@@ -23,7 +23,7 @@ export class Feedback {
     if (Utils.lang) {
       lang = Utils.lang
     }
-    console.log(lang);
+    Utils.sLog(lang);
     translateService.use(lang);
 
     if (IS_WEBSITE) {
@@ -107,7 +107,7 @@ export class Feedback {
       if (isRefresh)
         refresher.complete();
       this.alertUtils.showToast(this.alertUtils.INTERNET_ERR_MSG);
-      console.log(err);
+      Utils.sLog(err);
     });
   }
 

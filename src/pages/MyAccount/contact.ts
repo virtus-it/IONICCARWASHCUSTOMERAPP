@@ -65,7 +65,7 @@ export class ContactPage {
       }, err => {
         this.alertUtils.showToast(this.alertUtils.INTERNET_ERR_MSG);
         this.alertUtils.hideLoading();
-        console.log(err);
+        Utils.sLog(err);
       });
     } catch (error) {
       this.alertUtils.showLog(error);
@@ -185,9 +185,9 @@ export class ContactPage {
   }
 
   setLanguage() {
-    console.log(this.languageSelected);
+    Utils.sLog(this.languageSelected);
     let defaultLanguage = this.translate.getDefaultLang();
-    console.log("defaultLanguage : " + defaultLanguage);
+    Utils.sLog("defaultLanguage : " + defaultLanguage);
     if (this.languageSelected) {
       this.translate.setDefaultLang(this.languageSelected);
       this.translate.use(this.languageSelected);

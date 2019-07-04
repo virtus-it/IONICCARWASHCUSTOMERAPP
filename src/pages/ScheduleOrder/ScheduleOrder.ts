@@ -71,7 +71,7 @@ export class ScheduleOrderPage {
           text: 'NO',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            Utils.sLog('Cancel clicked');
           }
         },
         {

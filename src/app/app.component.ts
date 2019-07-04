@@ -14,6 +14,7 @@ import { GetService } from "./services/get.servie";
 import { Login } from "../pages/LoginIn/Login";
 import { MapView } from "../pages/MapView/MapView";
 import { Subject } from 'rxjs/Subject';
+import { ServiceArea } from "./services/servicearea";
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +31,7 @@ export class MyApp {
 
   constructor(private apiService: GetService, private translateService: TranslateService,
     private platform: Platform, statusBar: StatusBar, public splashScreen: SplashScreen, public push: Push,
-    public alertCtrl: AlertController, public alertUtils: Utils) {
+    private alertCtrl: AlertController, private serviceArea: ServiceArea,private alertUtils: Utils) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -81,6 +82,9 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
     this.activePage = page;
+    // if(page.title == 'Home'){
+    //   this.serviceArea.fetchServiceAreas();
+    // }
   }
 
   checkActive(p) {
@@ -137,7 +141,7 @@ export class MyApp {
               //   buttons: [{
               //     text: 'OK',
               //     handler: () => {
-              //       console.log(JSON.stringify(data));
+              //       Utils.sLog(JSON.stringify(data));
               //     }
               //   }]
               // });

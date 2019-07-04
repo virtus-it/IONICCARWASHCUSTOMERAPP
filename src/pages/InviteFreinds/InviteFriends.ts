@@ -32,7 +32,7 @@ export class InviteFriends {
     if (Utils.lang) {
       lang = Utils.lang
     }
-    console.log(lang);
+    Utils.sLog(lang);
     translateService.use(lang);
 
 
@@ -111,7 +111,7 @@ export class InviteFriends {
   }
 
   pickContact(contact) {
-    console.log(contact.checked);
+    Utils.sLog(contact.checked);
   }
 
   inviteFriend() {

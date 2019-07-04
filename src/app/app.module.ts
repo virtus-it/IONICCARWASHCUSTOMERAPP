@@ -24,26 +24,23 @@ import { SocialSharing } from "@ionic-native/social-sharing";
 import { Keyboard } from "@ionic-native/keyboard";
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 
-// import { SMS } from '@ionic-native/sms';
 
 import { SignUp } from "../pages/SignUp/SignUp";
 import { Login } from "../pages/LoginIn/Login";
 import { OrderConfirmation } from "../pages/OrderConfirmationDialog/orderconfirmation";
 import { MapView } from "../pages/MapView/MapView";
 import { WelcomePage } from "../pages/WelcomePage/Welcome";
-// import { ProductsPage } from "../pages/ProductsPage/ProductsPage";
 import { ConfirmOrder } from "../pages/ConfirmOrderPage/ConfirmOrderPage";
 import { NotificationPage } from "../pages/NotificationTemplate/NotificationPage";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
-// import { SelectProductViewComponent } from "../components/select-product-view/select-product-view";
 import { AboutPage } from "../pages/MyOrders/about";
 import { ContactPage } from "../pages/MyAccount/contact";
-// import { HomePage } from "../pages/PlaceAnOrder/home";
-// import { TabsPage } from "../pages/tabs/tabs";
 import { GetService } from "./services/get.servie";
 import { Utils } from "./services/Utils";
+import { ServiceArea } from "./services/servicearea";
+
 import { ModalController } from 'ionic-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePicker } from '@ionic-native/date-picker';
@@ -60,19 +57,14 @@ const config: SocketIoConfig = { url: GetService.TRACKING_URL, options: {} };
     MyApp,
     AboutPage,
     ContactPage,
-    // HomePage,
     UtcDatePipe,
     SignUp,
     Login,
     OrderConfirmation,
     MapView,
     WelcomePage,
-    // ProductsPage,
     ConfirmOrder,
     NotificationPage,
-    // SelectProductViewComponent,
-    // TabsPage,
-    // ModalPage
   ],
   imports: [
     BrowserModule,
@@ -94,22 +86,18 @@ const config: SocketIoConfig = { url: GetService.TRACKING_URL, options: {} };
     AboutPage,
     ContactPage,
     SignUp,
-    // HomePage,
     Login,
     OrderConfirmation,
     MapView,
-    // SelectProductViewComponent,
     WelcomePage,
-    // ProductsPage,
     ConfirmOrder,
-    NotificationPage,
-    // TabsPage,
+    NotificationPage
   ],
   providers: [
-    // SMS,
     StatusBar,
     GetService,
     Utils,
+    ServiceArea,
     AppVersion,
     NativeStorage,
     Geolocation,

@@ -53,7 +53,7 @@ export class TrackorderPage {
       try {
 
         this.items = this.param.get("order");
-        console.log(this.items);
+        Utils.sLog(this.items);
 
 
         this.alertUtils.getUserInfo().then(user => {
@@ -77,12 +77,12 @@ export class TrackorderPage {
     try {
 
 
-      console.log("DB DeviceUUID : " + this.items.useruniqueid);
-      console.log("DeviceUUID : " + this.alertUtils.getDeviceUUID())
+      Utils.sLog("DB DeviceUUID : " + this.items.useruniqueid);
+      Utils.sLog("DeviceUUID : " + this.alertUtils.getDeviceUUID())
       this.socket.removeAllListeners();
       this.socket.disconnect();
     } catch (error) {
-      console.log(error);
+      Utils.sLog(error);
     }
   }
 
@@ -122,8 +122,8 @@ export class TrackorderPage {
         this.items = {};
         this.items['useruniqueid'] = '6ed19a9014324ef4';
       }
-      console.log("DB DeviceUUID : " + this.items.useruniqueid);
-      console.log("DeviceUUID : " + this.alertUtils.getDeviceUUID())
+      Utils.sLog("DB DeviceUUID : " + this.items.useruniqueid);
+      Utils.sLog("DeviceUUID : " + this.alertUtils.getDeviceUUID())
       this.socket.removeAllListeners();
       this.socket.disconnect();
 
@@ -137,16 +137,16 @@ export class TrackorderPage {
       //   loginid: 4,
       //   apptype: 'carwash' }
       //'d63bc4c3f2c63b65'
-      console.log("trackorder");
+      Utils.sLog("trackorder");
       if (IS_WEBSITE) {
         this.getMessages(this.items.useruniqueid).subscribe(data => {
-          console.log("******* tracking started ********");
-          console.log(data);
+          Utils.sLog("******* tracking started ********");
+          Utils.sLog(data);
           if (data) {
             let item: any = data;
             if (item && item.order && item.order.lat && item.order.lng) {
-              console.log(item.order.lat);
-              console.log(item.order.lng);
+              Utils.sLog(item.order.lat);
+              Utils.sLog(item.order.lng);
 
               this.addMarker(item.order.lat, item.order.lng);
 
@@ -156,13 +156,13 @@ export class TrackorderPage {
       } else
         if (this.alertUtils.getDeviceUUID()) {
           this.getMessages(this.alertUtils.getDeviceUUID()).subscribe(data => {
-            console.log("******* tracking started ********");
-            console.log(data);
+            Utils.sLog("******* tracking started ********");
+            Utils.sLog(data);
             if (data) {
               let item: any = data;
               if (item && item.order && item.order.lat && item.order.lng) {
-                console.log(item.order.lat);
-                console.log(item.order.lng);
+                Utils.sLog(item.order.lat);
+                Utils.sLog(item.order.lng);
                 this.addMarker(item.order.lat, item.order.lng);
 
               }
@@ -172,7 +172,7 @@ export class TrackorderPage {
           console.error("--------------------UUID not found");
         }
     } catch (error) {
-      console.log(error);
+      Utils.sLog(error);
     }
   }
 
@@ -180,7 +180,7 @@ export class TrackorderPage {
     try {
 
 
-      console.log("trackorder 3");
+      Utils.sLog("trackorder 3");
       let observable = new Observable(observer => {
         this.socket.on(key, (data: any) => {
           observer.next(data);
@@ -188,7 +188,7 @@ export class TrackorderPage {
       });
       return observable;
     } catch (error) {
-      console.log(error);
+      Utils.sLog(error);
       return null;
     }
   }
@@ -211,7 +211,7 @@ export class TrackorderPage {
         origin = new LatLng(17.394264, 78.441137);
       }
 
-      console.log(origin)
+      Utils.sLog(origin)
       this.direcReq = {};
       this.direcReq.origin = origin;
       this.direcReq.destination = destionation;
@@ -225,7 +225,7 @@ export class TrackorderPage {
         }
       });
     } catch (error) {
-      console.log(error);
+      Utils.sLog(error);
     }
 
   }
@@ -254,7 +254,7 @@ export class TrackorderPage {
       // this.loc = new LatLng(parseFloat(lat), parseFloat(lng));
       this.moveToLocation(parseFloat(lat), parseFloat(lng));
     } catch (error) {
-      console.log(error);
+      Utils.sLog(error);
     }
   }
   moveToLocation(lat, lng) {

@@ -20,7 +20,7 @@ export class ModalPage {
     if (Utils.lang) {
       lang = Utils.lang
     }
-    console.log(lang);
+    Utils.sLog(lang);
     translateService.use(lang);
 
   }
@@ -65,7 +65,7 @@ export class ModalPage {
       }
     };
     let data = JSON.stringify(input);
-    console.log(data);
+    Utils.sLog(data);
     this.getService.postReq(this.getService.createFeedback(), data).then(res => {
       this.alertUtils.showLog(res);
       if (res.result == RES_SUCCESS) {

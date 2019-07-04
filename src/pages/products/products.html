@@ -15,7 +15,7 @@
 
   <div *ngFor="let data of productList">
     <ion-row class="list_container" (click)="add(data)">
-      <ion-col style="    display: inline-block;    float: left;">
+      <ion-col style="display: inline-block;float: left;">
         <div class="list_img ">
           <ion-avatar slot="start">
             <img src="{{data.imgurl}}" (error)="changeImage(data)" />

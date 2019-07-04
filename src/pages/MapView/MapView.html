@@ -20,6 +20,11 @@
       </ion-item>
     </ion-list>
   </ion-fab>
+  <ion-fab right top>
+    <button ion-fab mini (click)="getMyLocation()">
+      <ion-icon name="locate"></ion-icon>
+    </button>
+  </ion-fab>
 
 
   <div class="wrapper">
@@ -29,14 +34,12 @@
         <img src="assets/imgs/marker_pin.png" item-center height="50px">
       </ion-fab>
     </div>
-    <ion-fab right top>
-      <button ion-fab mini (click)="getMyLocation()">
-        <ion-icon name="locate"></ion-icon>
-      </button>
-    </ion-fab>
+
     <!--<ion-fab style="width: 100%" bottom>-->
     <!--</ion-fab>-->
     <ion-card class="bottom request-controls">
+      <!-- <ion-spinner block name="dots" color="primary" *ngIf="showProgress" item-center></ion-spinner> -->
+
       <div class="sliderncatry" *ngIf="showMap">
         <ion-row class="slidertop" justify-content-center align-items-center *ngIf="rides.length > 0">
           <ion-col col-10>
@@ -96,7 +99,7 @@
           </ion-col>
         </ion-row>
       </div>
-      <p *ngIf="!showMap">Service not available in this area </p>
+      <p class="warning" *ngIf="!showMap">Service not available in this area </p>
     </ion-card>
   </div>
 </ion-content>

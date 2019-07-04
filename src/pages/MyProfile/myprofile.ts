@@ -30,7 +30,7 @@ export class MyProfile {
     if (Utils.lang) {
       lang = Utils.lang
     }
-    console.log(lang);
+    Utils.sLog(lang);
     translateService.use(lang);
     this.imgURl = getService.getImg();
     this.items = this.navParam.get("items");

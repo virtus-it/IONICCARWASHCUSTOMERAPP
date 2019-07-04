@@ -59,8 +59,8 @@ export class OrderDetails {
     if (this.order && this.order.order_id) {
       this.preImg = this.apiService.getImg() + "pre_" + this.order.order_id+".png";
       this.postImg = this.apiService.getImg() + "post_" + this.order.order_id+".png";
-      console.log(this.preImg);
-      console.log(this.postImg);
+      Utils.sLog(this.preImg);
+      Utils.sLog(this.postImg);
 
     }
   }
@@ -80,7 +80,7 @@ export class OrderDetails {
         this.photoViewer.show(this.postImg, 'After');
 
     } catch (error) {
-      console.log(error)
+      Utils.sLog(error)
     }
 
   }
@@ -91,7 +91,7 @@ export class OrderDetails {
   }
 
   ngOnInit() {
-    console.log("ngOnInit");
+    Utils.sLog("ngOnInit");
     this.alertUtils.getLoginState().then(res => {
       if (res) {
         this.loginStatus = res;
@@ -118,7 +118,7 @@ export class OrderDetails {
     let input = { "root": { "userid": Utils.USER_INFO_DATA.userid, "usertype": APP_USER_TYPE, "orderid": this.order.order_id, "categoryid": this.order.category.categoryid, "apptype": APP_TYPE } }
 
     this.apiService.postReq(GetService.getProductsByOrderid(), input).then(res => {
-      console.log(res);
+      Utils.sLog(res);
       if (res && res.data) {
         this.orderProductList = res.data;
       }
@@ -326,7 +326,7 @@ export class OrderDetails {
           text: 'No',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            Utils.sLog('Cancel clicked');
           }
         },
         {

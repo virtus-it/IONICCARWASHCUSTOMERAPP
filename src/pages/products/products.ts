@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Utils } from '../../app/services/Utils';
 
@@ -19,7 +19,7 @@ export class ProductsPage {
   productList: any;
   totalamt: number = 0;
 
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private alertUtils: Utils) { }
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private ref: ChangeDetectorRef,private alertUtils: Utils) { }
   continue() {
     let isProductSel = false;
     for (let i = 0; i < this.productList.length; i++) {
@@ -41,7 +41,7 @@ export class ProductsPage {
     this.viewCtrl.dismiss();
   }
   onChange(item) {
-    this.calculateTotalAmt();
+    // this.calculateTotalAmt();
   }
   calculateTotalAmt() {
     this.totalamt = 0;
@@ -51,12 +51,14 @@ export class ProductsPage {
         this.totalamt = this.totalamt + element.pcost;
       }
     }
+    this.ref.detectChanges();
+
   }
   changeImage(item) {
-    item.imgurl = "http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png";
+    item.imgurl = "assets/imgs/dummy_img.png";
   }
   ngOnInit() {
-    console.log(Utils.productsList)
+    Utils.sLog(Utils.productsList)
     this.pageDetails = this.navParams.get("category");
     this.productList = Utils.categoryList.get(this.pageDetails);
     Utils.productsList = this.productList;

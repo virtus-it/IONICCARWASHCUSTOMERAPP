@@ -90,7 +90,7 @@ export class PreviewPage {
       this.totalCost = param.get("totalAmount");
       this.totalItem = param.get("totalItems");
       this.proddata = param.get("savingobj");
-      console.log(this.proddata);
+      Utils.sLog(this.proddata);
       if (this.calledFrom == "myorders") {
         this.orderItem = param.get("orderitem");
         this.showMap = false;
@@ -229,7 +229,7 @@ export class PreviewPage {
   ionViewWillEnter() {
     try {
       this.tabBarElement.style.display = 'none';
-      console.log("ionViewWillEnter called");
+      Utils.sLog("ionViewWillEnter called");
       let myGetPageRes = this.param.get('myDataKey') || null;
       this.alertUtils.showLog(myGetPageRes);
       if (myGetPageRes) {
@@ -312,8 +312,8 @@ export class PreviewPage {
       this.alertUtils.showLog(this.dateOfevent);
       this.date = new Date();
       this.cHour = this.date.getHours();
-      console.log(this.cHour);
-      console.log(this.date.toISOString());
+      Utils.sLog(this.cHour);
+      Utils.sLog(this.date.toISOString());
       if (this.date.toISOString().slice(0, 10) == this.dateOfevent.slice(0, 10)) {
         if (this.cHour < 16) {
         } else {

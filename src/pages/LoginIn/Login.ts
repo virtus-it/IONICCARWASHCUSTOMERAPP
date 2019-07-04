@@ -168,7 +168,7 @@ export class Login {
                         this.alertUtils.cacheInfo(this.info.userid, this.password, this.mobileNumber, this.info.email, APP_USER_TYPE, userName, dealerid, dealermobileno, this.info.imagename, imageVer, this.info.address, this.info.city, this.info.state, this.info.pincode, dealerName, this.info.latitude, this.info.longitude);
                         this.alertUtils.cacheUserInfo(res.data.user);
                         this.alertUtils.sliderName = res.data.user.first_name;
-                        this.navCtrl.setRoot(MapView).then(next => {
+                        this.navCtrl.setRoot(MapView,{ from: "login" }).then(next => {
                           //const index = this.viewCtrl.index;
                           // then we remove it from the navigation stack
                           //this.navCtrl.remove(index);

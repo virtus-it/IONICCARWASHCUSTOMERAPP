@@ -64,13 +64,17 @@ export class MapView {
   showCalender: boolean = false;
 
   constructor(public zone: NgZone, private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams, private datePicker: DatePicker) {
+    
+
+  }
+  ngOnInit(){
+    console.log('ngOnInit called')
     try {
-      platform.ready().then(() => {
+      this.platform.ready().then(() => {
         try {
 
 
           this.calledFrom = this.param.get("from");
-          console.log("Page came from :" + this.calledFrom);
           this.isExisting = this.param.get("isExisting");
           this.exMobileno = this.param.get("exMobileno");
           this.referCode = this.param.get("referCode");
@@ -80,33 +84,34 @@ export class MapView {
           this.address = {
             place: ''
           };
+          console.log('ngOnInit called')
 
-          MapView.bounds = new LatLngBounds([
-            {
-              "lat": 17.539296557855938,
-              "lng": 78.23303103077819
-            },
-            {
-              "lat": 17.199834236282776,
-              "lng": 78.32504152882507
-            },
-            {
-              "lat": 17.188026972484295,
-              "lng": 78.73016237843444
-            },
-            {
-              "lat": 17.493460110609615,
-              "lng": 78.74252199757507
-            },
-            {
-              "lat": 17.624390628973813,
-              "lng": 78.59420656788757
-            },
-            {
-              "lat": 17.624390628973813,
-              "lng": 78.32916140187194
-            }
-          ]);
+          // MapView.bounds = new LatLngBounds([
+          //   {
+          //     "lat": 17.539296557855938,
+          //     "lng": 78.23303103077819
+          //   },
+          //   {
+          //     "lat": 17.199834236282776,
+          //     "lng": 78.32504152882507
+          //   },
+          //   {
+          //     "lat": 17.188026972484295,
+          //     "lng": 78.73016237843444
+          //   },
+          //   {
+          //     "lat": 17.493460110609615,
+          //     "lng": 78.74252199757507
+          //   },
+          //   {
+          //     "lat": 17.624390628973813,
+          //     "lng": 78.59420656788757
+          //   },
+          //   {
+          //     "lat": 17.624390628973813,
+          //     "lng": 78.32916140187194
+          //   }
+          // ]);
         } catch (e) {
           this.alertUtils.showLog(e);
         }
@@ -118,6 +123,9 @@ export class MapView {
         }
 
         this.alertUtils.getUserInfo().then(user => {
+          console.log('ngOnInit userinfo');
+          console.log(user);
+
           if (user) {
             Utils.USER_INFO_DATA = user;
             Utils.sLog("User info in map page");
@@ -148,7 +156,6 @@ export class MapView {
 
     let date = new Date();
     this.minDate = date.toISOString();
-
   }
 
   selectSearchResult(item) {
@@ -282,7 +289,6 @@ export class MapView {
       let data = JSON.stringify(input);
 
       this.apiService.postReq(this.apiService.getProductsByDistributerId(), data).then(res => {
-        this.fetchRides();
         this.alertUtils.showLog("got result for category");
         this.alertUtils.showLog(res);
         if (res.result == RES_SUCCESS) {
@@ -314,24 +320,28 @@ export class MapView {
             console.log(this.list);
             // this.item = this.list[0];
             // console.log(this.item);
+            try {
+              console.log('calling rides')
+              this.fetchRides();
+            } catch (error) {
+              console.log(error);
+            }
 
           } else {
             this.alertUtils.showToast("Found no products, please try again");
           }
         }
       }, err => {
-        this.fetchRides();
         Utils.sLog(err);
       });
     }
     catch (e) {
-      this.fetchRides();
       this.alertUtils.showLog(e);
     }
 
   }
   changeImage(item) {
-    item.imgurl = "http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png";
+    item.imgurl = "assets/imgs/dummy_img.png";
   }
 
   // getCategoryTask() {
@@ -360,11 +370,9 @@ export class MapView {
         if (res && res.data) {
           this.rides = res.data;
         }
-        this.ref.detectChanges();
 
       }, err => {
         Utils.sLog(err);
-        this.ref.detectChanges();
 
       });
 
@@ -610,35 +618,6 @@ export class MapView {
             return;
           }
         }
-        if (this.calledFrom == "myprofile") {
-          let data = {
-            'from': 'mapview',
-            'address': this.userAddr,
-            "lat": this.userLatLng.lat,
-            "lng": this.userLatLng.lng
-          };
-          let addrData = {
-            landmark: this.landMark,
-            buildingname: this.buildingname
-          };
-          this.alertUtils.storeAddrData(addrData);
-          this.navCtrl.getPrevious().data.myDataKey = data;
-          this.navCtrl.pop();
-        } else if (this.calledFrom == 'myorders') {
-          let data = {
-            'from': 'mapview',
-            'address': this.userAddr,
-            "lat": this.userLatLng.lat,
-            "lng": this.userLatLng.lng
-          };
-          let addrData = {
-            landmark: this.landMark,
-            buildingname: this.buildingname
-          };
-          this.viewCtrl.dismiss(addrData);
-        } else if (this.calledFrom == "login") {
-          this.doUpdateUser();
-        } else if (!this.calledFrom) {
           this.navCtrl.push(ConfirmOrder, {
             items: this.items,
             isExisting: this.isExisting,
@@ -656,23 +635,7 @@ export class MapView {
             };
             this.alertUtils.storeAddrData(data);
           });
-        } else {
-          this.navCtrl.push(SignUp, {
-            items: this.items,
-            isExisting: this.isExisting,
-            exMobileno: this.exMobileno,
-            exUserInfo: this.exUserInfo,
-            userAddr: this.userAddr,
-            userLatlng: this.userLatLng,
-            referCode: this.referCode,
-          }).then(value => {
-            let data = {
-              landmark: this.landMark,
-              buildingname: this.buildingname
-            };
-            this.alertUtils.storeAddrData(data);
-          });
-        }
+        
       } else {
         this.alertUtils.showToast("Please pick your location");
       }

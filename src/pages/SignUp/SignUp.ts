@@ -560,7 +560,7 @@ export class SignUp {
 
   private showConfirmOrderDialog(isNew: boolean) {
     try {
-      this.navCtrl.setRoot(MapView).then(value => {
+      this.navCtrl.setRoot(MapView,{ from: "signup" }).then(value => {
         this.setGCMDetails();
         if (this.info.pointsdetails && this.info.pointsdetails.points)
           this.showAlert();

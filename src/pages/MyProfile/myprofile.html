@@ -13,14 +13,14 @@
     <ion-card col class="no_bg no_shadow login_fields">
       <ion-row>
         <ion-icon class="fs-25 primary" name="md-arrow-round-back" item-start (click)="goBack()" start style="margin: 5px 0 0 12px"></ion-icon>
-        <ion-label center class="sign_toplabel">{{isEdit ? "My Profile" :"Update Profile"}}
-        </ion-label>
-        <label class="no_margin" item-end>
+        <!-- <ion-label center class="sign_toplabel">{{isEdit ? "My Profile" :"Update Profile"}}
+        </ion-label> -->
+        <!-- <label class="no_margin" item-end>
           <ion-icon name="create" item-end large (click)="editProfile(items.user)" *ngIf="isEdit" end
                     class="edt_profile"></ion-icon>
           <ion-icon name="checkmark" item-end large (click)="updateProfile()" *ngIf="!isEdit" end
                     class="edt_profile"></ion-icon>
-        </label>
+        </label> -->
       </ion-row>
 
 
@@ -85,6 +85,8 @@
         </ion-label>
         <ion-textarea type="text" class="textarea" [(ngModel)]="items.user.address" ></ion-textarea>
       </ion-item>
+
+      <button (click)="updateProfile()" ion-button full>Update</button>
     </ion-card>
   </ion-row>
 </ion-content>

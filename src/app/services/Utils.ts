@@ -186,11 +186,11 @@ export class Utils {
   }
 
   static sLog(val, lineNumber?, pageName?) {
-    // console.log(val);
-    // if (lineNumber)
-    //   console.log(lineNumber);
-    // if (pageName)
-    //   console.log(pageName);
+    console.log(val);
+    if (lineNumber)
+      console.log(lineNumber);
+    if (pageName)
+      console.log(pageName);
   }
 
   static getRandomRolor() {
@@ -220,11 +220,11 @@ export class Utils {
   }
 
   showLog(val, lineNumber?, pageName?) {
-    // console.log(val);
-    // if (lineNumber)
-    //   console.log(lineNumber);
-    // if (pageName)
-    //   console.log(pageName);
+    console.log(val);
+    if (lineNumber)
+      console.log(lineNumber);
+    if (pageName)
+      console.log(pageName);
   }
   static groupByBrandName(array, f) {
     var groups = {};
@@ -239,7 +239,7 @@ export class Utils {
   }
 
   showLogTitle(title, val) {
-    //console.warn(title, val);
+    console.warn(title, val);
   }
 
   storeAddrData(data) {
@@ -333,11 +333,11 @@ export class Utils {
   }
 
   showLoading() {
-    this.pd = this.loadingCtrl.create({
-      content: 'Please wait...',
-      dismissOnPageChange: true
-    });
-    this.pd.present();
+    // this.pd = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   dismissOnPageChange: true
+    // });
+    // this.pd.present();
   }
 
 
@@ -610,7 +610,7 @@ export class Utils {
 
   isValidMobile(mob): any {
 
-    let regExp = /^[0-9]{10}$/;
+    let regExp = /^[0-9]{9}$/;
 
     if (!regExp.test(mob)) {
       return { "invalidMobile": true };

@@ -229,74 +229,7 @@ export class InviteFriends {
     });
   }
 
-  showFilterDialog() {
-    if (this.contactList.length > 0) {
-      this.showProgress = false;
-      let modal = this.modalCtrl.create('FilterContactsPage', {
-        contacts: this.contactList,
-        calledfrom: 'invitefriends'
-      });
-      modal.onDidDismiss(data => {
-        if (data) {
-          this.filterList = data;
-          this.showContactsList = true;
-        } else {
-          this.showContactsList = false;
-        }
-      });
-      modal.present();
-    }
-  }
-
-  private importContact() {
-    try {
-      this.showProgress = true;
-      this.contacts.find(['displayName', 'name', 'phoneNumbers', 'emails'], { filter: "", multiple: true })
-        .then(data => {
-          if (data.length > 0) {
-            this.contactList = [];
-            this.filterList = [];
-            for (let i = 0; i < data.length; i++) {
-              let obj = {
-                "name": "",
-                "phonenumber": "",
-                "checked": false
-              };
-              if (data[i].displayName) {
-                obj.name = data[i].displayName;
-              }
-              if (data[i].phoneNumbers && data[i].phoneNumbers.length > 0) {
-                let pickContact = data[i].phoneNumbers[0].value;
-                this.alertUtils.showLog(pickContact);
-                // pickContact = pickContact.replace(/ /g, '');
-                pickContact = pickContact.replace(new RegExp(" ", 'g'), "");
-                pickContact = pickContact.replace(new RegExp("-", 'g'), "");
-                pickContact = pickContact.replace("(", "");
-                pickContact = pickContact.replace(")", "");
-                if (pickContact.indexOf("+") != -1) {
-                  obj.phonenumber = pickContact.substring(3);
-                } else {
-                  obj.phonenumber = pickContact;
-                }
-                this.alertUtils.showLog(pickContact);
-              }
-              if (obj.phonenumber.length == 10)
-                this.contactList.push(obj);
-            }
-            this.alertUtils.showLog(this.contactList);
-            if (this.contactList.length > 0)
-              this.showFilterDialog();
-            else
-              this.alertUtils.showToast("No contacts found");
-          }
-        }).catch(reason => {
-          this.showProgress = false;
-          this.alertUtils.showToast(JSON.stringify(reason));
-        });
-    } catch (e) {
-      this.showProgress = false;
-    }
-  }
+ 
 }
 
 

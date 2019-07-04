@@ -23,17 +23,13 @@
     <button ion-button class="btn-lg bg-logo button button-round button-round-md" block (click)="showInviteForm()">
       <ion-icon name="person-add"></ion-icon> &nbsp; Invite your friends
     </button>
-    <!-- <h5 class="mg-20 center">OR</h5>
-    <button ion-button class="btn-lg bg-warning button-round button-round-md "  block (click)="shareCode()">
-      <ion-icon name="share"></ion-icon> &nbsp; Share
-    </button> -->
 
   </div>
   <ion-card *ngIf="showInvite">
 
     <div class="mgleft-15">
       <h5>{{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_sub_title' | translate }}
-        <b>CAR WASH</b> {{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_sub_title_2' | translate }}
+        <b>WASHONCLICK</b> {{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_sub_title_2' | translate }}
       </h5>
     </div>
     <div *ngIf="!showContactsList">
@@ -45,7 +41,7 @@
 
       <ion-item>
         <ion-label color="primary" floating>{{ 'INTIVE_FRIENDS_PAGE.LABELS.lb_mobile_no' | translate }}</ion-label>
-        <ion-input pattern="[0-9]*" type="tel" maxlength="10" minlength="10" class="usr_namefeild" clearInput
+        <ion-input pattern="[0-9]*" type="tel" maxlength="10" minlength="9" class="usr_namefeild" clearInput
                    [(ngModel)]="mobileNumber"
                    required></ion-input>
       </ion-item>

@@ -42,7 +42,7 @@
   <ion-card class="homefulbutton">
     <div class="sliderncatry">
       <ion-row class="slidertop" justify-content-center align-items-center *ngIf="rides.length > 0">
-        <ion-col>
+        <ion-col col-10>
           <span class="silerleft">
             <ion-icon *ngIf="currentIndex > 0" (click)="previousSlide()" name="arrow-back"></ion-icon>
           </span>
@@ -73,7 +73,7 @@
         <ion-label style="color: #000000;">Add a vehicle</ion-label>
       </div>
 
-      <ion-row>
+      <ion-row *ngIf="list.length > 0">
         <ion-item no-lines>
           <div class="category_container">
             <span *ngFor="let item of list">
@@ -110,9 +110,5 @@
         </button>
       </ion-col>
     </ion-row>
-
-    
-
-
   </ion-card>
 </ion-footer>

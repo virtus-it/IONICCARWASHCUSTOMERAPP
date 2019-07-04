@@ -1,8 +1,7 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
-import { APP_TYPE, APP_USER_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, Utils, VALIDATE_EMAIL } from "../../app/services/Utils";
+import { APP_TYPE, APP_USER_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, Utils, VALIDATE_EMAIL, IS_WEBSITE } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
 import { AlertController, NavController, NavParams, IonicPage } from "ionic-angular";
-import { MapView } from "../MapView/MapView";
 import { Diagnostic } from "@ionic-native/diagnostic";
 import { TranslateService } from "@ngx-translate/core";
 
@@ -19,7 +18,7 @@ export class MyProfile {
   private imgURl = "";
   private imageUrl = "";
   private userPassword = "";
-  private isEdit: boolean = true;
+  private isEdit: boolean = false;
   private dealerID = "";
   private userID = "";
   private lat: any;
@@ -39,6 +38,10 @@ export class MyProfile {
       this.imageUrl = this.imgURl + this.items.user.imageurl + this.defpng;
     }
 
+    if(IS_WEBSITE){
+      this.userID = Utils.USER_INFO_DATA.userid;
+    }
+
 
 
   }
@@ -46,11 +49,11 @@ export class MyProfile {
 
 
   goBack() {
-    if (!this.isEdit) {
-      this.isEdit = true;
-    } else {
+    // if (!this.isEdit) {
+    //   this.isEdit = true;
+    // } else {
       this.navCtrl.pop();
-    }
+    // }
   }
 
   ngOnInit() {
@@ -341,11 +344,11 @@ export class MyProfile {
   }
 
   editProfile() {
-    if (this.isEdit) {
-      this.isEdit = false;
-    } else {
-      this.isEdit = true;
-    }
+    // if (this.isEdit) {
+    //   this.isEdit = false;
+    // } else {
+    //   this.isEdit = true;
+    // }
   }
 
   doUpdateProfile() {
@@ -378,7 +381,7 @@ export class MyProfile {
       this.alertUtils.hideLoading();
       this.alertUtils.showLog(res);
       if (res.result == RES_SUCCESS) {
-        this.isEdit = true;
+        // this.isEdit = true;
         this.alertUtils.showToast("Profile updated successfully");
         this.items.user.firstname = res.data.firstname;
         this.items.user.lastname = res.data.lastname;

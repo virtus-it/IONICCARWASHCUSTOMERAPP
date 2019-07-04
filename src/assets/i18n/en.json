@@ -61,8 +61,8 @@
     "LABELS": {
       "lb_build_version_title": "Build Version",
       "lb_about_title": "About",
-      "lb_about_content_1": "WashOnClick - The water man is on demand drinking water delivery service that connects you to the distributor in your neighbourhood. Our aim is to provide a hassle free drinking water supply at your residences, offices, shops and parties. The app can be used to place an order by simple click of a button.",
-      "lb_about_content_2": "You can shop from different brands of drinking water. The app provides easy mode of payment - COD,Online payments or monthly payments. It allows you to schedule the time of delivery.It is hereby clarified that WashOnClick-The Water Man doesn't sell products of their brand nor has their own deliverysystem. They just bring you in contact with the water distributor and take at most responsibility for delivery to happen at your doorstep.",
+      "lb_about_content_1": "WashOnClick ",
+      "lb_about_content_2": "",
       "lb_about_content_3": " WashOnClick is powered by Virtus-IT, a UK based software company with company number 06810018, whose registered office is at Sterling House, 20 Station Road, Gerrards Cross, Bucks SL9 8EL, United Kingdom and any subsidiaries and affiliates of Virtus IT Limited, including but not limited to Virtus IT India Private Our business focuses on mobile based ERP solutions to enhance or rather technologies various businesses especially on the mobile platform,IoT, Bigdata, Salesforce and other latest technologies.",
       "lb_about_content_4": " For business related queries or any other concern, please contact us at 9121642009 or write us  to sales@virtus-it.com",
       "lb_terms": "terms and conditions",
@@ -76,7 +76,7 @@
       "btn_confirm": "Confirm"
     },
     "LABELS": {
-      "lb_proceed_order_price_might_vary": "* The final price might vary depending upon the assigned distributor and the delivery location.",
+      "lb_proceed_order_price_might_vary": "* The final price might vary depending upon the assigned distributor and the service location.",
       "lb_proceed_water_can_text": "* INR 150(Refundable amount) per water can will be collected, if no empty can to return.",
       "lb_proceed_order_content": "Would you like to proceed with this order?",
       "lb_delivery_time": "Service Time",
@@ -296,7 +296,7 @@
     },
     "LABELS": {
       "lb_thanks_msg": "Thank you for your order!",
-      "lb_delivery_address": "Delivery Address",
+      "lb_delivery_address": "Service Address",
       "lb_qty": "Qty",
       "lb_product_name": "Service Name",
       "lb_price": "Price",
@@ -387,7 +387,7 @@
     },
     "LABELS": {
       "lb_msg_1": "Can you please put down your concern below:",
-      "lb_after_send_msg": "Thank You for reaching out to this. We apologize to hear that you are facing issues with the delivery. We promise to get back to you on this soon."
+      "lb_after_send_msg": "Thank You for reaching out to this. We apologize to hear that you are facing issues with the service. We promise to get back to you on this soon."
     }
   },
   "CANCEL_ORDER_PAGE": {

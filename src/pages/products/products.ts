@@ -53,7 +53,7 @@ export class ProductsPage {
     }
   }
   changeImage(item) {
-    item.imgurl = "http://executive-carwash.com/wp-content/uploads/2012/10/detail-icon.png";
+    item.imgurl = "assets/imgs/dummy_img.png";
   }
   ngOnInit() {
     console.log(Utils.productsList)

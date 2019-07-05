@@ -22,7 +22,7 @@ export class GetService {
 
   constructor(http: Http, private Nativehttp: HTTP,private alertUtils: Utils) {
     this.http = http;
-    this.baseUrl = GetService.DEMO_URL;
+    this.baseUrl = GetService.PROD_URL;
   }
 
 

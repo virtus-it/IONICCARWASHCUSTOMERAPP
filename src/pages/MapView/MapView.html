@@ -12,7 +12,8 @@
     <h6 *ngIf="userAddr">{{userAddr}}</h6>
   </ion-fab> -->
   <ion-fab justify-content-center align-items-center center top class="srchloct" style="  left: 25%;    width: 65%;">
-    <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" placeholder="{{userAddr}}"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" placeholder="{{userAddr}}">
+    </ion-searchbar>
     <!--<h6 *ngIf="userAddr">{{userAddr}}</h6>-->
     <ion-list [hidden]="autocompleteItems.length == 0">
       <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
@@ -40,75 +41,81 @@
 
 <ion-footer>
   <ion-card class="homefulbutton">
-    <div class="sliderncatry">
-      <ion-row class="slidertop" justify-content-center align-items-center *ngIf="rides.length > 0">
-        <ion-col col-10>
-          <span class="silerleft">
-            <ion-icon *ngIf="currentIndex > 0" (click)="previousSlide()" name="arrow-back"></ion-icon>
+    <div *ngIf="showMap">
+      <div class="sliderncatry">
+        <ion-row class="slidertop" justify-content-center align-items-center *ngIf="rides.length > 0">
+          <ion-col col-10>
+            <span class="silerleft">
+              <ion-icon *ngIf="currentIndex > 0" (click)="previousSlide()" name="arrow-back"></ion-icon>
+            </span>
+            <ion-slides class="silercenter" (ionSlideDidChange)="onSlideChanged()">
+              <ion-slide *ngFor="let slide of rides; let i = index">
+                <h5 class="veh_name">{{slide.manufacturer}} {{slide.model}} {{slide.modelcode}}</h5>
+
+
+              </ion-slide>
+            </ion-slides>
+            <span class="silerleft">
+              <ion-icon *ngIf="currentIndex < (rides.length-1)" class=" silerleft" (click)="nextSlide()"
+                name="arrow-forward"></ion-icon>
+            </span>
+
+          </ion-col>
+
+          <ion-col col-2>
+            <button ion-button (click)="addNewRide()">
+              <ion-icon slot="icon-only" name="md-add-circle"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <div class="center" *ngIf="rides.length == 0">
+          <span (click)="addNewRide()">
+            <ion-icon slot="icon-only" name="md-add-circle" class="addride"></ion-icon>
           </span>
-          <ion-slides class="silercenter" (ionSlideDidChange)="onSlideChanged()">
-            <ion-slide *ngFor="let slide of rides; let i = index">
-              <h5 class="veh_name">{{slide.manufacturer}} {{slide.model}} {{slide.modelcode}}</h5>
+          <ion-label style="color: #000000;">Add a vehicle</ion-label>
+        </div>
 
+        <ion-row *ngIf="list.length > 0">
+          <ion-item no-lines>
+            <div class="category_container">
+              <span *ngFor="let item of list">
+                <img src="{{item.imgurl}}" (error)="changeImage(item)" class="scroll-item"
+                  (click)="showServices(item.category)" />
+              </span>
+              <div>
+                <label class="scroll-item" *ngFor="let item of list"> {{item.category}} </label>
+              </div>
+            </div>
+          </ion-item>
+        </ion-row>
+      </div>
 
-            </ion-slide>
-          </ion-slides>
-          <span class="silerleft">
-            <ion-icon *ngIf="currentIndex < (rides.length-1)" class=" silerleft" (click)="nextSlide()" name="arrow-forward"></ion-icon>
-          </span>
+      <div *ngIf="showCalender">
+        <ion-item>
+          <ion-label>Date <small>dd/mm/yyyy</small></ion-label>
+          <ion-datetime [min]="minDate" displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Time</ion-label>
+          <ion-datetime displayFormat="h:mm a" pickerFormat="h:mm:A" [(ngModel)]="myTime"></ion-datetime>
+        </ion-item>
+      </div>
 
+      <ion-row>
+        <ion-col>
+          <button ion-button col color="primary" class="fs-12" block (click)="next()">
+            {{ 'MAP_PAGE.BUTTONS.btn_continue' | translate }}
+          </button>
         </ion-col>
-
         <ion-col col-2>
-          <button ion-button (click)="addNewRide()">
-            <ion-icon slot="icon-only" name="md-add-circle"></ion-icon>
+          <button ion-button icon-only (click)="openDatePicker()">
+            <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
           </button>
         </ion-col>
       </ion-row>
-
-      <div class="center" *ngIf="rides.length == 0">
-        <span (click)="addNewRide()">
-          <ion-icon slot="icon-only" name="md-add-circle" class="addride"></ion-icon>
-        </span>
-        <ion-label style="color: #000000;">Add a vehicle</ion-label>
-      </div>
-
-      <ion-row *ngIf="list.length > 0">
-        <ion-item no-lines>
-          <div class="category_container">
-            <span *ngFor="let item of list">
-              <img src="{{item.imgurl}}" (error)="changeImage(item)" class="scroll-item" (click)="showServices(item.category)" />
-            </span>
-            <div>
-              <label class="scroll-item" *ngFor="let item of list"> {{item.category}} </label>
-            </div>
-          </div>
-        </ion-item>
-      </ion-row>
     </div>
+    <p *ngIf="!showMap" class="warning"> Sorry! currently we are not serving in selected location </p>
 
-    <div *ngIf="showCalender">
-      <ion-item>
-        <ion-label>Date <small>dd/mm/yyyy</small></ion-label>
-        <ion-datetime [min]="minDate" displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label>Time</ion-label>
-        <ion-datetime displayFormat="h:mm a" pickerFormat="h:mm:A" [(ngModel)]="myTime"></ion-datetime>
-      </ion-item>
-    </div>
-
-    <ion-row>
-      <ion-col>
-        <button ion-button col color="primary" class="fs-12" block (click)="next()">
-          {{ 'MAP_PAGE.BUTTONS.btn_continue' | translate }}
-        </button>
-      </ion-col>
-      <ion-col col-2>
-        <button ion-button icon-only (click)="openDatePicker()">
-          <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
-        </button>
-      </ion-col>
-    </ion-row>
   </ion-card>
 </ion-footer>

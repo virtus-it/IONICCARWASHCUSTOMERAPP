@@ -46,7 +46,7 @@ export class ServiceArea {
       if (self.list.length > 0) {
         resolve(self.list);
       } else {
-        self.fetchServiceAreas();
+        // self.fetchServiceAreas();
         reject(self.list);
       }
     })

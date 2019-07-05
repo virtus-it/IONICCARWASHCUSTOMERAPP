@@ -122,15 +122,16 @@ export class AddupdateridesPage {
       }
     }
     Utils.sLog(JSON.stringify(input));
-    this.apiService.postReq(GetService.ride(), input).then(res => {
+    this.apiService.postReq(GetService.ride(), JSON.stringify(input)).then(res => {
       Utils.sLog(res);
       if (res && res.data) {
         this.alertUtils.showToast("Ride created successfully");
         this.viewCtrl.dismiss('success');
 
       }
-      this.ref.detectChanges();
 
+    },err =>{
+      Utils.sLog(err);
     })
   }
 

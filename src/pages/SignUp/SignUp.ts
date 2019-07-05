@@ -11,7 +11,6 @@ import {
   Utils
 } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
-import { ConfirmOrder } from "../ConfirmOrderPage/ConfirmOrderPage";
 import { MapView } from "../MapView/MapView";
 import { ServiceArea } from "../../app/services/servicearea";
 
@@ -259,7 +258,7 @@ export class SignUp {
   SignIn(password) {
 
     let mobMin = 9;
-    let mobMax = 10;
+    let mobMax = 9;
     try {
       if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", mobMin, mobMax)) {
         // if (!this.alertUtils.isValidMobile(this.mobileNumber)) {
@@ -416,7 +415,7 @@ export class SignUp {
     if (this.userName) {
       if (this.alertUtils.validateText(this.userName, "Name", 3, 100)) {
         let mobMin = 9;
-        let mobMax = 10;
+        let mobMax = 9;
 
         if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", mobMin, mobMax)) {
           // if (!this.alertUtils.isValidMobile(this.mobileNumber)) {
@@ -462,7 +461,7 @@ export class SignUp {
           placeholder: 'Mobile number',
           type: 'tel',
           min: 9,
-          max: 10,
+          max: 9,
           value: this.mobileNumber
         },
       ],
@@ -476,7 +475,7 @@ export class SignUp {
           text: 'Submit',
           handler: data => {
 
-            if (this.alertUtils.validateNumber(data.mobileno, "Mobile Number", 9, 10)) {
+            if (this.alertUtils.validateNumber(data.mobileno, "Mobile Number", 9, 9)) {
               this.forgotPwdTask(data, false);
             } else {
               this.alertUtils.showToast(this.alertUtils.ERROR_MES);

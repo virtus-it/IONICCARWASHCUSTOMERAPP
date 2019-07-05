@@ -64,11 +64,11 @@ export class MapView {
   loading: any;
   showCalender: boolean = false;
 
-  constructor(public zone: NgZone, private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams, private datePicker: DatePicker) {
+  constructor(public zone: NgZone, private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams, private serviceArea: ServiceArea, private datePicker: DatePicker) {
 
 
   }
-  ngOnInit(){
+  ngOnInit() {
     console.log('ngOnInit called')
     try {
       this.platform.ready().then(() => {
@@ -88,67 +88,67 @@ export class MapView {
           console.log('ngOnInit called')
 
 
-        // MapView.bounds = new LatLngBounds([
-        //   {
-        //     "lat": 25.225021421700475,
-        //     "lng": 55.28615459192213
-        //   },
-        //   {
-        //     "lat": 25.062166768158566,
-        //     "lng": 55.1309727071565
-        //   },
-        //   {
-        //     "lat": 24.988749161198257,
-        //     "lng": 55.09114726770338
-        //   },
-        //   {
-        //     "lat": 24.953891550481544,
-        //     "lng": 55.23122295129713
-        //   },
-        //   {
-        //     "lat": 24.999951295254636,
-        //     "lng": 55.466055714969
-        //   },
-        //   {
-        //     "lat": 25.207627482773205,
-        //     "lng": 55.64870342004713
-        //   },
-        //   {
-        //     "lat": 25.326850217993883,
-        //     "lng": 55.3946445821565
-        //   }
-        // ]);
+          // MapView.bounds = new LatLngBounds([
+          //   {
+          //     "lat": 25.225021421700475,
+          //     "lng": 55.28615459192213
+          //   },
+          //   {
+          //     "lat": 25.062166768158566,
+          //     "lng": 55.1309727071565
+          //   },
+          //   {
+          //     "lat": 24.988749161198257,
+          //     "lng": 55.09114726770338
+          //   },
+          //   {
+          //     "lat": 24.953891550481544,
+          //     "lng": 55.23122295129713
+          //   },
+          //   {
+          //     "lat": 24.999951295254636,
+          //     "lng": 55.466055714969
+          //   },
+          //   {
+          //     "lat": 25.207627482773205,
+          //     "lng": 55.64870342004713
+          //   },
+          //   {
+          //     "lat": 25.326850217993883,
+          //     "lng": 55.3946445821565
+          //   }
+          // ]);
 
 
-        // var array = [
-        //   {
-        //     "lat": 24.801660372582777,
-        //     "lng": 54.8638275736231
-        //   },
-        //   {
-        //     "lat": 24.592050700484208,
-        //     "lng": 54.70315252479497
-        //   },
-        //   {
-        //     "lat": 24.360823911484054,
-        //     "lng": 54.56445013221685
-        //   },
-        //   {
-        //     "lat": 24.245677671122813,
-        //     "lng": 54.82949529823247
-        //   },
-        //   {
-        //     "lat": 24.678183055194744,
-        //     "lng": 55.14672552284185
-        //   }
-        // ];
-        // array.forEach(element => {
-        //   MapView.bounds.extend({ lat: element.lat, lng: element.lng });
-        // });
+          // var array = [
+          //   {
+          //     "lat": 24.801660372582777,
+          //     "lng": 54.8638275736231
+          //   },
+          //   {
+          //     "lat": 24.592050700484208,
+          //     "lng": 54.70315252479497
+          //   },
+          //   {
+          //     "lat": 24.360823911484054,
+          //     "lng": 54.56445013221685
+          //   },
+          //   {
+          //     "lat": 24.245677671122813,
+          //     "lng": 54.82949529823247
+          //   },
+          //   {
+          //     "lat": 24.678183055194744,
+          //     "lng": 55.14672552284185
+          //   }
+          // ];
+          // array.forEach(element => {
+          //   MapView.bounds.extend({ lat: element.lat, lng: element.lng });
+          // });
 
-      } catch (e) {
-        this.alertUtils.showLog(e);
-      }
+        } catch (e) {
+          this.alertUtils.showLog(e);
+        }
 
 
         if (IS_WEBSITE) {
@@ -192,7 +192,7 @@ export class MapView {
     this.minDate = date.toISOString();
   }
 
-  selectSearchResult(item){
+  selectSearchResult(item) {
     Utils.sLog("place selected");
     Utils.sLog(item);
     this.address.place = item.description;
@@ -268,7 +268,6 @@ export class MapView {
       }
     });
     model.present();
-    this.ref.detectChanges();
 
   }
 
@@ -515,7 +514,7 @@ export class MapView {
           }).catch(reason => {
             this.alertUtils.showLog(reason);
           });
-          this.ref.detectChanges();
+          // this.ref.detectChanges();
         }, err => {
           console.log(err);
         })
@@ -529,24 +528,34 @@ export class MapView {
       });
       this.map.addEventListener(GoogleMapsEvent.CAMERA_MOVE_END).subscribe(sub => {
         if (sub && sub[0] && sub[0].target.lat) {
+          Utils.sLog(sub[0].target)
           this.showProgress = true;
           let pickLatLng: ILatLng = {
             lat: sub[0].target.lat,
             lng: sub[0].target.lng
           };
           let isInside: boolean = false;
-          for (let i = 0; i < this.serviceArea.list.length; i++) {
-            const path: any = this.serviceArea.list[i].path;
-            if (Poly.containsLocation(pickLatLng, path)) {
-              isInside = true;
-              break;
+          try {
+
+            Utils.sLog("service area list size : ")
+            Utils.sLog(this.serviceArea.list);
+            for (let i = 0; i < this.serviceArea.list.length; i++) {
+              const path: any = this.serviceArea.list[i].path;
+              // google.maps.geometry.poly.containsLocation(new google.maps.LatLng(sub[0].target.lat,sub[0].target.lng
+              //   ), path)
+              // Poly.containsLocation(pickLatLng, path)
+              if (google.maps.geometry.poly.containsLocation(new google.maps.LatLng(sub[0].target.lat, sub[0].target.lng), path)) {
+                isInside = true;
+                break;
+              }
             }
+          } catch (error) {
+            Utils.sLog(error);
           }
 
           if (isInside) {
             this.showMap = true;
             this.showProgress = false;
-            this.ref.detectChanges();
             Utils.sLog("Inside the area");
             loc = new LatLng(sub[0].target.lat, sub[0].target.lng);
             this.userLatLng = loc;
@@ -563,14 +572,14 @@ export class MapView {
               }
             }, err => {
               this.showProgress = false;
-              this.alertUtils.showToast(err);
+              this.alertUtils.showLog(err);
             });
           } else {
             Utils.sLog("Outside the area");
             this.showProgress = false;
             this.showMap = false;
             this.userAddr = "";
-            this.ref.detectChanges();
+            // this.ref.detectChanges();
           }
           this.showProgress = false;
 
@@ -709,23 +718,23 @@ export class MapView {
             return;
           }
         }
-          this.navCtrl.push(ConfirmOrder, {
-            items: this.items,
-            isExisting: this.isExisting,
-            exMobileno: this.exMobileno,
-            exUserInfo: this.exUserInfo,
-            addr: this.userAddr,
-            lat: this.userLatLng.lat,
-            lng: this.userLatLng.lng,
-            userLatlng: this.userLatLng,
-            referCode: this.referCode,
-          }).then(value => {
-            let data = {
-              landmark: this.landMark,
-              buildingname: this.buildingname
-            };
-            this.alertUtils.storeAddrData(data);
-          });
+        this.navCtrl.push(ConfirmOrder, {
+          items: this.items,
+          isExisting: this.isExisting,
+          exMobileno: this.exMobileno,
+          exUserInfo: this.exUserInfo,
+          addr: this.userAddr,
+          lat: this.userLatLng.lat,
+          lng: this.userLatLng.lng,
+          userLatlng: this.userLatLng,
+          referCode: this.referCode,
+        }).then(value => {
+          let data = {
+            landmark: this.landMark,
+            buildingname: this.buildingname
+          };
+          this.alertUtils.storeAddrData(data);
+        });
 
       } else {
         this.alertUtils.showToast("Please pick your location");

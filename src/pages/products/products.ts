@@ -41,7 +41,7 @@ export class ProductsPage {
     this.viewCtrl.dismiss();
   }
   onChange(item) {
-    this.calculateTotalAmt();
+    // this.calculateTotalAmt();
   }
   calculateTotalAmt() {
     this.totalamt = 0;
@@ -56,7 +56,7 @@ export class ProductsPage {
     item.imgurl = "assets/imgs/dummy_img.png";
   }
   ngOnInit() {
-    console.log(Utils.productsList)
+    Utils.sLog(Utils.productsList)
     this.pageDetails = this.navParams.get("category");
     this.productList = Utils.categoryList.get(this.pageDetails);
     Utils.productsList = this.productList;

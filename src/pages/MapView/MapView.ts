@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, ViewChild, NgZone } from "@an
 import { GetService } from "../../app/services/get.servie";
 import { ModalController, NavController, NavParams, Platform, Slides, ViewController } from "ionic-angular";
 import { Geolocation } from "@ionic-native/geolocation";
-import { GoogleMap, GoogleMaps, GoogleMapsEvent, ILatLng, LatLng, LatLngBounds } from "@ionic-native/google-maps";
+import { GoogleMap, GoogleMaps, GoogleMapsEvent, ILatLng, LatLng, LatLngBounds, Polygon, Poly } from "@ionic-native/google-maps";
 import {
   APP_TYPE,
   APP_USER_TYPE,
@@ -17,6 +17,7 @@ import { Diagnostic } from "@ionic-native/diagnostic";
 import { SignUp } from "../SignUp/SignUp";
 import { ConfirmOrder } from "../ConfirmOrderPage/ConfirmOrderPage";
 import { DatePicker } from '@ionic-native/date-picker';
+import { ServiceArea } from "../../app/services/servicearea";
 
 
 @Component({
@@ -64,7 +65,7 @@ export class MapView {
   showCalender: boolean = false;
 
   constructor(public zone: NgZone, private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams, private datePicker: DatePicker) {
-    
+
 
   }
   ngOnInit(){
@@ -86,35 +87,68 @@ export class MapView {
           };
           console.log('ngOnInit called')
 
-          // MapView.bounds = new LatLngBounds([
-          //   {
-          //     "lat": 17.539296557855938,
-          //     "lng": 78.23303103077819
-          //   },
-          //   {
-          //     "lat": 17.199834236282776,
-          //     "lng": 78.32504152882507
-          //   },
-          //   {
-          //     "lat": 17.188026972484295,
-          //     "lng": 78.73016237843444
-          //   },
-          //   {
-          //     "lat": 17.493460110609615,
-          //     "lng": 78.74252199757507
-          //   },
-          //   {
-          //     "lat": 17.624390628973813,
-          //     "lng": 78.59420656788757
-          //   },
-          //   {
-          //     "lat": 17.624390628973813,
-          //     "lng": 78.32916140187194
-          //   }
-          // ]);
-        } catch (e) {
-          this.alertUtils.showLog(e);
-        }
+
+        // MapView.bounds = new LatLngBounds([
+        //   {
+        //     "lat": 25.225021421700475,
+        //     "lng": 55.28615459192213
+        //   },
+        //   {
+        //     "lat": 25.062166768158566,
+        //     "lng": 55.1309727071565
+        //   },
+        //   {
+        //     "lat": 24.988749161198257,
+        //     "lng": 55.09114726770338
+        //   },
+        //   {
+        //     "lat": 24.953891550481544,
+        //     "lng": 55.23122295129713
+        //   },
+        //   {
+        //     "lat": 24.999951295254636,
+        //     "lng": 55.466055714969
+        //   },
+        //   {
+        //     "lat": 25.207627482773205,
+        //     "lng": 55.64870342004713
+        //   },
+        //   {
+        //     "lat": 25.326850217993883,
+        //     "lng": 55.3946445821565
+        //   }
+        // ]);
+
+
+        // var array = [
+        //   {
+        //     "lat": 24.801660372582777,
+        //     "lng": 54.8638275736231
+        //   },
+        //   {
+        //     "lat": 24.592050700484208,
+        //     "lng": 54.70315252479497
+        //   },
+        //   {
+        //     "lat": 24.360823911484054,
+        //     "lng": 54.56445013221685
+        //   },
+        //   {
+        //     "lat": 24.245677671122813,
+        //     "lng": 54.82949529823247
+        //   },
+        //   {
+        //     "lat": 24.678183055194744,
+        //     "lng": 55.14672552284185
+        //   }
+        // ];
+        // array.forEach(element => {
+        //   MapView.bounds.extend({ lat: element.lat, lng: element.lng });
+        // });
+
+      } catch (e) {
+        this.alertUtils.showLog(e);
+      }
 
 
         if (IS_WEBSITE) {
@@ -158,9 +192,9 @@ export class MapView {
     this.minDate = date.toISOString();
   }
 
-  selectSearchResult(item) {
-    console.log("place selected");
-    console.log(item);
+  selectSearchResult(item){
+    Utils.sLog("place selected");
+    Utils.sLog(item);
     this.address.place = item.description;
     this.geoCode(item.description);
     this.autocompleteItems = [];
@@ -172,7 +206,7 @@ export class MapView {
       return;
     }
 
-    this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input, componentRestrictions: { country: ["AE", "IN"] } },
+    this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input, componentRestrictions: { country: ["AE"] } },
       (predictions, status) => {
         this.autocompleteItems = [];
         if (predictions) {
@@ -249,7 +283,7 @@ export class MapView {
 
   onSlideChanged() {
     this.currentIndex = this.slides.getActiveIndex();
-    console.log('Slide changed! Current index is', this.currentIndex);
+    Utils.sLog('Slide changed! Current index is', this.currentIndex);
   }
 
   next() {
@@ -257,7 +291,7 @@ export class MapView {
   }
 
   showServices(item) {
-    console.log(item);
+    Utils.sLog(item);
 
     let model = this.modalCtrl.create('ProductsPage', { "category": item });
     model.onDidDismiss(data => {
@@ -304,7 +338,7 @@ export class MapView {
               return [item.categoryid, item.categoryid];
             });
 
-            console.log(result);
+            Utils.sLog(result);
             var map = new Map<string, any>();
             this.list = [];
             for (let i = 0; i < result.length; i++) {
@@ -313,9 +347,8 @@ export class MapView {
               this.list.push({ "category": element[0].category, "categoryid": element[0].categoryid, "imgurl": this.apiService.getImg() + "category_" + element[0].categoryid + ".png" })
             }
             Utils.categoryList = map;
-            console.log(Utils.categoryList.keys());
-            console.log(Utils.categoryList);
-            //this.list = Array.from(Utils.categoryList.keys());
+            Utils.sLog(Utils.categoryList.keys());
+            Utils.sLog(Utils.categoryList);
 
             console.log(this.list);
             // this.item = this.list[0];
@@ -344,9 +377,53 @@ export class MapView {
     item.imgurl = "assets/imgs/dummy_img.png";
   }
 
+  getBounds() {
+    try {
+      this.serviceArea.getPolygonsList().then(res => {
+        if (res) {
+          var array: any = res;
+          // if (array.length > 0) {
+          //   MapView.bounds = new LatLngBounds(array[0].path);
+          //   this.addPolygon(array[0].path)
+
+          // }
+          if (array.length > 0)
+            for (let i = 0; i < array.length; i++) {
+              const path = res[i].path;
+              if (path) {
+                // for (let j = 0; j < path.length; j++) {
+                //   const element = path[j];
+                //   MapView.bounds.extend({ lat: element.lat, lng: element.lng });
+                // }
+                this.addPolygon(path)
+
+              }
+            }
+          // Utils.sLog(MapView.bounds);
+        }
+      }, err => {
+        Utils.sLog(err);
+      })
+    } catch (error) {
+      Utils.sLog(error);
+    }
+  }
+
+  addPolygon(path) {
+    this.map.addPolygon({
+      points: path,
+      strokeColor: '#343434',
+      strokeOpacity: 0.2,
+      strokeWeight: 1,
+      fillColor: '#8d77771a',
+      fillOpacity: 0.35
+    })
+
+  }
+
   // getCategoryTask() {
   //   this.apiService.getReq(GetService.getCategory(Utils.USER_INFO_DATA.superdealerid)).subscribe(res => {
-  //     console.log(res);
+  //     Utils.sLog(res);
   //     if (res && res.data) {
   //       this.categoryData = res.data;
   //     }
@@ -427,6 +504,7 @@ export class MapView {
       let loc: LatLng;
       this.initMap();
       this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+        this.getBounds();
         this.geoLocation().then(res => {
           loc = new LatLng(res.coords.latitude, res.coords.longitude);
           this.map.moveCamera({
@@ -442,7 +520,7 @@ export class MapView {
           console.log(err);
         })
       }, err => {
-        console.log(err);
+        Utils.sLog(err);
       });
       this.map.addEventListener(GoogleMapsEvent.CAMERA_MOVE_START).subscribe(next => {
         this.showProgress = true;
@@ -451,36 +529,51 @@ export class MapView {
       });
       this.map.addEventListener(GoogleMapsEvent.CAMERA_MOVE_END).subscribe(sub => {
         if (sub && sub[0] && sub[0].target.lat) {
+          this.showProgress = true;
           let pickLatLng: ILatLng = {
             lat: sub[0].target.lat,
             lng: sub[0].target.lng
           };
-          // if (MapView.bounds.contains(pickLatLng)) {
-          this.showMap = true;
-          this.ref.detectChanges();
-          Utils.sLog("Inside the area");
-          loc = new LatLng(sub[0].target.lat, sub[0].target.lng);
-          this.userLatLng = loc;
-          this.alertUtils.showLog(JSON.stringify(this.userLatLng));
-          const url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + loc.lat + ',' + loc.lng + '&key=AIzaSyDoS0Blw09XR34phjQ4BGF6v8mpQ5E8aSM';
-          this.alertUtils.showLog(url);
-          this.getService.getReqForMap(url).then(res => {
-            this.showProgress = false;
-            if (res.results && res.results[0] && res.results[0].formatted_address) {
-              this.alertUtils.showLog(JSON.stringify(res.results[0].formatted_address));
-              this.userAddr = res.results[0].formatted_address;
-              this.alertUtils.showLog(this.userAddr);
-              this.ref.detectChanges();
+          let isInside: boolean = false;
+          for (let i = 0; i < this.serviceArea.list.length; i++) {
+            const path: any = this.serviceArea.list[i].path;
+            if (Poly.containsLocation(pickLatLng, path)) {
+              isInside = true;
+              break;
             }
-          }, err => {
+          }
+
+          if (isInside) {
+            this.showMap = true;
             this.showProgress = false;
-            this.alertUtils.showToast(err);
-          });
-          // } else {
-          //   Utils.sLog("Outside the area");
-          //   this.showMap = false;
-          //   this.ref.detectChanges();
-          // }
+            this.ref.detectChanges();
+            Utils.sLog("Inside the area");
+            loc = new LatLng(sub[0].target.lat, sub[0].target.lng);
+            this.userLatLng = loc;
+            this.alertUtils.showLog(JSON.stringify(this.userLatLng));
+            const url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + loc.lat + ',' + loc.lng + '&key=AIzaSyDoS0Blw09XR34phjQ4BGF6v8mpQ5E8aSM';
+            this.alertUtils.showLog(url);
+            this.getService.getReqForMap(url).subscribe(res => {
+              this.showProgress = false;
+              if (res.results && res.results[0] && res.results[0].formatted_address) {
+                this.alertUtils.showLog(JSON.stringify(res.results[0].formatted_address));
+                this.userAddr = res.results[0].formatted_address;
+                this.alertUtils.showLog(this.userAddr);
+                this.ref.detectChanges();
+              }
+            }, err => {
+              this.showProgress = false;
+              this.alertUtils.showToast(err);
+            });
+          } else {
+            Utils.sLog("Outside the area");
+            this.showProgress = false;
+            this.showMap = false;
+            this.userAddr = "";
+            this.ref.detectChanges();
+          }
+          this.showProgress = false;
+
         } else {
           Utils.sLog('LATLNG not found');
         }
@@ -555,9 +648,7 @@ export class MapView {
   }
 
   confirmLocation() {
-
-    console.log(Utils.categoryList);
-
+    Utils.sLog(Utils.categoryList);
     if (IS_WEBSITE) {
       this.userAddr = "Tolichowki";
       if (!this.userLatLng) {
@@ -602,9 +693,9 @@ export class MapView {
       }
 
       if (this.rides && this.rides.length > 0) {
-        console.log("active ride index : " + this.slides.getActiveIndex());
+        Utils.sLog("active ride index : " + this.slides.getActiveIndex());
         Utils.rideSelected = this.rides[this.slides.getActiveIndex()];
-        console.log(Utils.rideSelected);
+        Utils.sLog(Utils.rideSelected);
       } else {
         this.alertUtils.showToast("Please add at least one vehicle");
         return false;
@@ -635,7 +726,7 @@ export class MapView {
             };
             this.alertUtils.storeAddrData(data);
           });
-        
+
       } else {
         this.alertUtils.showToast("Please pick your location");
       }

@@ -75,7 +75,7 @@ export class CategoryServicesPage {
               return [item.categoryid, item.categoryid];
             });
 
-            console.log(result);
+            Utils.sLog(result);
             this.services = new Map<string, any>();
 
             for (let i = 0; i < result.length; i++) {
@@ -83,11 +83,11 @@ export class CategoryServicesPage {
               this.services.set(element[0].category, element);
             }
 
-            console.log(this.services.keys());
-            console.log(this.services);
+            Utils.sLog(this.services.keys());
+            Utils.sLog(this.services);
             this.list = Array.from(this.services.keys());
             this.item = this.list[0];
-            console.log(this.item);
+            Utils.sLog(this.item);
 
           } else {
             this.alertUtils.showToast("Found no products, please try again");
@@ -112,7 +112,7 @@ export class CategoryServicesPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CategoryServicesPage');
+    Utils.sLog('ionViewDidLoad CategoryServicesPage');
   }
 
 

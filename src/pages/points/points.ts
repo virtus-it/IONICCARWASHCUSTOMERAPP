@@ -29,7 +29,7 @@ export class PointsPage {
   }
 
   ngOnInit() {
-    console.log('paytm', this.redeemType);
+    Utils.sLog('paytm', this.redeemType);
 
     this.alertUtils.getUserInfo().then(info => {
       if (info) {
@@ -181,7 +181,7 @@ export class PointsPage {
   }
 
   btnCancel() {
-    console.log("call cancel");
+    Utils.sLog("call cancel");
     this.pointTab = true;
     this.pointsHistoryTab = true;
     this.redeemPoint = false;

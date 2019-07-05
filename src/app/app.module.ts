@@ -22,12 +22,10 @@ import { Push } from "@ionic-native/push";
 import { Device } from "@ionic-native/device";
 import { SocialSharing } from "@ionic-native/social-sharing";
 import { Keyboard } from "@ionic-native/keyboard";
-import { DatePicker } from '@ionic-native/date-picker';
 import { HTTP } from '@ionic-native/http';
 
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 
-// import { SMS } from '@ionic-native/sms';
 
 import { SignUp } from "../pages/SignUp/SignUp";
 import { Login } from "../pages/LoginIn/Login";
@@ -43,8 +41,11 @@ import { AboutPage } from "../pages/MyOrders/about";
 import { ContactPage } from "../pages/MyAccount/contact";
 import { GetService } from "./services/get.servie";
 import { Utils } from "./services/Utils";
+import { ServiceArea } from "./services/servicearea";
+
 import { ModalController } from 'ionic-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePicker } from '@ionic-native/date-picker';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -65,7 +66,7 @@ const config: SocketIoConfig = { url: GetService.TRACKING_URL, options: {} };
     MapView,
     WelcomePage,
     ConfirmOrder,
-    NotificationPage
+    NotificationPage,
   ],
   imports: [
     BrowserModule,
@@ -92,13 +93,13 @@ const config: SocketIoConfig = { url: GetService.TRACKING_URL, options: {} };
     MapView,
     WelcomePage,
     ConfirmOrder,
-    NotificationPage,
+    NotificationPage
   ],
   providers: [
-
     StatusBar,
     GetService,
     Utils,
+    ServiceArea,
     AppVersion,
     NativeStorage,
     Geolocation,

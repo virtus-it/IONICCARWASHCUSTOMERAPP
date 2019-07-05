@@ -210,8 +210,6 @@ export class Utils {
     let d = new Date(date);
     return moment(d).format('DD-MM-YYYY HH:MM:SS');
   }
-  
-
 
 
   static formatDateToYYYYMMDD(date) {
@@ -384,13 +382,13 @@ export class Utils {
 
   setSecureValue(keyName: string, keyValue: any) {
     this.nativeStorage.setItem(keyName, keyValue)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
 
   }
 
   setPromoCode(keyValue: any) {
     this.nativeStorage.setItem(KEY_USER_PROMO_CODE, keyValue)
-      .then(() => console.log('Stored PROMO Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored PROMO Data!'), error => console.error('Error storing data', error));
 
   }
 
@@ -417,41 +415,41 @@ export class Utils {
     Utils._APP_USER_EMAILID = email;
 
     this.nativeStorage.setItem(KEY_USER_ID, uid)
-      .then(() => console.log('Stored  Data!USER_ID'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!USER_ID'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_DEALER_ID, dealerId)
-      .then(() => console.log('Stored  Data!KEY_DEALER_ID'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!KEY_DEALER_ID'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USERNAME, uName)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_PHNO, phno)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_PWD, pwd)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_ADDR, addr)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_CITY, city)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_STATE, state)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_PIN, pin)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_IMGNAME, imgName)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_IMAGE_VERSION, imgVersion)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_DEALER_NAME, dealerName)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_LAT, userLatitude)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_LNG, userLongitude)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_EMAIL, email)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
 
   }
 
   cacheUserInfo(data) {
     this.nativeStorage.setItem(KEY_USER_INFO, data)
-      .then(() => console.log('Stored  USER_INFO'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  USER_INFO'), error => console.error('Error storing data', error));
   }
 
   getUserInfo() {
@@ -460,7 +458,7 @@ export class Utils {
   }
   setLang(data) {
     this.nativeStorage.setItem(KEY_USER_LANG, data)
-      .then(() => console.log('Stored  USER_INFO'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  USER_INFO'), error => console.error('Error storing data', error));
   }
 
   getLang() {
@@ -469,7 +467,7 @@ export class Utils {
   }
   cacheAppFirstInfo(data) {
     this.nativeStorage.setItem(KEY_APP_FIRST_CALL_INFO, data)
-      .then(() => console.log('Stored  USER_INFO'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  USER_INFO'), error => console.error('Error storing data', error));
   }
 
   getAppFirstInfo() {
@@ -484,13 +482,13 @@ export class Utils {
 
   setLoginState(status: boolean) {
     this.nativeStorage.setItem(KEY_USER_LOGIN_STATUS, status)
-      .then(() => console.log('Stored  Login status'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Login status'), error => console.error('Error storing data', error));
 
   }
 
   setUserDealerId(dealerId) {
     this.nativeStorage.setItem(KEY_DEALER_ID, dealerId)
-      .then(() => console.log('Stored  Data!KEY_DEALER_ID'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!KEY_DEALER_ID'), error => console.error('Error storing data', error));
   }
 
 
@@ -500,15 +498,15 @@ export class Utils {
 
   setUserAddr(keyValue: any) {
     this.nativeStorage.setItem(KEY_USER_ADDR, keyValue)
-      .then(() => console.log('Stored  Login status'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Login status'), error => console.error('Error storing data', error));
 
   }
 
   setUserLatLng(lat: any, lng: any) {
     this.nativeStorage.setItem(KEY_USER_LAT, lat)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
     this.nativeStorage.setItem(KEY_USER_LNG, lng)
-      .then(() => console.log('Stored  Data!'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Data!'), error => console.error('Error storing data', error));
   }
 
   getUserMobileNo() {
@@ -521,7 +519,7 @@ export class Utils {
 
   setUserEmailId(keyValue) {
     this.nativeStorage.setItem(KEY_USER_EMAIL, keyValue)
-      .then(() => console.log('Stored  Login status'), error => console.error('Error storing data', error));
+      .then(() => Utils.sLog('Stored  Login status'), error => console.error('Error storing data', error));
   }
 
 

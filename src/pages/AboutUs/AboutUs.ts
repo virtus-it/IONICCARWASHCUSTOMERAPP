@@ -16,7 +16,8 @@ export class AboutUs {
     if (Utils.lang) {
       lang = Utils.lang
     }
-    console.log(lang);
+    Utils.sLog(lang);
+    
     translateService.use(lang);
 
     let verCode, verName;

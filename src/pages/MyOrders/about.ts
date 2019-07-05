@@ -400,7 +400,7 @@ export class AboutPage {
             this.alertUtils.showLog(res.data[0].messages);
             let arr = [];
             for (let i = 0; i < res.data[0].messages.length; i++) {
-              console.log(res.data[0].messages[i].ispublic);
+              Utils.sLog(res.data[0].messages[i].ispublic);
               if (res.data[0].messages[i].ispublic == 0) {
                 arr.push(res.data[0].messages[i]);
               }

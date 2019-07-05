@@ -15,18 +15,20 @@ export class GetService {
   // private static DEMO_URL = "http://52.138.217.177:2250/";
   // private static PAYTM_PRODUCTION_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=";
   private static PAYTM_DEVELOPMENT_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=";
-  //public static TRACKING_URL = "http://52.138.217.177:1900";
-  public static TRACKING_URL = "http://washonclick.ae:2252";
+  public static TRACKING_URL = "http://52.138.217.177:1900";
 
   http: any;
   private baseUrl: String;
 
   constructor(http: Http, private Nativehttp: HTTP,private alertUtils: Utils) {
     this.http = http;
-    this.baseUrl = GetService.PROD_URL;
+    this.baseUrl = GetService.DEMO_URL;
   }
 
 
+  static polygons() {
+    return "polygons";
+  }
   static getProductsByOrderid() {
     return "getproductsbyorderid";
   }

@@ -20,7 +20,7 @@ export class RaiseComplainPage {
     if (Utils.lang) {
       lang = Utils.lang
     }
-    console.log(lang);
+    Utils.sLog(lang);
     // translateService.setDefaultLang(lang);
     translateService.use(lang);
 

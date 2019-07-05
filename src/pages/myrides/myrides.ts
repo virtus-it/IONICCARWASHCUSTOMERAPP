@@ -17,12 +17,12 @@ export class MyridesPage {
     if (Utils.lang) {
       lang = Utils.lang
     }
-    console.log(lang);
+    Utils.sLog(lang);
     translateService.use(lang);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MyridesPage');
+    Utils.sLog('ionViewDidLoad MyridesPage');
   }
 
 
@@ -46,7 +46,7 @@ export class MyridesPage {
     this.ref.detectChanges();
   }
   delete(item) {
-    console.log(item);
+    Utils.sLog(item);
 
     let alert = this.alertCtrl.create({
       title: 'Warning',
@@ -56,7 +56,7 @@ export class MyridesPage {
           text: 'No',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            Utils.sLog('Cancel clicked');
           }
         },
         {

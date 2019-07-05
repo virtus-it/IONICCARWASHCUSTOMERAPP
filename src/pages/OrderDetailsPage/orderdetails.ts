@@ -78,7 +78,7 @@ export class OrderDetails {
         this.photoViewer.show(this.postImg, 'After');
 
     } catch (error) {
-      console.log(error)
+      Utils.sLog(error)
     }
 
   }
@@ -89,7 +89,7 @@ export class OrderDetails {
   }
 
   ngOnInit() {
-    console.log("ngOnInit");
+    Utils.sLog("ngOnInit");
     this.alertUtils.getLoginState().then(res => {
       if (res) {
         this.loginStatus = res;
@@ -329,7 +329,7 @@ export class OrderDetails {
           text: 'No',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            Utils.sLog('Cancel clicked');
           }
         },
         {

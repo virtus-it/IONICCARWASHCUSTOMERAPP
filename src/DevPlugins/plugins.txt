@@ -18,7 +18,7 @@ COMMAND TO REALEASE BUILD:
 ---jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore moya.keystore android-release-unsigned.apk "mineral water"
 2.1 zipalign -v 4 android-release-unsigned.apk moyacustomer.apk
 3.Production url
-5.remove console.logs
+5.remove Utils.sLogs
 6.Welcome next button
 7.APP COMPONENT
 8.API call header enable

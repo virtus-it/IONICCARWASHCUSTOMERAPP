@@ -13,6 +13,7 @@ import {
 import { GetService } from "../../app/services/get.servie";
 import { ConfirmOrder } from "../ConfirmOrderPage/ConfirmOrderPage";
 import { MapView } from "../MapView/MapView";
+import { ServiceArea } from "../../app/services/servicearea";
 
 @Component({
   selector: 'signup-page',
@@ -62,7 +63,7 @@ export class SignUp {
   private addrData: any;
   country: string = "AED";
 
-  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public param: NavParams, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef) {
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public param: NavParams,private serviceArea: ServiceArea, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef) {
 
   }
 
@@ -184,6 +185,13 @@ export class SignUp {
         this.alertUtils.showLog(res);
         if (res.result == this.alertUtils.RESULT_SUCCESS) {
           if (res.data && res.data.user) {
+            // try {
+            //   Utils.USER_INFO_DATA['userid'] = res.data.user.userid;
+            //   Utils.USER_INFO_DATA['superdealerid'] = res.data.user.superdealerid;
+            //   this.serviceArea.fetchServiceAreas();
+            // } catch (error) {
+            //   Utils.sLog(error);
+            // }
             let imageVer = "", dealerName = "", userName = "", dealerid = "", dealermobileno = "";
             this.info = res.data.user;
             if (this.info.imgversion)
@@ -239,7 +247,7 @@ export class SignUp {
         }
       }, err => {
         this.alertUtils.hideLoading();
-        console.log(err);
+        Utils.sLog(err);
       });
 
     } else {
@@ -327,7 +335,7 @@ export class SignUp {
             }
           }, err => {
             this.alertUtils.hideLoading();
-            console.log(err);
+            Utils.sLog(err);
           });
         } else {
           this.alertUtils.showToast(this.alertUtils.ERROR_MES)
@@ -540,7 +548,7 @@ export class SignUp {
           text: 'CANCEL',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            Utils.sLog('Cancel clicked');
           }
         },
         {

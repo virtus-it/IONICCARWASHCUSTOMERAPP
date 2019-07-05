@@ -27,7 +27,7 @@ export class CancelOrderPage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CancelOrderPage');
+    Utils.sLog('ionViewDidLoad CancelOrderPage');
   }
 
   private update() {

@@ -72,9 +72,9 @@ export class Login {
   }
 
   ionViewWillLeave() {
-    console.log('login view will leave');
+    Utils.sLog('login view will leave');
     if (this.cameFrom) {
-      console.log(this.cameFrom);
+      Utils.sLog(this.cameFrom);
       if (this.cameFrom == "orderspage") {
         if (this.successLogin) {
           this.navCtrl.getPrevious().data.myDataKey = "fetchData";

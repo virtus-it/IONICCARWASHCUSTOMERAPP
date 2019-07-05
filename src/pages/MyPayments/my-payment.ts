@@ -25,7 +25,7 @@ export class MyPaymentPage {
     if (Utils.lang) {
       lang = Utils.lang
     }
-    console.log(lang);
+    Utils.sLog(lang);
     translateService.use(lang);
 
     try {

@@ -101,10 +101,10 @@ export class ConfirmOrder {
       this.userLng = this.param.get("lng");
       this.proddata = this.param.get("savingobj");
 
-      console.log(this.proddata);
+      Utils.sLog(this.proddata);
 
       if (Utils.datePicked) {
-        console.log(Utils.datePicked);
+        Utils.sLog(Utils.datePicked);
         this.pickedDate = Utils.datePicked;
       }
       // car wash change
@@ -120,7 +120,7 @@ export class ConfirmOrder {
           this.totalItem++;
         }
       }
-      console.log(this.items);
+      Utils.sLog(this.items);
 
       if (this.calledfrom == "reorder") {
         this.navBack = false;
@@ -315,7 +315,7 @@ export class ConfirmOrder {
   }
 
   emptyCanCheck(item) {
-    console.log(1);
+    Utils.sLog(1);
     // item.emptycount = item.count;
     // for (let i = 0; i < item.products.length; i++) {
     //   item.products[i].emptycount = item.emptycount;
@@ -586,7 +586,7 @@ export class ConfirmOrder {
   }
 
   changeImage(item) {
-    console.log("change image called");
+    Utils.sLog("change image called");
     item.product_img = "";
     if (item.brandname.toLowerCase().indexOf('non-') != -1) {
       item.product_img = "assets/imgs/nonisi";

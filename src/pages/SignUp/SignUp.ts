@@ -259,7 +259,7 @@ export class SignUp {
   SignIn(password) {
 
     let mobMin = 9;
-    let mobMax = 10;
+    let mobMax = 9;
     try {
       if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", mobMin, mobMax)) {
         // if (!this.alertUtils.isValidMobile(this.mobileNumber)) {
@@ -416,7 +416,7 @@ export class SignUp {
     if (this.userName) {
       if (this.alertUtils.validateText(this.userName, "Name", 3, 100)) {
         let mobMin = 9;
-        let mobMax = 10;
+        let mobMax = 9;
 
         if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", mobMin, mobMax)) {
           // if (!this.alertUtils.isValidMobile(this.mobileNumber)) {
@@ -462,7 +462,7 @@ export class SignUp {
           placeholder: 'Mobile number',
           type: 'tel',
           min: 9,
-          max: 10,
+          max: 9,
           value: this.mobileNumber
         },
       ],
@@ -476,7 +476,7 @@ export class SignUp {
           text: 'Submit',
           handler: data => {
 
-            if (this.alertUtils.validateNumber(data.mobileno, "Mobile Number", 9, 10)) {
+            if (this.alertUtils.validateNumber(data.mobileno, "Mobile Number", 9, 9)) {
               this.forgotPwdTask(data, false);
             } else {
               this.alertUtils.showToast(this.alertUtils.ERROR_MES);
@@ -568,10 +568,10 @@ export class SignUp {
 
   private showConfirmOrderDialog(isNew: boolean) {
     try {
-      this.navCtrl.setRoot(MapView).then(value => {
+      this.navCtrl.setRoot(MapView,{from:'signup'}).then(value => {
         this.setGCMDetails();
-        if (this.info.pointsdetails && this.info.pointsdetails.points)
-          this.showAlert();
+        // if (this.info.pointsdetails && this.info.pointsdetails.points)
+        //   this.showAlert();
       });
 
       // if (!this.userLatlng) {
@@ -599,77 +599,7 @@ export class SignUp {
     }
   }
 
-  private doRegisterExisting() {
-    if (!this.userLatlng) {
-      this.userLatlng = {
-        lat: "",
-        lng: ""
-      }
-    }
-    let input = {
-      "User": {
-        "userid": this.exUserInfo.user_id,
-        "user_type": APP_USER_TYPE,
-        "firstname": this.userName,
-        "address": this.userAddr,
-        "latitude": this.userLatlng.lat,
-        "longitude": this.userLatlng.lng,
-        "mobileno": this.mobileNumber,
-        "isdistributorcustomerupdate": "1",
-        "apptype": APP_TYPE,
-        "mobiletype": MOBILE_TYPE,
-        "framework": FRAMEWORK
-      }
-    };
-    if (this.verCode) {
-      input.User["versionnumber"] = this.verCode;
-    }
-    if (this.referCode) {
-      if (this.referCode != "") {
-        input.User["referCode"] = this.referCode;
-      }
-    }
-    if (this.addrData) {
-      if (this.addrData.landmark) {
-        input.User["locality"] = this.addrData.landmark;
-      }
-      if (this.addrData.buildingname) {
-        input.User["buildingname"] = this.addrData.buildingname;
-      }
-    }
-    if (this.userRegisterType) {
-      let registerType: string = "";
-      if (this.userRegisterType == "Residential")
-        registerType = "residential";
-      else if (this.userRegisterType == "Commercial")
-        registerType = "commercial";
-      else if (this.userRegisterType == "Corporate")
-        registerType = "corporate";
-      if (registerType)
-        input.User["registertype"] = registerType;
-    }
-    let data = JSON.stringify(input);
-    this.alertUtils.showLog(data);
-    this.alertUtils.showLoading();
-    this.apiService.putReq(this.apiService.updateUser(), data).then(res => {
-      this.alertUtils.hideLoading();
-      if (res.result == this.alertUtils.RESULT_SUCCESS) {
-        this.showButtonRegistered = false;
-        this.disableMobileNo = false;
-        this.disableUserName = false;
-        this.showPasswordBox = true;
-        this.showButtonLogInForSignUp = true;
-        this.showPasswordBoxMsg = true;
-        this.getCounter();
-      } else {
-        this.alertUtils.showToast(this.alertUtils.GEN_ERR_MSG);
-      }
-    }, err => {
-      this.alertUtils.hideLoading();
-      this.alertUtils.showToast(this.alertUtils.GEN_ERR_MSG);
-    });
-  }
-
+  
   private doRegisterNew() {
     if (!this.userLatlng) {
       this.userLatlng = {

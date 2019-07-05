@@ -285,7 +285,7 @@ export class WelcomePage {
             //   // then we remove it from the navigation stack
             //   this.navCtrl.remove(index);
             // });
-            this.navCtrl.setRoot(MapView);
+            this.navCtrl.setRoot(MapView, { from: 'welcome' });
           } else {
             this.showScreen = true;
           }

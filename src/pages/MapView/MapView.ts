@@ -200,6 +200,40 @@ export class MapView {
   }
 
 
+  isPointInPolygon(tap, vertices) {
+    let intersectCount = 0;
+    for (let j = 0; j < vertices.length - 1; j++) {
+      if (this.rayCastIntersect(tap, vertices[j], vertices[j + 1])) {
+        intersectCount++;
+      }
+    }
+
+    return ((intersectCount % 2) == 1); // odd = inside, even = outside;
+  }
+
+  rayCastIntersect(tap, vertA, vertB) {
+
+    let aY = vertA.lat;
+    let bY = vertB.lat;
+    let aX = vertA.lng;
+    let bX = vertB.lng;
+    let pY = tap.lat;
+    let pX = tap.lng;
+
+    if ((aY > pY && bY > pY) || (aY < pY && bY < pY)
+      || (aX < pX && bX < pX)) {
+      return false; // a and b can't both be above or below pt.y, and a or
+      // b must be east of pt.x
+    }
+
+    let m = (aY - bY) / (aX - bX); // Rise over run
+    let bee = (-aX) * m + aY; // y = mx + b
+    let x = (pY - bee) / m; // algebra is neat!
+
+    return x > pX;
+  }
+
+
   openDatePicker() {
     this.datePicker.show({
       date: new Date(),
@@ -476,7 +510,10 @@ export class MapView {
           let isInside: boolean = false;
           for (let i = 0; i < this.serviceArea.list.length; i++) {
             const path: any = this.serviceArea.list[i].path;
+            // use Poly.containsLocation for android
             if (Poly.containsLocation(pickLatLng, path)) {
+            //  use this.isPointInPolygon(pickLatLng, path) for IOS
+            // if (this.isPointInPolygon(pickLatLng, path)) {
               isInside = true;
               break;
             }
@@ -630,69 +667,23 @@ export class MapView {
             return;
           }
         }
-        if (this.calledFrom == "myprofile") {
+        this.navCtrl.push(ConfirmOrder, {
+          items: this.items,
+          isExisting: this.isExisting,
+          exMobileno: this.exMobileno,
+          exUserInfo: this.exUserInfo,
+          addr: this.userAddr,
+          lat: this.userLatLng.lat,
+          lng: this.userLatLng.lng,
+          userLatlng: this.userLatLng,
+          referCode: this.referCode,
+        }).then(value => {
           let data = {
-            'from': 'mapview',
-            'address': this.userAddr,
-            "lat": this.userLatLng.lat,
-            "lng": this.userLatLng.lng
-          };
-          let addrData = {
             landmark: this.landMark,
             buildingname: this.buildingname
           };
-          this.alertUtils.storeAddrData(addrData);
-          this.navCtrl.getPrevious().data.myDataKey = data;
-          this.navCtrl.pop();
-        } else if (this.calledFrom == 'myorders') {
-          let data = {
-            'from': 'mapview',
-            'address': this.userAddr,
-            "lat": this.userLatLng.lat,
-            "lng": this.userLatLng.lng
-          };
-          let addrData = {
-            landmark: this.landMark,
-            buildingname: this.buildingname
-          };
-          this.viewCtrl.dismiss(addrData);
-        } else if (this.calledFrom == "login") {
-          this.doUpdateUser();
-        } else if (!this.calledFrom) {
-          this.navCtrl.push(ConfirmOrder, {
-            items: this.items,
-            isExisting: this.isExisting,
-            exMobileno: this.exMobileno,
-            exUserInfo: this.exUserInfo,
-            addr: this.userAddr,
-            lat: this.userLatLng.lat,
-            lng: this.userLatLng.lng,
-            userLatlng: this.userLatLng,
-            referCode: this.referCode,
-          }).then(value => {
-            let data = {
-              landmark: this.landMark,
-              buildingname: this.buildingname
-            };
-            this.alertUtils.storeAddrData(data);
-          });
-        } else {
-          this.navCtrl.push(SignUp, {
-            items: this.items,
-            isExisting: this.isExisting,
-            exMobileno: this.exMobileno,
-            exUserInfo: this.exUserInfo,
-            userAddr: this.userAddr,
-            userLatlng: this.userLatLng,
-            referCode: this.referCode,
-          }).then(value => {
-            let data = {
-              landmark: this.landMark,
-              buildingname: this.buildingname
-            };
-            this.alertUtils.storeAddrData(data);
-          });
-        }
+          this.alertUtils.storeAddrData(data);
+        });
       } else {
         this.alertUtils.showToast("Please pick your location");
       }

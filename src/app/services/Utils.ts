@@ -12,7 +12,7 @@ import * as moment from "moment";
 import { Device } from "@ionic-native/device";
 
 export const SHOW_ALL = false;
-export const IS_WEBSITE: boolean = false;
+export const IS_WEBSITE: boolean = true;
 
 const KEY_USER_ID = 'secure_storage_userid';
 const KEY_DEALER_ID = 'secure_storage_dealerid';
@@ -70,7 +70,52 @@ export class Utils {
   sliderName: string = "Hi User";
 
   constructor(private appRate: AppRate, private diagnostic: Diagnostic, private net: Network, public toast: ToastController, public loadingCtrl: LoadingController, private appVersion: AppVersion, private nativeStorage: NativeStorage, public alertCtrl: AlertController, private cNumber: CallNumber, private tToast: Toast, private nSetting: OpenNativeSettings, private device: Device) {
-   
+Utils.USER_INFO_DATA = {
+      "Result": 1,
+      "userid": 6,
+      "username": null,
+      "email": "ali@test.com",
+      "mobileno": "0000000073",
+      "USERTYPE": "customer",
+      "first_name": "Ali Abbas",
+      "last_name": "Abbas",
+      "gcm_regid": "",
+      "gcm_mailid": "ali@test.com",
+      "imagename": null,
+      "imageurl": null,
+      "locality": null,
+      "buildingname": null,
+      "imgversion": 0,
+      "address": "8-1-5, Old Mumbai Hwy, Surya Nagar, Toli Chowki, Hyderabad, Telangana 500008, India",
+      "city": null,
+      "state": null,
+      "isuserassigned": "1",
+      "areaid": null,
+      "areaname": "",
+      "pincode": null,
+      "country": null,
+      "theme": null,
+      "latitude": "17.399035047363547",
+      "longitude": "78.41531831771135",
+      "companylogo": null,
+      "companylogo_version": null,
+      "viewplaceorder": null,
+      "apptype": "moya",
+      "usertypes": null,
+      "issuperdealer": "false",
+      "issuppersupplier": "false",
+      "superdealerid": 1,
+      "promocodestatus": 1,
+      "dealers": {
+        "dealerid": 1,
+        "firstname": "Dev Super",
+        "lastname": "Dealer",
+        "mobileno": "8897078671",
+        "theme": null,
+        "issuperdealer" :true
+      },
+      "sdealers": null
+    };
   }
 
   private static _APP_PAYTM_MID = "dummyS79577994716430";
@@ -133,11 +178,11 @@ export class Utils {
   }
 
   static sLog(val, lineNumber?, pageName?) {
-    // Utils.sLog(val);
-    // if (lineNumber)
-    //   Utils.sLog(lineNumber);
-    // if (pageName)
-    //   Utils.sLog(pageName);
+    console.log(val);
+    if (lineNumber)
+      console.log(lineNumber);
+    if (pageName)
+      console.log(pageName);
   }
 
   static getRandomRolor() {
@@ -165,11 +210,11 @@ export class Utils {
   }
 
   showLog(val, lineNumber?, pageName?) {
-    // Utils.sLog(val);
-    // if (lineNumber)
-    //   Utils.sLog(lineNumber);
-    // if (pageName)
-    //   Utils.sLog(pageName);
+    Utils.sLog(val);
+    if (lineNumber)
+      Utils.sLog(lineNumber);
+    if (pageName)
+      Utils.sLog(pageName);
   }
   static groupByBrandName(array, f) {
     var groups = {};
@@ -555,7 +600,7 @@ export class Utils {
 
   isValidMobile(mob): any {
 
-    let regExp = /^[0-9]{10}$/;
+    let regExp = /^[0-9]{9}$/;
 
     if (!regExp.test(mob)) {
       return { "invalidMobile": true };

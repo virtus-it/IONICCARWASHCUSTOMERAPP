@@ -1,90 +1,91 @@
-<ion-content class="myprofilepg" *ngIf="items && items.user">
+<ion-content class="myprofilepg" >
+  <ion-spinner block name="crescent" color="primary" class="spinner_center" *ngIf="showProgress" item-center></ion-spinner>
 
-  <ion-card class="logo_container">
+  <div *ngIf="items && items?.user">
+    <ion-card class="logo_container">
 
-    <ion-item class="no_bg">
-      <ion-avatar>
-        <img src="{{items.user.imageurl ? imageUrl : 'assets/imgs/img_user.png'}}" class="profile-img">
-      </ion-avatar>
-    </ion-item>
-  </ion-card>
-  <ion-row>
-
-    <ion-card col class="no_bg no_shadow login_fields">
-      <ion-row>
-        <ion-icon class="fs-25 primary" name="md-arrow-round-back" item-start (click)="goBack()" start style="margin: 5px 0 0 12px"></ion-icon>
-        <ion-label center class="sign_toplabel">{{isEdit ? "My Profile" :"Update Profile"}}
-        </ion-label>
-        <label class="no_margin" item-end>
-          <ion-icon name="create" item-end large (click)="editProfile(items.user)" *ngIf="isEdit" end
-                    class="edt_profile"></ion-icon>
-          <ion-icon name="checkmark" item-end large (click)="updateProfile()" *ngIf="!isEdit" end
-                    class="edt_profile"></ion-icon>
-        </label>
-      </ion-row>
-
-
-      <ion-item class="profile_fields_container">
-        <ion-icon name="person" item-left small class="profile_avatar"></ion-icon>
-        <ion-label color="primary" stacked class="profile_avatar">{{ 'MY_PROFILE_PAGE.LABELS.lb_firstname' | translate
-          }}
-        </ion-label>
-        <ion-input type="text" [(ngModel)]="items.user.firstname" disabled="{{isEdit}}" clearInput start></ion-input>
-      </ion-item>
-
-      <ion-item class="profile_fields_container">
-        <ion-icon name="person" item-left small class="profile_avatar"></ion-icon>
-        <ion-label color="primary" stacked class="profile_avatar">{{ 'MY_PROFILE_PAGE.LABELS.lb_lastname' | translate
-          }}
-        </ion-label>
-        <ion-input type="text" class="no_margin" [(ngModel)]="items.user.lastname" disabled="{{isEdit}}" clearInput
-                   end></ion-input>
-      </ion-item>
-
-      <ion-row class="profile_fields_container " *ngIf="isEdit">
-        <ion-icon name="lock" item-left small class="profile_avatar password-style"></ion-icon>
-        <span style="margin-left:20px; ">
-          <ion-label color="primary" class="">{{ 'MY_PROFILE_PAGE.LABELS.lb_password' | translate }}</ion-label>
-          <h3>..........</h3>
-        </span>
-        <label style=" text-align: right;" class="change_pswd" (click)="changePassword()">{{
-          'MY_PROFILE_PAGE.LABELS.lb_edit' | translate }}</label>
-
-      </ion-row>
-      <ion-item class="profile_fields_container" *ngIf="isEdit">
-        <ion-icon name="call" item-left small class="profile_avatar"></ion-icon>
-        <span class="label label-md label-md-primary" color="primary">{{ 'MY_PROFILE_PAGE.LABELS.lb_mobile' | translate }}</span>
-        <h2 class="prfle_fields">{{items.user.mobileno}}</h2>
-      </ion-item>
-
-      <ion-item class="profile_fields_container">
-        <ion-icon name="mail" item-left small class="profile_avatar"></ion-icon>
-        <ion-label color="primary" stacked>{{ 'MY_PROFILE_PAGE.LABELS.lb_email' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="items.user.emailid" disabled="{{isEdit}}" clearInput></ion-input>
-      </ion-item>
-
-      <ion-item class="profile_fields_container">
-        <ion-icon name="home" item-left small class="profile_avatar"></ion-icon>
-        <ion-label color="primary" stacked class="profile_avatar">{{ 'MY_PROFILE_PAGE.LABELS.lb_locality' | translate
-          }}
-        </ion-label>
-        <ion-input type="text" class="no_margin" [(ngModel)]="items.user.locality" disabled="{{isEdit}}"
-                   end></ion-input>
-      </ion-item>
-      <ion-item class="profile_fields_container">
-        <ion-icon name="home" item-left small class="profile_avatar"></ion-icon>
-        <ion-label color="primary" stacked class="profile_avatar">{{ 'MY_PROFILE_PAGE.LABELS.lb_buildingname' |
-          translate }}
-        </ion-label>
-        <ion-input type="text" class="no_margin" [(ngModel)]="items.user.buildingname" disabled="{{isEdit}}"
-                   end></ion-input>
-      </ion-item>
-      <ion-item class="profile_fields_container" >
-        <ion-icon name="pin" item-left small class="profile_avatar password-style"></ion-icon>
-        <ion-label color="primary" stacked>{{ 'MY_PROFILE_PAGE.LABELS.lb_address' | translate }}          
-        </ion-label>
-        <ion-textarea type="text" class="textarea" [(ngModel)]="items.user.address" ></ion-textarea>
+      <ion-item class="no_bg">
+        <ion-avatar>
+          <img src="{{items.user.imageurl ? imageUrl : 'assets/imgs/img_user.png'}}" class="profile-img">
+        </ion-avatar>
       </ion-item>
     </ion-card>
-  </ion-row>
+    <ion-row>
+
+      <ion-card col class="no_bg no_shadow login_fields">
+        <ion-row>
+          <ion-icon class="fs-25 primary" name="md-arrow-round-back" item-start (click)="goBack()" start style="margin: 5px 0 0 12px"></ion-icon>
+          <ion-label center class="sign_toplabel">{{isEdit ? "My Profile" :"Update Profile"}}
+          </ion-label>
+          <label class="no_margin" item-end>
+            <ion-icon name="create" item-end large (click)="editProfile(items.user)" *ngIf="isEdit" end class="edt_profile"></ion-icon>
+            <ion-icon name="checkmark" item-end large (click)="updateProfile()" *ngIf="!isEdit" end class="edt_profile"></ion-icon>
+          </label>
+        </ion-row>
+
+
+        <ion-item class="profile_fields_container">
+          <ion-icon name="person" item-left small class="profile_avatar"></ion-icon>
+          <ion-label color="primary" stacked class="profile_avatar">{{ 'MY_PROFILE_PAGE.LABELS.lb_firstname' |
+            translate
+            }}
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="items.user.firstname" disabled="{{isEdit}}" clearInput start></ion-input>
+        </ion-item>
+
+        <ion-item class="profile_fields_container">
+          <ion-icon name="person" item-left small class="profile_avatar"></ion-icon>
+          <ion-label color="primary" stacked class="profile_avatar">{{ 'MY_PROFILE_PAGE.LABELS.lb_lastname' | translate
+            }}
+          </ion-label>
+          <ion-input type="text" class="no_margin" [(ngModel)]="items.user.lastname" disabled="{{isEdit}}" clearInput
+            end></ion-input>
+        </ion-item>
+
+        <ion-row class="profile_fields_container " *ngIf="isEdit">
+          <ion-icon name="lock" item-left small class="profile_avatar password-style"></ion-icon>
+          <span style="margin-left:20px; ">
+            <ion-label color="primary" class="">{{ 'MY_PROFILE_PAGE.LABELS.lb_password' | translate }}</ion-label>
+            <h3>..........</h3>
+          </span>
+          <label style=" text-align: right;" class="change_pswd" (click)="changePassword()">{{
+            'MY_PROFILE_PAGE.LABELS.lb_edit' | translate }}</label>
+
+        </ion-row>
+        <ion-item class="profile_fields_container" *ngIf="isEdit">
+          <ion-icon name="call" item-left small class="profile_avatar"></ion-icon>
+          <span class="label label-md label-md-primary" color="primary">{{ 'MY_PROFILE_PAGE.LABELS.lb_mobile' |
+            translate }}</span>
+          <h2 class="prfle_fields">{{items.user.mobileno}}</h2>
+        </ion-item>
+
+        <ion-item class="profile_fields_container">
+          <ion-icon name="mail" item-left small class="profile_avatar"></ion-icon>
+          <ion-label color="primary" stacked>{{ 'MY_PROFILE_PAGE.LABELS.lb_email' | translate }}</ion-label>
+          <ion-input type="email" [(ngModel)]="items.user.emailid" disabled="{{isEdit}}" clearInput></ion-input>
+        </ion-item>
+
+        <ion-item class="profile_fields_container">
+          <ion-icon name="home" item-left small class="profile_avatar"></ion-icon>
+          <ion-label color="primary" stacked class="profile_avatar">{{ 'MY_PROFILE_PAGE.LABELS.lb_locality' | translate
+            }}
+          </ion-label>
+          <ion-input type="text" class="no_margin" [(ngModel)]="items.user.locality" disabled="{{isEdit}}" end></ion-input>
+        </ion-item>
+        <ion-item class="profile_fields_container">
+          <ion-icon name="home" item-left small class="profile_avatar"></ion-icon>
+          <ion-label color="primary" stacked class="profile_avatar">{{ 'MY_PROFILE_PAGE.LABELS.lb_buildingname' |
+            translate }}
+          </ion-label>
+          <ion-input type="text" class="no_margin" [(ngModel)]="items.user.buildingname" disabled="{{isEdit}}" end></ion-input>
+        </ion-item>
+        <ion-item class="profile_fields_container">
+          <ion-icon name="pin" item-left small class="profile_avatar password-style"></ion-icon>
+          <ion-label color="primary" stacked>{{ 'MY_PROFILE_PAGE.LABELS.lb_address' | translate }}
+          </ion-label>
+          <ion-textarea type="text" class="textarea" disabled="{{isEdit}}" [(ngModel)]="items.user.address"></ion-textarea>
+        </ion-item>
+      </ion-card>
+    </ion-row>
+  </div>
 </ion-content>

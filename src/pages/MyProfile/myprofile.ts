@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
-import { APP_TYPE, APP_USER_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, Utils, VALIDATE_EMAIL } from "../../app/services/Utils";
+import { APP_TYPE, APP_USER_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, Utils, VALIDATE_EMAIL, TRY_AGAIN_ERR_MSG, IS_WEBSITE } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
 import { AlertController, NavController, NavParams, IonicPage } from "ionic-angular";
 import { MapView } from "../MapView/MapView";
@@ -12,6 +12,7 @@ import { TranslateService } from "@ngx-translate/core";
   selector: 'profile-page'
 })
 export class MyProfile {
+  showProgress = false;
 
   tabBarElement: any;
   private items: any;
@@ -33,10 +34,13 @@ export class MyProfile {
     Utils.sLog(lang);
     translateService.use(lang);
     this.imgURl = getService.getImg();
-    this.items = this.navParam.get("items");
+    // this.items = this.navParam.get("items");
     if (this.items) {
       this.alertUtils.showLog(this.items);
       this.imageUrl = this.imgURl + this.items.user.imageurl + this.defpng;
+    }
+    if (IS_WEBSITE) {
+      this.fetchProfileInfo();
     }
 
 
@@ -53,8 +57,40 @@ export class MyProfile {
     }
   }
 
+  fetchProfileInfo() {
+    this.showProgress = true;
+    this.getService.getReq(this.getService.fetchUserInfo() + Utils.USER_INFO_DATA.userid + "/" + APP_TYPE).subscribe(res => {
+      this.showProgress = false;
+
+      this.alertUtils.showLog(res);
+      if (res.result == RES_SUCCESS) {
+        if (res.data) {
+          this.items = res.data;
+
+        }
+      } else {
+        this.alertUtils.showToast(TRY_AGAIN_ERR_MSG);
+      }
+    }, err => {
+      this.showProgress = false;
+      this.alertUtils.showToast(this.alertUtils.INTERNET_ERR_MSG);
+      Utils.sLog(err);
+    });
+  }
+
   ngOnInit() {
     try {
+
+      this.alertUtils.getUserInfo().then(value => {
+        if (value) {
+          Utils.USER_INFO_DATA = value;
+          this.alertUtils.showLog(JSON.stringify(Utils.USER_INFO_DATA));
+          this.alertUtils.showLog("userinfo updated");
+          this.fetchProfileInfo();
+        }
+      }, err => {
+        Utils.sLog(err);
+      });
       this.alertUtils.getDealerId().then(res => {
         if (res) {
           this.dealerID = res;
@@ -63,16 +99,8 @@ export class MyProfile {
               this.userID = res;
             }
           });
-          this.alertUtils.getUserInfo().then(value => {
-            if (value) {
-              Utils.USER_INFO_DATA = value;
-              this.alertUtils.showLog(JSON.stringify(Utils.USER_INFO_DATA));
-              this.alertUtils.showLog("userinfo updated");
-            }
-          });
+
         }
-
-
       }).catch(err => {
         this.alertUtils.showLog(err);
       });

@@ -21,6 +21,10 @@
         {{ item.manufacturer }} {{item.model }}
       </ion-item>
     </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite($event))">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </div>
 
   <div *ngIf="page2">

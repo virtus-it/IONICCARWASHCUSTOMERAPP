@@ -10,8 +10,8 @@ import {TranslateService} from '@ngx-translate/core';
   templateUrl: 'addupdaterides.html',
 })
 export class AddupdateridesPage {
-  items: any;
-  filterItems: any;
+  items = [];
+  filterItems = [];
   page1: boolean = true;
   page2: boolean = false;
   page3: boolean = false;
@@ -25,6 +25,7 @@ export class AddupdateridesPage {
   calledFrom: string = "";
   updateItem: any;
   searchTerm: string = "";
+  isPaging: boolean = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef, private viewCtrl: ViewController, private translateService: TranslateService) {
@@ -144,7 +145,7 @@ export class AddupdateridesPage {
   }
 
   ngOnInit() {
-    this.fetchRides();
+    this.fetchRides(0);
   }
 
   onChange(c) {
@@ -156,13 +157,23 @@ export class AddupdateridesPage {
     this.ref.detectChanges();
   }
 
-  fetchRides() {
-    let input = {"root": {"usertype": "customer"}};
+  fetchRides(val:number) {
+
+    let input = {"root": {"usertype": "customer","lastid":val}};
     this.apiService.postReq(GetService.entities(), input).then(res => {
       Utils.sLog(res)
       if (res && res.data) {
-        this.items = res.data;
-        this.filterItems = res.data;
+        if(this.isPaging){
+          for(let i=0;i<res.length;i++){
+            this.items.push(res.data[i]);
+            this.filterItems.push(res.data[i]);
+            this.isPaging =false;
+          }
+        }else{
+          this.items = res.data;
+          this.filterItems = res.data;
+        }
+
         if (this.calledFrom == "update") {
           for (let i = 0; i < this.items.length; i++) {
             const element = this.items[i];
@@ -173,6 +184,22 @@ export class AddupdateridesPage {
           }
         }
       }
+    })
+  }
+
+
+  doInfinite(paging): Promise<any> {
+    this.isPaging = true;
+    if (this.items) {
+      if (this.items.length > 0)
+        this.fetchRides(this.items[this.items.length-1].entityid)
+      else
+        this.fetchRides(0);
+    }
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 10000);
     })
   }
 

@@ -6,14 +6,17 @@ map-page {
     margin-top: 2px;
   }
   .platform-ios ion-fab.left_menu .button-ios{height: 2.3em; padding: 0 .7em;}
-  
+
    ion-app._gmaps_cdv_ .nav-decor{
     background-color: transparent !important;
   }
-  .card-md {
-   margin: 2px !important; 
+  ion-fab.left_menu {
+    top: 2%;
   }
- 
+  .card-md {
+   margin: 2px !important;
+  }
+
 .bottom {
     position: absolute;
     bottom: 0;
@@ -110,6 +113,21 @@ ion-footer .homefulbutton .button-ios {
   padding: 0 !important;
 
 }
+.ios .srchloct {
+  top: 3%;
+}
+.toolbar-ios ion-title {
+  padding: 0 52px 1px !important;}
+.market_pin{top:20%}
+@media screen and ( min-height: 480px ) {.market_pin{top:15%;}}
+
+@media screen and ( min-height: 568px ) { .market_pin{top:17%;} }
+
+@media screen and ( min-height: 667px ) {.market_pin{top:25%;}  }
+
+@media screen and ( min-height: 812px ) {.market_pin{top:28%;}  }
+
+
 // .search_box{
 //       background: #fff;
 //       font-size: 17px;

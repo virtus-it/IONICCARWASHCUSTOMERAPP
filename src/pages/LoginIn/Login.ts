@@ -97,7 +97,7 @@ export class Login {
   logIn() {
     try {
       if (this.mobileNumber) {
-        if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", 9, 10)) {
+        if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", 9, 9)) {
           // if (!this.alertUtils.isValidMobile(this.mobileNumber)) {
           if (this.password) {
             if (this.password.length > 4 && this.password.length <= 20) {
@@ -259,7 +259,7 @@ export class Login {
           placeholder: 'Mobile number',
           type: 'tel',
           min: 9,
-          max: 10,
+          max: 9,
           value: this.mobileNumber
 
         },
@@ -275,7 +275,7 @@ export class Login {
           text: 'Submit',
           handler: data => {
 
-            if (this.alertUtils.validateNumber(data.mobileno, "Mobile Number", 10, 10)) {
+            if (this.alertUtils.validateNumber(data.mobileno, "Mobile Number", 9, 9)) {
               if (!this.alertUtils.isValidMobile(data.mobileno)) {
                 this.forgotPwdTask(data);
 

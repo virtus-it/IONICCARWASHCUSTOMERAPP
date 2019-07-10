@@ -220,6 +220,40 @@ export class MapView {
   }
 
 
+  isPointInPolygon(tap, vertices) {
+    let intersectCount = 0;
+    for (let j = 0; j < vertices.length - 1; j++) {
+      if (this.rayCastIntersect(tap, vertices[j], vertices[j + 1])) {
+        intersectCount++;
+      }
+    }
+
+    return ((intersectCount % 2) == 1); // odd = inside, even = outside;
+  }
+
+  rayCastIntersect(tap, vertA, vertB) {
+
+    let aY = vertA.lat;
+    let bY = vertB.lat;
+    let aX = vertA.lng;
+    let bX = vertB.lng;
+    let pY = tap.lat;
+    let pX = tap.lng;
+
+    if ((aY > pY && bY > pY) || (aY < pY && bY < pY)
+      || (aX < pX && bX < pX)) {
+      return false; // a and b can't both be above or below pt.y, and a or
+      // b must be east of pt.x
+    }
+
+    let m = (aY - bY) / (aX - bX); // Rise over run
+    let bee = (-aX) * m + aY; // y = mx + b
+    let x = (pY - bee) / m; // algebra is neat!
+
+    return x > pX;
+  }
+
+
   openDatePicker() {
 
     try {
@@ -535,22 +569,15 @@ export class MapView {
             lng: sub[0].target.lng
           };
           let isInside: boolean = false;
-          try {
-
-            Utils.sLog("service area list size : ")
-            Utils.sLog(this.serviceArea.list);
-            for (let i = 0; i < this.serviceArea.list.length; i++) {
-              const path: any = this.serviceArea.list[i].path;
-              // google.maps.geometry.poly.containsLocation(new google.maps.LatLng(sub[0].target.lat,sub[0].target.lng
-              //   ), path)
-              // Poly.containsLocation(pickLatLng, path)
-              if (google.maps.geometry.poly.containsLocation(new google.maps.LatLng(sub[0].target.lat, sub[0].target.lng), path)) {
-                isInside = true;
-                break;
-              }
+          for (let i = 0; i < this.serviceArea.list.length; i++) {
+            const path: any = this.serviceArea.list[i].path;
+            // use Poly.containsLocation for android
+            if (Poly.containsLocation(pickLatLng, path)) {
+            //  use this.isPointInPolygon(pickLatLng, path) for IOS
+            // if (this.isPointInPolygon(pickLatLng, path)) {
+              isInside = true;
+              break;
             }
-          } catch (error) {
-            Utils.sLog(error);
           }
 
           if (isInside) {

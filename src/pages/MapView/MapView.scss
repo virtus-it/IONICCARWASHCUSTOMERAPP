@@ -6,20 +6,24 @@ map-page {
     margin-top: 2px;
   }
   .platform-ios ion-fab.left_menu .button-ios{height: 2.3em; padding: 0 .7em;}
-  
+
    ion-app._gmaps_cdv_ .nav-decor{
     background-color: transparent !important;
   }
-  .card-md {
-   margin: 2px !important; 
+  ion-fab.left_menu {
+    top: 2%;
   }
- 
+  .card-md {
+   margin: 2px !important;
+  }
+.platform-ios .bottom{left:0px !important;}
 .bottom {
     position: absolute;
     bottom: 0;
-    width : 100%;
+    width : 93%; margin:0 3.5%;
 }
 
+.bt_calender{height: auto;padding: 11px 0 !important; margin:3px; font-size:10px; min-width:auto !important;}
 .request-controls {
     text-align: center;
 }
@@ -100,7 +104,7 @@ map-page {
       color: #bbb;
       padding: 10px;
 }
-}
+
 ion-footer .button-ios {
   height: 36px;
   padding: 0 !important;
@@ -110,251 +114,20 @@ ion-footer .homefulbutton .button-ios {
   padding: 0 !important;
 
 }
-// .search_box{
-//       background: #fff;
-//       font-size: 17px;
-//       border-radius: 25px;
-//       border: 1px solid #eee;
-//       height: 40px;
-//   width: 62%;
-//   left: 74px;
-//   font-size: 14px;
-//   color: #bbb;
-//   padding: 10px;
-// }
-//   .slidertop {
-//   }
-//   .category_container {
-//     border: 1px dashed #ccc;
-//     border-left: 0;
-//     border-right: 0;
-//     padding: 10px 0;
-//   }
-//   .sliderncatry {
-//     padding: 10px;
-//     .silerleft{float: left;
-//       width: 6%;font-size: 15px;
-//       color: #408f98;
-//       text-align: left;
-//       /*! display: inline-table; */
-//       height: 12px;}
-//     .silercenter{float:left;width: 82%;}
-//     .veh_name{font-size: 13px; margin:0;}
-//     .addride{color:#3a74ec;
-//     font-size: 30px;}
-//   }
-//   .center {
-//     margin: auto;
-//     width: 50%;
-//   }
-//   ion-scroll[scrollX] {
-//     white-space: nowrap;
-//     height: 120px;
-//     overflow: hidden;
+.ios .srchloct {
+  top: 3%;
+}
+.toolbar-ios ion-title {
+  padding: 0 52px 1px !important;}
+.market_pin{top:20%}
+@media screen and ( min-height: 480px ) {.market_pin{top:15%;}.platform-ios .bottom{left:0px !important;}}
 
-//     .scroll-item {
-//       display: inline-block;
-//     }
+@media screen and ( min-height: 568px ) { .market_pin{top:19%;}
+.toolbar-title{margin-top:15%;}
+}
 
-//     .selectable-icon {
-//       margin: 10px 20px 10px 20px;
-//       color: red;
-//       font-size: 100px;
-//     }
+@media screen and ( min-height: 667px ) {.market_pin{top:25%;}  }
 
-//     ion-avatar img {
-//       margin: 10px;
-//     }
-//   }
+@media screen and ( min-height: 812px ) {.market_pin{top:28%;}  }
 
-//   ion-scroll[scroll-avatar] {
-//     height: 60px;
-//   }
-
-//   /* Hide ion-content scrollbar */
-//   ::-webkit-scrollbar {
-//     display: none;
-//   }
-
-//   .circle-pic {
-//     width: 50px;
-//     height: 50px;
-//     -webkit-border-radius: 50%;
-//     border-radius: 50%;
-//   }
-//   ion-app._gmaps_cdv_ .nav-decor {
-//     background-color: transparent !important
-//   }
-//   .ion-footer {
-//     height: 25% !important;
-//     padding: 15px !important;
-//     background: #fff !important;
-//   }
-//   .scroll {
-//     height: 100%
-//   }
-//   .item-md {
-//     padding-left: 0px;
-//   }
-//   .fs-12 {
-//     font-size: 12px;
-//   }
-//   //ios
-//   .item-block {
-//     padding-left: 0px;
-//   }
-//   .ion-style {
-//     margin: 15px 20px;
-//     font-size: 25px;
-//     font-weight: bold;
-//   }
-//   #map {
-//     width: 100%;
-//     height: 80%;
-//   }
-//   .fs-18 {
-//     font-size: 18px !important;
-//   }
-//   .icon-md-primary {
-//     font-size: 3.0em !important;
-//   }
-//   .marquee {
-//     width: 450px;
-//     margin: 0 auto;
-//     overflow: hidden;
-//     white-space: nowrap;
-//     box-sizing: border-box;
-//     animation: marquee 50s linear infinite;
-//   }
-
-//   .marquee:hover {
-//     animation-play-state: paused
-//   }
-
-//   ion-fab[middle] {
-//     margin-top: 0 !important;
-//     top: 40% !important;
-//     left: 47% !important;
-//   }
-
-//   .fab {
-//     height: 45px;
-//     width: 45px;
-//   }
-//   .no_padding .col{
-//     padding: 0px !important;
-//     font-size: 12px !important;
-//   }
-//   .fab ion-icon {
-//     font-size: 15px;
-//   }
-
-//   .bg-warning {
-//     background: #eea236;
-//   }
-
-//   .mgleft-ng16 {
-//     margin-left: -16px !important;
-//   }
-
-//   .srch_bar {
-//     width: auto;
-//   }
-
-//   .loc_confirm {
-//     border-radius: 3px;
-//     padding: 3px;
-//     //font-size: 12px;
-//     color: #fff;
-//     font-size: 1.5rem !important;
-//     text-transform: capitalize;
-//   }
-//   @media screen and (min-width: 320px) and (max-width: 480px) {
-//     .fs-12 span {
-//       font-size: 12px !important;
-//     }
-//     ion-footer span {
-//       font-size: 12px;
-//     }
-//     .mgtop-10 {
-//       padding-left: 3px !important;
-//     }
-//   }
-//   @media screen and (min-width: 481px) and (max-width: 600px) {
-//     .fs-12 span {
-//       font-size: 12px !important;
-//     }
-//     ion-footer span {
-//       font-size: 12px;
-//     }
-//     .mgtop-10 {
-//       padding-left: 3px !important;
-//     }
-
-//   }
-//   @media screen and (min-width: 601px) and (max-width: 800px) {
-//     .fs-12 span {
-//       font-size: 12px !important;
-//     }
-//     ion-footer span {
-//       font-size: 12px;
-//     }
-//     .mgtop-10 {
-//       padding-left: 3px !important;
-//     }
-//   }
-//   @media screen and (min-width: 801px) and (max-width: 1024px) {
-//     .fs-12 span {
-//       font-size: 14px !important;
-//     }
-
-//   }
-//   @media screen and (min-width: 1025px) and (max-width: 1600px) {
-//     .fs-12 span {
-//       font-size: 15px !important;
-//     }
-
-//   }
-//   @media screen and (min-width: 1600px) and (max-width: 2000px) {
-//     .fs-12 span {
-//       font-size: 15px !important;
-//     }
-
-//   }
-
-//   .category_container {
-//     span {
-//       width: 70px;
-//       height: 70px;
-//       background: #d0d0d0;
-//       display: inline-block;
-//       border-radius: 80px;
-//       margin-right: 10px;
-//       text-align: center;
-//       padding: 6px;
-//       img {
-
-//         background: #d0d0d0;
-//         padding: 10px;
-//         border-radius: 28px;
-
-//       }
-//     }
-//     label {
-//       width: 70px;
-//       text-align: center;
-//       display: inline-block;
-//       margin-right: 10px;
-//       margin-top: 4px;
-//     }
-//   }
-// }
-
-
-
-
-
-// .calender_icon:before{font-size:35px;    margin: 5px 0 0 7px;}
-// .scroll-content._gmaps_cdv_ {
-//   margin-bottom: 0 !important;
-// }
+}

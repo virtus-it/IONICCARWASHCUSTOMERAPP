@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, ElementRef, ViewChild, NgZone } from "@angular/core";
-import { GetService } from "../../app/services/get.servie";
-import { ModalController, NavController, NavParams, Platform, Slides, ViewController } from "ionic-angular";
-import { Geolocation } from "@ionic-native/geolocation";
-import { GoogleMap, GoogleMaps, GoogleMapsEvent, ILatLng, LatLng, LatLngBounds, Polygon, Poly } from "@ionic-native/google-maps";
+import {ChangeDetectorRef, Component, ElementRef, NgZone, ViewChild} from "@angular/core";
+import {GetService} from "../../app/services/get.servie";
+import {ModalController, NavController, NavParams, Platform, Slides, ViewController} from "ionic-angular";
+import {Geolocation} from "@ionic-native/geolocation";
+import {GoogleMap, GoogleMaps, GoogleMapsEvent, ILatLng, LatLng, LatLngBounds} from "@ionic-native/google-maps";
 import {
   APP_TYPE,
   APP_USER_TYPE,
@@ -10,14 +10,13 @@ import {
   INTERNET_ERR_MSG,
   IS_WEBSITE,
   MOBILE_TYPE,
-  Utils,
-  RES_SUCCESS
+  RES_SUCCESS,
+  Utils
 } from "../../app/services/Utils";
-import { Diagnostic } from "@ionic-native/diagnostic";
-import { SignUp } from "../SignUp/SignUp";
-import { ConfirmOrder } from "../ConfirmOrderPage/ConfirmOrderPage";
-import { DatePicker } from '@ionic-native/date-picker';
-import { ServiceArea } from "../../app/services/servicearea";
+import {Diagnostic} from "@ionic-native/diagnostic";
+import {ConfirmOrder} from "../ConfirmOrderPage/ConfirmOrderPage";
+import {DatePicker} from '@ionic-native/date-picker';
+import {ServiceArea} from "../../app/services/servicearea";
 
 
 @Component({
@@ -44,6 +43,16 @@ export class MapView {
   categoryData: any;
   rides = [];
   currentIndex = 0;
+  list = [];
+  myDate = '';
+  myTime = '';
+  markers: any;
+  GoogleAutocomplete: any;
+  GooglePlaces: any;
+  geocoder: any;
+  autocompleteItems: any;
+  loading: any;
+  showCalender: boolean = false;
   private isExisting: any;
   private exMobileno: any;
   private exUserInfo: any;
@@ -52,22 +61,11 @@ export class MapView {
   private showMap: boolean = true;
   private minDate: any = new Date().toISOString();
 
-  list = [];
-  myDate = '';
-  myTime = '';
-
-  markers: any;
-  GoogleAutocomplete: any;
-  GooglePlaces: any;
-  geocoder: any;
-  autocompleteItems: any;
-  loading: any;
-  showCalender: boolean = false;
-
   constructor(public zone: NgZone, private apiService: GetService, public viewCtrl: ViewController, private modalCtrl: ModalController, private diagnostic: Diagnostic, private getService: GetService, private ref: ChangeDetectorRef, public platform: Platform, public navCtrl: NavController, private geo: Geolocation, private alertUtils: Utils, private param: NavParams, private serviceArea: ServiceArea, private datePicker: DatePicker) {
 
 
   }
+
   ngOnInit() {
     console.log('ngOnInit called')
     try {
@@ -200,13 +198,17 @@ export class MapView {
     this.autocompleteItems = [];
 
   }
+
   updateSearchResults() {
     if (this.autocomplete.input == '') {
       this.autocompleteItems = [];
       return;
     }
 
-    this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input, componentRestrictions: { country: ["AE"] } },
+    this.GoogleAutocomplete.getPlacePredictions({
+        input: this.autocomplete.input,
+        componentRestrictions: {country: ["AE"]}
+      },
       (predictions, status) => {
         this.autocompleteItems = [];
         if (predictions) {
@@ -289,7 +291,7 @@ export class MapView {
   }
 
   addNewRide() {
-    let model = this.modalCtrl.create('AddupdateridesPage', { "from": "create" });
+    let model = this.modalCtrl.create('AddupdateridesPage', {"from": "create"});
     model.onDidDismiss(data => {
       if (data) {
         this.alertUtils.showLog(data);
@@ -326,7 +328,7 @@ export class MapView {
   showServices(item) {
     Utils.sLog(item);
 
-    let model = this.modalCtrl.create('ProductsPage', { "category": item });
+    let model = this.modalCtrl.create('ProductsPage', {"category": item});
     model.onDidDismiss(data => {
       console.log("MapView");
       console.log(Utils.productsList);
@@ -377,7 +379,11 @@ export class MapView {
             for (let i = 0; i < result.length; i++) {
               const element = result[i];
               map.set(element[0].category, element);
-              this.list.push({ "category": element[0].category, "categoryid": element[0].categoryid, "imgurl": this.apiService.getImg() + "category_" + element[0].categoryid + ".png" })
+              this.list.push({
+                "category": element[0].category,
+                "categoryid": element[0].categoryid,
+                "imgurl": this.apiService.getImg() + "category_" + element[0].categoryid + ".png"
+              })
             }
             Utils.categoryList = map;
             Utils.sLog(Utils.categoryList.keys());
@@ -406,6 +412,7 @@ export class MapView {
     }
 
   }
+
   changeImage(item) {
     item.imgurl = "assets/imgs/dummy_img.png";
   }
@@ -492,8 +499,6 @@ export class MapView {
   }
 
 
-
-
   showAddressModal() {
     let modal = this.modalCtrl.create('AutocompletePage');
     modal.onDidDismiss(data => {
@@ -511,7 +516,7 @@ export class MapView {
   geoCode(address: any) {
     try {
       let geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ 'address': address }, (results, status) => {
+      geocoder.geocode({'address': address}, (results, status) => {
         this.latitude = results[0].geometry.location.lat();
         this.longitude = results[0].geometry.location.lng();
         if (this.latitude != 0 && this.longitude != 0) {
@@ -569,15 +574,21 @@ export class MapView {
             lng: sub[0].target.lng
           };
           let isInside: boolean = false;
-          for (let i = 0; i < this.serviceArea.list.length; i++) {
-            const path: any = this.serviceArea.list[i].path;
-            // use Poly.containsLocation for android
-            if (Poly.containsLocation(pickLatLng, path)) {
-            //  use this.isPointInPolygon(pickLatLng, path) for IOS
-            // if (this.isPointInPolygon(pickLatLng, path)) {
-              isInside = true;
-              break;
+
+          try {
+            for (let i = 0; i < this.serviceArea.list.length; i++) {
+              const path: any = this.serviceArea.list[i].path;
+              // use Poly.containsLocation for android
+              // if (Poly.containsLocation(pickLatLng, path)) {
+
+              //  use this.isPointInPolygon(pickLatLng, path) for IOS
+              if (this.isPointInPolygon(pickLatLng, path)) {
+                isInside = true;
+                break;
+              }
             }
+          } catch (e) {
+            Utils.sLog(e);
           }
 
           if (isInside) {
@@ -606,7 +617,8 @@ export class MapView {
             this.showProgress = false;
             this.showMap = false;
             this.userAddr = "";
-            // this.ref.detectChanges();
+            this.ref.detectChanges();
+
           }
           this.showProgress = false;
 
@@ -691,7 +703,6 @@ export class MapView {
         this.userLatLng = new LatLng(0.0, 0.0);
       }
     }
-
 
 
     try {

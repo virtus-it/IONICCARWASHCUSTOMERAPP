@@ -48,25 +48,27 @@ export class ContactPage {
 
   getData() {
     try {
-      this.alertUtils.showLoading();
-      this.getService.getReq(this.getService.fetchUserInfo() + Utils.USER_INFO_DATA.userid + "/" + APP_TYPE).then(res => {
-        this.alertUtils.hideLoading();
-        this.alertUtils.showLog(res);
-        if (res.result == RES_SUCCESS) {
-          if (res.data) {
+      this.navCtrl.push('MyProfile', {
+        // items: res.data
+      })
 
-            this.navCtrl.push('MyProfile', {
-              items: res.data
-            })
-          }
-        } else {
-          this.alertUtils.showToast(TRY_AGAIN_ERR_MSG);
-        }
-      }, err => {
-        this.alertUtils.showToast(this.alertUtils.INTERNET_ERR_MSG);
-        this.alertUtils.hideLoading();
-        Utils.sLog(err);
-      });
+      // this.alertUtils.showLoading();
+      // this.getService.getReq(this.getService.fetchUserInfo() + Utils.USER_INFO_DATA.userid + "/" + APP_TYPE).then(res => {
+      //   this.alertUtils.hideLoading();
+      //   this.alertUtils.showLog(res);
+      //   if (res.result == RES_SUCCESS) {
+      //     if (res.data) {
+
+           
+      //     }
+      //   } else {
+      //     this.alertUtils.showToast(TRY_AGAIN_ERR_MSG);
+      //   }
+      // }, err => {
+      //   this.alertUtils.showToast(this.alertUtils.INTERNET_ERR_MSG);
+      //   this.alertUtils.hideLoading();
+      //   Utils.sLog(err);
+      // });
     } catch (error) {
       this.alertUtils.showLog(error);
     }

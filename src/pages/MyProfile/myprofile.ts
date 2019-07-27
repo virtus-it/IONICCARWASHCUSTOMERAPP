@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
-import { APP_TYPE, APP_USER_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, Utils, VALIDATE_EMAIL, IS_WEBSITE } from "../../app/services/Utils";
+import { APP_TYPE, APP_USER_TYPE, INTERNET_ERR_MSG, RES_SUCCESS, Utils, VALIDATE_EMAIL, IS_WEBSITE, TRY_AGAIN_ERR_MSG } from "../../app/services/Utils";
 import { GetService } from "../../app/services/get.servie";
 import { AlertController, NavController, NavParams, IonicPage } from "ionic-angular";
 import { Diagnostic } from "@ionic-native/diagnostic";
@@ -32,7 +32,6 @@ export class MyProfile {
     Utils.sLog(lang);
     translateService.use(lang);
     this.imgURl = getService.getImg();
-    this.items = this.navParam.get("items");
     if (this.items) {
       this.alertUtils.showLog(this.items);
       this.imageUrl = this.imgURl + this.items.user.imageurl + this.defpng;
@@ -40,6 +39,7 @@ export class MyProfile {
 
     if(IS_WEBSITE){
       this.userID = Utils.USER_INFO_DATA.userid;
+      this.fetchProfile();
     }
 
 
@@ -54,6 +54,28 @@ export class MyProfile {
     // } else {
       this.navCtrl.pop();
     // }
+  }
+
+  fetchProfile(){
+    try {
+      
+      this.getService.getReq(this.getService.fetchUserInfo() + Utils.USER_INFO_DATA.userid + "/" + APP_TYPE).then(res => {
+        this.alertUtils.showLog(res);
+        if (res.result == RES_SUCCESS) {
+          if (res.data) {
+            this.items = res.data;
+          }
+        } else {
+          this.alertUtils.showToast(TRY_AGAIN_ERR_MSG);
+        }
+      }, err => {
+        this.alertUtils.showToast(this.alertUtils.INTERNET_ERR_MSG);
+        this.alertUtils.hideLoading();
+        Utils.sLog(err);
+      });
+    } catch (error) {
+      this.alertUtils.showLog(error);
+    }
   }
 
   ngOnInit() {
@@ -71,6 +93,7 @@ export class MyProfile {
               Utils.USER_INFO_DATA = value;
               this.alertUtils.showLog(JSON.stringify(Utils.USER_INFO_DATA));
               this.alertUtils.showLog("userinfo updated");
+              this.fetchProfile();
             }
           });
         }

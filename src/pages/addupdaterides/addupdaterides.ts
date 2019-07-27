@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {GetService} from '../../app/services/get.servie';
-import {APP_TYPE, APP_USER_TYPE, Utils, IS_WEBSITE} from '../../app/services/Utils';
+import {APP_TYPE, Utils} from '../../app/services/Utils';
 import {TranslateService} from '@ngx-translate/core';
 
 @IonicPage()
@@ -10,8 +10,8 @@ import {TranslateService} from '@ngx-translate/core';
   templateUrl: 'addupdaterides.html',
 })
 export class AddupdateridesPage {
-  items: any;
-  filterItems: any;
+  items = [];
+  filterItems = [];
   page1: boolean = true;
   page2: boolean = false;
   page3: boolean = false;
@@ -25,6 +25,8 @@ export class AddupdateridesPage {
   calledFrom: string = "";
   updateItem: any;
   searchTerm: string = "";
+  isPaging: boolean = false;
+  showProgress:boolean = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef, private viewCtrl: ViewController, private translateService: TranslateService) {
@@ -55,12 +57,12 @@ export class AddupdateridesPage {
     }
   }
 
+  ionViewDidLoad() {
+    Utils.sLog('ionViewDidLoad AddupdateridesPage');
+  }
 
   filterItem() {
     this.filterItems = this.items.filter(item => item.manufacturer.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1 || item.model.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1);
-
-    this.ref.detectChanges();
-
   }
 
   pickColor(color) {
@@ -129,9 +131,6 @@ export class AddupdateridesPage {
         this.viewCtrl.dismiss('success');
 
       }
-
-    },err =>{
-      Utils.sLog(err);
     })
   }
 
@@ -144,28 +143,10 @@ export class AddupdateridesPage {
       this.title = "Enter details below"
 
     }
-    this.ref.detectChanges();
-
   }
 
   ngOnInit() {
-
-    if(IS_WEBSITE){
-      this.fetchRides();
-    }
-
-    this.alertUtils.getUserInfo().then(user => {
-      if (user) {
-        Utils.USER_INFO_DATA = user;
-        Utils.sLog("User info in map page");
-        Utils.sLog(Utils.USER_INFO_DATA);
-        this.fetchRides();
-      }
-
-    }).catch(err => {
-      this.alertUtils.showLog("err in user info " + err);
-
-    });
+    this.fetchRides(0);
   }
 
   onChange(c) {
@@ -177,32 +158,56 @@ export class AddupdateridesPage {
     this.ref.detectChanges();
   }
 
-  fetchRides() {
+  fetchRides(val:number) {
 
-    try {
-      let input = {"root": {"loginid":Utils.USER_INFO_DATA.userid,"usertype": APP_USER_TYPE}};
-      let data = JSON.stringify(input);
-      this.apiService.postReq(GetService.entities(), data).then(res => {
-        console.log(res);
-        if (res && res.data) {
+    // let input = {"root": {"TransType":"getallrides","usertype": "customer",}};
+    let input = {"root": {"usertype": "customer","lastid":val}};
+    this.showProgress = true;
+    this.apiService.postReq(GetService.entities(), JSON.stringify(input)).then(res => {
+      this.showProgress = false;
+      Utils.sLog(res)
+      if (res && res.data) {
+        if(this.isPaging){
+          for(let i=0;i<res.length;i++){
+            this.items.push(res.data[i]);
+            this.filterItems.push(res.data[i]);
+          }
+          this.isPaging =false;
+        }else{
           this.items = res.data;
           this.filterItems = res.data;
-          if (this.calledFrom == "update") {
-            for (let i = 0; i < this.items.length; i++) {
-              const element = this.items[i];
-              if (element.manufacturer && element.manufacturer.toLowerCase() == this.updateItem.manufacturer && element.model && element.model.toLowerCase() == this.updateItem.model) {
-                this.itemSelected = element;
-              }
+        }
 
+        if (this.calledFrom == "update") {
+          for (let i = 0; i < this.items.length; i++) {
+            const element = this.items[i];
+            if (element.manufacturer && element.manufacturer.toLowerCase() == this.updateItem.manufacturer && element.model && element.model.toLowerCase() == this.updateItem.model) {
+              this.itemSelected = element;
             }
+
           }
         }
-        this.ref.detectChanges();
+      }
+    },err =>{
+      Utils.sLog(err);
+      this.showProgress = false;
+    })
+  }
 
-      })
-    } catch (e) {
-      Utils.sLog(e);
+
+  doInfinite(paging): Promise<any> {
+    this.isPaging = true;
+    if (this.items) {
+      if (this.items.length > 0)
+        this.fetchRides(this.items[this.items.length-1].entityid)
+      else
+        this.fetchRides(0);
     }
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 10000);
+    })
   }
 
 }

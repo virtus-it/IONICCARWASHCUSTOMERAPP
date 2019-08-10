@@ -17,6 +17,7 @@ map-page {
    margin: 2px !important;
   }
 
+ 
 .bottom {
     position: absolute;
     bottom: 0;
@@ -118,14 +119,22 @@ ion-footer .homefulbutton .button-ios {
 }
 .toolbar-ios ion-title {
   padding: 0 52px 1px !important;}
-.market_pin{top:20%}
-@media screen and ( min-height: 480px ) {.market_pin{top:15%;}}
+.market_pin{
+  top:45%;
+  position: absolute;
+ 
+  transform: translate(0, -45%);
 
-@media screen and ( min-height: 568px ) { .market_pin{top:17%;} }
+}
 
-@media screen and ( min-height: 667px ) {.market_pin{top:25%;}  }
+// -webkit-transform: translate(0, -50%); commented as it not working
+// @media screen and ( min-height: 480px ) {.market_pin{top:15%;}}
 
-@media screen and ( min-height: 812px ) {.market_pin{top:28%;}  }
+// @media screen and ( min-height: 568px ) { .market_pin{top:17%;} }
+
+// @media screen and ( min-height: 667px ) {.market_pin{top:25%;}  }
+
+// @media screen and ( min-height: 812px ) {.market_pin{top:28%;}  }
 
 
 // .search_box{

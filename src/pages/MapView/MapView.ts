@@ -288,7 +288,17 @@ export class MapView {
   next() {
     this.confirmLocation();
   }
-
+  goToServiceArea() {
+    const loc = new LatLng(24.361024, 54.641256);
+    this.map.moveCamera({
+      target: loc,
+      zoom: 9,
+      tilt: 10,
+      duration: 1000
+    }).catch(reason => {
+      this.alertUtils.showLog(reason);
+    });
+  }
   showServices(item) {
     Utils.sLog(item);
 
@@ -512,8 +522,8 @@ export class MapView {
             const path: any = this.serviceArea.list[i].path;
             // use Poly.containsLocation for android
             if (Poly.containsLocation(pickLatLng, path)) {
-            //  use this.isPointInPolygon(pickLatLng, path) for IOS
-            // if (this.isPointInPolygon(pickLatLng, path)) {
+              //  use this.isPointInPolygon(pickLatLng, path) for IOS
+              // if (this.isPointInPolygon(pickLatLng, path)) {
               isInside = true;
               break;
             }
@@ -634,10 +644,21 @@ export class MapView {
 
 
     try {
+
+      if (this.rides && this.rides.length > 0) {
+        Utils.sLog("active ride index : " + this.slides.getActiveIndex());
+        Utils.rideSelected = this.rides[this.slides.getActiveIndex()];
+        Utils.sLog(Utils.rideSelected);
+      } else {
+        this.alertUtils.showToast("Please add a vehicle");
+        return false;
+      }
+
       if (!Utils.productsList && Utils.productsList == undefined || Utils.productsList == null || Utils.productsList.length == 0) {
         this.alertUtils.showToast("Please select at least one service");
         return false;
       }
+
       let isProductSel = false;
       for (let i = 0; i < Utils.productsList.length; i++) {
         const element = Utils.productsList[i];
@@ -650,14 +671,6 @@ export class MapView {
         return false;
       }
 
-      if (this.rides && this.rides.length > 0) {
-        Utils.sLog("active ride index : " + this.slides.getActiveIndex());
-        Utils.rideSelected = this.rides[this.slides.getActiveIndex()];
-        Utils.sLog(Utils.rideSelected);
-      } else {
-        this.alertUtils.showToast("Please add at least one vehicle");
-        return false;
-      }
 
       if (this.userAddr) {
         this.userAddr = this.userAddr.replace(new RegExp("'", 'g'), '');

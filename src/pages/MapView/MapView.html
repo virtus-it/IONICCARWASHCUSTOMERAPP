@@ -48,17 +48,16 @@
   <div class="wrapper">
 
     <div #map id="map">
-      <ion-fab center  class="market_pin">
+      <ion-fab center class="market_pin">
         <img src="assets/imgs/marker_pin.png" item-center height="50px">
       </ion-fab>
     </div>
 
     <!--<ion-fab style="width: 100%" bottom>-->
     <!--</ion-fab>-->
-    <ion-card class="bottom request-controls">
-      <!-- <ion-spinner block name="dots" color="primary" *ngIf="showProgress" item-center></ion-spinner> -->
 
-      <div class="sliderncatry" *ngIf="showMap">
+    <ion-card class="bottom request-controls" *ngIf="showMap">
+      <ion-card-header>
         <ion-row class="slidertop" justify-content-center align-items-center *ngIf="rides.length > 0">
           <ion-col col-10>
             <span class="silerleft">
@@ -90,7 +89,9 @@
           </span>
           <ion-label style="color: #000000;">Add a vehicle</ion-label>
         </div>
+      </ion-card-header>
 
+      <ion-card-content>
         <ion-row>
           <ion-item no-lines>
             <div class="category_container">
@@ -116,8 +117,23 @@
             </button>
           </ion-col>
         </ion-row>
-      </div>
-      <p class="warning" *ngIf="!showMap">Service not available in this area </p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card  class="bottom request-controls" *ngIf="!showMap">
+
+      <ion-card-header>
+        <h2>Out of service area</h2>
+        <p>Service not avaiable in the selected area</p>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-buttons (click)="goToServiceArea()">
+          <button ion-button full>
+            GO TO SERVICE AREA
+          </button>
+        </ion-buttons>
+      </ion-card-content>
+
     </ion-card>
   </div>
 </ion-content>

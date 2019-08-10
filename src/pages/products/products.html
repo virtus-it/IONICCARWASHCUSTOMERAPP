@@ -17,7 +17,7 @@
     <ion-row class="list_container" (click)="add(data)">
       <ion-col style="display: inline-block;float: left;">
         <div class="list_img ">
-          <ion-avatar slot="start">
+          <ion-avatar item-start>
             <img src="{{data.imgurl}}" (error)="changeImage(data)" />
           </ion-avatar>
         </div>
@@ -29,11 +29,8 @@
         </div>
 
         <div class="list_chkbtn ">
-
-          <ion-item class="schedule_radiobtn">
-            <ion-checkbox (ionChange)="onChange(data)" [(ngModel)]="data.ischecked" value="data.ischecked"></ion-checkbox>
-          </ion-item>
-
+            <img *ngIf="data.ischecked" src="assets/imgs/img_checkbox_green.png" />
+            <img *ngIf="!data.ischecked" src="assets/imgs/img_checkboxgray.png" />
         </div>
 
       </ion-col>
@@ -51,7 +48,7 @@
         </strong>
       </ion-col>
       <ion-col col-4 class="right">
-        <button  ion-button block (click)="continue()"  >Continue
+        <button ion-button block (click)="continue()">Continue
         </button>
       </ion-col>
     </ion-row>

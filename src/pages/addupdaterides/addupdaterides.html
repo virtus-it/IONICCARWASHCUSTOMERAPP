@@ -14,7 +14,12 @@
 
 <ion-content padding>
   <div *ngIf="page1">
-    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterItem()" placeholder="Search manufacturer"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionClear)="onCancel($event)" (ionInput)="filterItem($event)" placeholder="Search manufacturer or model"></ion-searchbar>
+
+    <ion-spinner block name="crescent" *ngIf="showProgress" color="primary" class="spinner_center" item-center></ion-spinner>
+    <ion-item *ngIf="this.searchTerm.length > 2 && filterItems.length == 0 && !showProgress">
+      <h3>No records found !</h3>
+    </ion-item>
 
     <ion-list>
       <ion-item *ngFor="let item of filterItems" (click)="pickedItem(item)">
@@ -22,7 +27,7 @@
       </ion-item>
     </ion-list>
 
-    <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite($event))">
+    <ion-infinite-scroll *ngIf="this.searchTerm.length == 0" (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>
@@ -30,7 +35,7 @@
   <div *ngIf="page2">
 
     <ion-card>
-      <img src="https://img.appx4fun.com/a7/8d/9d/a06cbe6a-05a4-4e71-970e-98325530e591-logo.jpg"/>
+      <img src="https://img.appx4fun.com/a7/8d/9d/a06cbe6a-05a4-4e71-970e-98325530e591-logo.jpg" />
       <ion-card-content>
         <ion-card-title>
           {{ itemSelected.manufacturer }} {{ " - " + itemSelected.model }}
@@ -39,59 +44,52 @@
     </ion-card>
     <h4>{{ 'MY_RIDES_PAGE.LABELS.lb_plate_info' | translate }}</h4>
 
-    <h4>Pick Color <b [ngClass]="pColor"
-                      style="border: 2px solid #ccc;border-radius: 7px;padding: 3px;padding-left: 50px;"></b></h4>
+    <h4>Pick Color <b [ngClass]="pColor" style="border: 2px solid #ccc;border-radius: 7px;padding: 3px;padding-left: 50px;"></b></h4>
     <ion-grid>
       <ion-row>
         <ion-col class="pd-20" style='flex: 0 0 30px;background-color:red' (click)="pickColor('red')"></ion-col>
         <ion-col class="pd-20" style='flex: 0 0 30px;background-color:gray' (click)="pickColor('gray')"></ion-col>
         <ion-col class="pd-20" style='flex: 0 0 30px;background-color:white' (click)="pickColor('white')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:black;color: snow'
-                 (click)="pickColor('black')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:black;color: snow' (click)="pickColor('black')"></ion-col>
         <ion-col class="pd-20" style='flex: 0 0 30px;background-color:brown' (click)="pickColor('brown')"></ion-col>
         <ion-col class="pd-20" style='flex: 0 0 30px;background-color:bisque' (click)="pickColor('bisque')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:chocolate'
-                 (click)="pickColor('chocolate')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:chocolate' (click)="pickColor('chocolate')"></ion-col>
         <ion-col class="pd-20" style='flex: 0 0 30px;background-color:yellow' (click)="pickColor('yellow')"></ion-col>
-        <ion-col class="pd-20" style='                          flex: 0 0 30px;background-color:orange'
-                 (click)="pickColor('orange')"></ion-col>
+        <ion-col class="pd-20" style='                          flex: 0 0 30px;background-color:orange' (click)="pickColor('orange')"></ion-col>
         <ion-col class="pd-20" style='flex: 0 0 30px;background-color:green' (click)="pickColor('green')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:palevioletred'
-                 (click)="pickColor('palevioletred')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:steelblue'
-                 (click)="pickColor('steelblue')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:palevioletred' (click)="pickColor('palevioletred')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:steelblue' (click)="pickColor('steelblue')"></ion-col>
         <ion-col class="pd-20" style='flex: 0 0 30px;background-color:teal' (click)="pickColor('teal')"></ion-col>
-        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:slategray'
-                 (click)="pickColor('slategray')"></ion-col>
+        <ion-col class="pd-20" style='flex: 0 0 30px;background-color:slategray' (click)="pickColor('slategray')"></ion-col>
         <ion-col class="pd-20" style='flex: 0 0 30px;background-color:blue' (click)="pickColor('blue')"></ion-col>
 
       </ion-row>
     </ion-grid>
 
-      <ion-item>
-        <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_year' | translate }}</ion-label>
-        <ion-input pattern="[0-9]*" type="tel" maxlength="4" minlength="4" [(ngModel)]="year"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_year' | translate }}</ion-label>
+      <ion-input pattern="[0-9]*" type="tel" maxlength="4" minlength="4" [(ngModel)]="year"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_city' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="city" maxlength="100"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_city' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="city" maxlength="100"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_plate_no' | translate }}</ion-label>
-        <ion-input type="tel" [(ngModel)]="plateNumber" maxlength="5"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_plate_no' | translate }}</ion-label>
+      <ion-input type="tel" [(ngModel)]="plateNumber" maxlength="5"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_plate_code' | translate }}</ion-label>
-        <ion-input type="text" maxlength="3"  [(ngModel)]="plateCode" (ngModelChange)="plateCode = $event.toLocaleUpperCase()"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label>{{ 'MY_RIDES_PAGE.LABELS.lb_plate_code' | translate }}</ion-label>
+      <ion-input type="text" maxlength="3" [(ngModel)]="plateCode" (ngModelChange)="plateCode = $event.toLocaleUpperCase()"></ion-input>
+    </ion-item>
 
-      <button type="button" ion-button full (click)="continue()" class="btn ">{{ 'MY_RIDES_PAGE.BUTTONS.btn_done' |
-        translate }}
+    <button type="button" ion-button full (click)="continue()" class="btn ">{{ 'MY_RIDES_PAGE.BUTTONS.btn_done' |
+      translate }}
 
-      </button>
+    </button>
 
   </div>
 

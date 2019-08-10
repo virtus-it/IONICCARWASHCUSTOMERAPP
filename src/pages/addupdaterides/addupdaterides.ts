@@ -1,8 +1,8 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
-import {GetService} from '../../app/services/get.servie';
-import {APP_TYPE, Utils} from '../../app/services/Utils';
-import {TranslateService} from '@ngx-translate/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { GetService } from '../../app/services/get.servie';
+import { APP_TYPE, Utils, APP_USER_TYPE } from '../../app/services/Utils';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -26,7 +26,19 @@ export class AddupdateridesPage {
   updateItem: any;
   searchTerm: string = "";
   isPaging: boolean = false;
+  showProgress: boolean = false;
 
+  searchInput = {
+    "root": {
+      "userid": '',
+      "loginid": '',
+      "searchtext": "",
+      "searchtype": "manufacturermodel",
+      "TransType": 'searchformodel',
+      "usertype": APP_USER_TYPE,
+      "apptype": APP_TYPE
+    }
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertUtils: Utils, private apiService: GetService, private ref: ChangeDetectorRef, private viewCtrl: ViewController, private translateService: TranslateService) {
     let lang = "en";
@@ -59,9 +71,34 @@ export class AddupdateridesPage {
   ionViewDidLoad() {
     Utils.sLog('ionViewDidLoad AddupdateridesPage');
   }
+  onCancel(event){
+    Utils.sLog('cancel');
+    this.filterItems = this.items;
+  }
+  filterItem(event) {
+    if (this.searchTerm && this.searchTerm.length > 2) {
+      this.filterItems = [];
+      this.showProgress = true;
+      this.searchInput.root.userid = Utils.USER_INFO_DATA.userid;
+      this.searchInput.root.loginid = Utils.USER_INFO_DATA.userid;
+      this.searchInput.root.searchtext = this.searchTerm.toLowerCase();
+      this.apiService.postReq(GetService.entities(), this.searchInput).then(res => {
+        this.showProgress = false;
+        Utils.sLog(res);
+        if (res && res.data) {
+          this.filterItems = res.data;
+        }
+      }, err => {
+        this.showProgress = false;
+        Utils.sLog(err);
+      })
+    }
+    // if (this.searchTerm.length > 0) {
+    //   this.filterItems = this.items;
+    // }
 
-  filterItem() {
-    this.filterItems = this.items.filter(item => item.manufacturer.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1 || item.model.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1);
+
+    // this.filterItems = this.items.filter(item => item.manufacturer.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1 || item.model.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1);
   }
 
   pickColor(color) {
@@ -157,50 +194,54 @@ export class AddupdateridesPage {
     this.ref.detectChanges();
   }
 
-  fetchRides(val:number) {
-
-    let input = {"root": {"usertype": "customer","lastid":val}};
-    this.apiService.postReq(GetService.entities(), input).then(res => {
-      Utils.sLog(res)
-      if (res && res.data) {
-        if(this.isPaging){
-          for(let i=0;i<res.length;i++){
-            this.items.push(res.data[i]);
-            this.filterItems.push(res.data[i]);
-            this.isPaging =false;
-          }
-        }else{
-          this.items = res.data;
-          this.filterItems = res.data;
-        }
-
-        if (this.calledFrom == "update") {
-          for (let i = 0; i < this.items.length; i++) {
-            const element = this.items[i];
-            if (element.manufacturer && element.manufacturer.toLowerCase() == this.updateItem.manufacturer && element.model && element.model.toLowerCase() == this.updateItem.model) {
-              this.itemSelected = element;
-            }
-
-          }
-        }
+  fetchRides(val: number, paging?) {
+    try {
+      let input = { "root": { "usertype": "customer", "lastid": val } };
+      if (!this.isPaging) {
+        this.showProgress = true;
       }
-    })
+      this.apiService.postReq(GetService.entities(), input).then(res => {
+        Utils.sLog(res)
+        if (res && res.data) {
+          if (this.isPaging) {
+            if (paging)
+              paging.complete();
+            // for (let i = 0; i < res.length; i++) {
+            //   this.filterItems.push(res.data[i]);
+            // }
+            this.filterItems = [...this.filterItems, ...res.data];
+            this.items = this.filterItems;
+            this.isPaging = false;
+          } else {
+            this.showProgress = false;
+            this.items = res.data;
+            this.filterItems = res.data;
+          }
+
+          if (this.calledFrom == "update") {
+            for (let i = 0; i < this.items.length; i++) {
+              const element = this.items[i];
+              if (element.manufacturer && element.manufacturer.toLowerCase() == this.updateItem.manufacturer && element.model && element.model.toLowerCase() == this.updateItem.model) {
+                this.itemSelected = element;
+              }
+
+            }
+          }
+        }
+      });
+    } catch (error) {
+      this.isPaging = false;
+      this.showProgress = false;
+    }
   }
 
 
-  doInfinite(paging): Promise<any> {
+  doInfinite(paging) {
     this.isPaging = true;
     if (this.items) {
       if (this.items.length > 0)
-        this.fetchRides(this.items[this.items.length-1].entityid)
-      else
-        this.fetchRides(0);
+        this.fetchRides(this.items[this.items.length - 1].entityid, paging)
     }
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, 10000);
-    })
   }
 
 }

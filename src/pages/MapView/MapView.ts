@@ -1,8 +1,8 @@
-import {ChangeDetectorRef, Component, ElementRef, NgZone, ViewChild} from "@angular/core";
-import {GetService} from "../../app/services/get.servie";
-import {ModalController, NavController, NavParams, Platform, Slides, ViewController} from "ionic-angular";
-import {Geolocation} from "@ionic-native/geolocation";
-import {GoogleMap, GoogleMaps, GoogleMapsEvent, ILatLng, LatLng, LatLngBounds} from "@ionic-native/google-maps";
+import { ChangeDetectorRef, Component, ElementRef, NgZone, ViewChild } from "@angular/core";
+import { GetService } from "../../app/services/get.servie";
+import { ModalController, NavController, NavParams, Platform, Slides, ViewController } from "ionic-angular";
+import { Geolocation } from "@ionic-native/geolocation";
+import { GoogleMap, GoogleMaps, GoogleMapsEvent, ILatLng, LatLng, LatLngBounds } from "@ionic-native/google-maps";
 import {
   APP_TYPE,
   APP_USER_TYPE,
@@ -13,10 +13,10 @@ import {
   RES_SUCCESS,
   Utils
 } from "../../app/services/Utils";
-import {Diagnostic} from "@ionic-native/diagnostic";
-import {ConfirmOrder} from "../ConfirmOrderPage/ConfirmOrderPage";
-import {DatePicker} from '@ionic-native/date-picker';
-import {ServiceArea} from "../../app/services/servicearea";
+import { Diagnostic } from "@ionic-native/diagnostic";
+import { ConfirmOrder } from "../ConfirmOrderPage/ConfirmOrderPage";
+import { DatePicker } from '@ionic-native/date-picker';
+import { ServiceArea } from "../../app/services/servicearea";
 
 
 @Component({
@@ -206,9 +206,9 @@ export class MapView {
     }
 
     this.GoogleAutocomplete.getPlacePredictions({
-        input: this.autocomplete.input,
-        componentRestrictions: {country: ["AE"]}
-      },
+      input: this.autocomplete.input,
+      componentRestrictions: { country: ["AE"] }
+    },
       (predictions, status) => {
         this.autocompleteItems = [];
         if (predictions) {
@@ -291,7 +291,7 @@ export class MapView {
   }
 
   addNewRide() {
-    let model = this.modalCtrl.create('AddupdateridesPage', {"from": "create"});
+    let model = this.modalCtrl.create('AddupdateridesPage', { "from": "create" });
     model.onDidDismiss(data => {
       if (data) {
         this.alertUtils.showLog(data);
@@ -328,7 +328,7 @@ export class MapView {
   showServices(item) {
     Utils.sLog(item);
 
-    let model = this.modalCtrl.create('ProductsPage', {"category": item});
+    let model = this.modalCtrl.create('ProductsPage', { "category": item });
     model.onDidDismiss(data => {
       console.log("MapView");
       console.log(Utils.productsList);
@@ -516,7 +516,7 @@ export class MapView {
   geoCode(address: any) {
     try {
       let geocoder = new google.maps.Geocoder();
-      geocoder.geocode({'address': address}, (results, status) => {
+      geocoder.geocode({ 'address': address }, (results, status) => {
         this.latitude = results[0].geometry.location.lat();
         this.longitude = results[0].geometry.location.lng();
         if (this.latitude != 0 && this.longitude != 0) {
@@ -534,6 +534,20 @@ export class MapView {
       });
     } catch (e) {
       this.alertUtils.showLog(e.toString());
+    }
+  }
+  goToServiceArea() {
+    if (this.map) {
+      let loc: LatLng;
+      loc = new LatLng(24.4539, 54.3773);
+      this.map.moveCamera({
+        target: loc,
+        zoom: 27,
+        tilt: 10,
+        duration: 1000
+      }).catch(reason => {
+        this.alertUtils.showLog(reason);
+      });
     }
   }
 

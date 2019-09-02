@@ -295,7 +295,7 @@ export class OrderDetails {
 
   sendMessage(item) {
     // this.showPrompt(item)
-    if (this.alertUtils.validateText(this.editorMsg, "Message", 3, 250)) {
+    if (this.alertUtils.validateText(this.editorMsg, "Message", 1, 250)) {
       this.createMessage(item, this.editorMsg)
     } else {
       this.alertUtils.showToast(this.alertUtils.ERROR_MES);

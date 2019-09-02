@@ -161,6 +161,11 @@ export class Login {
                           userName = this.info.first_name + " " + this.info.last_name;
                         else
                           userName = this.info.first_name;
+
+                        if(this.info.first_name){
+                          this.alertUtils.sliderName = this.info.first_name;
+                        }
+
                         if (!this.info.email)
                           this.info.email = "";
 
@@ -181,6 +186,8 @@ export class Login {
                         this.navCtrl.setRoot(MapView).then(next => {
                           this.setGCMDetails();
                         });
+
+                        //this.navCtrl.setRoot();
                       } else {
                         this.alertUtils.showAlert("Wrong Application", "It's Customer Application\nTry to use ADMIN application", "OK");
                         this.showLogin = true;

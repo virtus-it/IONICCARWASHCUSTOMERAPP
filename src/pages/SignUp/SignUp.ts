@@ -662,7 +662,7 @@ export class SignUp {
       if (res.result == this.alertUtils.RESULT_SUCCESS) {
         if (res.data.code) {
           if (res.data.code == 404) {
-            this.alertUtils.showAlert("USER ALREADY EXIST", "Please try to login", "OK")
+            this.alertUtils.showAlert(res.data.message,'', "OK")
           }
         } else {
           this.showButtonRegistered = false;

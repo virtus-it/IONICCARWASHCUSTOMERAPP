@@ -78,9 +78,10 @@
         </p>
       </ion-item>
 
-      <div class="item item-text-wrap mgleft-5" *ngIf="showButtonRegistered">
-        <ion-checkbox [(ngModel)]="cbTerms" (ionChange)="refreshUI()"></ion-checkbox>
-        <span class="fs-14"> &nbsp;{{ 'SIGNUP_PAGE.LABELS.lb_privacy_1' | translate }}
+      <div class="item item-text-wrap mgleft-5" class="largerCheckbox" *ngIf="showButtonRegistered" >
+        <ion-checkbox style="zoom:2;" [(ngModel)]="cbTerms"  (ionChange)="refreshUI()"></ion-checkbox >
+        <span class="fs-14"> &nbsp;
+          {{ 'SIGNUP_PAGE.LABELS.lb_privacy_1' | translate }}
           <a href="http://www.virtus-it.com/legal/">{{ 'SIGNUP_PAGE.LABELS.lb_privacy_2' | translate }}</a> and
           <a href="http://www.virtus-it.com/privacy-statement/">{{ 'SIGNUP_PAGE.LABELS.lb_privacy_3' | translate }}</a>
         </span>

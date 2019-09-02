@@ -12,7 +12,7 @@ import * as moment from "moment";
 import { Device } from "@ionic-native/device";
 
 export const SHOW_ALL = false;
-export const IS_WEBSITE: boolean = false;
+export const IS_WEBSITE: boolean = true;
 
 const KEY_USER_ID = 'secure_storage_userid';
 const KEY_DEALER_ID = 'secure_storage_dealerid';
@@ -72,7 +72,7 @@ export class Utils {
   constructor(private appRate: AppRate, private diagnostic: Diagnostic, private net: Network, public toast: ToastController, public loadingCtrl: LoadingController, private appVersion: AppVersion, private nativeStorage: NativeStorage, public alertCtrl: AlertController, private cNumber: CallNumber, private tToast: Toast, private nSetting: OpenNativeSettings, private device: Device) {
 // Utils.USER_INFO_DATA = {
 //       "Result": 1,
-//       "userid": 6,
+//       "userid": 31,
 //       "username": null,
 //       "email": "ali@test.com",
 //       "mobileno": "0000000073",
@@ -178,11 +178,11 @@ export class Utils {
   }
 
   static sLog(val, lineNumber?, pageName?) {
-    // console.log(val);
-    // if (lineNumber)
-    //   console.log(lineNumber);
-    // if (pageName)
-    //   console.log(pageName);
+     console.log(val);
+    if (lineNumber)
+    console.log(lineNumber);
+    if (pageName)
+    console.log(pageName);
   }
 
   static getRandomRolor() {

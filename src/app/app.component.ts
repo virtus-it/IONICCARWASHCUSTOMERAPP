@@ -61,7 +61,7 @@ export class MyApp {
       this.initPushNotification();
 
       if (IS_WEBSITE) {
-        this.sliderName = Utils.USER_INFO_DATA.first_name;
+       // this.sliderName = Utils.USER_INFO_DATA.first_name;
       }
 
     });

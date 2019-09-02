@@ -3,7 +3,7 @@ import { Headers, Http, RequestOptions } from "@angular/http";
 import "rxjs/add/operator/map";
 import { APP_TYPE, APP_USER_TYPE, IS_WEBSITE, Utils } from "./Utils";
 
-export const APP_VER_CODE: string = "15";
+export const APP_VER_CODE: string = "16";
 
 @Injectable()
 export class GetService {

@@ -1,19 +1,33 @@
 <ion-content>
-    <ion-fab top left (click)="goBack()">
-        <button ion-fab>
-          <ion-icon name="arrow-round-back"></ion-icon>
-        </button>
-      </ion-fab>
-  
-      <ion-fab right top (click)="openSocket()">
-        <button ion-fab>
-          <ion-icon name="md-refresh-circle"></ion-icon>
-        </button>
-      </ion-fab>
-  
-      <!-- <ion-fab center middle class="mgleft-ng16">
+  <ion-fab top left (click)="goBack()">
+    <button ion-fab>
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-fab right top (click)="openSocket()">
+    <button ion-fab>
+      <ion-icon name="md-refresh-circle"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <!-- <ion-fab center middle class="mgleft-ng16">
         <img src="assets/imgs/marker_pin.png" item-center>
       </ion-fab> -->
-  <div #map id="map"> 
+  <div #map id="map">
   </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row justify-content-between>
+      <ion-col col align-self-center class="left">
+        <strong>{{suppName}} on its way
+        </strong>
+      </ion-col>
+      <ion-col col-4 class="right" *ngIf="time">
+        <strong>Estimated time : {{time}}
+        </strong>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

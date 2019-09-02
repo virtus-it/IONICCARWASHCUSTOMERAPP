@@ -312,7 +312,19 @@ export class AboutPage {
 
               if (res.data[i].supplierdetails)
                 res.data[i]["defindimg"] = this.apiService.getImg() + "supplier_" + res.data[i].supplierdetails.userid;
-            } else if (res.data[i].status == "doorlock" || res.data[i].status == "Door Locked") {
+            }
+            /*else if (res.data[i].status == "jobstarted" || res.data[i].status == "Jobstarted") {
+              res.data[i]["orderstatus"] = "Completed";
+              res.data[i]["statusColor"] = "success";
+              res.data[i]["trackingmessage"] = "Delivered";
+              res.data[i]["assigncolor"] = "success";
+              res.data[i]["completedcolor"] = "success";
+
+              if (res.data[i].supplierdetails)
+                res.data[i]["defindimg"] = this.apiService.getImg() + "supplier_" + res.data[i].supplierdetails.userid;
+            }*/
+
+            else if (res.data[i].status == "doorlock" || res.data[i].status == "Door Locked") {
               res.data[i]["orderstatus"] = "Door Locked";
               res.data[i]["statusColor"] = "warning";
               res.data[i]["trackingmessage"] = "Not delivered: Door - Locked";
@@ -426,7 +438,7 @@ export class AboutPage {
   }
 
   sendMsg(item) {
-    if (this.alertUtils.validateText(this.editorMsg, "Message", 2, 250)) {
+    if (this.alertUtils.validateText(this.editorMsg, "Message", 1, 250)) {
       this.createMessage(item, this.editorMsg);
     } else {
       this.alertUtils.showToast(this.alertUtils.ERROR_MES);

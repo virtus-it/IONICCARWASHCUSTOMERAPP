@@ -33,7 +33,7 @@ export class TrackorderPage {
   rides = [];
   currentIndex = 0;
   directionsService = new google.maps.DirectionsService;
-  directionsDisplay = new google.maps.DirectionsRenderer;
+  directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
   direcReq: DirectionsRequest;
   start = 'chicago, il';
   end = 'chicago, il';
@@ -41,8 +41,13 @@ export class TrackorderPage {
   loc: LatLng;
   private items: any;
   marker: any;
+  markers: any = [];
+  suppName: string;
+  time: string = '';
 
   //assets/imgs/marker_pin.png
+
+
 
   constructor(
     private socket: Socket,
@@ -53,7 +58,7 @@ export class TrackorderPage {
       try {
 
         this.items = this.param.get("order");
-        Utils.sLog(this.items);
+        Utils.sLog('<<<<<<< order data >>>>>>>>>>', this.items);
 
 
         this.alertUtils.getUserInfo().then(user => {
@@ -119,8 +124,8 @@ export class TrackorderPage {
     try {
       // this.calculateAndDisplayRoute();
       if (IS_WEBSITE) {
-        this.items = {};
-        this.items['useruniqueid'] = '6ed19a9014324ef4';
+        // this.items = {};
+        this.items['useruniqueid'] = 'b8037ebef554de2c';
       }
       Utils.sLog("DB DeviceUUID : " + this.items.useruniqueid);
       Utils.sLog("DeviceUUID : " + this.alertUtils.getDeviceUUID())
@@ -147,30 +152,36 @@ export class TrackorderPage {
             if (item && item.order && item.order.lat && item.order.lng) {
               Utils.sLog(item.order.lat);
               Utils.sLog(item.order.lng);
-
-              this.addMarker(item.order.lat, item.order.lng);
+              // this.addRouteMarkers(new LatLng(parseFloat(item.order.lat), parseFloat(item.order.lng)), 'http://maps.google.com/mapfiles/ms/micons/blue.png', 'SE');
+              // this.addMarker(item.order.lat, item.order.lng);
+              this.items.delivery_latitude = item.order.lat;
+              this.items.delivery_longitude = item.order.lng;
+              this.calculateAndDisplayRoute()
 
             }
           }
         });
-      } else
-        if (this.alertUtils.getDeviceUUID()) {
-          this.getMessages(this.alertUtils.getDeviceUUID()).subscribe(data => {
-            Utils.sLog("******* tracking started ********");
-            Utils.sLog(data);
-            if (data) {
-              let item: any = data;
-              if (item && item.order && item.order.lat && item.order.lng) {
-                Utils.sLog(item.order.lat);
-                Utils.sLog(item.order.lng);
-                this.addMarker(item.order.lat, item.order.lng);
+      } else if (this.alertUtils.getDeviceUUID()) {
+        this.getMessages(this.alertUtils.getDeviceUUID()).subscribe(data => {
+          Utils.sLog("******* tracking started ********");
+          Utils.sLog(data);
+          if (data) {
+            let item: any = data;
+            if (item && item.order && item.order.lat && item.order.lng) {
+              Utils.sLog(item.order.lat);
+              Utils.sLog(item.order.lng);
+              // this.addMarker(item.order.lat, item.order.lng);
+              // this.addRouteMarkers(new LatLng(parseFloat(item.order.lat), parseFloat(item.order.lng)), 'http://maps.google.com/mapfiles/ms/micons/blue.png', 'SE');
+              this.items.delivery_latitude = item.order.lat;
+              this.items.delivery_longitude = item.order.lng;
+              this.calculateAndDisplayRoute()
 
-              }
             }
-          });
-        } else {
-          console.error("--------------------UUID not found");
-        }
+          }
+        });
+      } else {
+        console.error("--------------------UUID not found");
+      }
     } catch (error) {
       Utils.sLog(error);
     }
@@ -178,8 +189,6 @@ export class TrackorderPage {
 
   getMessages(key: string) {
     try {
-
-
       Utils.sLog("trackorder 3");
       let observable = new Observable(observer => {
         this.socket.on(key, (data: any) => {
@@ -201,14 +210,19 @@ export class TrackorderPage {
       if (this.items && this.items.orderby_latitude && this.items.orderby_longitude) {
         destionation = new LatLng(parseFloat(this.items.orderby_latitude), parseFloat(this.items.orderby_longitude));
       } else {
-        destionation = new LatLng(17.407190, 78.402064);
+        if (IS_WEBSITE)
+          destionation = new LatLng(17.407190, 78.402064);
       }
       let origin: LatLng;
 
       if (this.items && this.items.delivery_latitude && this.items.delivery_longitude) {
         origin = new LatLng(parseFloat(this.items.delivery_latitude), parseFloat(this.items.delivery_longitude));
       } else {
-        origin = new LatLng(17.394264, 78.441137);
+        if (IS_WEBSITE)
+          origin = new LatLng(17.997190, 78.992064);
+        else {
+          origin = destionation;
+        }
       }
 
       Utils.sLog(origin)
@@ -216,19 +230,47 @@ export class TrackorderPage {
       this.direcReq.origin = origin;
       this.direcReq.destination = destionation;
       this.direcReq.travelMode = TravelMode.DRIVING;
+      this.direcReq.unitSystem = google.maps.UnitSystem.METRIC;
       this.directionsService.route(this.direcReq, (response, status) => {
-        if (status) {
-          this.directionsDisplay.setDirections(response);
-          this.ref.detectChanges();
-        } else {
-          window.alert('Directions request failed due to ' + status);
+        try {
+          if (status && response && response.routes && response.routes[0] && response.routes[0].legs && response.routes[0].legs[0]) {
+            this.directionsDisplay.setDirections(response);
+            var leg = response.routes[0].legs[0];
+            if (this.markers) {
+              for (var i = 0; i < this.markers.length; i++) {
+                this.markers[i].setMap(null);
+              }
+              this.markers = new Array();
+            }
+            this.time = leg.duration.text;
+            this.addRouteMarkers(leg.start_location, 'http://maps.google.com/mapfiles/ms/micons/blue.png', 'Me');
+            this.addRouteMarkers(leg.end_location, 'http://maps.google.com/mapfiles/ms/micons/green.png', 'SE');
+
+            // this.ref.detectChanges();
+          } else {
+            //window.alert('Directions request failed due to ' + status);
+          }
+        } catch (error) {
+          Utils.sLog(error);
         }
+
       });
     } catch (error) {
       Utils.sLog(error);
     }
 
   }
+
+  addRouteMarkers(position, icon, title) {
+    this.markers.push(new google.maps.Marker({
+      position: position,
+      map: this.map,
+      icon: icon,
+      title: title
+    }));
+  }
+
+
 
   addMarker(lat, lng) {
     try {
@@ -237,20 +279,20 @@ export class TrackorderPage {
       if (this.marker)
         this.marker.setMap(null);
 
-      let suppName = "Service Man";
+      this.suppName = "Service Man";
       if (this.items && this.items.supplierdetails && this.items.supplierdetails.firstname) {
-        suppName = this.items.supplierdetails.firstname;
+        this.suppName = this.items.supplierdetails.firstname;
       }
 
-      this.marker = new google.maps.Marker({
-        map: this.map,
-        animation: google.maps.Animation.BOUNCE,
-        position: new LatLng(parseFloat(lat), parseFloat(lng))
-      });
+      // this.marker = new google.maps.Marker({
+      //   map: this.map,
+      //   icon: '/assets/imgs/marker_pin.png',
+      //   position: new LatLng(parseFloat(lat), parseFloat(lng))
+      // });
 
-      let content = suppName;
+      // let content = suppName;
 
-      this.addInfoWindow(this.marker, content);
+      // this.addInfoWindow(this.marker, content);
       // this.loc = new LatLng(parseFloat(lat), parseFloat(lng));
       this.moveToLocation(parseFloat(lat), parseFloat(lng));
     } catch (error) {
@@ -294,8 +336,12 @@ export class TrackorderPage {
         center: { lat: 17.394264, lng: 78.402064 }
       });
       this.directionsDisplay.setMap(this.map);
-      // this.calculateAndDisplayRoute();
-      this.addMarker(17.396428, 78.425041);
+      this.calculateAndDisplayRoute();
+      //this.addMarker(17.396428, 78.425041);
+      this.suppName = "Service Man";
+      if (this.items && this.items.supplierdetails && this.items.supplierdetails.firstname) {
+        this.suppName = this.items.supplierdetails.firstname;
+      }
       if (IS_WEBSITE) {
         this.openSocket();
       }

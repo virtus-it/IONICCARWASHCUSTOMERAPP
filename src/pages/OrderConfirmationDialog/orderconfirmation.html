@@ -20,6 +20,8 @@
       </span>
       <!-- <h1 center text-center class="thanku_msg">Order Successful</h1> -->
       <h2 center class="thanku_msg" color="success">{{ 'CONFIRMATION_PAGE.LABELS.lb_thanks_msg' | translate }}</h2>
+      <div class="orderid_mes">{{ 'CONFIRMATION_PAGE.LABELS.lb_order_created_id' | translate }} {{orderResult.data.orderid}}</div>
+      <div class="orderid_mes">{{ 'CONFIRMATION_PAGE.LABELS.lb_please_pay_cash' | translate }}</div>
       <div class="border-addr">
         <div>{{ 'CONFIRMATION_PAGE.LABELS.lb_delivery_address' | translate }}</div>
         <ion-row>

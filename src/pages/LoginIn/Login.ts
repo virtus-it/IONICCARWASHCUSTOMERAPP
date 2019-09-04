@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { AlertController, NavController, NavParams, ViewController } from "ionic-angular";
+import {Component} from "@angular/core";
+import {AlertController, NavController, NavParams, ViewController} from "ionic-angular";
 import {
   APP_TYPE,
   APP_USER_TYPE,
@@ -9,9 +9,9 @@ import {
   RES_SUCCESS,
   Utils
 } from "../../app/services/Utils";
-import { GetService } from "../../app/services/get.servie";
-import { MapView } from "../MapView/MapView";
-import { ServiceArea } from "../../app/services/servicearea";
+import {GetService} from "../../app/services/get.servie";
+import {MapView} from "../MapView/MapView";
+import {ServiceArea} from "../../app/services/servicearea";
 
 
 @Component({
@@ -22,11 +22,14 @@ export class Login {
   items: any;
   info: any;
   mobileNumber: string;
+  otp: string;
   password: any;
   cameFrom: string;
+  requestedOtp: boolean = false;
   successLogin: boolean;
   showProgress = false;
   showLogin = true;
+  sendOtpTitle:any = 'Send OTP';
   public online: boolean = true;
   public type = 'password';
   public showPass = false;
@@ -93,6 +96,27 @@ export class Login {
       this.navCtrl.pop();
     else
       this.viewCtrl.dismiss();
+  }
+
+  getOtp() {
+    try {
+      if (this.mobileNumber) {
+        if (this.alertUtils.validateNumber(this.mobileNumber, "Mobile Number", 9, 9)) {
+          if (this.alertUtils.networkStatus()) {
+            this.requestedOtp = true;
+            this.sendOtpTitle = 'Resend OTP';
+            this.forgotPwdTask({'mobileno': this.mobileNumber})
+          } else {
+            this.alertUtils.showAlert("INTERNET CONNECTION", INTERNET_ERR_MSG, "OK");
+          }
+        } else {
+          this.alertUtils.showToast(this.alertUtils.ERROR_MES);
+        }
+      } else {
+        this.alertUtils.showToast("please enter mobile number");
+      }
+    } catch (e) {
+    }
   }
 
   logIn() {
@@ -162,7 +186,7 @@ export class Login {
                         else
                           userName = this.info.first_name;
 
-                        if(this.info.first_name){
+                        if (this.info.first_name) {
                           this.alertUtils.sliderName = this.info.first_name;
                         }
 
@@ -310,11 +334,21 @@ export class Login {
         this.apiService.getReq(this.apiService.forgotPwd() + data.mobileno).subscribe(res => {
           this.alertUtils.showLog(res);
           this.alertUtils.hideLoading();
-          if (res.result == RES_SUCCESS) {
-            this.alertUtils.showAlert("Success", "Password sent to your registered phone number", "OK")
+
+          if (res.result == RES_SUCCESS && res.data) {
+            if (res.result == RES_SUCCESS) {
+              this.alertUtils.showAlert("Success", res.data.user.message, "OK")
+            } else {
+              this.alertUtils.showAlert("Warning", res.data.user.message, "OK")
+            }
           } else {
-            this.alertUtils.showAlert("Warning", "Phone number not found in database", "OK")
+            if (res.result == RES_SUCCESS) {
+              this.alertUtils.showAlert("Success", "Password sent to your registered phone number", "OK")
+            } else {
+              this.alertUtils.showAlert("Warning", "Phone number not found in database", "OK")
+            }
           }
+
         }, err => {
           this.alertUtils.hideLoading();
           this.alertUtils.showLog(err);

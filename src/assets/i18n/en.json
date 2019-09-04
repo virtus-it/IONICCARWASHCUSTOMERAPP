@@ -21,13 +21,15 @@
   "LOGIN_PAGE": {
     "PAGE_TITLE": "LOGIN",
     "BUTTONS": {
-      "btn_sign_in": "SIGN IN"
+      "btn_sign_in": "SIGN IN",
+      "btn_get_otp": "GET OTP"
     },
     "LABELS": {
       "lb_mobile_no_hint": "Mobile Number",
       "lb_pwd_hint": "Password",
       "lb_forgot_pwd_title": "Forgot Password?",
-      "lb_show_password": "Show password"
+      "lb_show_password": "Show password",
+      "lb_enter_otp": "Enter OTP"
     }
   },
   "SIGNUP_PAGE": {
@@ -301,7 +303,9 @@
       "lb_product_name": "Service Name",
       "lb_price": "Price",
       "lb_total_item": "Total Item:",
-      "lb_total_amt": "Total Amount:"
+      "lb_total_amt": "Total Amount:",
+      "lb_order_created_id": "Your order created with: ",
+      "lb_please_pay_cash": "Please pay the cash after job is completed to service engineer"
     }
   },
   "ORDER_DETAILS_PAGE": {

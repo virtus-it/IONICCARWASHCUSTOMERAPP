@@ -13,36 +13,55 @@
         <ion-icon name="md-arrow-round-back" large class="pdtop-5 primary fs-25" item-start (click)="goBack()"></ion-icon>
         <ion-label center class="sign_toplabel">{{ 'LOGIN_PAGE.PAGE_TITLE' | translate }}</ion-label>
       </ion-row>
+
       <ion-item class="no_bg no_shadow input_container ">
         <ion-label floating>{{ 'LOGIN_PAGE.LABELS.lb_mobile_no_hint' | translate }}</ion-label>
         <ion-input class="usr_namefeild" type="tel" maxlength="9" minlength="9" [(ngModel)]="mobileNumber" required
                    (ionChange)="inputMobilecall()"></ion-input>
       </ion-item>
-      <ion-item class="no_bg no_shadow input_container">
-        <ion-label floating>{{ 'LOGIN_PAGE.LABELS.lb_pwd_hint' | translate }}</ion-label>
-        <ion-input [type]="type" class="usr_namefeild" maxlength="20" minlength="4" [(ngModel)]="password"
-                   clearOnEdit="false" required (ionChange)="inputMobilecall()"></ion-input>
-      </ion-item>
-      <ion-item class="pdleft12-nopadding mgtop-3">
-        <ion-toggle [(ngModel)]="tgPwd" (ionChange)="showPassword()"></ion-toggle>
-        <ion-label>{{ 'LOGIN_PAGE.LABELS.lb_show_password' | translate }}</ion-label>
-      </ion-item>
+
+      <!-- <ion-item class="no_bg no_shadow input_container">
+         <ion-label floating>{{ 'LOGIN_PAGE.LABELS.lb_pwd_hint' | translate }}</ion-label>
+         <ion-input [type]="type" class="usr_namefeild" maxlength="20" minlength="4" [(ngModel)]="password"
+                    clearOnEdit="false" required (ionChange)="inputMobilecall()"></ion-input>
+       </ion-item>
+       <ion-item class="pdleft12-nopadding mgtop-3">
+         <ion-toggle [(ngModel)]="tgPwd" (ionChange)="showPassword()"></ion-toggle>
+         <ion-label>{{ 'LOGIN_PAGE.LABELS.lb_show_password' | translate }}</ion-label>
+       </ion-item>-->
+
       <ion-item *ngIf="errorText">
         <p item-left class="danger">
           <ion-icon name="alert"></ion-icon>
           &nbsp;<span>{{errorText}}</span></p>
       </ion-item>
-      <ion-item item-right class="no_bg no_shadow btn_forgot">
-        <span color="" class="btn_forgotpswd" (click)="forgotPwd()">{{ 'LOGIN_PAGE.LABELS.lb_forgot_pwd_title' | translate }}</span>
-      </ion-item>
-      <!--<button class="btn_signin" *ngIf="showLogin" (click)="logIn()">-->
-      <button class="btn-lg mgtop-20 button button-md button-block-md"  ion-button  color="primary" block *ngIf="showLogin" (click)="logIn()">
-        {{ 'LOGIN_PAGE.BUTTONS.btn_sign_in' | translate}}
+
+      <!--<ion-item class="no_bg no_shadow input_container">
+        <ion-label floating>{{ 'LOGIN_PAGE.LABELS.lb_pwd_hint' | translate }}</ion-label>
+        <ion-input [type]="type" class="usr_namefeild" maxlength="20" minlength="4" [(ngModel)]="password"
+                   clearOnEdit="false" required (ionChange)="inputMobilecall()"></ion-input>
+      </ion-item>-->
+
+      <button class="btn-lg mgtop-20 button button-md button-block-md"  ion-button  color="primary" block *ngIf="showLogin" (click)="getOtp()">
+        {{sendOtpTitle}}
       </button>
 
+      <ion-row *ngIf="requestedOtp">
+        <ion-item class="no_bg no_shadow input_container ">
+          <ion-label floating>{{ 'LOGIN_PAGE.LABELS.lb_enter_otp' | translate }}</ion-label>
+          <ion-input class="usr_namefeild" type="tel" maxlength="10" minlength="2" [(ngModel)]="password" required
+                     (ionChange)="inputMobilecall()">
+          </ion-input>
+        </ion-item>
+
+        <button class="btn-lg mgtop-20 button button-md button-block-md"  ion-button  color="primary" block *ngIf="showLogin" (click)="logIn()">
+          {{ 'LOGIN_PAGE.BUTTONS.btn_sign_in' | translate}}
+        </button>
+      </ion-row>
+<!--
       <button class="btn-lg mgtop-20 button button-md button-block-md"  ion-button  color="primary" block *ngIf="showProgress">
         <ion-spinner name="dots" color="light"></ion-spinner>
-      </button>
+      </button>-->
 
     </ion-card>
   </ion-row>

@@ -21,13 +21,15 @@
   "LOGIN_PAGE": {
     "PAGE_TITLE": "تسجيل الدخول",
     "BUTTONS": {
-      "btn_sign_in": "تسجيل الدخول"
+      "btn_sign_in": "تسجيل الدخول",
+      "btn_get_otp": "الحصول على OTP"
     },
     "LABELS": {
       "lb_mobile_no_hint": "رقم الهاتف المحمول",
       "lb_pwd_hint": "كلمه السر",
       "lb_forgot_pwd_title": "هل نسيت كلمة المرور؟",
-      "lb_show_password": "عرض كلمة المرور"
+      "lb_show_password": "عرض كلمة المرور",
+      "lb_enter_otp": "أدخل OTP"
     }
   },
   "SIGNUP_PAGE": {
@@ -297,7 +299,9 @@
       "lb_product_name": "اسم الخدمة",
       "lb_price": "السعر",
       "lb_total_item": "مجموع البند:",
-      "lb_total_amt": "المبلغ الإجمالي:"
+      "lb_total_amt": "المبلغ الإجمالي:",
+      "lb_order_created_id": "تم إنشاء طلبك باستخدام:",
+      "lb_please_pay_cash": "يرجى دفع النقد بعد اكتمال المهمة لمهندس الخدمة"
     }
   },
   "ORDER_DETAILS_PAGE": {

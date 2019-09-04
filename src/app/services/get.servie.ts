@@ -209,6 +209,10 @@ export class GetService {
     return "login";
   }
 
+  generateOtp() {
+    return "generateotp";
+  }
+
   mobileValidation() {
     return "mobilevalidation";
   }

@@ -15,7 +15,8 @@
       "lb_mobile_no_hint": "Mobile Number",
       "lb_supp_code_hint": "Code (optional)",
       "lb_register_title_1": "مسجل بالفعل؟",
-      "lb_register_title_2": "تسجيل الدخول"
+      "lb_register_title_2": "تسجيل الدخول",
+      "test": ""
     }
   },
   "LOGIN_PAGE": {

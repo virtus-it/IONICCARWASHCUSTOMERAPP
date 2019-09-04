@@ -91,6 +91,7 @@ export class GetService {
       headers.append("apptype", APP_TYPE);
       headers.append("usertype", APP_USER_TYPE);
       headers.append("versioncode", APP_VER_CODE);
+      //
     }
 
     this.alertUtils.showLog(JSON.stringify(headers));

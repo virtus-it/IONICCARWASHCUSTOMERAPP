@@ -21,7 +21,8 @@
   "LOGIN_PAGE": {
     "PAGE_TITLE": "LOGIN",
     "BUTTONS": {
-      "btn_sign_in": "SIGN IN"
+      "btn_sign_in": "SIGN IN",
+      "test": ""
     },
     "LABELS": {
       "lb_mobile_no_hint": "Mobile Number",

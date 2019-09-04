@@ -87,7 +87,7 @@ export class Login {
       }
     }
   }
-
+//
   goBack() {
     if (this.navCtrl.length() > 1)
       this.navCtrl.pop();

@@ -60,7 +60,7 @@
     "cordova-plugin-geolocation": "^3.0.0",
     "cordova-plugin-globalization": "^1.0.8",
     "cordova-plugin-googlemaps": "2.0.0",
-    "cordova-plugin-inappbrowser": "^1.7.2",
+    "cordova-plugin-inappbrowser": "^3.1.0",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-nativegeocoder": "^2.0.4",
     "cordova-plugin-nativestorage": "^2.2.2",
